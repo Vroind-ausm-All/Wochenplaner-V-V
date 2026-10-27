@@ -1,0 +1,20 @@
+.wx { display: grid; gap: 14px; background: linear-gradient(140deg, #e3eef4, #f2f6ee); border: 0; }
+.wx--clear { background: linear-gradient(140deg, #fff1d6, #e7f1e4); }
+.wx--rain, .wx--drizzle, .wx--storm { background: linear-gradient(140deg, #dfe6ee, #eef1f4); }
+.wx--snow { background: linear-gradient(140deg, #eef3fa, #ffffff); }
+.wx--night { background: linear-gradient(140deg, #dfe2f1, #e9ecf1); }
+:root[data-theme='night'] .wx { background: linear-gradient(140deg, #1b2530, #18201c); }
+.wx__now { display: flex; align-items: center; gap: 16px; }
+.wx__big { font-size: 56px; line-height: 1; display: inline-block; }
+.wx__temp { font-size: 44px; font-weight: 850; letter-spacing: -.04em; line-height: 1; }
+.wx__days { display: grid; grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); gap: 6px; }
+.wx__day { display: grid; justify-items: center; gap: 2px; padding: 8px 4px; border-radius: 14px; border: 0; background: #ffffff8c; min-height: 120px; }
+:root[data-theme='night'] .wx__day { background: #ffffff10; }
+.wx__day.is-nice { box-shadow: inset 0 -3px 0 #e2a66f; }
+.wx__icon { font-size: 26px; }
+.wx__rain { font-size: 11px; }
+.wx__hours { display: flex; gap: 6px; overflow-x: auto; }
+.wx__hour { display: grid; justify-items: center; gap: 2px; min-width: 46px; padding: 6px 2px; border-radius: 10px; background: #ffffff8c; }
+:root[data-theme='night'] .wx__hour { background: #ffffff10; }
+.wx-badge { display: inline-flex; align-items: center; gap: 3px; font-size: 12px; white-space: nowrap; }
+.wx-now { display: inline-flex; align-items: center; gap: 6px; font-size: 20px; }

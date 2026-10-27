@@ -1,0 +1,10 @@
+{
+  "name": "WIR. Wochenplaner",
+  "short_name": "WIR.",
+  "start_url": ".",
+  "display": "fullscreen",
+  "orientation": "any",
+  "background_color": "#f8f7f1",
+  "theme_color": "#608369",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

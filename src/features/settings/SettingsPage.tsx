@@ -1,0 +1,154 @@
+import { useRef, useState } from 'react';
+import { searchPlace } from '../../lib/weather';
+import { isValidBackup } from '../../store/migrate';
+import { seed } from '../../store/defaults';
+import { useStore } from '../../store/store';
+import { connect, useSync } from '../../store/sync';
+import type { Location } from '../../store/types';
+import { Chips } from '../../ui/Segmented';
+
+export function SettingsPage() {
+  const s = useStore((x) => x.data.settings);
+  const { updateSettings, replaceAll, notify } = useStore.getState();
+  const sync = useSync();
+  const [q, setQ] = useState('');
+  const [places, setPlaces] = useState<Location[]>([]);
+  const [pass, setPass] = useState('');
+  const file = useRef<HTMLInputElement>(null);
+
+  const find = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPlaces(q.trim() ? await searchPlace(q.trim()).catch(() => []) : []);
+  };
+  const locate = () =>
+    navigator.geolocation?.getCurrentPosition(
+      (p) => updateSettings({ location: { name: 'Mein Standort', latitude: Number(p.coords.latitude.toFixed(3)), longitude: Number(p.coords.longitude.toFixed(3)) } }),
+      () => notify('Standort nicht verfügbar'),
+    );
+  const exportJson = () => {
+    const blob = new Blob([JSON.stringify(useStore.getState().data, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `wir-wochenplaner-${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  };
+  const importJson = async (f: File) => {
+    try {
+      const v = JSON.parse(await f.text());
+      if (!isValidBackup(v)) throw new Error();
+      if (confirm('Aktuelle Daten durch die Sicherung ersetzen? (Rückgängig ist möglich)')) {
+        replaceAll(v);
+        notify('Sicherung importiert', true);
+      }
+    } catch {
+      notify('Diese Datei ist keine gültige Sicherung');
+    }
+  };
+
+  return (
+    <div className="shop">
+      <h2>Einstellungen</h2>
+
+      <section className="card stack">
+        <h3>Wir zwei</h3>
+        <div className="row wrap">
+          <label className="field grow">
+            <span>Name Person A</span>
+            <input className="input" value={s.personA} onChange={(e) => updateSettings({ personA: e.target.value })} />
+          </label>
+          <label className="field grow">
+            <span>Name Person B</span>
+            <input className="input" value={s.personB} onChange={(e) => updateSettings({ personB: e.target.value })} />
+          </label>
+        </div>
+      </section>
+
+      <section className="card stack">
+        <h3>Wetter-Ort</h3>
+        <p className="small muted">Aktuell: {s.location?.name ?? 'Berlin (Standard)'} · Daten von Open-Meteo, ohne Konto und ohne Tracking.</p>
+        <form className="row wrap" onSubmit={find}>
+          <input className="input grow" placeholder="Ort suchen, z. B. Leipzig" value={q} onChange={(e) => setQ(e.target.value)} />
+          <button className="btn">Suchen</button>
+          <button type="button" className="btn" onClick={locate}>
+            📍 Standort verwenden
+          </button>
+        </form>
+        <div className="chips">
+          {places.map((p) => (
+            <button key={`${p.latitude},${p.longitude}`} className="chip" onClick={() => { updateSettings({ location: p }); setPlaces([]); setQ(''); }}>
+              {p.name}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section className="card stack">
+        <h3>Essen</h3>
+        <div className="field">
+          <span>Standard-Portionen</span>
+          <Chips value={s.defaultPortions} onChange={(v) => updateSettings({ defaultPortions: v })} options={[1, 2, 3, 4].map((v) => ({ value: v, label: String(v) }))} />
+        </div>
+        <div className="chips">
+          <button className="chip" aria-pressed={s.lunchOnWeekdays} onClick={() => updateSettings({ lunchOnWeekdays: !s.lunchOnWeekdays })}>
+            Mittagessen auch werktags planen
+          </button>
+        </div>
+      </section>
+
+      <section className="card stack">
+        <h3>Display & Kiosk (15,2″ Bilderrahmen)</h3>
+        <div className="field">
+          <span>Abdunkeln nach Inaktivität</span>
+          <Chips value={s.dimAfterMinutes} onChange={(v) => updateSettings({ dimAfterMinutes: v })} options={[0, 2, 5, 10, 30].map((v) => ({ value: v, label: v ? `${v} Min.` : 'Aus' }))} />
+        </div>
+        <div className="chips">
+          <button className="chip" aria-pressed={s.nightMode} onClick={() => updateSettings({ nightMode: !s.nightMode })}>
+            🌙 Nachtmodus automatisch
+          </button>
+        </div>
+        {s.nightMode && (
+          <div className="row wrap">
+            <label className="field">
+              <span>Von</span>
+              <input className="input" type="time" value={s.nightFrom} onChange={(e) => updateSettings({ nightFrom: e.target.value })} />
+            </label>
+            <label className="field">
+              <span>Bis</span>
+              <input className="input" type="time" value={s.nightTo} onChange={(e) => updateSettings({ nightTo: e.target.value })} />
+            </label>
+          </div>
+        )}
+        <p className="small muted">
+          Das Abdunkeln in der Web-App schaltet nicht die Hintergrundbeleuchtung ab. Für echtes Standby: Android-Kioskmodus (z. B. Fully Kiosk) oder Monitor mit eigenem Sleep-Signal. Netzteil zugänglich und belüftet lassen – keine Netzteile in geschlossenen Wandhohlräumen.
+        </p>
+      </section>
+
+      <section className="card stack">
+        <h3>Gemeinsamer Familienserver</h3>
+        <p>{sync.connected ? '✓ Verbunden – Änderungen gehen an alle Geräte.' : sync.available ? 'Familienserver gefunden – bitte anmelden.' : 'Lokaler Modus – Daten bleiben auf diesem Gerät.'}</p>
+        {sync.error && <p className="small" style={{ color: 'var(--danger)' }}>{sync.error}</p>}
+        {sync.available && !sync.connected && (
+          <form className="row wrap" onSubmit={async (e) => { e.preventDefault(); try { await connect(pass); notify('Mit Familienserver verbunden'); } catch (err) { notify((err as Error).message); } }}>
+            <input className="input grow" type="password" placeholder="Haushalts-Passwort" value={pass} onChange={(e) => setPass(e.target.value)} />
+            <button className="btn primary">Verbinden</button>
+          </form>
+        )}
+        <p className="small muted">Kompatibel mit dem Server des bisherigen WIR-Boards (/api/state). Alle mit Haushalts-Passwort sehen alle Einträge.</p>
+      </section>
+
+      <section className="card stack">
+        <h3>Datensicherung</h3>
+        <div className="row wrap">
+          <button className="btn" onClick={exportJson}>↓ JSON exportieren</button>
+          <button className="btn" onClick={() => file.current?.click()}>↑ JSON importieren</button>
+          <button className="btn danger" onClick={() => confirm('Alle Daten auf Beispieldaten zurücksetzen?') && (replaceAll(seed()), notify('Zurückgesetzt', true))}>
+            Zurücksetzen
+          </button>
+        </div>
+        <input ref={file} type="file" accept=".json,application/json" hidden onChange={(e) => e.target.files?.[0] && importJson(e.target.files[0])} />
+        <p className="small muted">Sicherungen des alten WIR-Boards lassen sich direkt importieren.</p>
+      </section>
+    </div>
+  );
+}

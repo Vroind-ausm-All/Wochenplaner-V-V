@@ -1,0 +1,86 @@
+import { cuisine, i, meat } from './helpers';
+
+export default cuisine('Spanisch', [
+  {
+    name: 'Paella de verduras',
+    group: 'Klassiker', minutes: 50, symbol: '🥘',
+    description: 'Safranreis mit grünen Bohnen, Paprika und Zitrone',
+    ingredients: [i('Risottoreis', 160), i('Paprika', 1, 'Stück'), i('Erbsen', 100), i('Grüne Bohnen', 150), i('Tomaten', 2, 'Stück'), i('Zwiebeln', 1, 'Stück'), i('Knoblauch', 2, 'Zehen'), i('Gemüsebrühe glutenfrei', 600, 'ml'), i('Olivenöl', 30, 'ml'), i('Zitrone', 1, 'Stück')],
+    steps: [
+      'Zwiebel, Knoblauch, Paprika und Bohnen in der Pfanne im Öl 6 Minuten braten.',
+      'Geriebene Tomaten und Paprikapulver zugeben und einkochen lassen.',
+      'Reis kurz mitrösten, heiße Brühe mit Safran angießen und nicht mehr rühren – 18 Minuten köcheln.',
+      'Erbsen darauf verteilen, zum Schluss 2 Minuten stärker erhitzen für den Socarrat. Mit Zitrone servieren.',
+    ],
+    meat: meat('Garnelen', 200, 'Garnelen in den letzten 6 Minuten auf den Reis legen und vollständig garen.'),
+    swaps: ['Paella-Gewürzmischungen und Brühwürfel prüfen; Safranfäden sind unbedenklich.'],
+    homemade: ['gf-bruehe'],
+  },
+  {
+    name: 'Tortilla española mit Tomatensalat',
+    group: 'Klassiker', minutes: 40, symbol: '🍳',
+    description: 'Dicker Kartoffel-Eier-Kuchen, saftig in der Mitte',
+    ingredients: [i('Kartoffeln', 500), i('Eier', 5, 'Stück'), i('Zwiebeln', 1, 'Stück'), i('Olivenöl', 60, 'ml'), i('Tomaten', 3, 'Stück'), i('Rucola', 50)],
+    steps: [
+      'Kartoffeln und Zwiebel in dünne Scheiben schneiden und im Öl bei mittlerer Hitze 15 Minuten weich confieren.',
+      'Abtropfen lassen und mit verquirlten, gesalzenen Eiern mischen, 5 Minuten ziehen lassen.',
+      'In etwas Öl bei niedriger Hitze stocken lassen, mit einem Teller wenden und fertig garen.',
+      'Mit Tomaten-Rucola-Salat servieren.',
+    ],
+    meat: meat('Serranoschinken', 60, 'Schinken dazu reichen.'),
+  },
+  {
+    name: 'Patatas bravas mit Kichererbsen & Aioli',
+    group: 'Schnell', minutes: 35, symbol: '🍟', technique: 'Airfryer',
+    description: 'Knusprige Würfel aus dem Airfryer, scharfe Tomatensoße',
+    ingredients: [i('Kartoffeln', 600), i('Kichererbsen', 240), i('Passierte Tomaten', 200), i('Knoblauch', 2, 'Zehen'), i('Mayonnaise glutenfrei', 60), i('Olivenöl', 20, 'ml'), i('Blattsalat', 80)],
+    steps: [
+      'Kartoffeln würfeln, mit Öl und Salz mischen und im Airfryer bei 200 °C 20 Minuten backen, dabei schütteln.',
+      'Kichererbsen trocken tupfen und die letzten 8 Minuten mitbacken.',
+      'Tomaten mit geräuchertem Paprika, Chili und Knoblauch 10 Minuten einkochen.',
+      'Aioli: Mayonnaise mit gepresstem Knoblauch verrühren. Alles mit Salat servieren.',
+    ],
+    meat: meat('Chorizo', 100, 'Chorizo-Scheiben in der Pfanne knusprig braten; Kennzeichnung prüfen.'),
+    swaps: ['Im Restaurant werden Bravas oft in gemeinsamer Fritteuse gebacken – zu Hause im Airfryer sicher.'],
+  },
+  {
+    name: 'Pisto manchego mit Spiegelei',
+    group: 'Klassiker', minutes: 40, symbol: '🫑',
+    description: 'Spanisches Schmorgemüse, wie Ratatouille aus La Mancha',
+    ingredients: [i('Zucchini', 1, 'Stück'), i('Aubergine', 1, 'Stück'), i('Paprika', 2, 'Stück'), i('Passierte Tomaten', 400), i('Zwiebeln', 1, 'Stück'), i('Eier', 4, 'Stück'), i('Olivenöl', 30, 'ml'), i('Glutenfreies Brot', 120)],
+    steps: [
+      'Zwiebel und Paprika im Öl 8 Minuten weich braten.',
+      'Aubergine und Zucchini würfeln, zugeben und 10 Minuten mitbraten.',
+      'Tomaten zugeben und 15 Minuten sämig schmoren.',
+      'Spiegeleier braten und auf dem Pisto mit Brot servieren.',
+    ],
+    homemade: ['gf-brot'],
+  },
+  {
+    name: 'Caldo verde mit weißen Bohnen',
+    group: 'Schnell', minutes: 35, symbol: '🥬',
+    description: 'Portugiesische Kartoffel-Grünkohl-Suppe',
+    ingredients: [i('Kartoffeln', 500), i('Grünkohl', 200), i('Zwiebeln', 1, 'Stück'), i('Knoblauch', 2, 'Zehen'), i('Gemüsebrühe glutenfrei', 900, 'ml'), i('Olivenöl', 30, 'ml'), i('Weiße Bohnen', 240)],
+    steps: [
+      'Zwiebel und Knoblauch im Öl anschwitzen, Kartoffelwürfel und Brühe zugeben.',
+      '20 Minuten köcheln und fein pürieren.',
+      'Grünkohl in hauchfeine Streifen schneiden, mit den Bohnen zugeben und 5 Minuten garen.',
+      'Mit einem Faden Olivenöl servieren.',
+    ],
+    meat: meat('Chorizo', 120, 'Chorizo-Scheiben separat braten und auf die Suppe geben.'),
+    homemade: ['gf-bruehe'],
+  },
+  {
+    name: 'Champiñones al ajillo mit Zitronenreis',
+    group: 'Schnell', minutes: 25, symbol: '🦐',
+    description: 'Knoblauchpilze wie in der Tapas-Bar',
+    ingredients: [i('Champignons', 400), i('Knoblauch', 4, 'Zehen'), i('Olivenöl', 45, 'ml'), i('Petersilie', 15), i('Zitrone', 1, 'Stück'), i('Reis', 140), i('Blattsalat', 80)],
+    steps: [
+      'Reis garen und mit Zitronenabrieb mischen.',
+      'Knoblauch in Scheiben mit Chili im Öl sanft erhitzen, bis er duftet.',
+      'Pilze zugeben und bei starker Hitze 6–8 Minuten braten.',
+      'Mit Petersilie und Zitronensaft vollenden, mit Reis und Salat servieren.',
+    ],
+    meat: meat('Garnelen', 250, 'Gambas al ajillo: Garnelen 3 Minuten im Knoblauchöl garen, bis sie durchgehend rosa sind.'),
+  },
+]);
