@@ -11,6 +11,53 @@ npm test           # Unit-Tests (Wiederholungen, Einkaufsliste, Rezepte, Begleit
 npm run build      # Produktions-Build nach dist/ – jeder statische Webspace genügt
 ```
 
+**Inhalt:** [Erster Test auf dem Laptop](#erster-test-auf-dem-laptop) · [Was drin ist](#was-drin-ist) ·
+[Küchenwelten](#küchenwelten) · [Projektaufbau](#projektaufbau) · [Hardware für den Bilderrahmen](docs/HARDWARE.md)
+
+## Erster Test auf dem Laptop
+
+Ihr braucht nur einen aktuellen Browser (Chrome oder Edge empfohlen), **Node.js 22 LTS** ([nodejs.org](https://nodejs.org)) und Git.
+
+1. **Projekt holen**
+   ```bash
+   git clone https://github.com/Vroind-ausm-All/Wochenplaner-V-V.git
+   cd Wochenplaner-V-V
+   git checkout claude/compassionate-cray-1vswzv   # bis der Pull Request gemergt ist
+   npm install
+   ```
+2. **Starten:** `npm run dev` – dann im Browser **http://localhost:5173** öffnen.
+   Die Konsole zeigt zusätzlich eine `Network:`-Adresse (z. B. `http://192.168.178.23:5173`). Die funktioniert auch
+   auf Handy oder Tablet im selben WLAN – ideal, um Touch schon vor dem Display-Kauf echt auszuprobieren.
+3. **Bilderrahmen simulieren:** `F12` → Geräte-Symbol (`Strg+Umschalt+M`, am Mac `Cmd+Shift+M`) →
+   „Dimensions: Responsive“ → **1080 × 1920** eintragen. Die Maus verhält sich dann wie ein Finger
+   (Touch-Emulation), d. h. zum Ziehen kurz gedrückt halten.
+4. **Vollbild wie im Kiosk:** `F11`.
+5. **Produktionsstand testen** (so läuft es später im Rahmen): `npm run build && npm run preview` → http://localhost:4173
+
+Gut zu wissen beim Test:
+- **Daten liegen im Browser** dieses Geräts (localStorage). Laptop, Handy und Rahmen sehen *nicht* automatisch dasselbe –
+  dafür braucht es den Familienserver (siehe [Hardware-Leitfaden](docs/HARDWARE.md#daten-auf-mehreren-geräten)).
+  Sicherung jederzeit über *Einstellungen → JSON exportieren*.
+- **Wetter** braucht Internet; ohne Ort in den Einstellungen wird Berlin angezeigt.
+- Meldungen zu `/api/status` in der Browser-Konsole sind normal, solange kein Familienserver läuft.
+
+### Test-Checkliste
+
+| ✓ | Was ausprobieren | Erwartung |
+|---|---|---|
+| ☐ | *Einstellungen*: eure Namen und den Wetter-Ort eintragen | Namen erscheinen in Affirmationen und beim Begleiter, Wetter für euren Ort |
+| ☐ | *Kalender → Woche*: Baustein „Date Night“ auf einen Abend **ziehen** | Termin erscheint, oben „Rückgängig“ |
+| ☐ | Baustein **antippen**, dann eine Uhrzeit **antippen** (Click & Drop) | Termin an dieser Stelle |
+| ☐ | Termin auf einen anderen Tag ziehen; unteren Rand eines Termins ziehen | Termin verschoben bzw. länger/kürzer |
+| ☐ | Termin antippen → in der Leiste unten „✎ Bearbeiten“ | Formular mit Chips statt kleiner Auswahlfelder |
+| ☐ | Monat / Tag / Termine durchschalten | Wettersymbole an den Tagen, Abendessen im Wochenkopf |
+| ☐ | *Essen*: Rezept auf „Abend“ ziehen, oder erst leeren Platz und dann Rezept antippen | Gericht geplant, *Einkauf* zählt hoch |
+| ☐ | 📖 an einem Rezept → „Selbst machen →“ an einer Zutat | Grundrezept (z. B. Pastateig) öffnet sich |
+| ☐ | *Wir-Zeit*: Energie für beide setzen, einen Vorschlag „✓ Einplanen“ | Begleiter ändert Stimmung, Termin im Kalender |
+| ☐ | Affirmation nach links/rechts wischen, ♡ antippen | Nächster Gedanke, kleine Herz-Animation |
+| ☐ | ☾ oben rechts, ◼ „Bildschirm dunkel“ | Nachtfarben bzw. schwarzer Schirm, Tippen weckt auf |
+| ☐ | Bisheriges Board: dessen JSON-Export unter *Einstellungen → importieren* | Alte Termine, Einkauf, Aufgaben sind da |
+
 ## Was drin ist
 
 | Bereich | Komponenten | Highlights |
@@ -34,6 +81,27 @@ Als Ausblick im Küchen-Kompass: Thai/Vietnam, Japan, Korea, Peru, Brasilien, Pe
 Grundrezepte (`data/recipes/basics.ts`): Mehlmischung, Pizzateig, frischer Pastateig, Gnocchi, Maistortillas,
 Injera aus Teff, Dosa, Paniermehl, Gemüsebrühe-Paste, Béchamel, Pão de queijo, Saatenbrot, Teriyaki mit Tamari.
 
+## Projektaufbau
+
+```
+src/
+  app/            App-Gerüst, Navigation, Kiosk (Nachtmodus, Abdunkeln)
+  dnd/            Drag & Drop + Click & Drop: Pickable, DropZone, Ablage-Regeln
+  features/
+    calendar/     MonthView, TimeGrid (Woche/Tag), AgendaView, EventSheet, TemplateTray
+    weather/      WeatherPanel, HourlyStrip, WeatherBadge, useWeather
+    affirmations/ AffirmationCard (Motion)
+    companion/    engine.ts (reine Logik, getestet), CompanionAvatar, Vorschläge, EnergyCheckin
+    meals/        MealPlanner, MealSlotBox, RecipeDetail, DishArt
+    shopping/ tasks/ family/ settings/ home/
+  data/           Rezepte je Küche, Grundrezepte, Küchenwelten, Ersatz-Tabelle, Nährwerte, Bausteine
+  lib/            Datum, Wiederholungen, Einkaufsliste, Nährwerte, Wetter
+  store/          Zustand-Store mit Rückgängig, Migration, Server-Sync
+```
+
+Eigene Rezepte ergänzt ihr in `src/data/recipes/<küche>.ts` (Mengen für 2 Personen). Der Test
+`src/data/recipes.test.ts` meldet, wenn eine Zutat in der Nährwerttabelle (`src/data/nutrients.ts`) fehlt.
+
 ## Übernahme aus dem alten Board
 
 - Beim ersten Start werden Daten unter `wir-board-4-v1` automatisch übernommen; JSON-Sicherungen lassen sich importieren.
@@ -45,3 +113,4 @@ Injera aus Teff, Dosa, Paniermehl, Gemüsebrühe-Paste, Béchamel, Pão de queij
 - Nährwerte sind Schätzbereiche aus generischen Tabellen, keine Diätberatung. Glutenfrei-Hinweise ersetzen nicht die Prüfung der Kennzeichnung.
 - Keine medizinischen Details auf dem für alle sichtbaren Display speichern.
 - GitHub Pages: Settings → Pages → Source „GitHub Actions“, dann Workflow „Prüfen und Vorschau“ von Hand starten.
+- Hardware-Empfehlungen für den Bilderrahmen: [docs/HARDWARE.md](docs/HARDWARE.md).
