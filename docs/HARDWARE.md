@@ -75,10 +75,8 @@ Version und funktionieren nicht immer zuverlässig (z. B. bei wenig Licht) – v
 ## Daten auf mehreren Geräten
 
 Ohne Server speichert jedes Gerät seine Daten im eigenen Browser. Damit Rahmen, Laptop und Handys dasselbe
-sehen, braucht es einen kleinen Server im Heimnetz, der die App ausliefert und die Daten hält. Die App spricht
-bereits das Protokoll des bisherigen Familienservers (`/api/status`, `/api/login`, `/api/state`, `/api/events`).
-Naheliegend ist, ihn auf dem Rechner hinter dem Rahmen (Weg B) oder einem NAS laufen zu lassen.
-Falls der alte Server nicht mehr vorliegt, ist ein schlanker Server dafür ein sinnvoller nächster Schritt.
+sehen, läuft der **Heimserver** am besten auf dem Rechner hinter dem Rahmen (Weg B) oder einem NAS –
+Einrichtung, Abgleich und Zugriff von unterwegs: [HEIMSERVER.md](HEIMSERVER.md).
 
 ## Quellen
 

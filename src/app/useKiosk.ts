@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { toMinutes } from '../lib/date';
 import { useNow } from '../lib/useClock';
-import { useStore } from '../store/store';
+import { useDevice } from '../store/device';
 
 /** Nachtmodus nach Zeitplan, Abdunkeln bei Inaktivität und „Bildschirm dunkel“ mit Tippen zum Aufwecken. */
 export function useKiosk() {
-  const s = useStore((x) => x.data.settings);
+  const s = useDevice();
   const now = useNow();
   const [dimmed, setDimmed] = useState(false);
   const [sleeping, setSleeping] = useState(false);

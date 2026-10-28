@@ -2,18 +2,18 @@ import { useRef, useState } from 'react';
 import { searchPlace } from '../../lib/weather';
 import { isValidBackup } from '../../store/migrate';
 import { seed } from '../../store/defaults';
+import { updateDevice, useDevice } from '../../store/device';
 import { useStore } from '../../store/store';
-import { connect, useSync } from '../../store/sync';
 import type { Location } from '../../store/types';
 import { Chips } from '../../ui/Segmented';
+import { InstallCard, SyncPanel } from '../sync/SyncUi';
 
 export function SettingsPage() {
   const s = useStore((x) => x.data.settings);
+  const dev = useDevice();
   const { updateSettings, replaceAll, notify } = useStore.getState();
-  const sync = useSync();
   const [q, setQ] = useState('');
   const [places, setPlaces] = useState<Location[]>([]);
-  const [pass, setPass] = useState('');
   const file = useRef<HTMLInputElement>(null);
 
   const find = async (e: React.FormEvent) => {
@@ -97,25 +97,25 @@ export function SettingsPage() {
       </section>
 
       <section className="card stack">
-        <h3>Display & Kiosk (15,2″ Bilderrahmen)</h3>
+        <h3>Display & Kiosk – nur dieses Gerät</h3>
         <div className="field">
           <span>Abdunkeln nach Inaktivität</span>
-          <Chips value={s.dimAfterMinutes} onChange={(v) => updateSettings({ dimAfterMinutes: v })} options={[0, 2, 5, 10, 30].map((v) => ({ value: v, label: v ? `${v} Min.` : 'Aus' }))} />
+          <Chips value={dev.dimAfterMinutes} onChange={(v) => updateDevice({ dimAfterMinutes: v })} options={[0, 2, 5, 10, 30].map((v) => ({ value: v, label: v ? `${v} Min.` : 'Aus' }))} />
         </div>
         <div className="chips">
-          <button className="chip" aria-pressed={s.nightMode} onClick={() => updateSettings({ nightMode: !s.nightMode })}>
+          <button className="chip" aria-pressed={dev.nightMode} onClick={() => updateDevice({ nightMode: !dev.nightMode })}>
             🌙 Nachtmodus automatisch
           </button>
         </div>
-        {s.nightMode && (
+        {dev.nightMode && (
           <div className="row wrap">
             <label className="field">
               <span>Von</span>
-              <input className="input" type="time" value={s.nightFrom} onChange={(e) => updateSettings({ nightFrom: e.target.value })} />
+              <input className="input" type="time" value={dev.nightFrom} onChange={(e) => updateDevice({ nightFrom: e.target.value })} />
             </label>
             <label className="field">
               <span>Bis</span>
-              <input className="input" type="time" value={s.nightTo} onChange={(e) => updateSettings({ nightTo: e.target.value })} />
+              <input className="input" type="time" value={dev.nightTo} onChange={(e) => updateDevice({ nightTo: e.target.value })} />
             </label>
           </div>
         )}
@@ -124,18 +124,8 @@ export function SettingsPage() {
         </p>
       </section>
 
-      <section className="card stack">
-        <h3>Gemeinsamer Familienserver</h3>
-        <p>{sync.connected ? '✓ Verbunden – Änderungen gehen an alle Geräte.' : sync.available ? 'Familienserver gefunden – bitte anmelden.' : 'Lokaler Modus – Daten bleiben auf diesem Gerät.'}</p>
-        {sync.error && <p className="small" style={{ color: 'var(--danger)' }}>{sync.error}</p>}
-        {sync.available && !sync.connected && (
-          <form className="row wrap" onSubmit={async (e) => { e.preventDefault(); try { await connect(pass); notify('Mit Familienserver verbunden'); } catch (err) { notify((err as Error).message); } }}>
-            <input className="input grow" type="password" placeholder="Haushalts-Passwort" value={pass} onChange={(e) => setPass(e.target.value)} />
-            <button className="btn primary">Verbinden</button>
-          </form>
-        )}
-        <p className="small muted">Kompatibel mit dem Server des bisherigen WIR-Boards (/api/state). Alle mit Haushalts-Passwort sehen alle Einträge.</p>
-      </section>
+      <SyncPanel />
+      <InstallCard />
 
       <section className="card stack">
         <h3>Datensicherung</h3>

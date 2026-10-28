@@ -197,7 +197,8 @@ useStore.subscribe((s, prev) => {
   } catch {
     /* Speicher voll oder privat – weiterarbeiten */
   }
-  if (!fromChannel) channel?.postMessage({ type: 'update', data: s.data });
+  if (fromChannel) return; // Der andere Tab gleicht selbst mit dem Server ab.
+  channel?.postMessage({ type: 'update', data: s.data });
   syncHooks.forEach((h) => h(s.data));
 });
 

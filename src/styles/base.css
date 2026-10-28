@@ -82,6 +82,7 @@ p { margin: 0; }
 .card.gold { background: var(--gold); border-color: transparent; }
 
 .btn {
+  text-decoration: none;
   display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: var(--tap); padding: 0 18px;
   border-radius: 14px; border: 1px solid var(--line-strong); background: var(--card); color: var(--ink-2); font-weight: 650;
   transition: transform .08s, background-color .15s;

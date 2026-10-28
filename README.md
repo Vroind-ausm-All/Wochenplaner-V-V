@@ -11,8 +11,9 @@ npm test           # Unit-Tests (Wiederholungen, Einkaufsliste, Rezepte, Begleit
 npm run build      # Produktions-Build nach dist/ – jeder statische Webspace genügt
 ```
 
-**Inhalt:** [Erster Test auf dem Laptop](#erster-test-auf-dem-laptop) · [Was drin ist](#was-drin-ist) ·
-[Küchenwelten](#küchenwelten) · [Projektaufbau](#projektaufbau) · [Hardware für den Bilderrahmen](docs/HARDWARE.md)
+**Inhalt:** [Erster Test auf dem Laptop](#erster-test-auf-dem-laptop) · [Alle Geräte verbinden](#alle-geräte-verbinden) ·
+[Was drin ist](#was-drin-ist) · [Küchenwelten](#küchenwelten) · [Projektaufbau](#projektaufbau) ·
+[Hardware für den Bilderrahmen](docs/HARDWARE.md) · [Heimserver](docs/HEIMSERVER.md)
 
 ## Erster Test auf dem Laptop
 
@@ -36,10 +37,9 @@ Ihr braucht nur einen aktuellen Browser (Chrome oder Edge empfohlen), **Node.js 
 
 Gut zu wissen beim Test:
 - **Daten liegen im Browser** dieses Geräts (localStorage). Laptop, Handy und Rahmen sehen *nicht* automatisch dasselbe –
-  dafür braucht es den Familienserver (siehe [Hardware-Leitfaden](docs/HARDWARE.md#daten-auf-mehreren-geräten)).
-  Sicherung jederzeit über *Einstellungen → JSON exportieren*.
+  dafür den Heimserver starten (nächster Abschnitt). Sicherung jederzeit über *Einstellungen → JSON exportieren*.
 - **Wetter** braucht Internet; ohne Ort in den Einstellungen wird Berlin angezeigt.
-- Meldungen zu `/api/status` in der Browser-Konsole sind normal, solange kein Familienserver läuft.
+- Meldungen zu `/api/status` in der Browser-Konsole sind normal, solange kein Heimserver läuft.
 
 ### Test-Checkliste
 
@@ -58,6 +58,20 @@ Gut zu wissen beim Test:
 | ☐ | ☾ oben rechts, ◼ „Bildschirm dunkel“ | Nachtfarben bzw. schwarzer Schirm, Tippen weckt auf |
 | ☐ | Bisheriges Board: dessen JSON-Export unter *Einstellungen → importieren* | Alte Termine, Einkauf, Aufgaben sind da |
 
+## Alle Geräte verbinden
+
+Der mitgelieferte **Heimserver** liefert die App im Heimnetz aus und hält einen gemeinsamen Plan für alle Geräte:
+
+```bash
+npm run build
+WIR_PASSWORD="unser-passwort" npm run server     # → http://localhost:8787
+```
+
+Handy und Tablet öffnen im selben WLAN die Adresse des Laptops bzw. Pi auf Port 8787 (z. B. `http://192.168.178.23:8787`)
+und melden sich einmal mit dem Haushalts-Passwort an. Änderungen erscheinen in unter einer Sekunde auf allen Geräten,
+offline Geändertes wird später eintragsweise zusammengeführt. Dauerbetrieb, Zugriff von unterwegs und Installation als App:
+[docs/HEIMSERVER.md](docs/HEIMSERVER.md).
+
 ## Was drin ist
 
 | Bereich | Komponenten | Highlights |
@@ -69,7 +83,8 @@ Gut zu wissen beim Test:
 | **WIR-Begleiter** | `features/companion/*` | „Wiri“ (animierter Avatar mit Stimmungen) plant Wir-Zeit mit: Wochenziel, eigene Zeit beider Personen, Abstand zur letzten Date Night, Check-in, volle Tage, Tagesenergie, Wetter → konkrete Vorschläge in **freien Zeitfenstern** (einplanen, verschieben oder ziehen). Frage des Tages, Wochenkompass, Ideen-Bibliothek |
 | **Essensplan** | `features/meals/*` | 11 Küchenwelten, 103 glutenfreie Gerichte, 13 Grundrezepte zum Selbermachen, Ersatz-Guide, Küchen-Kompass, Portionen, Fleischoption, „zusammen kochen“ zählt als Wir-Zeit, Nährwert-Schätzbereiche, Hinweise auf versteckte Glutenquellen je Zutat |
 | **Einkauf & Vorräte** | `features/shopping/*` | Liste entsteht automatisch aus dem Wochenplan; Vorräte zählen nur, wenn „GF geprüft“ |
-| Aufgaben, Familie, Einstellungen | `features/tasks`, `family`, `settings` | Wiederkehrende Aufgaben, Fristen, Baby & Familie, Namen, Ort, Kiosk (Abdunkeln, Nachtmodus), Sicherung |
+| Aufgaben, Familie, Einstellungen | `features/tasks`, `family`, `settings` | Wiederkehrende Aufgaben, Fristen, Baby & Familie, Namen, Ort, Kiosk pro Gerät (Abdunkeln, Nachtmodus), Sicherung |
+| **Abgleich & Heimserver** | `store/sync.ts`, `store/merge.ts`, `server/` | Live-Aktualisierung aller Geräte, Offline-Änderungen mit Drei-Wege-Abgleich, Anmeldung, tägliche Sicherungen, installierbare Web-App mit Offline-Start |
 
 ## Küchenwelten
 
@@ -96,7 +111,9 @@ src/
     shopping/ tasks/ family/ settings/ home/
   data/           Rezepte je Küche, Grundrezepte, Küchenwelten, Ersatz-Tabelle, Nährwerte, Bausteine
   lib/            Datum, Wiederholungen, Einkaufsliste, Nährwerte, Wetter
-  store/          Zustand-Store mit Rückgängig, Migration, Server-Sync
+  store/          Zustand-Store mit Rückgängig, Migration, Abgleich (sync.ts, merge.ts), Geräte-Einstellungen
+server/           Heimserver (Node.js, ohne Abhängigkeiten), systemd-Dienst, Tests
+public/sw.js      Service Worker für Offline-Start
 ```
 
 Eigene Rezepte ergänzt ihr in `src/data/recipes/<küche>.ts` (Mengen für 2 Personen). Der Test
@@ -105,7 +122,7 @@ Eigene Rezepte ergänzt ihr in `src/data/recipes/<küche>.ts` (Mengen für 2 Per
 ## Übernahme aus dem alten Board
 
 - Beim ersten Start werden Daten unter `wir-board-4-v1` automatisch übernommen; JSON-Sicherungen lassen sich importieren.
-- Datenmodell ist eine Obermenge des alten → der bisherige Familienserver (`/api/status`, `/api/login`, `/api/state`, `/api/events`) funktioniert weiter.
+- Datenmodell ist eine Obermenge des alten. Der neue Heimserver spricht dasselbe Protokoll wie der bisherige Familienserver (`/api/status`, `/api/login`, `/api/state`, `/api/events`).
 - Die 67 Rezepte wurden mit `scripts/extract-legacy-recipes.py` übernommen; statt 700 KB eingebetteter Bilder zeichnet `DishArt` die Teller.
 
 ## Hinweise

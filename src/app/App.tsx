@@ -15,8 +15,9 @@ import { useWeatherUpdater } from '../features/weather/useWeather';
 import { WeatherNow } from '../features/weather/WeatherPanel';
 import { useNow } from '../lib/useClock';
 import { useStore, type View } from '../store/store';
-import { discoverServer, useSync } from '../store/sync';
+import { discoverServer } from '../store/sync';
 import { Toast } from '../ui/Toast';
+import { ServerLoginSheet, SyncBadge } from '../features/sync/SyncUi';
 import { useKiosk } from './useKiosk';
 import './app.css';
 
@@ -47,7 +48,6 @@ export function App() {
   const setUi = useStore((s) => s.setUi);
   const recipeOpen = useStore((s) => s.recipeOpen);
   const openItems = useStore((s) => s.data.shopping.filter((x) => !x.done).length);
-  const synced = useSync((s) => s.connected);
   const now = useNow();
   const kiosk = useKiosk();
   useWeatherUpdater();
@@ -70,7 +70,9 @@ export function App() {
                 {n.id === 'shopping' && openItems > 0 && <span className="rail__count">{openItems}</span>}
               </button>
             ))}
-            <div className="rail__foot small">{synced ? '☁ Familienserver' : 'Lokal gespeichert'}</div>
+            <div className="rail__foot small">
+              <SyncBadge />
+            </div>
           </nav>
           <div className="main">
             <header className="topbar">
@@ -102,6 +104,7 @@ export function App() {
         <PickActions />
         <TrashZone />
         <Toast />
+        <ServerLoginSheet />
         <AnimatePresence>
           {(kiosk.sleeping || kiosk.dimmed) && (
             <motion.div
