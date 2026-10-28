@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { addDays, fmt } from '../../lib/date';
-import { occurrences } from '../../lib/recurrence';
+import { useAllOccurrences } from '../external/useExternal';
 import { useNow, useSeconds, useToday } from '../../lib/useClock';
 import { useStore } from '../../store/store';
 import { AffirmationCard } from '../affirmations/AffirmationCard';
@@ -33,12 +33,12 @@ function Clock() {
 }
 
 function Agenda() {
-  const events = useStore((s) => s.data.events);
   const setUi = useStore((s) => s.setUi);
   const today = useToday();
   const now = useNow();
   const name = useOwnerName();
-  const list = occurrences(events, today, addDays(today, 2)).filter((e) => e.on > today || e.allDay || e.time >= now.slice(0, 2) + ':00');
+  const all = useAllOccurrences(today, addDays(today, 2));
+  const list = all.filter((e) => e.on > today || e.allDay || e.time >= now.slice(0, 2) + ':00');
   return (
     <section className="card stack">
       <div className="row">

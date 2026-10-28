@@ -1,6 +1,6 @@
 // Service Worker: App startet auch ohne Netz. Daten liegen ohnehin lokal und werden vom Abgleich nachgereicht.
 // /api/ wird nie zwischengespeichert. Externe Dienste (Wetter) laufen direkt über das Netz.
-const CACHE = 'wir-app-v2';
+const CACHE = 'wir-app-v3';
 const scope = new URL(self.registration.scope);
 // Bei Änderungen an dieser Datei Versionsnummer erhöhen, damit alte Caches entfernt werden.
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icon.svg', 'icon-192.png', 'icon-512.png'].map((p) => new URL(p, scope).href);
@@ -65,6 +65,41 @@ self.addEventListener('fetch', (e) => {
         })
         .catch(() => hit);
       return hit || fresh;
+    }),
+  );
+});
+
+// ---- Erinnerungen per Push ----
+self.addEventListener('push', (e) => {
+  let msg = {};
+  try {
+    msg = e.data ? e.data.json() : {};
+  } catch {
+    msg = { title: 'WIR. Wochenplaner', body: e.data?.text() };
+  }
+  e.waitUntil(
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((list) => {
+      // Ist die App gerade sichtbar, blendet sie die Erinnerung selbst ein.
+      if (msg.tag !== 'test' && list.some((c) => c.visibilityState === 'visible')) return;
+      return self.registration.showNotification(msg.title || 'WIR. Wochenplaner', {
+        body: msg.body || '',
+        tag: msg.tag,
+        icon: new URL('icon-192.png', scope).href,
+        badge: new URL('icon-192.png', scope).href,
+        data: { url: new URL(msg.url || './', scope).href },
+        requireInteraction: false,
+      });
+    }),
+  );
+});
+
+self.addEventListener('notificationclick', (e) => {
+  e.notification.close();
+  const url = e.notification.data?.url || scope.href;
+  e.waitUntil(
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((list) => {
+      const open = list.find((c) => c.url.startsWith(scope.href));
+      return open ? open.focus() : self.clients.openWindow(url);
     }),
   );
 });

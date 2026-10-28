@@ -4,6 +4,7 @@ import { addDays, fmt, range } from '../../lib/date';
 import { useToday } from '../../lib/useClock';
 import { useStore } from '../../store/store';
 import { WeatherBadge } from '../weather/WeatherBadge';
+import { ExternalAgendaItem } from '../external/ExternalUi';
 import { hueStyle, OwnerDot, timeRange } from './EventChip';
 import { useOccurrences } from './hooks';
 
@@ -29,7 +30,7 @@ export function AgendaView() {
             <WeatherBadge date={d} />
           </DropZone>
           <div className="stack">
-            {occ.filter((e) => e.on === d).map((e) => (
+            {occ.filter((e) => e.on === d).map((e) => e.external ? <ExternalAgendaItem key={e.id} e={e} /> : (
               <Pickable key={e.id + e.on} payload={{ type: 'event', id: e.id, on: e.on, label: e.title }} className="agenda__item" style={hueStyle(e.category)}>
                 <span className="agenda__time">{timeRange(e)}</span>
                 <span className="agenda__emoji">{CATEGORY_STYLE[e.category]?.emoji}</span>

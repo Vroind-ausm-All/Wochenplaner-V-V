@@ -1,12 +1,8 @@
-import { useMemo } from 'react';
-import { occurrences } from '../../lib/recurrence';
 import { useStore } from '../../store/store';
-import type { ISODate, Owner } from '../../store/types';
+import type { Owner } from '../../store/types';
 
-export function useOccurrences(from: ISODate, to: ISODate) {
-  const events = useStore((s) => s.data.events);
-  return useMemo(() => occurrences(events, from, to), [events, from, to]);
-}
+/** Eigene Termine, Feiertage und Abo-Termine eines Zeitraums. */
+export { useAllOccurrences as useOccurrences } from '../external/useExternal';
 
 /** Anzeigename statt „Person A/B“. */
 export function useOwnerName() {

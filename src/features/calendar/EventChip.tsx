@@ -2,6 +2,7 @@ import { CATEGORY_STYLE } from '../../data/templates';
 import { Pickable } from '../../dnd/Dnd';
 import { fromMinutes, toMinutes } from '../../lib/date';
 import type { Occurrence } from '../../lib/recurrence';
+import { ExternalChip } from '../external/ExternalUi';
 import { initials, useOwnerName } from './hooks';
 
 export const hueStyle = (category: Occurrence['category']) => ({ '--h': CATEGORY_STYLE[category]?.hue ?? 150 }) as React.CSSProperties;
@@ -18,6 +19,7 @@ export function OwnerDot({ owner }: { owner: Occurrence['owner'] }) {
 
 /** Kompakte Darstellung (Monat, Kopfzeilen, Listen). */
 export function EventChip({ e, showTime = true }: { e: Occurrence; showTime?: boolean }) {
+  if (e.external) return <ExternalChip e={e} showTime={showTime} />;
   return (
     <Pickable payload={{ type: 'event', id: e.id, on: e.on, label: e.title }} className="ev-chip" style={hueStyle(e.category)} title={e.title}>
       <span className="ev-chip__emoji">{CATEGORY_STYLE[e.category]?.emoji}</span>

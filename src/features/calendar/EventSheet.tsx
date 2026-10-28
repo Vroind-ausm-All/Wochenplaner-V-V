@@ -9,6 +9,13 @@ import { Sheet } from '../../ui/Sheet';
 import { useOwnerName } from './hooks';
 
 const DURATIONS = [15, 30, 45, 60, 90, 120, 180];
+const REMINDERS: { value: CalendarEvent['reminder']; label: string }[] = [
+  { value: 'none', label: 'Keine' },
+  { value: '15', label: '🔔 15 Min. vorher' },
+  { value: '60', label: '🔔 1 Std. vorher' },
+  { value: '1440', label: '🔔 1 Tag vorher' },
+];
+
 const REPEATS: { value: Repeat; label: string }[] = [
   { value: 'none', label: 'Einmalig' },
   { value: 'daily', label: 'Täglich' },
@@ -116,6 +123,10 @@ export function EventSheet() {
       <div className="field">
         <span>Wiederholung</span>
         <Chips value={f.repeat} onChange={(r) => set('repeat', r)} options={REPEATS} />
+      </div>
+      <div className="field">
+        <span>Erinnerung{f.allDay ? ' (ganztägig: bezogen auf 8 Uhr)' : ''}</span>
+        <Chips value={f.reminder} onChange={(r) => set('reminder', r)} options={REMINDERS} />
       </div>
       <label className="field">
         <span>Notiz</span>

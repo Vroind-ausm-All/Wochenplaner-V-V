@@ -6,6 +6,8 @@ import { updateDevice, useDevice } from '../../store/device';
 import { useStore } from '../../store/store';
 import type { Location } from '../../store/types';
 import { Chips } from '../../ui/Segmented';
+import { CalendarSettings } from '../external/CalendarSettings';
+import { FeedCard, ReminderSettings } from '../reminders/ReminderSettings';
 import { InstallCard, SyncPanel } from '../sync/SyncUi';
 
 export function SettingsPage() {
@@ -83,6 +85,9 @@ export function SettingsPage() {
         </div>
       </section>
 
+      <CalendarSettings />
+      <ReminderSettings />
+
       <section className="card stack">
         <h3>Essen</h3>
         <div className="field">
@@ -125,6 +130,7 @@ export function SettingsPage() {
       </section>
 
       <SyncPanel />
+      <FeedCard />
       <InstallCard />
 
       <section className="card stack">

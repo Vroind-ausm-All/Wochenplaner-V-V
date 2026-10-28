@@ -85,6 +85,19 @@ offline Geändertes wird später eintragsweise zusammengeführt. Dauerbetrieb, Z
 | **Einkauf & Vorräte** | `features/shopping/*` | Liste entsteht automatisch aus dem Wochenplan; Vorräte zählen nur, wenn „GF geprüft“ |
 | Aufgaben, Familie, Einstellungen | `features/tasks`, `family`, `settings` | Wiederkehrende Aufgaben, Fristen, Baby & Familie, Namen, Ort, Kiosk pro Gerät (Abdunkeln, Nachtmodus), Sicherung |
 | **Abgleich & Heimserver** | `store/sync.ts`, `store/merge.ts`, `server/` | Live-Aktualisierung aller Geräte, Offline-Änderungen mit Drei-Wege-Abgleich, Anmeldung, tägliche Sicherungen, installierbare Web-App mit Offline-Start |
+| **Feiertage & Kalender-Abos** | `lib/holidays.ts`, `lib/ical.ts`, `features/external/` | Gesetzliche Feiertage je Bundesland (offline berechnet) plus Valentinstag & Co.; Abos von Google, iCloud, Outlook, Schulferien, Müllabfuhr, Kita (iCal) – nur lesend, farbig, im Begleiter als „belegt“ berücksichtigt |
+| **Erinnerungen** | `features/reminders/`, `server/push.mjs`, `server/reminders.mjs` | Pro Termin 15 Min./1 Std./1 Tag vorher: Hinweis mit sanftem Ton auf dem Bilderrahmen, Push-Mitteilung aufs Handy (auch bei geschlossener App), „In 10 Min.“ |
+| **Kalender-Feed** | `server/feed.mjs` | Euer Plan als iCal-Abo für die Kalender-App des Handys (iPhone direkt, Android über ICSx⁵), inkl. Alarme |
+
+## Kalender & Erinnerungen
+
+*Einstellungen → Kalender & Feiertage*: Bundesland wählen und Kalender-Adressen (iCal/ICS, auch `webcal://`) abonnieren.
+Die App erklärt dort, wo Google, iCloud und Outlook die Adresse verstecken. Abo-Termine erscheinen gestrichelt
+in der Farbe des Kalenders und lassen sich per Antippen ansehen oder in den eigenen Plan kopieren.
+
+Erinnerungen stellt ihr im Terminformular ein. Jedes geöffnete Gerät blendet sie ein; Handys bekommen sie zusätzlich
+als Push-Mitteilung (*Einstellungen → Erinnerungen → Mitteilungen einschalten*, braucht Heimserver + HTTPS,
+auf dem iPhone die installierte App). Details: [docs/HEIMSERVER.md](docs/HEIMSERVER.md#erinnerungen-kalender-abos-und-feed).
 
 ## Küchenwelten
 

@@ -83,13 +83,20 @@ interface Input {
   today: ISODate;
   now: Time;
   weather?: DailyWeather[];
+  /** Abo-Termine und Feiertage der Woche (siehe externalBetween) */
+  external?: Occurrence[];
 }
 
-export function analyze({ data, today, now, weather = [] }: Input): CompanionReport {
+export function analyze({ data, today, now, weather = [], external = [] }: Input): CompanionReport {
   const s = data.settings;
   const week = monday(today);
   const days = range(week, 7);
   const occ = occurrences(data.events, week, addDays(week, 6));
+  // Für freie Zeitfenster und volle Tage zählen auch belegte Abo-Termine (z. B. Dienstkalender).
+  const busyOcc = [...occ, ...external.filter((e) => e.external?.busy && !e.allDay)];
+  const holidays = external.filter((e) => e.external?.kind === 'holiday' && e.external.official && e.on >= week && e.on <= addDays(week, 6));
+  const holidaySet = new Set(holidays.map((e) => e.on));
+  const freeDay = (d: ISODate) => isWeekend(d) || holidaySet.has(d);
   const wx = new Map(weather.map((w) => [w.date, w]));
   const A = s.personA, B = s.personB;
 
@@ -112,7 +119,7 @@ export function analyze({ data, today, now, weather = [] }: Input): CompanionRep
 
   const checkinPlanned = occ.some(isCheckin);
   const busyDays = days.filter((d) => {
-    const l = load(occ, d);
+    const l = load(busyOcc, d);
     return l.count >= 4 || l.minutes >= 6 * 60;
   });
   const specialDays = occurrences(data.events, today, addDays(today, 21)).filter((e) => e.repeat === 'yearly' && (e.category === 'Wir' || e.category === 'Familie'));
@@ -123,7 +130,7 @@ export function analyze({ data, today, now, weather = [] }: Input): CompanionRep
   // --- Vorschläge -----------------------------------------------------------
   const suggestions: Suggestion[] = [];
   const upcoming = days.filter((d) => d >= today);
-  const slotsFor = (d: ISODate) => freeSlots(occ, d, isWeekend(d) ? s.weekendWindow : s.weekdayWindow, d === today ? now : undefined);
+  const slotsFor = (d: ISODate) => freeSlots(busyOcc, d, freeDay(d) ? s.weekendWindow : s.weekdayWindow, d === today ? now : undefined);
   const taken = new Set<ISODate>();
   const findSlot = (minutes: number, prefer: (d: ISODate) => number, preferredStart?: Time) => {
     const candidates = upcoming
@@ -140,12 +147,12 @@ export function analyze({ data, today, now, weather = [] }: Input): CompanionRep
     taken.add(pick.d);
     return { date: pick.d, time: fromMinutes(Math.ceil(start / 15) * 15) };
   };
-  const dayScore = (d: ISODate) => -load(occ, d).minutes / 60 - (busyDays.includes(d) ? 5 : 0);
+  const dayScore = (d: ISODate) => -load(busyOcc, d).minutes / 60 - (busyDays.includes(d) ? 5 : 0) + (holidaySet.has(d) ? 3 : 0);
   const id = (k: string) => `${k}-${week}`;
   const notDismissed = (sid: string) => !data.dismissed[sid];
 
   if (lowA && lowB && notDismissed(id('rest-' + today))) {
-    const slot = freeSlots(occ, today, s.weekdayWindow, now)[0];
+    const slot = freeSlots(busyOcc, today, freeDay(today) ? s.weekendWindow : s.weekdayWindow, now)[0];
     if (slot) {
       const quick = pickRecipe(today, (r) => r.minutes <= 30, s.favoriteCuisines);
       suggestions.push({
@@ -230,6 +237,8 @@ export function analyze({ data, today, now, weather = [] }: Input): CompanionRep
 
   const messages: string[] = [];
   if (specialDays[0]) messages.push(`🎉 ${specialDays[0].title} – ${fmt.relative(specialDays[0].on, today)}.`);
+  const nextHoliday = holidays.find((h) => h.on >= today && !isWeekend(h.on));
+  if (nextHoliday) messages.push(`🌿 ${fmt.weekdayLong(nextHoliday.on)} ist ${nextHoliday.title} – ein freier Tag für euch.`);
   if (nextDate) messages.push(`💞 Nächste Date Night: ${fmt.relative(nextDate.on, today)}${nextDate.allDay ? '' : `, ${nextDate.time} Uhr`}.`);
   if (busyDays.length) messages.push(`📆 Volle Tage: ${busyDays.map(fmt.weekday).join(', ')} – dort lieber nichts zusätzlich einplanen.`);
   if (lowA !== lowB) messages.push(`🔋 ${lowA ? A : B} hat heute wenig Energie. Vielleicht übernimmt ${lowA ? B : A} heute den Abend?`);

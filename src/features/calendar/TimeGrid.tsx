@@ -9,6 +9,7 @@ import { useNow, useToday } from '../../lib/useClock';
 import { useStore } from '../../store/store';
 import type { ISODate } from '../../store/types';
 import { WeatherBadge } from '../weather/WeatherBadge';
+import { ExternalBlock } from '../external/ExternalUi';
 import { EventChip, hueStyle, OwnerDot, timeRange } from './EventChip';
 import { useOccurrences } from './hooks';
 
@@ -100,6 +101,11 @@ function DayColumn({ day, events, isToday, now, onNew, slotH }: { day: ISODate; 
       ))}
       {events.map((e) => {
         const l = lanes.get(e.id + e.on) ?? { lane: 0, lanes: 1 };
+        if (e.external) {
+          const height = Math.max(slotH * 0.8, (e.duration / 30) * slotH - 3);
+          const pos = { top: topFor(e.time, slotH) + 1, height, left: `calc(${(l.lane / l.lanes) * 100}% + 2px)`, width: `calc(${100 / l.lanes}% - 4px)` };
+          return <ExternalBlock key={e.id} e={e} style={pos} />;
+        }
         return <EventBlock key={e.id + e.on} e={e} lane={l.lane} lanes={l.lanes} slotH={slotH} />;
       })}
       {isToday && toMinutes(now) >= START * 60 && toMinutes(now) < END * 60 && (

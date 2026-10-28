@@ -39,3 +39,20 @@ describe('Datum', () => {
     expect(fmt.kw('2026-10-27')).toBe(44);
   });
 });
+
+describe('Erinnerungen (Client)', async () => {
+  const { dueReminders, forWhom } = await import('./reminders');
+  it('findet fällige Erinnerungen genau im Zeitfenster', () => {
+    const e = ev({ id: 'r', date: '2026-10-28', time: '18:00', reminder: '15', repeat: 'daily' });
+    const t = (d: string, h: number, m: number) => new Date(+d.slice(0, 4), +d.slice(5, 7) - 1, +d.slice(8), h, m).getTime();
+    expect(dueReminders([e], t('2026-10-29', 17, 44), t('2026-10-29', 17, 45)).map((r) => r.key)).toEqual(['r|2026-10-29|15']);
+    expect(dueReminders([e], t('2026-10-29', 17, 45), t('2026-10-29', 18, 30))).toEqual([]);
+    const allDay = ev({ id: 'g', date: '2026-11-05', allDay: true, reminder: '1440' });
+    expect(dueReminders([allDay], t('2026-11-04', 7, 0), t('2026-11-04', 8, 0)).map((r) => r.key)).toEqual(['g|2026-11-05|1440']);
+  });
+  it('filtert nach Person', () => {
+    expect(forWhom('Person A', 'Person B')).toBe(false);
+    expect(forWhom('Beide', 'Person B')).toBe(true);
+    expect(forWhom('Person A', 'Alle')).toBe(true);
+  });
+});

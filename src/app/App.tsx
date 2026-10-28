@@ -11,6 +11,9 @@ import { RecipeDetail } from '../features/meals/RecipeDetail';
 import { SettingsPage } from '../features/settings/SettingsPage';
 import { ShoppingPage } from '../features/shopping/ShoppingPage';
 import { TasksPage } from '../features/tasks/TasksPage';
+import { ExternalSheet } from '../features/external/ExternalUi';
+import { ReminderCenter } from '../features/reminders/ReminderCenter';
+import { useExternalUpdater } from '../features/external/useExternal';
 import { useWeatherUpdater } from '../features/weather/useWeather';
 import { WeatherNow } from '../features/weather/WeatherPanel';
 import { useNow } from '../lib/useClock';
@@ -51,6 +54,7 @@ export function App() {
   const now = useNow();
   const kiosk = useKiosk();
   useWeatherUpdater();
+  useExternalUpdater();
   useEffect(() => void discoverServer(), []);
   const Page = PAGES[view];
 
@@ -100,11 +104,13 @@ export function App() {
         </div>
         <EventSheet />
         <SeriesDialog />
+        <ExternalSheet />
         <RecipeDetail key={recipeOpen ?? 'none'} />
         <PickActions />
         <TrashZone />
         <Toast />
         <ServerLoginSheet />
+        <ReminderCenter />
         <AnimatePresence>
           {(kiosk.sleeping || kiosk.dimmed) && (
             <motion.div
