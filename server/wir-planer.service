@@ -1,0 +1,17 @@
+# systemd-Dienst: startet den WIR. Heimserver automatisch beim Hochfahren und nach Abstürzen.
+# Installation siehe docs/HEIMSERVER.md. Pfade und Benutzer bei Bedarf anpassen.
+[Unit]
+Description=WIR. Wochenplaner Heimserver
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/Wochenplaner-V-V
+EnvironmentFile=/etc/wir-planer.env
+ExecStart=/usr/bin/node server/server.mjs
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

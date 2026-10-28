@@ -1,0 +1,87 @@
+import { cuisine, i, meat } from './helpers';
+
+export default cuisine('Griechisch', [
+  {
+    name: 'Gemista – gefülltes Ofengemüse',
+    group: 'Besonders', minutes: 70, symbol: '🍅',
+    description: 'Tomaten und Paprika mit Kräuterreis, dazu Ofenkartoffeln',
+    ingredients: [i('Tomaten', 4, 'Stück'), i('Paprika', 2, 'Stück'), i('Reis', 120), i('Zwiebeln', 1, 'Stück'), i('Kartoffeln', 300), i('Olivenöl', 40, 'ml'), i('Petersilie', 15), i('Minze', 5), i('Feta', 100)],
+    steps: [
+      'Deckel von Tomaten und Paprika abschneiden, Tomaten aushöhlen; Fruchtfleisch hacken.',
+      'Zwiebel anschwitzen, Reis, Tomatenfleisch, Kräuter und die Hälfte des Öls zugeben, 5 Minuten ziehen lassen.',
+      'Gemüse füllen, Deckel aufsetzen, Kartoffelspalten dazwischenlegen und mit restlichem Öl beträufeln.',
+      'Abgedeckt bei 190 °C 30 Minuten, dann offen 20 Minuten backen. Mit Feta servieren.',
+    ],
+    meat: meat('Rinderhack', 200, 'Hack separat durchbraten und unter die Reisfüllung mischen.'),
+    swaps: ['Kein Paniermehl zum Bestreuen – ein paar Kartoffelscheiben als Deckel funktionieren auch.'],
+  },
+  {
+    name: 'Moussaka mit Kartoffeln & Linsen',
+    group: 'Besonders', minutes: 80, symbol: '🥘',
+    description: 'Mit glutenfreier Béchamel aus Maisstärke',
+    ingredients: [i('Aubergine', 2, 'Stück'), i('Kartoffeln', 400), i('Rote Linsen', 100), i('Passierte Tomaten', 400), i('Zwiebeln', 1, 'Stück'), i('Milch', 400, 'ml'), i('Speisestärke glutenfrei', 30), i('Butter', 30), i('Parmesan', 30), i('Eier', 1, 'Stück'), i('Olivenöl', 30, 'ml')],
+    steps: [
+      'Auberginen und Kartoffeln in Scheiben schneiden, mit Öl bepinseln und bei 220 °C 20 Minuten vorbacken.',
+      'Zwiebel anschwitzen, Linsen, Tomaten, Zimt und Oregano zugeben, 15 Minuten köcheln.',
+      'Béchamel: Butter schmelzen, Milch zugeben, mit kalt angerührter Stärke binden, Ei und Hälfte Parmesan unterrühren.',
+      'Kartoffeln, Linsensoße und Aubergine schichten, Béchamel und Parmesan darauf. Bei 180 °C 35 Minuten backen.',
+    ],
+    meat: meat('Lammhack', 250, 'Lammhack anstelle der Hälfte der Linsen vollständig durchbraten.'),
+    swaps: ['Béchamel klassisch mit Weizenmehl – Maisstärke oder Reismehl binden genauso gut.'],
+    homemade: ['gf-bechamel'],
+  },
+  {
+    name: 'Fasolada – griechische Bohnensuppe',
+    group: 'Klassiker', minutes: 40, symbol: '🫘',
+    description: 'Das Nationalgericht: Bohnen, Tomate, viel gutes Olivenöl',
+    ingredients: [i('Weiße Bohnen', 480), i('Karotten', 2, 'Stück'), i('Staudensellerie', 2, 'Stück'), i('Zwiebeln', 1, 'Stück'), i('Passierte Tomaten', 300), i('Olivenöl', 40, 'ml'), i('Zitrone', 1, 'Stück'), i('Feta', 80), i('Glutenfreies Brot', 100)],
+    steps: [
+      'Gemüse würfeln und im Olivenöl sanft 8 Minuten anschwitzen.',
+      'Bohnen, Tomaten und 600 ml Wasser zugeben, 25 Minuten köcheln.',
+      'Mit Zitrone, Salz, Pfeffer und einem Schuss Olivenöl abschmecken.',
+      'Mit Feta und getoastetem glutenfreiem Brot servieren (eigener Toaster oder Toasttasche).',
+    ],
+    swaps: ['Für Brot einen eigenen Toaster oder Toasttaschen verwenden – Krümel sind eine häufige Kontaminationsquelle.'],
+    homemade: ['gf-brot'],
+  },
+  {
+    name: 'Spanakorizo – Spinatreis mit Dill',
+    group: 'Schnell', minutes: 30, symbol: '🍋',
+    description: 'Zitronig, grün und in einem Topf',
+    ingredients: [i('Blattspinat', 400), i('Reis', 140), i('Frühlingszwiebeln', 4, 'Stück'), i('Dill', 10), i('Zitrone', 1, 'Stück'), i('Feta', 100), i('Olivenöl', 30, 'ml'), i('Gemüsebrühe glutenfrei', 350, 'ml')],
+    steps: [
+      'Frühlingszwiebeln in Ringe schneiden und im Öl andünsten.',
+      'Reis zugeben, mit Brühe ablöschen und 12 Minuten köcheln.',
+      'Spinat portionsweise unterheben und zusammenfallen lassen, 5 Minuten weitergaren.',
+      'Mit Dill, Zitronensaft und zerbröseltem Feta servieren.',
+    ],
+    meat: meat('Lachsfilet', 250, 'Lachs separat braten und auf den Reis setzen.'),
+  },
+  {
+    name: 'Souvlaki-Bowl mit Tzatziki & Ofenkartoffeln',
+    group: 'Modern', minutes: 40, symbol: '🍢',
+    description: 'Gegrillter Halloumi, Knoblauchjoghurt, Tomatensalat',
+    ingredients: [i('Halloumi', 200), i('Kartoffeln', 500), i('Salatgurke', 1, 'Stück'), i('Griechischer Joghurt', 200), i('Knoblauch', 1, 'Zehen'), i('Tomaten', 2, 'Stück'), i('Rote Zwiebeln', 1, 'Stück'), i('Zitrone', 1, 'Stück'), i('Olivenöl', 30, 'ml')],
+    steps: [
+      'Kartoffelspalten mit Öl, Oregano und Zitrone bei 210 °C 30 Minuten rösten.',
+      'Gurke raspeln, ausdrücken und mit Joghurt und Knoblauch zu Tzatziki rühren.',
+      'Halloumi würfeln, auf Spieße stecken und in der Grillpfanne goldbraun braten.',
+      'Mit Tomaten-Zwiebel-Salat und Tzatziki in Schalen anrichten.',
+    ],
+    meat: meat('Schweinefilet', 300, 'Fleisch würfeln, mit Zitrone und Oregano marinieren und vollständig durchgrillen.'),
+    swaps: ['Pita durch Ofenkartoffeln oder glutenfreie Wraps ersetzen.'],
+  },
+  {
+    name: 'Gigantes plaki – Ofenbohnen in Tomate',
+    group: 'Klassiker', minutes: 50, symbol: '🫒',
+    description: 'Geschmorte Riesenbohnen mit Dill und Feta',
+    ingredients: [i('Weiße Bohnen', 480), i('Passierte Tomaten', 400), i('Zwiebeln', 1, 'Stück'), i('Knoblauch', 2, 'Zehen'), i('Karotten', 1, 'Stück'), i('Olivenöl', 40, 'ml'), i('Dill', 10), i('Feta', 80), i('Glutenfreies Brot', 100)],
+    steps: [
+      'Zwiebel, Knoblauch und Karotte würfeln und im Öl weich dünsten.',
+      'Tomaten, Bohnen und Dill zugeben, in eine Auflaufform füllen.',
+      'Bei 190 °C 30 Minuten backen, bis die Soße eingedickt ist.',
+      'Mit Feta und Brot servieren.',
+    ],
+    homemade: ['gf-brot'],
+  },
+]);

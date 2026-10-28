@@ -1,0 +1,5456 @@
+[
+ {
+  "id": "kokos-gemusecurry-mit-reis",
+  "name": "Kokos-Gemüsecurry mit Reis",
+  "minutes": 35,
+  "description": "Mild, cremig und bunt",
+  "ingredients": [
+   {
+    "name": "Basmatireis",
+    "amount": 160,
+    "unit": "g"
+   },
+   {
+    "name": "Kokosmilch",
+    "amount": 200,
+    "unit": "ml"
+   },
+   {
+    "name": "Paprika",
+    "amount": 1,
+    "unit": "Stück"
+   },
+   {
+    "name": "Zucchini",
+    "amount": 1,
+    "unit": "Stück"
+   },
+   {
+    "name": "Karotten",
+    "amount": 2,
+    "unit": "Stück"
+   },
+   {
+    "name": "Kichererbsen",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "name": "Currypaste glutenfrei",
+    "amount": 20,
+    "unit": "g"
+   },
+   {
+    "name": "Limette",
+    "amount": 1,
+    "unit": "Stück"
+   },
+   {
+    "name": "Olivenöl",
+    "amount": 10,
+    "unit": "ml"
+   }
+  ],
+  "steps": [
+   "Reis gründlich abspülen und nach Packungsangabe garen.",
+   "Gemüse klein schneiden, in Öl 5 Minuten anbraten.",
+   "Zertifiziert glutenfreie Currypaste zugeben, Kokosmilch und Kichererbsen einrühren. 12 Minuten köcheln.",
+   "Mit Limettensaft abschmecken und auf Reis servieren."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 250,
+   "unit": "g",
+   "instruction": "Hähnchen separat vollständig durchgaren und zum Curry geben."
+  },
+  "cuisine": "Asiatisch",
+  "group": "Schnell",
+  "symbol": "🍛",
+  "swaps": [
+   "Verarbeitete Zutaten und Gewürze auf eindeutig glutenfreie Eignung prüfen."
+  ],
+  "nutrition": {
+   "base": {
+    "kcal": 729.6,
+    "protein": 18.6,
+    "carbs": 102.2,
+    "fat": 28.5,
+    "sugar": 14.9,
+    "fiber": 13.7,
+    "sat": 18.2
+   },
+   "meat": {
+    "kcal": 181.2,
+    "protein": 27.5,
+    "carbs": 0.0,
+    "fat": 7.5,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.1
+   }
+  }
+ },
+ {
+  "id": "ofenkartoffeln-mit-feta-und-dip",
+  "name": "Ofenkartoffeln mit Feta und Dip",
+  "minutes": 40,
+  "description": "Knusprig und unkompliziert",
+  "ingredients": [
+   {
+    "name": "Kartoffeln",
+    "amount": 600,
+    "unit": "g"
+   },
+   {
+    "name": "Paprika",
+    "amount": 2,
+    "unit": "Stück"
+   },
+   {
+    "name": "Zucchini",
+    "amount": 1,
+    "unit": "Stück"
+   },
+   {
+    "name": "Feta",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "name": "Naturjoghurt",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "name": "Zitrone",
+    "amount": 1,
+    "unit": "Stück"
+   },
+   {
+    "name": "Petersilie",
+    "amount": 10,
+    "unit": "g"
+   },
+   {
+    "name": "Olivenöl",
+    "amount": 10,
+    "unit": "ml"
+   }
+  ],
+  "steps": [
+   "Backofen auf 210 °C Ober-/Unterhitze vorheizen.",
+   "Kartoffeln in Spalten schneiden, mit Öl und Paprika 20 Minuten backen.",
+   "Zucchini und Feta zugeben, weitere 15 Minuten backen.",
+   "Joghurt mit Zitronensaft und Petersilie verrühren, dazu reichen."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 250,
+   "unit": "g",
+   "instruction": "Gewürzte Hähnchenstücke separat vollständig durchgaren."
+  },
+  "cuisine": "Deutsch",
+  "group": "Schnell",
+  "symbol": "🥔",
+  "swaps": [
+   "Verarbeitete Zutaten und Gewürze auf eindeutig glutenfreie Eignung prüfen."
+  ],
+  "nutrition": {
+   "base": {
+    "kcal": 593.3,
+    "protein": 23.2,
+    "carbs": 71.9,
+    "fat": 24.1,
+    "sugar": 19.3,
+    "fiber": 11.9,
+    "sat": 13.7
+   },
+   "meat": {
+    "kcal": 181.2,
+    "protein": 27.5,
+    "carbs": 0.0,
+    "fat": 7.5,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.1
+   }
+  }
+ },
+ {
+  "id": "burrito-bowl-mit-bohnen",
+  "name": "Burrito-Bowl mit Bohnen",
+  "minutes": 30,
+  "description": "Mit Avocado, Mais und würzigem Reis",
+  "ingredients": [
+   {
+    "name": "Reis",
+    "amount": 160,
+    "unit": "g"
+   },
+   {
+    "name": "Kidneybohnen",
+    "amount": 240,
+    "unit": "g"
+   },
+   {
+    "name": "Mais",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "name": "Paprika",
+    "amount": 1,
+    "unit": "Stück"
+   },
+   {
+    "name": "Avocado",
+    "amount": 1,
+    "unit": "Stück"
+   },
+   {
+    "name": "Tomaten",
+    "amount": 2,
+    "unit": "Stück"
+   },
+   {
+    "name": "Limette",
+    "amount": 1,
+    "unit": "Stück"
+   },
+   {
+    "name": "Naturjoghurt",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "name": "Olivenöl",
+    "amount": 10,
+    "unit": "ml"
+   }
+  ],
+  "steps": [
+   "Reis garen, währenddessen Bohnen und Mais abspülen.",
+   "Paprika würfeln und kurz in Öl braten; Bohnen und Mais erhitzen.",
+   "Tomaten und Avocado schneiden, mit Limettensaft beträufeln.",
+   "Alles als Bowl anrichten, mit Joghurt servieren."
+  ],
+  "meat": {
+   "name": "Rinderhack",
+   "amount": 250,
+   "unit": "g",
+   "instruction": "Hack separat vollständig durchbraten und als Topping servieren."
+  },
+  "cuisine": "Asiatisch",
+  "group": "Modern",
+  "symbol": "🥗",
+  "swaps": [
+   "Verarbeitete Zutaten und Gewürze auf eindeutig glutenfreie Eignung prüfen."
+  ],
+  "nutrition": {
+   "base": {
+    "kcal": 743.0,
+    "protein": 22.2,
+    "carbs": 118.3,
+    "fat": 22.0,
+    "sugar": 15.7,
+    "fiber": 19.5,
+    "sat": 3.9
+   },
+   "meat": {
+    "kcal": 262.5,
+    "protein": 27.5,
+    "carbs": 0.0,
+    "fat": 16.2,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 6.2
+   }
+  }
+ },
+ {
+  "id": "glutenfreie-pasta-mit-spinat",
+  "name": "Glutenfreie Pasta mit Spinat",
+  "minutes": 25,
+  "description": "Schnelles Feierabendessen",
+  "ingredients": [
+   {
+    "name": "Pasta glutenfrei",
+    "amount": 180,
+    "unit": "g"
+   },
+   {
+    "name": "Babyspinat",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "name": "Kirschtomaten",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "name": "Frischkäse",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "name": "Parmesan",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "name": "Knoblauch",
+    "amount": 2,
+    "unit": "Zehen"
+   },
+   {
+    "name": "Olivenöl",
+    "amount": 10,
+    "unit": "ml"
+   }
+  ],
+  "steps": [
+   "Glutenfreie Pasta in sauberem Wasser nach Packungsanleitung kochen.",
+   "Knoblauch und halbierte Tomaten 5 Minuten in Öl anbraten.",
+   "Spinat zusammenfallen lassen, Frischkäse und etwas Nudelwasser einrühren.",
+   "Pasta untermischen und mit Parmesan servieren."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 250,
+   "unit": "g",
+   "instruction": "Hähnchen separat vollständig durchbraten und unterheben."
+  },
+  "cuisine": "Französisch",
+  "group": "Schnell",
+  "symbol": "🍝",
+  "swaps": [
+   "Verarbeitete Zutaten und Gewürze auf eindeutig glutenfreie Eignung prüfen."
+  ],
+  "nutrition": {
+   "base": {
+    "kcal": 584.3,
+    "protein": 16.3,
+    "carbs": 80.3,
+    "fat": 22.6,
+    "sugar": 7.3,
+    "fiber": 5.5,
+    "sat": 11.4
+   },
+   "meat": {
+    "kcal": 181.2,
+    "protein": 27.5,
+    "carbs": 0.0,
+    "fat": 7.5,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.1
+   }
+  }
+ },
+ {
+  "id": "susskartoffel-linsen-dal",
+  "name": "Süßkartoffel-Linsen-Dal",
+  "minutes": 40,
+  "description": "Wärmend und sättigend",
+  "ingredients": [
+   {
+    "name": "Süßkartoffeln",
+    "amount": 450,
+    "unit": "g"
+   },
+   {
+    "name": "Rote Linsen",
+    "amount": 160,
+    "unit": "g"
+   },
+   {
+    "name": "Kokosmilch",
+    "amount": 200,
+    "unit": "ml"
+   },
+   {
+    "name": "Passierte Tomaten",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "name": "Babyspinat",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "name": "Currypulver glutenfrei",
+    "amount": 8,
+    "unit": "g"
+   },
+   {
+    "name": "Reis",
+    "amount": 140,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Süßkartoffeln schälen und würfeln, Linsen abspülen.",
+   "Mit Tomaten, Kokosmilch, 250 ml Wasser und glutenfreiem Currygewürz aufkochen.",
+   "20–25 Minuten köcheln, bis Linsen und Kartoffeln gar sind.",
+   "Spinat unterheben und mit gekochtem Reis servieren."
+  ],
+  "meat": null,
+  "cuisine": "Asiatisch",
+  "group": "Klassiker",
+  "symbol": "🍛",
+  "swaps": [
+   "Verarbeitete Zutaten und Gewürze auf eindeutig glutenfreie Eignung prüfen."
+  ],
+  "nutrition": {
+   "base": {
+    "kcal": 959.8,
+    "protein": 33.7,
+    "carbs": 159.7,
+    "fat": 22.8,
+    "sugar": 17.4,
+    "fiber": 20.0,
+    "sat": 17.4
+   },
+   "meat": {
+    "kcal": 0.0,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 0.0,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 0.0
+   }
+  }
+ },
+ {
+  "id": "quinoa-bowl-mit-ofengemuse",
+  "name": "Quinoa-Bowl mit Ofengemüse",
+  "minutes": 35,
+  "description": "Mit Kichererbsen und Zitronendressing",
+  "ingredients": [
+   {
+    "name": "Quinoa",
+    "amount": 160,
+    "unit": "g"
+   },
+   {
+    "name": "Kichererbsen",
+    "amount": 240,
+    "unit": "g"
+   },
+   {
+    "name": "Karotten",
+    "amount": 2,
+    "unit": "Stück"
+   },
+   {
+    "name": "Zucchini",
+    "amount": 1,
+    "unit": "Stück"
+   },
+   {
+    "name": "Feta",
+    "amount": 120,
+    "unit": "g"
+   },
+   {
+    "name": "Zitrone",
+    "amount": 1,
+    "unit": "Stück"
+   },
+   {
+    "name": "Tahini glutenfrei",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "name": "Olivenöl",
+    "amount": 10,
+    "unit": "ml"
+   }
+  ],
+  "steps": [
+   "Quinoa gründlich abspülen und nach Packungsanweisung kochen.",
+   "Gemüse und Kichererbsen mit Öl im Ofen bei 210 °C etwa 25 Minuten rösten.",
+   "Tahini mit Zitronensaft und Wasser zum Dressing verrühren.",
+   "Quinoa mit Gemüse, Feta und Dressing anrichten."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 250,
+   "unit": "g",
+   "instruction": "Hähnchen separat durchgaren und in Streifen auflegen."
+  },
+  "cuisine": "Nahost",
+  "group": "Modern",
+  "symbol": "🥗",
+  "swaps": [
+   "Verarbeitete Zutaten und Gewürze auf eindeutig glutenfreie Eignung prüfen."
+  ],
+  "nutrition": {
+   "base": {
+    "kcal": 782.4,
+    "protein": 33.0,
+    "carbs": 92.4,
+    "fat": 32.4,
+    "sugar": 12.4,
+    "fiber": 19.1,
+    "sat": 11.7
+   },
+   "meat": {
+    "kcal": 181.2,
+    "protein": 27.5,
+    "carbs": 0.0,
+    "fat": 7.5,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.1
+   }
+  }
+ },
+ {
+  "id": "lachs-mit-kartoffeln-und-brokkoli",
+  "name": "Lachs mit Kartoffeln und Brokkoli",
+  "minutes": 35,
+  "description": "Einfaches Ofengericht",
+  "ingredients": [
+   {
+    "name": "Lachsfilet",
+    "amount": 280,
+    "unit": "g"
+   },
+   {
+    "name": "Kartoffeln",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "name": "Brokkoli",
+    "amount": 350,
+    "unit": "g"
+   },
+   {
+    "name": "Zitrone",
+    "amount": 1,
+    "unit": "Stück"
+   },
+   {
+    "name": "Naturjoghurt",
+    "amount": 120,
+    "unit": "g"
+   },
+   {
+    "name": "Dill",
+    "amount": 10,
+    "unit": "g"
+   },
+   {
+    "name": "Olivenöl",
+    "amount": 10,
+    "unit": "ml"
+   }
+  ],
+  "steps": [
+   "Kartoffeln in Stücke schneiden und bei 200 °C 15 Minuten vorgaren.",
+   "Brokkoli und Lachs ergänzen, mit Öl, Zitrone und Dill würzen.",
+   "Weitere 15–18 Minuten garen, bis der Fisch vollständig gar ist.",
+   "Joghurt mit Dill und Zitrone zu einem Dip rühren."
+  ],
+  "meat": null,
+  "cuisine": "Deutsch",
+  "group": "Klassiker",
+  "symbol": "🐟",
+  "swaps": [
+   "Verarbeitete Zutaten und Gewürze auf eindeutig glutenfreie Eignung prüfen."
+  ],
+  "nutrition": {
+   "base": {
+    "kcal": 625.4,
+    "protein": 40.5,
+    "carbs": 59.5,
+    "fat": 25.9,
+    "sugar": 8.5,
+    "fiber": 10.9,
+    "sat": 6.4
+   },
+   "meat": {
+    "kcal": 0.0,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 0.0,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 0.0
+   }
+  }
+ },
+ {
+  "id": "gemuse-frittata-mit-salat",
+  "name": "Gemüse-Frittata mit Salat",
+  "minutes": 25,
+  "description": "Gut für Restegemüse",
+  "ingredients": [
+   {
+    "name": "Eier",
+    "amount": 5,
+    "unit": "Stück"
+   },
+   {
+    "name": "Kartoffeln",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "name": "Paprika",
+    "amount": 1,
+    "unit": "Stück"
+   },
+   {
+    "name": "Babyspinat",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "name": "Feta",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "name": "Blattsalat",
+    "amount": 120,
+    "unit": "g"
+   },
+   {
+    "name": "Tomaten",
+    "amount": 2,
+    "unit": "Stück"
+   }
+  ],
+  "steps": [
+   "Kartoffeln in dünne Scheiben schneiden und in der Pfanne vorgaren.",
+   "Paprika und Spinat dazugeben. Eier verquirlen und darübergeben.",
+   "Feta darüberbröseln, bei kleiner Hitze mit Deckel stocken lassen.",
+   "Mit Blattsalat und Tomaten servieren."
+  ],
+  "meat": null,
+  "cuisine": "Französisch",
+  "group": "Schnell",
+  "symbol": "🍳",
+  "swaps": [
+   "Verarbeitete Zutaten und Gewürze auf eindeutig glutenfreie Eignung prüfen."
+  ],
+  "nutrition": {
+   "base": {
+    "kcal": 517.5,
+    "protein": 32.7,
+    "carbs": 41.2,
+    "fat": 24.6,
+    "sugar": 11.5,
+    "fiber": 8.5,
+    "sat": 11.9
+   },
+   "meat": {
+    "kcal": 0.0,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 0.0,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 0.0
+   }
+  }
+ },
+ {
+  "id": "thai-reispfanne-mit-tofu",
+  "name": "Thai-Reispfanne mit Tofu",
+  "minutes": 30,
+  "description": "Frisch mit Ingwer und Limette",
+  "ingredients": [
+   {
+    "name": "Reis",
+    "amount": 160,
+    "unit": "g"
+   },
+   {
+    "name": "Tofu natur",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "name": "Brokkoli",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "name": "Karotten",
+    "amount": 2,
+    "unit": "Stück"
+   },
+   {
+    "name": "Tamari glutenfrei",
+    "amount": 30,
+    "unit": "ml"
+   },
+   {
+    "name": "Ingwer",
+    "amount": 15,
+    "unit": "g"
+   },
+   {
+    "name": "Limette",
+    "amount": 1,
+    "unit": "Stück"
+   },
+   {
+    "name": "Olivenöl",
+    "amount": 10,
+    "unit": "ml"
+   }
+  ],
+  "steps": [
+   "Reis garen. Tofu trocken tupfen und würfeln.",
+   "Tofu in Öl anbraten; Gemüse und Ingwer zugeben.",
+   "Mit ausdrücklich glutenfreiem Tamari und etwas Wasser ablöschen.",
+   "Mit Reis und Limette servieren."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 250,
+   "unit": "g",
+   "instruction": "Statt oder zusätzlich zu Tofu Hähnchen vollständig durchgaren."
+  },
+  "cuisine": "Asiatisch",
+  "group": "Schnell",
+  "symbol": "🍚",
+  "swaps": [
+   "Verarbeitete Zutaten und Gewürze auf eindeutig glutenfreie Eignung prüfen."
+  ],
+  "nutrition": {
+   "base": {
+    "kcal": 585.0,
+    "protein": 28.5,
+    "carbs": 86.7,
+    "fat": 16.1,
+    "sugar": 8.3,
+    "fiber": 9.3,
+    "sat": 2.5
+   },
+   "meat": {
+    "kcal": 181.2,
+    "protein": 27.5,
+    "carbs": 0.0,
+    "fat": 7.5,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.1
+   }
+  }
+ },
+ {
+  "id": "tomaten-mozzarella-polenta",
+  "name": "Tomaten-Mozzarella-Polenta",
+  "minutes": 30,
+  "description": "Cremig und mediterran",
+  "ingredients": [
+   {
+    "name": "Polenta glutenfrei",
+    "amount": 160,
+    "unit": "g"
+   },
+   {
+    "name": "Kirschtomaten",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "name": "Mozzarella",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "name": "Babyspinat",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "name": "Parmesan",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "name": "Basilikum",
+    "amount": 10,
+    "unit": "g"
+   },
+   {
+    "name": "Olivenöl",
+    "amount": 10,
+    "unit": "ml"
+   }
+  ],
+  "steps": [
+   "Polenta gemäß Packung in Wasser oder eindeutig glutenfreier Brühe unter Rühren garen.",
+   "Tomaten in einer Pfanne mit Öl anbraten, Spinat zugeben.",
+   "Parmesan in Polenta einrühren, mit Tomaten und Mozzarella anrichten.",
+   "Mit Basilikum bestreuen."
+  ],
+  "meat": null,
+  "cuisine": "Französisch",
+  "group": "Modern",
+  "symbol": "🍅",
+  "swaps": [
+   "Verarbeitete Zutaten und Gewürze auf eindeutig glutenfreie Eignung prüfen."
+  ],
+  "nutrition": {
+   "base": {
+    "kcal": 618.7,
+    "protein": 27.4,
+    "carbs": 73.1,
+    "fat": 24.8,
+    "sugar": 6.1,
+    "fiber": 6.2,
+    "sat": 12.7
+   },
+   "meat": {
+    "kcal": 0.0,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 0.0,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 0.0
+   }
+  }
+ },
+ {
+  "id": "kichererbsen-shakshuka",
+  "name": "Kichererbsen-Shakshuka",
+  "minutes": 30,
+  "description": "Würzige Tomatenpfanne",
+  "ingredients": [
+   {
+    "name": "Eier",
+    "amount": 4,
+    "unit": "Stück"
+   },
+   {
+    "name": "Kichererbsen",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "name": "Passierte Tomaten",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "name": "Paprika",
+    "amount": 1,
+    "unit": "Stück"
+   },
+   {
+    "name": "Zwiebel",
+    "amount": 1,
+    "unit": "Stück"
+   },
+   {
+    "name": "Feta",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "name": "Kreuzkümmel glutenfrei",
+    "amount": 5,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Zwiebel und Paprika anbraten.",
+   "Tomaten, Kichererbsen und geprüftes Gewürz 10 Minuten köcheln.",
+   "Mulden formen und Eier hineingeben; mit Deckel bis zum vollständigen Stocken garen.",
+   "Feta darüberbröseln und servieren."
+  ],
+  "meat": null,
+  "cuisine": "Nahost",
+  "group": "Klassiker",
+  "symbol": "🍳",
+  "swaps": [
+   "Verarbeitete Zutaten und Gewürze auf eindeutig glutenfreie Eignung prüfen."
+  ],
+  "nutrition": {
+   "base": {
+    "kcal": 503.2,
+    "protein": 32.2,
+    "carbs": 38.5,
+    "fat": 23.9,
+    "sugar": 15.7,
+    "fiber": 12.1,
+    "sat": 11.2
+   },
+   "meat": {
+    "kcal": 0.0,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 0.0,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 0.0
+   }
+  }
+ },
+ {
+  "id": "kartoffel-bohnen-pfanne",
+  "name": "Kartoffel-Bohnen-Pfanne",
+  "minutes": 30,
+  "description": "Deftig ohne Fertigsaucen",
+  "ingredients": [
+   {
+    "name": "Kartoffeln",
+    "amount": 600,
+    "unit": "g"
+   },
+   {
+    "name": "Grüne Bohnen",
+    "amount": 350,
+    "unit": "g"
+   },
+   {
+    "name": "Zwiebel",
+    "amount": 1,
+    "unit": "Stück"
+   },
+   {
+    "name": "Kirschtomaten",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "name": "Feta",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "name": "Naturjoghurt",
+    "amount": 120,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Kartoffeln in Salzwasser vorgaren und in Scheiben schneiden.",
+   "Bohnen in kochendem Wasser vollständig garen.",
+   "Zwiebel und Kartoffeln anbraten, Tomaten und Bohnen dazugeben.",
+   "Feta darüberstreuen, Joghurt als Dip servieren."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 250,
+   "unit": "g",
+   "instruction": "Hähnchen separat vollständig durchgaren und dazu reichen."
+  },
+  "cuisine": "Deutsch",
+  "group": "Schnell",
+  "symbol": "🥔",
+  "swaps": [
+   "Verarbeitete Zutaten und Gewürze auf eindeutig glutenfreie Eignung prüfen."
+  ],
+  "nutrition": {
+   "base": {
+    "kcal": 504.4,
+    "protein": 20.2,
+    "carbs": 78.4,
+    "fat": 13.6,
+    "sugar": 19.1,
+    "fiber": 15.1,
+    "sat": 8.8
+   },
+   "meat": {
+    "kcal": 181.2,
+    "protein": 27.5,
+    "carbs": 0.0,
+    "fat": 7.5,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.1
+   }
+  }
+ },
+ {
+  "id": "glutenfreie-kasespatzle-mit-rostzwiebeln",
+  "name": "Glutenfreie Käsespätzle mit Röstzwiebeln",
+  "cuisine": "Deutsch",
+  "group": "Klassiker",
+  "minutes": 40,
+  "description": "Schwäbische Hausmannskost mit Bergkäse",
+  "ingredients": [
+   {
+    "name": "Glutenfreie Spätzle",
+    "amount": 360.0,
+    "unit": "g"
+   },
+   {
+    "name": "Bergkäse",
+    "amount": 180.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zwiebeln",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Butter",
+    "amount": 30.0,
+    "unit": "g"
+   },
+   {
+    "name": "Schnittlauch",
+    "amount": 10.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Spätzle nach Packungsangabe in sauberem Topf garen.",
+   "Zwiebeln in dünne Ringe schneiden und in Butter langsam goldbraun rösten.",
+   "Spätzle mit geriebenem Käse in einer Auflaufform schichten, kurz schmelzen lassen.",
+   "Mit Röstzwiebeln und Schnittlauch servieren."
+  ],
+  "meat": {
+   "name": "Räucherschinken",
+   "amount": 120.0,
+   "unit": "g",
+   "instruction": "Schinken in eigener sauberen Pfanne erwärmen und separat servieren."
+  },
+  "swaps": [
+   "Normale Weizenspätzle → eindeutig glutenfrei gekennzeichnete Spätzle"
+  ],
+  "symbol": "🧀",
+  "nutrition": {
+   "base": {
+    "kcal": 1134.3,
+    "protein": 38.0,
+    "carbs": 150.0,
+    "fat": 42.2,
+    "sugar": 8.1,
+    "fiber": 6.3,
+    "sat": 25.3
+   },
+   "meat": {
+    "kcal": 147.0,
+    "protein": 13.2,
+    "carbs": 0.6,
+    "fat": 10.2,
+    "sugar": 0.6,
+    "fiber": 0.0,
+    "sat": 3.6
+   }
+  }
+ },
+ {
+  "id": "kartoffel-pilz-gulasch-mit-gurkensalat",
+  "name": "Kartoffel-Pilz-Gulasch mit Gurkensalat",
+  "cuisine": "Deutsch",
+  "group": "Klassiker",
+  "minutes": 45,
+  "description": "Herzhaft, paprika-würzig und selbstgekocht",
+  "ingredients": [
+   {
+    "name": "Kartoffeln",
+    "amount": 500.0,
+    "unit": "g"
+   },
+   {
+    "name": "Champignons",
+    "amount": 250.0,
+    "unit": "g"
+   },
+   {
+    "name": "Paprika",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Zwiebeln",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Passierte Tomaten",
+    "amount": 250.0,
+    "unit": "g"
+   },
+   {
+    "name": "Paprikapulver glutenfrei",
+    "amount": 10.0,
+    "unit": "g"
+   },
+   {
+    "name": "Salatgurke",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Joghurt",
+    "amount": 100.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Kartoffeln würfeln, Pilze vierteln und Zwiebel fein schneiden.",
+   "Zwiebel und Pilze anbraten, Paprika und Kartoffeln ergänzen.",
+   "Tomaten und 200 ml Wasser angießen, mit geprüfter Paprika würzen, ca. 25 Minuten schmoren.",
+   "Gurke mit Joghurt vermischen und separat servieren."
+  ],
+  "meat": {
+   "name": "Rindergulasch",
+   "amount": 250.0,
+   "unit": "g",
+   "instruction": "Fleisch separat anbraten und bis zur sicheren Garung länger schmoren."
+  },
+  "swaps": [
+   "Fertig-Gulaschgewürz → einzeln geprüfte glutenfreie Gewürze"
+  ],
+  "symbol": "🥔",
+  "nutrition": {
+   "base": {
+    "kcal": 383.8,
+    "protein": 16.1,
+    "carbs": 75.4,
+    "fat": 3.9,
+    "sugar": 22.6,
+    "fiber": 14.2,
+    "sat": 1.3
+   },
+   "meat": {
+    "kcal": 262.5,
+    "protein": 27.5,
+    "carbs": 0.0,
+    "fat": 16.2,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 6.2
+   }
+  }
+ },
+ {
+  "id": "rahmgeschnetzeltes-mit-glutenfreiem-rosti",
+  "name": "Rahmgeschnetzeltes mit glutenfreiem Rösti",
+  "cuisine": "Deutsch",
+  "group": "Klassiker",
+  "minutes": 35,
+  "description": "Cremige Pilzpfanne mit knuspriger Kartoffel",
+  "ingredients": [
+   {
+    "name": "Kartoffeln",
+    "amount": 550.0,
+    "unit": "g"
+   },
+   {
+    "name": "Champignons",
+    "amount": 250.0,
+    "unit": "g"
+   },
+   {
+    "name": "Sahne",
+    "amount": 180.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Zwiebeln",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Speisestärke glutenfrei",
+    "amount": 12.0,
+    "unit": "g"
+   },
+   {
+    "name": "Petersilie",
+    "amount": 12.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Kartoffeln grob reiben, ausdrücken, salzen und kleine Rösti in sauberer Pfanne braten.",
+   "Pilze und Zwiebel anrösten, Sahne zugießen.",
+   "Mit glutenfreier Speisestärke abbinden, abschmecken und Petersilie unterheben.",
+   "Pilzrahm auf den Rösti servieren."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 250.0,
+   "unit": "g",
+   "instruction": "Hähnchen in separater Pfanne vollständig durchgaren und in die Soße geben."
+  },
+  "swaps": [
+   "Weizenmehl zum Binden → glutenfreie Speisestärke"
+  ],
+  "symbol": "🍄",
+  "nutrition": {
+   "base": {
+    "kcal": 546.2,
+    "protein": 12.3,
+    "carbs": 64.1,
+    "fat": 27.7,
+    "sugar": 9.9,
+    "fiber": 8.4,
+    "sat": 17.2
+   },
+   "meat": {
+    "kcal": 181.2,
+    "protein": 27.5,
+    "carbs": 0.0,
+    "fat": 7.5,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.1
+   }
+  }
+ },
+ {
+  "id": "ofen-blumenkohl-mit-senfsosse-und-kartoffeln",
+  "name": "Ofen-Blumenkohl mit Senfsoße und Kartoffeln",
+  "cuisine": "Deutsch",
+  "group": "Modern",
+  "minutes": 40,
+  "description": "Saisonales Gemüse, kross und aromatisch",
+  "ingredients": [
+   {
+    "name": "Blumenkohl",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Kartoffeln",
+    "amount": 500.0,
+    "unit": "g"
+   },
+   {
+    "name": "Joghurt",
+    "amount": 180.0,
+    "unit": "g"
+   },
+   {
+    "name": "Senf glutenfrei",
+    "amount": 25.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zitrone",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Dill",
+    "amount": 12.0,
+    "unit": "g"
+   },
+   {
+    "name": "Olivenöl",
+    "amount": 10,
+    "unit": "ml"
+   }
+  ],
+  "steps": [
+   "Blumenkohl in Röschen und Kartoffeln in Spalten schneiden.",
+   "Mit Öl und Salz bei 210 °C ungefähr 30 Minuten rösten.",
+   "Joghurt, überprüften Senf, Zitrone und Dill verrühren.",
+   "Mit Dip anrichten."
+  ],
+  "meat": {
+   "name": "Lachsfilet",
+   "amount": 240.0,
+   "unit": "g",
+   "instruction": "Lachs getrennt auf sauberem Blech vollständig garen."
+  },
+  "swaps": [
+   "Senf nur aus geprüfter glutenfreier Packung verwenden"
+  ],
+  "symbol": "🥦",
+  "nutrition": {
+   "base": {
+    "kcal": 391.6,
+    "protein": 15.5,
+    "carbs": 66.4,
+    "fat": 9.9,
+    "sugar": 13.6,
+    "fiber": 13.4,
+    "sat": 3.0
+   },
+   "meat": {
+    "kcal": 246.0,
+    "protein": 24.0,
+    "carbs": 0.0,
+    "fat": 15.6,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 3.6
+   }
+  }
+ },
+ {
+  "id": "pilz-konigsberger-mit-kapern-und-kartoffelpuree",
+  "name": "Pilz-Königsberger mit Kapern und Kartoffelpüree",
+  "cuisine": "Deutsch",
+  "group": "Besonders",
+  "minutes": 50,
+  "description": "Klassischer Kapern-Geschmack ganz ohne Weizen",
+  "ingredients": [
+   {
+    "name": "Braune Champignons",
+    "amount": 350.0,
+    "unit": "g"
+   },
+   {
+    "name": "Kartoffeln",
+    "amount": 500.0,
+    "unit": "g"
+   },
+   {
+    "name": "Milch",
+    "amount": 160.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Butter",
+    "amount": 40.0,
+    "unit": "g"
+   },
+   {
+    "name": "Kapern",
+    "amount": 35.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zitrone",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Speisestärke glutenfrei",
+    "amount": 15.0,
+    "unit": "g"
+   },
+   {
+    "name": "Gemüsebrühe glutenfrei",
+    "amount": 250.0,
+    "unit": "ml"
+   }
+  ],
+  "steps": [
+   "Pilze sehr fein hacken und mit etwas Kartoffelstärke zu kleinen Talern formen, anbraten.",
+   "Kartoffeln weich kochen und mit Milch sowie Butter stampfen.",
+   "Glutenfreie Brühe erhitzen, mit Stärke binden, Kapern und Zitrone zugeben.",
+   "Pilztaler mit Kapernsoße und Püree servieren."
+  ],
+  "meat": {
+   "name": "Rinderhack",
+   "amount": 280.0,
+   "unit": "g",
+   "instruction": "Pilztaler durch durchgegarte Fleischklöße ersetzen."
+  },
+  "swaps": [
+   "Weizen-Paniermehl und Mehlsoße → Kartoffelstärke"
+  ],
+  "symbol": "🥘",
+  "nutrition": {
+   "base": {
+    "kcal": 480.8,
+    "protein": 14.3,
+    "carbs": 62.6,
+    "fat": 21.3,
+    "sugar": 10.8,
+    "fiber": 8.3,
+    "sat": 12.3
+   },
+   "meat": {
+    "kcal": 294.0,
+    "protein": 30.8,
+    "carbs": 0.0,
+    "fat": 18.2,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 7.0
+   }
+  }
+ },
+ {
+  "id": "linsen-frikadellen-mit-kartoffelsalat",
+  "name": "Linsen-Frikadellen mit Kartoffelsalat",
+  "cuisine": "Deutsch",
+  "group": "Modern",
+  "minutes": 45,
+  "description": "Kross gebraten, würzig und alltagstauglich",
+  "ingredients": [
+   {
+    "name": "Linsen glutenfrei gekennzeichnet",
+    "amount": 180.0,
+    "unit": "g"
+   },
+   {
+    "name": "Kartoffeln",
+    "amount": 500.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zwiebeln",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Eier",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Senf glutenfrei",
+    "amount": 20.0,
+    "unit": "g"
+   },
+   {
+    "name": "Gewürzgurken",
+    "amount": 100.0,
+    "unit": "g"
+   },
+   {
+    "name": "Petersilie",
+    "amount": 12.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Geprüfte Linsen gar kochen und gründlich abtropfen.",
+   "Mit Ei, Zwiebel und Senf vermengen, Taler formen und knusprig braten.",
+   "Kartoffeln kochen, ausdampfen lassen und mit Gurken und etwas Gurkensud mischen.",
+   "Petersilie darübergeben."
+  ],
+  "meat": {
+   "name": "Rinderhack",
+   "amount": 250.0,
+   "unit": "g",
+   "instruction": "Anstelle der Linsenmasse Frikadellen formen und gründlich garen."
+  },
+  "swaps": [
+   "Semmelbrösel → glutenfreie Panade oder geeignete Kartoffelstärke"
+  ],
+  "symbol": "🥗",
+  "nutrition": {
+   "base": {
+    "kcal": 658.2,
+    "protein": 36.4,
+    "carbs": 105.4,
+    "fat": 11.0,
+    "sugar": 7.7,
+    "fiber": 17.9,
+    "sat": 2.5
+   },
+   "meat": {
+    "kcal": 262.5,
+    "protein": 27.5,
+    "carbs": 0.0,
+    "fat": 16.2,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 6.2
+   }
+  }
+ },
+ {
+  "id": "spinat-kartoffel-pfanne-mit-spiegelei",
+  "name": "Spinat-Kartoffel-Pfanne mit Spiegelei",
+  "cuisine": "Deutsch",
+  "group": "Schnell",
+  "minutes": 25,
+  "description": "Einfach, sättigend und angenehm rustikal",
+  "ingredients": [
+   {
+    "name": "Kartoffeln",
+    "amount": 500.0,
+    "unit": "g"
+   },
+   {
+    "name": "Babyspinat",
+    "amount": 180.0,
+    "unit": "g"
+   },
+   {
+    "name": "Eier",
+    "amount": 4.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Zwiebeln",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Feta",
+    "amount": 100.0,
+    "unit": "g"
+   },
+   {
+    "name": "Muskat",
+    "amount": 2.0,
+    "unit": "g"
+   },
+   {
+    "name": "Olivenöl",
+    "amount": 10,
+    "unit": "ml"
+   }
+  ],
+  "steps": [
+   "Kartoffeln in kleinen Würfeln bissfest vorkochen.",
+   "Mit Zwiebel in Öl knusprig braten, Spinat kurz zusammenfallen lassen.",
+   "Eier als Spiegeleier in sauberer Pfanne braten.",
+   "Feta darüberbröseln und würzen."
+  ],
+  "meat": {
+   "name": "Speckwürfel",
+   "amount": 120.0,
+   "unit": "g",
+   "instruction": "Geprüfte Speckwürfel separat knusprig braten."
+  },
+  "swaps": [
+   "Bei gewürztem Speck Produktkennzeichnung prüfen"
+  ],
+  "symbol": "🍳",
+  "nutrition": {
+   "base": {
+    "kcal": 568.4,
+    "protein": 29.6,
+    "carbs": 54.2,
+    "fat": 26.3,
+    "sugar": 7.2,
+    "fiber": 8.6,
+    "sat": 11.7
+   },
+   "meat": {
+    "kcal": 147.0,
+    "protein": 13.2,
+    "carbs": 0.6,
+    "fat": 10.2,
+    "sugar": 0.6,
+    "fiber": 0.0,
+    "sat": 3.6
+   }
+  }
+ },
+ {
+  "id": "rote-bete-risotto-mit-meerrettich",
+  "name": "Rote-Bete-Risotto mit Meerrettich",
+  "cuisine": "Deutsch",
+  "group": "Besonders",
+  "minutes": 40,
+  "description": "Erdig, elegant, überraschend frisch",
+  "ingredients": [
+   {
+    "name": "Risottoreis glutenfrei gekennzeichnet",
+    "amount": 180.0,
+    "unit": "g"
+   },
+   {
+    "name": "Rote Bete gekocht",
+    "amount": 250.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zwiebeln",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Gemüsebrühe glutenfrei",
+    "amount": 500.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Parmesan",
+    "amount": 50.0,
+    "unit": "g"
+   },
+   {
+    "name": "Meerrettich glutenfrei",
+    "amount": 20.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zitrone",
+    "amount": 1.0,
+    "unit": "Stück"
+   }
+  ],
+  "steps": [
+   "Zwiebeln anschwitzen und Risottoreis glasig rühren.",
+   "Mit heißer geprüfter Brühe nach und nach etwa 20 Minuten garen.",
+   "Rote Bete fein würfeln und gegen Ende unterheben.",
+   "Mit Parmesan, Meerrettich und Zitrone abschmecken."
+  ],
+  "meat": {
+   "name": "Geräucherter Lachs",
+   "amount": 120.0,
+   "unit": "g",
+   "instruction": "Getrennt als kaltes Topping dazu reichen."
+  },
+  "swaps": [
+   "Brühe und Meerrettichcreme auf Gluten prüfen"
+  ],
+  "symbol": "🍚",
+  "nutrition": {
+   "base": {
+    "kcal": 523.8,
+    "protein": 17.6,
+    "carbs": 93.4,
+    "fat": 9.1,
+    "sugar": 13.9,
+    "fiber": 5.7,
+    "sat": 4.9
+   },
+   "meat": {
+    "kcal": 123.0,
+    "protein": 12.0,
+    "carbs": 0.0,
+    "fat": 7.8,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 1.8
+   }
+  }
+ },
+ {
+  "id": "sauerkraut-kartoffel-auflauf",
+  "name": "Sauerkraut-Kartoffel-Auflauf",
+  "cuisine": "Deutsch",
+  "group": "Klassiker",
+  "minutes": 45,
+  "description": "Deftig mit Apfel und mildem Käse",
+  "ingredients": [
+   {
+    "name": "Sauerkraut",
+    "amount": 350.0,
+    "unit": "g"
+   },
+   {
+    "name": "Kartoffeln",
+    "amount": 550.0,
+    "unit": "g"
+   },
+   {
+    "name": "Apfel",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Zwiebeln",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Schmand",
+    "amount": 160.0,
+    "unit": "g"
+   },
+   {
+    "name": "Emmentaler",
+    "amount": 120.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Kartoffeln vorkochen und in Scheiben schneiden.",
+   "Sauerkraut mit Zwiebel und Apfel kurz dünsten.",
+   "In einer Form mit Kartoffeln und Schmand schichten.",
+   "Mit Käse bestreuen und 20 Minuten bei 200 °C backen."
+  ],
+  "meat": {
+   "name": "Bratwurst glutenfrei",
+   "amount": 250.0,
+   "unit": "g",
+   "instruction": "Nur ausdrücklich glutenfrei geeignete Bratwurst separat gründlich braten."
+  },
+  "swaps": [
+   "Würste und aromatisierte Sauerkrautprodukte immer produktbezogen prüfen"
+  ],
+  "symbol": "🥬",
+  "nutrition": {
+   "base": {
+    "kcal": 734.2,
+    "protein": 26.7,
+    "carbs": 73.4,
+    "fat": 37.9,
+    "sugar": 18.6,
+    "fiber": 13.8,
+    "sat": 23.4
+   },
+   "meat": {
+    "kcal": 350.0,
+    "protein": 18.8,
+    "carbs": 3.8,
+    "fat": 30.0,
+    "sugar": 1.2,
+    "fiber": 0.0,
+    "sat": 10.0
+   }
+  }
+ },
+ {
+  "id": "kurbis-schupfnudeln-aus-glutenfreiem-teig",
+  "name": "Kürbis-Schupfnudeln aus glutenfreiem Teig",
+  "cuisine": "Deutsch",
+  "group": "Besonders",
+  "minutes": 55,
+  "description": "Hausgemachte Schupfnudeln mit Salbei-Butter",
+  "ingredients": [
+   {
+    "name": "Hokkaido",
+    "amount": 300.0,
+    "unit": "g"
+   },
+   {
+    "name": "Kartoffeln",
+    "amount": 350.0,
+    "unit": "g"
+   },
+   {
+    "name": "Kartoffelstärke",
+    "amount": 110.0,
+    "unit": "g"
+   },
+   {
+    "name": "Ei",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Butter",
+    "amount": 55.0,
+    "unit": "g"
+   },
+   {
+    "name": "Salbei",
+    "amount": 12.0,
+    "unit": "g"
+   },
+   {
+    "name": "Parmesan",
+    "amount": 40.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Kartoffeln und Kürbis weich garen und sehr trocken ausdampfen lassen.",
+   "Fein stampfen, mit Stärke und Ei zu weichem formbaren Teig mischen.",
+   "Auf gereinigter, glutenfreier Fläche Schupfnudeln formen und in Wasser gar ziehen lassen.",
+   "Mit Salbei in Butter schwenken und Parmesan ergänzen."
+  ],
+  "meat": {
+   "name": "Serranoschinken",
+   "amount": 100.0,
+   "unit": "g",
+   "instruction": "Schinken getrennt kross anbraten und optional darübergeben."
+  },
+  "swaps": [
+   "Weizenmehl → reine glutenfreie Kartoffelstärke"
+  ],
+  "symbol": "🎃",
+  "nutrition": {
+   "base": {
+    "kcal": 730.1,
+    "protein": 15.6,
+    "carbs": 94.2,
+    "fat": 32.0,
+    "sugar": 6.3,
+    "fiber": 7.6,
+    "sat": 18.8
+   },
+   "meat": {
+    "kcal": 122.5,
+    "protein": 11.0,
+    "carbs": 0.5,
+    "fat": 8.5,
+    "sugar": 0.5,
+    "fiber": 0.0,
+    "sat": 3.0
+   }
+  }
+ },
+ {
+  "id": "ratatouille-mit-zitronen-polenta",
+  "name": "Ratatouille mit Zitronen-Polenta",
+  "cuisine": "Französisch",
+  "group": "Klassiker",
+  "minutes": 45,
+  "description": "Provenzalisches Schmorgemüse",
+  "ingredients": [
+   {
+    "name": "Aubergine",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Zucchini",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Paprika",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Passierte Tomaten",
+    "amount": 350.0,
+    "unit": "g"
+   },
+   {
+    "name": "Maispolenta glutenfrei",
+    "amount": 160.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zitrone",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Thymian",
+    "amount": 6.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Gemüse würfeln und nacheinander bei mittlerer Hitze rösten.",
+   "Tomaten und Thymian zugeben und 20 Minuten sanft schmoren.",
+   "Glutenfrei gekennzeichnete Polenta in Wasser garen und mit Zitronenabrieb abschmecken.",
+   "Ratatouille auf Polenta anrichten."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 250.0,
+   "unit": "g",
+   "instruction": "Fleisch separat garen und in Scheiben dazu reichen."
+  },
+  "swaps": [
+   "Gewöhnliche Couscous-Beilage → glutenfrei gekennzeichnete Maispolenta"
+  ],
+  "symbol": "🍆",
+  "nutrition": {
+   "base": {
+    "kcal": 455.4,
+    "protein": 15.4,
+    "carbs": 95.5,
+    "fat": 2.8,
+    "sugar": 23.6,
+    "fiber": 15.9,
+    "sat": 0.4
+   },
+   "meat": {
+    "kcal": 181.2,
+    "protein": 27.5,
+    "carbs": 0.0,
+    "fat": 7.5,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.1
+   }
+  }
+ },
+ {
+  "id": "blanquette-de-champignons-mit-reis",
+  "name": "Blanquette de champignons mit Reis",
+  "cuisine": "Französisch",
+  "group": "Besonders",
+  "minutes": 45,
+  "description": "Pilze in feiner Estragon-Rahmsoße",
+  "ingredients": [
+   {
+    "name": "Champignons",
+    "amount": 400.0,
+    "unit": "g"
+   },
+   {
+    "name": "Karotten",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Lauch",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Basmatireis",
+    "amount": 170.0,
+    "unit": "g"
+   },
+   {
+    "name": "Sahne",
+    "amount": 170.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Gemüsebrühe glutenfrei",
+    "amount": 250.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Speisestärke glutenfrei",
+    "amount": 12.0,
+    "unit": "g"
+   },
+   {
+    "name": "Estragon",
+    "amount": 8.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Reis garen und warmhalten.",
+   "Gemüse sowie Pilze anschwitzen und mit Brühe 15 Minuten leise garen.",
+   "Sahne ergänzen, mit glutenfreier Stärke binden und Estragon unterrühren.",
+   "Mit Reis servieren."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 260.0,
+   "unit": "g",
+   "instruction": "Fleisch separat vollständig durchgaren und zum Schluss in Soße erwärmen."
+  },
+  "swaps": [
+   "Roux aus Weizenmehl → glutenfreie Speisestärke"
+  ],
+  "symbol": "🍄",
+  "nutrition": {
+   "base": {
+    "kcal": 688.6,
+    "protein": 17.0,
+    "carbs": 96.2,
+    "fat": 27.5,
+    "sugar": 14.5,
+    "fiber": 7.7,
+    "sat": 16.5
+   },
+   "meat": {
+    "kcal": 188.5,
+    "protein": 28.6,
+    "carbs": 0.0,
+    "fat": 7.8,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.2
+   }
+  }
+ },
+ {
+  "id": "gratin-dauphinois-mit-feldsalat",
+  "name": "Gratin Dauphinois mit Feldsalat",
+  "cuisine": "Französisch",
+  "group": "Klassiker",
+  "minutes": 55,
+  "description": "Feine Kartoffelscheiben in Knoblauchrahm",
+  "ingredients": [
+   {
+    "name": "Kartoffeln",
+    "amount": 650.0,
+    "unit": "g"
+   },
+   {
+    "name": "Sahne",
+    "amount": 250.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Milch",
+    "amount": 150.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Knoblauch",
+    "amount": 2.0,
+    "unit": "Zehen"
+   },
+   {
+    "name": "Muskat",
+    "amount": 2.0,
+    "unit": "g"
+   },
+   {
+    "name": "Feldsalat",
+    "amount": 100.0,
+    "unit": "g"
+   },
+   {
+    "name": "Walnüsse",
+    "amount": 35.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Kartoffeln sehr dünn hobeln, nicht wässern.",
+   "Mit gewürzter Sahne und Milch in Auflaufform schichten.",
+   "45 Minuten bei 175 °C backen bis weich und goldbraun.",
+   "Mit gewaschenem Feldsalat und Walnüssen servieren."
+  ],
+  "meat": {
+   "name": "Hähnchenkeulen",
+   "amount": 2.0,
+   "unit": "Stück",
+   "instruction": "Hähnchen separat vollständig durchgaren."
+  },
+  "swaps": [
+   "Fertige Kartoffelgratin-Mischungen meiden bzw. prüfen"
+  ],
+  "symbol": "🥔",
+  "nutrition": {
+   "base": {
+    "kcal": 795.8,
+    "protein": 16.0,
+    "carbs": 68.7,
+    "fat": 52.1,
+    "sugar": 11.1,
+    "fiber": 9.4,
+    "sat": 26.5
+   },
+   "meat": {
+    "kcal": 217.5,
+    "protein": 33.0,
+    "carbs": 0.0,
+    "fat": 9.0,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.5
+   }
+  }
+ },
+ {
+  "id": "socca-nicoise-mit-tomatensalat",
+  "name": "Socca niçoise mit Tomatensalat",
+  "cuisine": "Französisch",
+  "group": "Schnell",
+  "minutes": 30,
+  "description": "Knuspriger Kichererbsenfladen aus Nizza",
+  "ingredients": [
+   {
+    "name": "Kichererbsenmehl glutenfrei",
+    "amount": 170.0,
+    "unit": "g"
+   },
+   {
+    "name": "Wasser",
+    "amount": 280.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Olivenöl",
+    "amount": 35.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Tomaten",
+    "amount": 300.0,
+    "unit": "g"
+   },
+   {
+    "name": "Rucola",
+    "amount": 70.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zitrone",
+    "amount": 1.0,
+    "unit": "Stück"
+   }
+  ],
+  "steps": [
+   "Geprüftes Kichererbsenmehl mit Wasser, Öl und Salz glatt verrühren.",
+   "Dünn auf vorgeheiztes geöltes Blech geben und bei 230 °C goldbraun backen.",
+   "Tomaten und Rucola marinieren.",
+   "Socca in Stücke teilen und mit Salat servieren."
+  ],
+  "meat": {
+   "name": "Thunfisch",
+   "amount": 140.0,
+   "unit": "g",
+   "instruction": "Geprüften Thunfisch als Topping dazugeben."
+  },
+  "swaps": [
+   "Weizenmehl → glutenfrei gekennzeichnetes Kichererbsenmehl"
+  ],
+  "symbol": "🥙",
+  "nutrition": {
+   "base": {
+    "kcal": 491.8,
+    "protein": 17.3,
+    "carbs": 60.6,
+    "fat": 20.1,
+    "sugar": 8.9,
+    "fiber": 11.7,
+    "sat": 2.9
+   },
+   "meat": {
+    "kcal": 84.0,
+    "protein": 18.2,
+    "carbs": 0.0,
+    "fat": 0.7,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 0.1
+   }
+  }
+ },
+ {
+  "id": "buchweizen-galettes-mit-ziegenkase",
+  "name": "Buchweizen-Galettes mit Ziegenkäse",
+  "cuisine": "Französisch",
+  "group": "Besonders",
+  "minutes": 35,
+  "description": "Bretonische Crêpes mit Birne und Thymian",
+  "ingredients": [
+   {
+    "name": "Buchweizenmehl glutenfrei",
+    "amount": 160.0,
+    "unit": "g"
+   },
+   {
+    "name": "Eier",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Milch",
+    "amount": 270.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Ziegenkäse",
+    "amount": 130.0,
+    "unit": "g"
+   },
+   {
+    "name": "Birne",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Thymian",
+    "amount": 6.0,
+    "unit": "g"
+   },
+   {
+    "name": "Walnüsse",
+    "amount": 35.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Aus glutenfrei gekennzeichnetem Buchweizenmehl, Eiern und Milch einen dünnen Teig rühren.",
+   "In sauberer Pfanne dünne Galettes ausbacken.",
+   "Mit Ziegenkäse, Birne und Thymian belegen und kurz schmelzen lassen.",
+   "Walnüsse über die gefalteten Galettes geben."
+  ],
+  "meat": {
+   "name": "Schinken glutenfrei",
+   "amount": 120.0,
+   "unit": "g",
+   "instruction": "Geprüften Schinken als weitere Füllung verwenden."
+  },
+  "swaps": [
+   "Weizen-Crêpes → glutenfreie Buchweizen-Galettes"
+  ],
+  "symbol": "🫓",
+  "nutrition": {
+   "base": {
+    "kcal": 780.4,
+    "protein": 37.7,
+    "carbs": 71.5,
+    "fat": 38.6,
+    "sugar": 21.1,
+    "fiber": 11.2,
+    "sat": 15.9
+   },
+   "meat": {
+    "kcal": 147.0,
+    "protein": 13.2,
+    "carbs": 0.6,
+    "fat": 10.2,
+    "sugar": 0.6,
+    "fiber": 0.0,
+    "sat": 3.6
+   }
+  }
+ },
+ {
+  "id": "cassoulet-blanc-mit-weissen-bohnen",
+  "name": "Cassoulet blanc mit weißen Bohnen",
+  "cuisine": "Französisch",
+  "group": "Klassiker",
+  "minutes": 60,
+  "description": "Südfranzösischer Bohnenschmortopf",
+  "ingredients": [
+   {
+    "name": "Weiße Bohnen glutenfrei",
+    "amount": 420.0,
+    "unit": "g"
+   },
+   {
+    "name": "Tomaten",
+    "amount": 250.0,
+    "unit": "g"
+   },
+   {
+    "name": "Karotten",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Zwiebeln",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Knoblauch",
+    "amount": 2.0,
+    "unit": "Zehen"
+   },
+   {
+    "name": "Gemüsebrühe glutenfrei",
+    "amount": 350.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Thymian",
+    "amount": 6.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Zwiebel, Karotten und Knoblauch kräftig anschwitzen.",
+   "Bohnen, Tomaten und geprüfte Brühe hinzufügen.",
+   "Mindestens 30 Minuten leicht schmoren, gelegentlich umrühren.",
+   "Mit Thymian und Olivenöl abschmecken."
+  ],
+  "meat": {
+   "name": "Entenbrust",
+   "amount": 260.0,
+   "unit": "g",
+   "instruction": "Entenbrust nach geeigneten Garhinweisen separat zubereiten und aufschneiden."
+  },
+  "swaps": [
+   "Klassische Würste → separat geprüfte glutenfreie Variante"
+  ],
+  "symbol": "🫘",
+  "nutrition": {
+   "base": {
+    "kcal": 346.3,
+    "protein": 18.5,
+    "carbs": 56.5,
+    "fat": 5.0,
+    "sugar": 13.5,
+    "fiber": 18.6,
+    "sat": 0.4
+   },
+   "meat": {
+    "kcal": 273.0,
+    "protein": 23.4,
+    "carbs": 0.0,
+    "fat": 19.5,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 6.5
+   }
+  }
+ },
+ {
+  "id": "lauch-quiche-ohne-weizenboden",
+  "name": "Lauch-Quiche ohne Weizenboden",
+  "cuisine": "Französisch",
+  "group": "Modern",
+  "minutes": 50,
+  "description": "Saftige Quiche mit Kartoffelkruste",
+  "ingredients": [
+   {
+    "name": "Kartoffeln",
+    "amount": 450.0,
+    "unit": "g"
+   },
+   {
+    "name": "Lauch",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Eier",
+    "amount": 4.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Sahne",
+    "amount": 150.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Gruyère",
+    "amount": 120.0,
+    "unit": "g"
+   },
+   {
+    "name": "Muskat",
+    "amount": 2.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Kartoffeln grob reiben, ausdrücken und als dünnen Boden in Form andrücken.",
+   "Bei 200 °C 15 Minuten vorbacken.",
+   "Lauch anschwitzen, mit Eiern, Sahne und Käse mischen.",
+   "Auf Boden verteilen und weitere 25 Minuten backen."
+  ],
+  "meat": {
+   "name": "Speck glutenfrei",
+   "amount": 120.0,
+   "unit": "g",
+   "instruction": "Geprüften Speck separat anbraten und zur Füllung geben."
+  },
+  "swaps": [
+   "Mürbeteig mit Weizen → Kartoffelkruste"
+  ],
+  "symbol": "🥧",
+  "nutrition": {
+   "base": {
+    "kcal": 851.5,
+    "protein": 40.2,
+    "carbs": 56.0,
+    "fat": 51.8,
+    "sugar": 12.0,
+    "fiber": 9.4,
+    "sat": 29.1
+   },
+   "meat": {
+    "kcal": 147.0,
+    "protein": 13.2,
+    "carbs": 0.6,
+    "fat": 10.2,
+    "sugar": 0.6,
+    "fiber": 0.0,
+    "sat": 3.6
+   }
+  }
+ },
+ {
+  "id": "tian-provencal-mit-krauterreis",
+  "name": "Tian provençal mit Kräuterreis",
+  "cuisine": "Französisch",
+  "group": "Besonders",
+  "minutes": 45,
+  "description": "Farbenfrohe Gemüsefächer aus dem Ofen",
+  "ingredients": [
+   {
+    "name": "Zucchini",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Aubergine",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Tomaten",
+    "amount": 4.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Basmatireis",
+    "amount": 170.0,
+    "unit": "g"
+   },
+   {
+    "name": "Knoblauch",
+    "amount": 2.0,
+    "unit": "Zehen"
+   },
+   {
+    "name": "Thymian",
+    "amount": 8.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zitrone",
+    "amount": 1.0,
+    "unit": "Stück"
+   }
+  ],
+  "steps": [
+   "Gemüse in gleichmäßig dünne Scheiben schneiden.",
+   "Abwechselnd aufrecht in eine gefettete Form schichten, würzen und mit Olivenöl beträufeln.",
+   "Bei 190 °C 35 Minuten weich backen.",
+   "Reis mit Zitronenabrieb und Kräutern servieren."
+  ],
+  "meat": {
+   "name": "Lammfilet",
+   "amount": 240.0,
+   "unit": "g",
+   "instruction": "Fleisch separat vollständig und hygienisch passend garen."
+  },
+  "swaps": [
+   "Gewürzmischung möglichst selbst zusammenstellen"
+  ],
+  "symbol": "🍅",
+  "nutrition": {
+   "base": {
+    "kcal": 448.8,
+    "protein": 13.8,
+    "carbs": 95.5,
+    "fat": 2.2,
+    "sugar": 18.6,
+    "fiber": 11.8,
+    "sat": 0.4
+   },
+   "meat": {
+    "kcal": 276.0,
+    "protein": 25.2,
+    "carbs": 0.0,
+    "fat": 19.2,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 8.4
+   }
+  }
+ },
+ {
+  "id": "salade-nicoise-mit-grunen-bohnen",
+  "name": "Salade niçoise mit grünen Bohnen",
+  "cuisine": "Französisch",
+  "group": "Schnell",
+  "minutes": 30,
+  "description": "Südfranzösischer Klassiker als Abendessen",
+  "ingredients": [
+   {
+    "name": "Kartoffeln",
+    "amount": 350.0,
+    "unit": "g"
+   },
+   {
+    "name": "Grüne Bohnen",
+    "amount": 220.0,
+    "unit": "g"
+   },
+   {
+    "name": "Eier",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Tomaten",
+    "amount": 250.0,
+    "unit": "g"
+   },
+   {
+    "name": "Oliven",
+    "amount": 70.0,
+    "unit": "g"
+   },
+   {
+    "name": "Senf glutenfrei",
+    "amount": 15.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zitrone",
+    "amount": 1.0,
+    "unit": "Stück"
+   }
+  ],
+  "steps": [
+   "Kartoffeln kochen und in Scheiben schneiden.",
+   "Bohnen weich garen, Eier hart kochen.",
+   "Alles mit Tomaten und Oliven anrichten.",
+   "Dressing aus geprüften Senf, Zitrone und Öl darübergeben."
+  ],
+  "meat": {
+   "name": "Thunfisch",
+   "amount": 160.0,
+   "unit": "g",
+   "instruction": "Thunfisch als optionales Protein ergänzen."
+  },
+  "swaps": [
+   "Senf und eingelegte Zutaten produktbezogen prüfen"
+  ],
+  "symbol": "🥗",
+  "nutrition": {
+   "base": {
+    "kcal": 319.5,
+    "protein": 14.9,
+    "carbs": 47.4,
+    "fat": 8.9,
+    "sugar": 10.6,
+    "fiber": 10.9,
+    "sat": 2.1
+   },
+   "meat": {
+    "kcal": 96.0,
+    "protein": 20.8,
+    "carbs": 0.0,
+    "fat": 0.8,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 0.2
+   }
+  }
+ },
+ {
+  "id": "pilz-bourguignon-mit-puree",
+  "name": "Pilz-Bourguignon mit Püree",
+  "cuisine": "Französisch",
+  "group": "Besonders",
+  "minutes": 55,
+  "description": "Tief aromatische Pilze mit Rotwein-Alternative",
+  "ingredients": [
+   {
+    "name": "Braune Champignons",
+    "amount": 450.0,
+    "unit": "g"
+   },
+   {
+    "name": "Karotten",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Perlzwiebeln",
+    "amount": 180.0,
+    "unit": "g"
+   },
+   {
+    "name": "Kartoffeln",
+    "amount": 550.0,
+    "unit": "g"
+   },
+   {
+    "name": "Gemüsebrühe glutenfrei",
+    "amount": 400.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Tomatenmark",
+    "amount": 25.0,
+    "unit": "g"
+   },
+   {
+    "name": "Butter",
+    "amount": 30.0,
+    "unit": "g"
+   },
+   {
+    "name": "Thymian",
+    "amount": 8.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Pilze portionsweise stark anbraten, sodass sie Farbe nehmen.",
+   "Zwiebeln, Karotten und Tomatenmark mitrösten.",
+   "Glutenfreie Brühe zugeben und 25 Minuten schmoren.",
+   "Kartoffeln mit Butter stampfen, Pilze darauf servieren."
+  ],
+  "meat": {
+   "name": "Rinderschmorwürfel",
+   "amount": 300.0,
+   "unit": "g",
+   "instruction": "Fleisch separat anbraten und entsprechend längerer Garzeit vollständig schmoren."
+  },
+  "swaps": [
+   "Fertige dunkle Soßenbinder → geprüft glutenfreie Brühe, bei Bedarf Kartoffelstärke"
+  ],
+  "symbol": "🍲",
+  "nutrition": {
+   "base": {
+    "kcal": 462.4,
+    "protein": 16.0,
+    "carbs": 74.4,
+    "fat": 13.8,
+    "sugar": 16.6,
+    "fiber": 12.7,
+    "sat": 7.9
+   },
+   "meat": {
+    "kcal": 315.0,
+    "protein": 33.0,
+    "carbs": 0.0,
+    "fat": 19.5,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 7.5
+   }
+  }
+ },
+ {
+  "id": "koreanisches-bibimbap-mit-reis-und-gemuse",
+  "name": "Koreanisches Bibimbap mit Reis und Gemüse",
+  "cuisine": "Asiatisch",
+  "group": "Klassiker",
+  "minutes": 35,
+  "description": "Farbenreiche Bowl mit Gochujang-Dressing",
+  "ingredients": [
+   {
+    "name": "Sushireis",
+    "amount": 180.0,
+    "unit": "g"
+   },
+   {
+    "name": "Karotten",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Babyspinat",
+    "amount": 140.0,
+    "unit": "g"
+   },
+   {
+    "name": "Champignons",
+    "amount": 170.0,
+    "unit": "g"
+   },
+   {
+    "name": "Eier",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Gochujang glutenfrei",
+    "amount": 25.0,
+    "unit": "g"
+   },
+   {
+    "name": "Tamari glutenfrei",
+    "amount": 20.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Sesam",
+    "amount": 15.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Reis waschen und garen.",
+   "Gemüse nacheinander in sauberer Pfanne bissfest braten.",
+   "Eier nach Wunsch braten, alles fächerförmig auf Reis anrichten.",
+   "Glutenfrei ausgewiesenes Gochujang und Tamari als Dressing vermischen."
+  ],
+  "meat": {
+   "name": "Rinderstreifen",
+   "amount": 230.0,
+   "unit": "g",
+   "instruction": "Rindfleisch separat hygienisch vollständig nach gewünschtem Gargrad zubereiten."
+  },
+  "swaps": [
+   "Gochujang und Sojasoße standardmäßig mit Weizen → geprüfte glutenfreie Varianten"
+  ],
+  "symbol": "🍚",
+  "nutrition": {
+   "base": {
+    "kcal": 531.8,
+    "protein": 21.6,
+    "carbs": 88.7,
+    "fat": 11.0,
+    "sugar": 7.3,
+    "fiber": 7.1,
+    "sat": 2.7
+   },
+   "meat": {
+    "kcal": 241.5,
+    "protein": 25.3,
+    "carbs": 0.0,
+    "fat": 14.9,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 5.8
+   }
+  }
+ },
+ {
+  "id": "japanische-miso-aubergine-mit-sesamreis",
+  "name": "Japanische Miso-Aubergine mit Sesamreis",
+  "cuisine": "Asiatisch",
+  "group": "Schnell",
+  "minutes": 30,
+  "description": "Süß-salzige glasierte Aubergine",
+  "ingredients": [
+   {
+    "name": "Aubergine",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Sushireis",
+    "amount": 180.0,
+    "unit": "g"
+   },
+   {
+    "name": "Misopaste glutenfrei",
+    "amount": 35.0,
+    "unit": "g"
+   },
+   {
+    "name": "Tamari glutenfrei",
+    "amount": 25.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Honig",
+    "amount": 20.0,
+    "unit": "g"
+   },
+   {
+    "name": "Sesam",
+    "amount": 15.0,
+    "unit": "g"
+   },
+   {
+    "name": "Frühlingszwiebeln",
+    "amount": 2.0,
+    "unit": "Stück"
+   }
+  ],
+  "steps": [
+   "Aubergine halbieren, einschneiden und bei 220 °C weich rösten.",
+   "Geprüfte Misopaste, Tamari und Honig verrühren und aufstreichen.",
+   "Weitere 5 Minuten karamellisieren.",
+   "Auf Reis mit Sesam und Frühlingszwiebel anrichten."
+  ],
+  "meat": {
+   "name": "Hähnchenschenkel",
+   "amount": 260.0,
+   "unit": "g",
+   "instruction": "Hähnchen separat gut durchgaren und neben der Aubergine servieren."
+  },
+  "swaps": [
+   "Miso aus Gerste und klassische Sojasoße → beide ausdrücklich glutenfrei"
+  ],
+  "symbol": "🍆",
+  "nutrition": {
+   "base": {
+    "kcal": 500.8,
+    "protein": 12.4,
+    "carbs": 102.7,
+    "fat": 5.9,
+    "sugar": 20.2,
+    "fiber": 11.0,
+    "sat": 0.8
+   },
+   "meat": {
+    "kcal": 188.5,
+    "protein": 28.6,
+    "carbs": 0.0,
+    "fat": 7.8,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.2
+   }
+  }
+ },
+ {
+  "id": "pad-thai-mit-reisnudeln-und-tofu",
+  "name": "Pad Thai mit Reisnudeln und Tofu",
+  "cuisine": "Asiatisch",
+  "group": "Klassiker",
+  "minutes": 35,
+  "description": "Woknudeln mit Limette und Erdnüssen",
+  "ingredients": [
+   {
+    "name": "Reisnudeln glutenfrei",
+    "amount": 200.0,
+    "unit": "g"
+   },
+   {
+    "name": "Naturtofu",
+    "amount": 250.0,
+    "unit": "g"
+   },
+   {
+    "name": "Mungobohnensprossen",
+    "amount": 150.0,
+    "unit": "g"
+   },
+   {
+    "name": "Eier",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Limette",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Tamari glutenfrei",
+    "amount": 25.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Erdnüsse",
+    "amount": 35.0,
+    "unit": "g"
+   },
+   {
+    "name": "Frühlingszwiebeln",
+    "amount": 2.0,
+    "unit": "Stück"
+   }
+  ],
+  "steps": [
+   "Reisnudeln in sauberem Topf nach Anleitung einweichen.",
+   "Tofu in Würfeln anbraten, Eier in Pfanne stocken lassen.",
+   "Nudeln, Sprossen und glutenfreies Tamari kurz heiß schwenken.",
+   "Mit Limette, Erdnüssen und Frühlingszwiebel servieren."
+  ],
+  "meat": {
+   "name": "Garnelen",
+   "amount": 240.0,
+   "unit": "g",
+   "instruction": "Garnelen separat vollständig garen und dazugeben."
+  },
+  "swaps": [
+   "Weizenhaltige Sojasoße → glutenfreie Tamari; Reisnudeln zertifiziert wählen"
+  ],
+  "symbol": "🍜",
+  "nutrition": {
+   "base": {
+    "kcal": 735.8,
+    "protein": 38.1,
+    "carbs": 93.6,
+    "fat": 25.7,
+    "sugar": 8.6,
+    "fiber": 8.0,
+    "sat": 4.7
+   },
+   "meat": {
+    "kcal": 118.8,
+    "protein": 28.8,
+    "carbs": 0.2,
+    "fat": 0.4,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 0.1
+   }
+  }
+ },
+ {
+  "id": "vietnamesische-pho-mit-pilzen-und-krautern",
+  "name": "Vietnamesische Pho mit Pilzen und Kräutern",
+  "cuisine": "Asiatisch",
+  "group": "Besonders",
+  "minutes": 55,
+  "description": "Aromatische Brühe mit Sternanis und Reisnudeln",
+  "ingredients": [
+   {
+    "name": "Reisbandnudeln glutenfrei",
+    "amount": 180.0,
+    "unit": "g"
+   },
+   {
+    "name": "Champignons",
+    "amount": 300.0,
+    "unit": "g"
+   },
+   {
+    "name": "Gemüsebrühe glutenfrei",
+    "amount": 750.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Ingwer",
+    "amount": 35.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zwiebeln",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Sternanis",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Limette",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Koriander",
+    "amount": 20.0,
+    "unit": "g"
+   },
+   {
+    "name": "Mungobohnensprossen",
+    "amount": 120.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Zwiebel und Ingwer trocken anrösten.",
+   "Mit geprüfter Brühe und Sternanis 30 Minuten ziehen lassen, anschließend abseihen.",
+   "Pilze kurz in der Brühe garen, Reisnudeln separat kochen.",
+   "Mit Kräutern, Sprossen und Limette servieren."
+  ],
+  "meat": {
+   "name": "Rinderfiletstreifen",
+   "amount": 220.0,
+   "unit": "g",
+   "instruction": "Rindfleisch separat sicher garen und heiß in die Suppe geben."
+  },
+  "swaps": [
+   "Würzbrühe und Fischsoße falls verwendet glutenfrei prüfen"
+  ],
+  "symbol": "🍲",
+  "nutrition": {
+   "base": {
+    "kcal": 466.7,
+    "protein": 16.3,
+    "carbs": 98.0,
+    "fat": 3.4,
+    "sugar": 14.0,
+    "fiber": 8.2,
+    "sat": 0.5
+   },
+   "meat": {
+    "kcal": 231.0,
+    "protein": 24.2,
+    "carbs": 0.0,
+    "fat": 14.3,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 5.5
+   }
+  }
+ },
+ {
+  "id": "koreanische-japchae-mit-susskartoffelnudeln",
+  "name": "Koreanische Japchae mit Süßkartoffelnudeln",
+  "cuisine": "Asiatisch",
+  "group": "Besonders",
+  "minutes": 40,
+  "description": "Glänzende Glasnudeln mit Sesam und Gemüse",
+  "ingredients": [
+   {
+    "name": "Süßkartoffelglasnudeln glutenfrei",
+    "amount": 200.0,
+    "unit": "g"
+   },
+   {
+    "name": "Paprika",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Karotten",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Babyspinat",
+    "amount": 150.0,
+    "unit": "g"
+   },
+   {
+    "name": "Champignons",
+    "amount": 200.0,
+    "unit": "g"
+   },
+   {
+    "name": "Tamari glutenfrei",
+    "amount": 25.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Sesamöl",
+    "amount": 20.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Sesam",
+    "amount": 12.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Glutenfrei gekennzeichnete Glasnudeln nach Packungsangabe garen.",
+   "Gemüse in feine Streifen schneiden und separat anbraten.",
+   "Nudeln zugeben und mit Tamari sowie Sesamöl durchschwenken.",
+   "Mit geröstetem Sesam servieren."
+  ],
+  "meat": {
+   "name": "Rinderstreifen",
+   "amount": 230.0,
+   "unit": "g",
+   "instruction": "Separat anbraten und unter die fertigen Nudeln heben."
+  },
+  "swaps": [
+   "Glasnudeln aus Weizen vermeiden; reine Süßkartoffelstärke und Kennzeichnung prüfen"
+  ],
+  "symbol": "🍜",
+  "nutrition": {
+   "base": {
+    "kcal": 565.8,
+    "protein": 15.4,
+    "carbs": 96.7,
+    "fat": 14.7,
+    "sugar": 11.1,
+    "fiber": 9.6,
+    "sat": 2.2
+   },
+   "meat": {
+    "kcal": 241.5,
+    "protein": 25.3,
+    "carbs": 0.0,
+    "fat": 14.9,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 5.8
+   }
+  }
+ },
+ {
+  "id": "thai-basilikum-pfanne-mit-jasminreis",
+  "name": "Thai-Basilikum-Pfanne mit Jasminreis",
+  "cuisine": "Asiatisch",
+  "group": "Schnell",
+  "minutes": 25,
+  "description": "Würzig-frisches Wokgericht",
+  "ingredients": [
+   {
+    "name": "Jasminreis",
+    "amount": 180.0,
+    "unit": "g"
+   },
+   {
+    "name": "Naturtofu",
+    "amount": 250.0,
+    "unit": "g"
+   },
+   {
+    "name": "Grüne Bohnen",
+    "amount": 180.0,
+    "unit": "g"
+   },
+   {
+    "name": "Paprika",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Chili",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Tamari glutenfrei",
+    "amount": 30.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Thai-Basilikum",
+    "amount": 20.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Jasminreis garen.",
+   "Tofu und Bohnen in sehr heißer Pfanne anrösten.",
+   "Paprika und Chili zugeben, mit glutenfreiem Tamari ablöschen.",
+   "Thai-Basilikum erst kurz vor dem Servieren unterheben."
+  ],
+  "meat": {
+   "name": "Hähnchenhack",
+   "amount": 240.0,
+   "unit": "g",
+   "instruction": "Anstelle von Tofu vollständig durchgaren."
+  },
+  "swaps": [
+   "Austernsoße falls verwendet → sicher glutenfreie Fischsoße oder Tamari"
+  ],
+  "symbol": "🌶️",
+  "nutrition": {
+   "base": {
+    "kcal": 541.5,
+    "protein": 26.9,
+    "carbs": 85.0,
+    "fat": 11.2,
+    "sugar": 8.1,
+    "fiber": 7.6,
+    "sat": 1.7
+   },
+   "meat": {
+    "kcal": 174.0,
+    "protein": 26.4,
+    "carbs": 0.0,
+    "fat": 7.2,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.0
+   }
+  }
+ },
+ {
+  "id": "indisches-palak-paneer-mit-basmatireis",
+  "name": "Indisches Palak Paneer mit Basmatireis",
+  "cuisine": "Asiatisch",
+  "group": "Besonders",
+  "minutes": 40,
+  "description": "Würziger Spinat mit mildem Frischkäse",
+  "ingredients": [
+   {
+    "name": "Blattspinat",
+    "amount": 450.0,
+    "unit": "g"
+   },
+   {
+    "name": "Paneer",
+    "amount": 250.0,
+    "unit": "g"
+   },
+   {
+    "name": "Basmatireis",
+    "amount": 170.0,
+    "unit": "g"
+   },
+   {
+    "name": "Tomaten",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Zwiebeln",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Ingwer",
+    "amount": 25.0,
+    "unit": "g"
+   },
+   {
+    "name": "Garam Masala glutenfrei",
+    "amount": 12.0,
+    "unit": "g"
+   },
+   {
+    "name": "Sahne",
+    "amount": 80.0,
+    "unit": "ml"
+   }
+  ],
+  "steps": [
+   "Reis separat garen.",
+   "Zwiebel und Ingwer anbraten, Tomaten und kontrollierte Gewürze zugeben.",
+   "Spinat weich kochen und nach Wunsch kurz pürieren.",
+   "Paneerwürfel und Sahne einrühren, auf Reis anrichten."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 250.0,
+   "unit": "g",
+   "instruction": "Hähnchen als alternative Ergänzung separat vollständig garen."
+  },
+  "swaps": [
+   "Garam-Masala-Mischung nur bei klarer glutenfreier Eignung"
+  ],
+  "symbol": "🍛",
+  "nutrition": {
+   "base": {
+    "kcal": 916.6,
+    "protein": 38.7,
+    "carbs": 96.2,
+    "fat": 43.4,
+    "sugar": 12.6,
+    "fiber": 10.0,
+    "sat": 24.4
+   },
+   "meat": {
+    "kcal": 181.2,
+    "protein": 27.5,
+    "carbs": 0.0,
+    "fat": 7.5,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.1
+   }
+  }
+ },
+ {
+  "id": "nasi-goreng-mit-gemuse-und-spiegelei",
+  "name": "Nasi Goreng mit Gemüse und Spiegelei",
+  "cuisine": "Asiatisch",
+  "group": "Klassiker",
+  "minutes": 30,
+  "description": "Indonesischer Bratreis, aromatisch und pikant",
+  "ingredients": [
+   {
+    "name": "Basmatireis",
+    "amount": 180.0,
+    "unit": "g"
+   },
+   {
+    "name": "Eier",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Erbsen",
+    "amount": 120.0,
+    "unit": "g"
+   },
+   {
+    "name": "Karotten",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Frühlingszwiebeln",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Tamari glutenfrei",
+    "amount": 30.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Sambal Oelek glutenfrei",
+    "amount": 15.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Reis möglichst einige Stunden vorher kochen und sicher kühlen.",
+   "Gemüse in der Pfanne kräftig anbraten.",
+   "Reis dazugeben, gut erhitzen und mit geprüften Soßen würzen.",
+   "Mit frisch gebratenem Spiegelei servieren."
+  ],
+  "meat": {
+   "name": "Garnelen",
+   "amount": 230.0,
+   "unit": "g",
+   "instruction": "Garnelen separat vollständig garen."
+  },
+  "swaps": [
+   "Kecap Manis und Sambal sind nicht automatisch glutenfrei; geprüfte Alternativen nutzen"
+  ],
+  "symbol": "🍳",
+  "nutrition": {
+   "base": {
+    "kcal": 505.2,
+    "protein": 19.3,
+    "carbs": 90.8,
+    "fat": 6.7,
+    "sugar": 9.2,
+    "fiber": 7.1,
+    "sat": 2.0
+   },
+   "meat": {
+    "kcal": 113.8,
+    "protein": 27.6,
+    "carbs": 0.2,
+    "fat": 0.3,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 0.1
+   }
+  }
+ },
+ {
+  "id": "malaysische-kokos-laksa-mit-reisnudeln",
+  "name": "Malaysische Kokos-Laksa mit Reisnudeln",
+  "cuisine": "Asiatisch",
+  "group": "Besonders",
+  "minutes": 45,
+  "description": "Würzige cremige Nudelsuppe",
+  "ingredients": [
+   {
+    "name": "Reisnudeln glutenfrei",
+    "amount": 200.0,
+    "unit": "g"
+   },
+   {
+    "name": "Kokosmilch",
+    "amount": 350.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Gemüsebrühe glutenfrei",
+    "amount": 450.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Naturtofu",
+    "amount": 200.0,
+    "unit": "g"
+   },
+   {
+    "name": "Champignons",
+    "amount": 150.0,
+    "unit": "g"
+   },
+   {
+    "name": "Limette",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Laksa-Paste glutenfrei",
+    "amount": 35.0,
+    "unit": "g"
+   },
+   {
+    "name": "Koriander",
+    "amount": 15.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Glutenfrei gekennzeichnete Reisnudeln separat einweichen.",
+   "Geprüfte Laksa-Paste kurz anrösten, Kokosmilch und Brühe zugießen.",
+   "Pilze und Tofu in Brühe gar ziehen lassen.",
+   "Nudeln einlegen, mit Limette und Koriander servieren."
+  ],
+  "meat": {
+   "name": "Garnelen",
+   "amount": 230.0,
+   "unit": "g",
+   "instruction": "Garnelen separat vollständig garen und in die heiße Suppe geben."
+  },
+  "swaps": [
+   "Laksa-Paste und Brühe nur produktbezogen glutenfrei verwenden"
+  ],
+  "symbol": "🍜",
+  "nutrition": {
+   "base": {
+    "kcal": 874.3,
+    "protein": 27.4,
+    "carbs": 95.1,
+    "fat": 46.3,
+    "sugar": 10.1,
+    "fiber": 5.5,
+    "sat": 31.5
+   },
+   "meat": {
+    "kcal": 113.8,
+    "protein": 27.6,
+    "carbs": 0.2,
+    "fat": 0.3,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 0.1
+   }
+  }
+ },
+ {
+  "id": "sesam-ingwer-tofu-mit-ofenbrokkoli",
+  "name": "Sesam-Ingwer-Tofu mit Ofenbrokkoli",
+  "cuisine": "Asiatisch",
+  "group": "Modern",
+  "minutes": 30,
+  "description": "Knuspriger Tofu und viel Umami",
+  "ingredients": [
+   {
+    "name": "Naturtofu",
+    "amount": 280.0,
+    "unit": "g"
+   },
+   {
+    "name": "Brokkoli",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Basmatireis",
+    "amount": 170.0,
+    "unit": "g"
+   },
+   {
+    "name": "Tamari glutenfrei",
+    "amount": 35.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Ingwer",
+    "amount": 25.0,
+    "unit": "g"
+   },
+   {
+    "name": "Honig",
+    "amount": 20.0,
+    "unit": "g"
+   },
+   {
+    "name": "Sesam",
+    "amount": 15.0,
+    "unit": "g"
+   },
+   {
+    "name": "Olivenöl",
+    "amount": 10,
+    "unit": "ml"
+   }
+  ],
+  "steps": [
+   "Brokkoli zerteilen und mit Öl bei 210 °C etwa 20 Minuten rösten.",
+   "Tofu würfeln und knusprig braten.",
+   "Mit Ingwer, glutenfreiem Tamari und Honig glasieren.",
+   "Mit Reis und Sesam servieren."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 250.0,
+   "unit": "g",
+   "instruction": "Tofu ergänzen oder durch vollständig gegartes Hähnchen ersetzen."
+  },
+  "swaps": [
+   "Sojasoße → ausdrücklich glutenfreie Tamari"
+  ],
+  "symbol": "🥦",
+  "nutrition": {
+   "base": {
+    "kcal": 687.7,
+    "protein": 33.6,
+    "carbs": 97.0,
+    "fat": 21.2,
+    "sugar": 13.7,
+    "fiber": 9.5,
+    "sat": 3.3
+   },
+   "meat": {
+    "kcal": 181.2,
+    "protein": 27.5,
+    "carbs": 0.0,
+    "fat": 7.5,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.1
+   }
+  }
+ },
+ {
+  "id": "shakshuka-mit-feta-und-krautern",
+  "name": "Shakshuka mit Feta und Kräutern",
+  "cuisine": "Nahost",
+  "group": "Klassiker",
+  "minutes": 30,
+  "description": "Nordafrikanisch inspirierte Tomaten-Eier-Pfanne",
+  "ingredients": [
+   {
+    "name": "Passierte Tomaten",
+    "amount": 450.0,
+    "unit": "g"
+   },
+   {
+    "name": "Paprika",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Zwiebeln",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Eier",
+    "amount": 4.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Feta",
+    "amount": 100.0,
+    "unit": "g"
+   },
+   {
+    "name": "Kreuzkümmel glutenfrei",
+    "amount": 7.0,
+    "unit": "g"
+   },
+   {
+    "name": "Petersilie",
+    "amount": 15.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Paprika und Zwiebel in einer Pfanne weich dünsten.",
+   "Tomaten und geprüfte Gewürze zugeben, 12 Minuten reduzieren.",
+   "Kleine Mulden machen und Eier zugedeckt stocken lassen.",
+   "Mit Feta und Kräutern servieren."
+  ],
+  "meat": {
+   "name": "Merguez glutenfrei",
+   "amount": 220.0,
+   "unit": "g",
+   "instruction": "Ausdrücklich glutenfrei gekennzeichnete Wurst separat vollständig braten."
+  },
+  "swaps": [
+   "Gewöhnliches Fladenbrot → geeignetes glutenfreies Brot"
+  ],
+  "symbol": "🍳",
+  "nutrition": {
+   "base": {
+    "kcal": 419.9,
+    "protein": 26.7,
+    "carbs": 27.5,
+    "fat": 22.4,
+    "sugar": 18.5,
+    "fiber": 7.9,
+    "sat": 11.0
+   },
+   "meat": {
+    "kcal": 308.0,
+    "protein": 16.5,
+    "carbs": 3.3,
+    "fat": 26.4,
+    "sugar": 1.1,
+    "fiber": 0.0,
+    "sat": 8.8
+   }
+  }
+ },
+ {
+  "id": "persisches-fesenjan-mit-walnuss-und-granatapfel",
+  "name": "Persisches Fesenjan mit Walnuss & Granatapfel",
+  "cuisine": "Nahost",
+  "group": "Besonders",
+  "minutes": 60,
+  "description": "Samtige süß-säuerliche Soße",
+  "ingredients": [
+   {
+    "name": "Walnüsse",
+    "amount": 180.0,
+    "unit": "g"
+   },
+   {
+    "name": "Granatapfelsirup glutenfrei",
+    "amount": 80.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Zwiebeln",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Naturtofu",
+    "amount": 300.0,
+    "unit": "g"
+   },
+   {
+    "name": "Basmatireis",
+    "amount": 190.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zimt glutenfrei",
+    "amount": 4.0,
+    "unit": "g"
+   },
+   {
+    "name": "Gemüsebrühe glutenfrei",
+    "amount": 300.0,
+    "unit": "ml"
+   }
+  ],
+  "steps": [
+   "Walnüsse fein mahlen und trocken leicht rösten.",
+   "Zwiebeln anschwitzen und Brühe mit Walnüssen hinzufügen, 30 Minuten leise garen.",
+   "Granatapfelsirup und Tofu einrühren, weitere 10 Minuten köcheln.",
+   "Mit Basmatireis und nach Wunsch Granatapfelkernen servieren."
+  ],
+  "meat": {
+   "name": "Hähnchenschenkel",
+   "amount": 300.0,
+   "unit": "g",
+   "instruction": "Tofu ersetzen und Hähnchen im Sud vollständig garen."
+  },
+  "swaps": [
+   "Granatapfelsirup und Gewürze auf glutenfreie Eignung prüfen"
+  ],
+  "symbol": "🍛",
+  "nutrition": {
+   "base": {
+    "kcal": 1276.7,
+    "protein": 41.9,
+    "carbs": 129.0,
+    "fat": 71.9,
+    "sugar": 33.3,
+    "fiber": 11.4,
+    "sat": 7.4
+   },
+   "meat": {
+    "kcal": 217.5,
+    "protein": 33.0,
+    "carbs": 0.0,
+    "fat": 9.0,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.5
+   }
+  }
+ },
+ {
+  "id": "mujaddara-mit-linsen-und-rostzwiebeln",
+  "name": "Mujaddara mit Linsen & Röstzwiebeln",
+  "cuisine": "Nahost",
+  "group": "Klassiker",
+  "minutes": 40,
+  "description": "Levantinischer Linsen-Reis-Klassiker",
+  "ingredients": [
+   {
+    "name": "Braune Linsen glutenfrei",
+    "amount": 180.0,
+    "unit": "g"
+   },
+   {
+    "name": "Basmatireis",
+    "amount": 150.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zwiebeln",
+    "amount": 3.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Joghurt",
+    "amount": 170.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zitrone",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Kreuzkümmel glutenfrei",
+    "amount": 7.0,
+    "unit": "g"
+   },
+   {
+    "name": "Petersilie",
+    "amount": 12.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Linsen in reichlich Wasser bissfest kochen.",
+   "Reis dazugeben bzw. separat garen, mit geprüftem Kreuzkümmel würzen.",
+   "Zwiebeln sehr dünn schneiden und langsam dunkelgolden rösten.",
+   "Linsenreis mit Zwiebeln und Zitronenjoghurt servieren."
+  ],
+  "meat": {
+   "name": "Lammstreifen",
+   "amount": 240.0,
+   "unit": "g",
+   "instruction": "Lamm separat hygienisch passend garen."
+  },
+  "swaps": [
+   "Linsen nur glutenfrei gekennzeichnet bzw. nach DZG-Liste geprüft"
+  ],
+  "symbol": "🫘",
+  "nutrition": {
+   "base": {
+    "kcal": 716.0,
+    "protein": 33.5,
+    "carbs": 136.5,
+    "fat": 5.5,
+    "sugar": 13.9,
+    "fiber": 15.3,
+    "sat": 2.3
+   },
+   "meat": {
+    "kcal": 276.0,
+    "protein": 25.2,
+    "carbs": 0.0,
+    "fat": 19.2,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 8.4
+   }
+  }
+ },
+ {
+  "id": "ofen-aubergine-mit-tahini-und-granatapfel",
+  "name": "Ofen-Aubergine mit Tahini & Granatapfel",
+  "cuisine": "Nahost",
+  "group": "Besonders",
+  "minutes": 45,
+  "description": "Cremig, säuerlich und knusprig",
+  "ingredients": [
+   {
+    "name": "Aubergine",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Tahini glutenfrei",
+    "amount": 90.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zitrone",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Granatapfel",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Naturjoghurt",
+    "amount": 130.0,
+    "unit": "g"
+   },
+   {
+    "name": "Petersilie",
+    "amount": 18.0,
+    "unit": "g"
+   },
+   {
+    "name": "Quinoa glutenfrei",
+    "amount": 170.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Auberginen halbieren, einschneiden und bei 210 °C weich rösten.",
+   "Geprüfte Quinoa waschen und garen.",
+   "Tahini mit Joghurt und Zitrone zu cremiger Soße rühren.",
+   "Auberginen mit Soße, Quinoa, Granatapfel und Kräutern servieren."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 240.0,
+   "unit": "g",
+   "instruction": "Separat vollständig garen und dazu reichen."
+  },
+  "swaps": [
+   "Tahini und Quinoa produktbezogen prüfen, Kreuzkontakt vermeiden"
+  ],
+  "symbol": "🍆",
+  "nutrition": {
+   "base": {
+    "kcal": 760.4,
+    "protein": 26.5,
+    "carbs": 102.7,
+    "fat": 32.3,
+    "sugar": 25.6,
+    "fiber": 22.7,
+    "sat": 5.6
+   },
+   "meat": {
+    "kcal": 174.0,
+    "protein": 26.4,
+    "carbs": 0.0,
+    "fat": 7.2,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.0
+   }
+  }
+ },
+ {
+  "id": "marokkanische-gemuse-tajine-mit-hirse",
+  "name": "Marokkanische Gemüse-Tajine mit Hirse",
+  "cuisine": "Nahost",
+  "group": "Klassiker",
+  "minutes": 55,
+  "description": "Warmes Gewürzgemüse mit Aprikosen",
+  "ingredients": [
+   {
+    "name": "Karotten",
+    "amount": 3.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Zucchini",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Kichererbsen glutenfrei",
+    "amount": 240.0,
+    "unit": "g"
+   },
+   {
+    "name": "Getrocknete Aprikosen",
+    "amount": 75.0,
+    "unit": "g"
+   },
+   {
+    "name": "Hirse glutenfrei",
+    "amount": 170.0,
+    "unit": "g"
+   },
+   {
+    "name": "Passierte Tomaten",
+    "amount": 280.0,
+    "unit": "g"
+   },
+   {
+    "name": "Ras el Hanout glutenfrei",
+    "amount": 12.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Gemüse grob schneiden und mit geprüftem Ras el Hanout anschwitzen.",
+   "Tomaten, Kichererbsen und klein geschnittene Aprikosen zufügen.",
+   "Zugedeckt 25 Minuten schmoren.",
+   "Hirse nach Packungsangabe garen und mit Tajine servieren."
+  ],
+  "meat": {
+   "name": "Lammwürfel",
+   "amount": 260.0,
+   "unit": "g",
+   "instruction": "Lamm separat anbraten und länger mit Tajine gar schmoren."
+  },
+  "swaps": [
+   "Couscous aus Weizen → glutenfrei gekennzeichnete Hirse"
+  ],
+  "symbol": "🍲",
+  "nutrition": {
+   "base": {
+    "kcal": 661.6,
+    "protein": 26.1,
+    "carbs": 124.4,
+    "fat": 8.8,
+    "sugar": 35.6,
+    "fiber": 23.9,
+    "sat": 1.0
+   },
+   "meat": {
+    "kcal": 299.0,
+    "protein": 27.3,
+    "carbs": 0.0,
+    "fat": 20.8,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 9.1
+   }
+  }
+ },
+ {
+  "id": "sabich-bowl-mit-aubergine-und-ei",
+  "name": "Sabich-Bowl mit Aubergine & Ei",
+  "cuisine": "Nahost",
+  "group": "Schnell",
+  "minutes": 35,
+  "description": "Israelisch inspirierte Bowl mit Kräutern",
+  "ingredients": [
+   {
+    "name": "Aubergine",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Kartoffeln",
+    "amount": 350.0,
+    "unit": "g"
+   },
+   {
+    "name": "Eier",
+    "amount": 3.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Salatgurke",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Tomaten",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Tahini glutenfrei",
+    "amount": 65.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zitrone",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Petersilie",
+    "amount": 12.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Kartoffeln vorkochen und würfeln.",
+   "Aubergine in Scheiben anbraten oder im Ofen rösten.",
+   "Eier kochen, Gurke und Tomaten würfeln.",
+   "Alles mit glutenfrei geprüfter Tahini-Zitronensoße in Bowls anrichten."
+  ],
+  "meat": {
+   "name": "Hähnchenschenkel",
+   "amount": 220.0,
+   "unit": "g",
+   "instruction": "Separat durchgaren und in Streifen dazugeben."
+  },
+  "swaps": [
+   "Pita-Fladenbrot → nur glutenfrei geeignetes Fladenbrot oder Kartoffeln als Basis"
+  ],
+  "symbol": "🥗",
+  "nutrition": {
+   "base": {
+    "kcal": 536.5,
+    "protein": 24.1,
+    "carbs": 58.3,
+    "fat": 26.0,
+    "sugar": 13.6,
+    "fiber": 14.3,
+    "sat": 5.2
+   },
+   "meat": {
+    "kcal": 159.5,
+    "protein": 24.2,
+    "carbs": 0.0,
+    "fat": 6.6,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 1.9
+   }
+  }
+ },
+ {
+  "id": "gerosteter-blumenkohl-mit-shawarma-gewurzen",
+  "name": "Gerösteter Blumenkohl mit Shawarma-Gewürzen",
+  "cuisine": "Nahost",
+  "group": "Besonders",
+  "minutes": 40,
+  "description": "Knusprig und kräftig gewürzt",
+  "ingredients": [
+   {
+    "name": "Blumenkohl",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Kartoffeln",
+    "amount": 450.0,
+    "unit": "g"
+   },
+   {
+    "name": "Naturjoghurt",
+    "amount": 200.0,
+    "unit": "g"
+   },
+   {
+    "name": "Tahini glutenfrei",
+    "amount": 40.0,
+    "unit": "g"
+   },
+   {
+    "name": "Shawarma-Gewürz glutenfrei",
+    "amount": 12.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zitrone",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Minze",
+    "amount": 12.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Blumenkohl in große Röschen teilen und Kartoffeln würfeln.",
+   "Mit geprüften Gewürzen und Öl vermengen, bei 210 °C ca. 30 Minuten rösten.",
+   "Tahini, Joghurt, Zitrone und Minze verrühren.",
+   "Gemüse auf Dip anrichten."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 260.0,
+   "unit": "g",
+   "instruction": "Mit geprüften Gewürzen separat vollständig garen."
+  },
+  "swaps": [
+   "Wrap oder Pita → glutenfreie Kartoffelbeilage"
+  ],
+  "symbol": "🥦",
+  "nutrition": {
+   "base": {
+    "kcal": 463.1,
+    "protein": 19.0,
+    "carbs": 69.5,
+    "fat": 16.1,
+    "sugar": 14.1,
+    "fiber": 15.4,
+    "sat": 4.2
+   },
+   "meat": {
+    "kcal": 188.5,
+    "protein": 28.6,
+    "carbs": 0.0,
+    "fat": 7.8,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.2
+   }
+  }
+ },
+ {
+  "id": "falafel-mit-petersilie-und-zitronen-tahini",
+  "name": "Falafel mit Petersilie & Zitronen-Tahini",
+  "cuisine": "Nahost",
+  "group": "Klassiker",
+  "minutes": 50,
+  "description": "Selbstgemachte Kichererbsenbällchen",
+  "ingredients": [
+   {
+    "name": "Kichererbsen getrocknet glutenfrei",
+    "amount": 220.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zwiebeln",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Petersilie",
+    "amount": 30.0,
+    "unit": "g"
+   },
+   {
+    "name": "Koriander",
+    "amount": 20.0,
+    "unit": "g"
+   },
+   {
+    "name": "Kreuzkümmel glutenfrei",
+    "amount": 8.0,
+    "unit": "g"
+   },
+   {
+    "name": "Tahini glutenfrei",
+    "amount": 80.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zitrone",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Salatgurke",
+    "amount": 1.0,
+    "unit": "Stück"
+   }
+  ],
+  "steps": [
+   "Kichererbsen am Vortag in sauberem Wasser mindestens 12 Stunden einweichen, abgießen; nicht vorgekocht verwenden.",
+   "Mit Zwiebel, Kräutern und geprüften Gewürzen fein zerkleinern.",
+   "Kugeln formen und in frischem geeignetem Öl vollständig ausbacken.",
+   "Mit Tahini-Zitronensoße und Gurke servieren."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 240.0,
+   "unit": "g",
+   "instruction": "Nur optional als zusätzliches vollständig gegartes Topping."
+  },
+  "swaps": [
+   "Weizenmehl als Binder vermeiden; Frittieröl nie gemeinsam mit Glutenprodukten nutzen"
+  ],
+  "symbol": "🧆",
+  "nutrition": {
+   "base": {
+    "kcal": 709.7,
+    "protein": 31.2,
+    "carbs": 92.0,
+    "fat": 28.7,
+    "sugar": 17.4,
+    "fiber": 26.6,
+    "sat": 3.9
+   },
+   "meat": {
+    "kcal": 174.0,
+    "protein": 26.4,
+    "carbs": 0.0,
+    "fat": 7.2,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.0
+   }
+  }
+ },
+ {
+  "id": "turkischer-imam-bayld-mit-reis",
+  "name": "Türkischer Imam Bayıldı mit Reis",
+  "cuisine": "Nahost",
+  "group": "Besonders",
+  "minutes": 55,
+  "description": "Geschmorte gefüllte Aubergine mit Tomaten",
+  "ingredients": [
+   {
+    "name": "Aubergine",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Tomaten",
+    "amount": 4.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Zwiebeln",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Knoblauch",
+    "amount": 3.0,
+    "unit": "Zehen"
+   },
+   {
+    "name": "Petersilie",
+    "amount": 15.0,
+    "unit": "g"
+   },
+   {
+    "name": "Basmatireis",
+    "amount": 170.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zitrone",
+    "amount": 1.0,
+    "unit": "Stück"
+   }
+  ],
+  "steps": [
+   "Auberginen halbieren und im Ofen 15 Minuten vorgaren.",
+   "Zwiebeln, Knoblauch und Tomaten zu saftiger Füllung schmoren.",
+   "Füllung in die Auberginen geben und weitere 25 Minuten sanft backen.",
+   "Mit Reis und Zitronensaft servieren."
+  ],
+  "meat": {
+   "name": "Lammhack",
+   "amount": 230.0,
+   "unit": "g",
+   "instruction": "Lammhack getrennt vollständig anbraten und unter Tomatenfüllung mischen."
+  },
+  "swaps": [
+   "Bei Würzmischungen nur geprüfte glutenfreie Ware"
+  ],
+  "symbol": "🍅",
+  "nutrition": {
+   "base": {
+    "kcal": 484.6,
+    "protein": 13.1,
+    "carbs": 107.3,
+    "fat": 1.9,
+    "sugar": 22.2,
+    "fiber": 15.3,
+    "sat": 0.2
+   },
+   "meat": {
+    "kcal": 264.5,
+    "protein": 24.1,
+    "carbs": 0.0,
+    "fat": 18.4,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 8.1
+   }
+  }
+ },
+ {
+  "id": "harissa-karotten-mit-labneh-und-quinoa",
+  "name": "Harissa-Karotten mit Labneh und Quinoa",
+  "cuisine": "Nahost",
+  "group": "Modern",
+  "minutes": 35,
+  "description": "Süß-würzig, cremig und bunt",
+  "ingredients": [
+   {
+    "name": "Karotten",
+    "amount": 550.0,
+    "unit": "g"
+   },
+   {
+    "name": "Quinoa glutenfrei",
+    "amount": 160.0,
+    "unit": "g"
+   },
+   {
+    "name": "Labneh",
+    "amount": 180.0,
+    "unit": "g"
+   },
+   {
+    "name": "Harissa glutenfrei",
+    "amount": 25.0,
+    "unit": "g"
+   },
+   {
+    "name": "Honig",
+    "amount": 25.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zitrone",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Minze",
+    "amount": 12.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Karotten längs halbieren, mit Honig und geprüfter Harissa bestreichen.",
+   "Bei 210 °C etwa 25 Minuten rösten.",
+   "Glutenfrei gekennzeichnete Quinoa kochen.",
+   "Auf Labneh mit Quinoa, Karotten und Minze anrichten."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 250.0,
+   "unit": "g",
+   "instruction": "Hähnchen separat vollständig durchgaren und servieren."
+  },
+  "swaps": [
+   "Harissa-Paste und Quinoa nur aus glutenfrei geprüften Packungen"
+  ],
+  "symbol": "🥕",
+  "nutrition": {
+   "base": {
+    "kcal": 639.2,
+    "protein": 21.4,
+    "carbs": 98.6,
+    "fat": 20.0,
+    "sugar": 29.3,
+    "fiber": 14.6,
+    "sat": 9.6
+   },
+   "meat": {
+    "kcal": 181.2,
+    "protein": 27.5,
+    "carbs": 0.0,
+    "fat": 7.5,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.1
+   }
+  }
+ },
+ {
+  "id": "knusprige-kartoffel-wedges-mit-krauterquark",
+  "name": "Knusprige Kartoffel-Wedges mit Kräuterquark",
+  "cuisine": "Airfryer & Fastfood",
+  "group": "Airfryer",
+  "minutes": 30,
+  "description": "Heißluft-Klassiker, ohne Panade",
+  "ingredients": [
+   {
+    "name": "Kartoffeln",
+    "amount": 650.0,
+    "unit": "g"
+   },
+   {
+    "name": "Olivenöl",
+    "amount": 15.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Paprikapulver glutenfrei",
+    "amount": 5.0,
+    "unit": "g"
+   },
+   {
+    "name": "Naturjoghurt",
+    "amount": 200.0,
+    "unit": "g"
+   },
+   {
+    "name": "Schnittlauch",
+    "amount": 15.0,
+    "unit": "g"
+   },
+   {
+    "name": "Salatgurke",
+    "amount": 1.0,
+    "unit": "Stück"
+   }
+  ],
+  "steps": [
+   "Kartoffeln in Spalten schneiden, gründlich trocknen und mit Öl und geprüftem Paprika mischen.",
+   "Im sauberen Airfryer bei 195 °C etwa 20–25 Minuten garen, dabei schütteln.",
+   "Joghurt mit Schnittlauch, geriebener Gurke und Salz verrühren.",
+   "Mit Wedges servieren."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 240.0,
+   "unit": "g",
+   "instruction": "Hähnchen gesondert vollständig durchgaren."
+  },
+  "swaps": [
+   "Gewürzmischungen ausschließlich glutenfrei geprüft.",
+   "Garkorb und Einsatz besonders auf Panadekrümel prüfen."
+  ],
+  "symbol": "🥔",
+  "technique": "Airfryer",
+  "nutrition": {
+   "base": {
+    "kcal": 405.7,
+    "protein": 11.7,
+    "carbs": 67.3,
+    "fat": 11.1,
+    "sugar": 10.2,
+    "fiber": 8.6,
+    "sat": 3.3
+   },
+   "meat": {
+    "kcal": 174.0,
+    "protein": 26.4,
+    "carbs": 0.0,
+    "fat": 7.2,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.0
+   }
+  }
+ },
+ {
+  "id": "susskartoffel-pommes-mit-avocado-dip",
+  "name": "Süßkartoffel-Pommes mit Avocado-Dip",
+  "cuisine": "Airfryer & Fastfood",
+  "group": "Airfryer",
+  "minutes": 28,
+  "description": "Süß, würzig und schön knusprig",
+  "ingredients": [
+   {
+    "name": "Süßkartoffeln",
+    "amount": 600.0,
+    "unit": "g"
+   },
+   {
+    "name": "Olivenöl",
+    "amount": 15.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Speisestärke glutenfrei",
+    "amount": 15.0,
+    "unit": "g"
+   },
+   {
+    "name": "Avocado",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Limette",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Naturjoghurt",
+    "amount": 90.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Süßkartoffeln in gleichmäßige Stifte schneiden und trocknen.",
+   "Mit glutenfreier Stärke und Öl vermengen, im gereinigten Airfryer bei 195 °C 17–22 Minuten portionsweise garen.",
+   "Avocado mit Limettensaft und Joghurt pürieren.",
+   "Pommes sofort mit Dip servieren."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 240.0,
+   "unit": "g",
+   "instruction": "Hähnchen optional separat vollständig garen."
+  },
+  "swaps": [
+   "Kartoffel-/Maisstärke glutenfrei prüfen; keine gemischten panierten Produkte im selben ungeputzten Korb."
+  ],
+  "symbol": "🍠",
+  "technique": "Airfryer",
+  "nutrition": {
+   "base": {
+    "kcal": 497.9,
+    "protein": 8.1,
+    "carbs": 76.8,
+    "fat": 19.8,
+    "sugar": 15.8,
+    "fiber": 14.7,
+    "sat": 3.6
+   },
+   "meat": {
+    "kcal": 174.0,
+    "protein": 26.4,
+    "carbs": 0.0,
+    "fat": 7.2,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.0
+   }
+  }
+ },
+ {
+  "id": "crunchy-tofu-mit-sesam-reis",
+  "name": "Crunchy Tofu mit Sesam-Reis",
+  "cuisine": "Airfryer & Fastfood",
+  "group": "Airfryer",
+  "minutes": 30,
+  "description": "Herzhaft glasierter Tofu mit Biss",
+  "ingredients": [
+   {
+    "name": "Naturtofu",
+    "amount": 350.0,
+    "unit": "g"
+   },
+   {
+    "name": "Basmatireis",
+    "amount": 170.0,
+    "unit": "g"
+   },
+   {
+    "name": "Tamari glutenfrei",
+    "amount": 35.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Honig",
+    "amount": 15.0,
+    "unit": "g"
+   },
+   {
+    "name": "Speisestärke glutenfrei",
+    "amount": 25.0,
+    "unit": "g"
+   },
+   {
+    "name": "Sesam",
+    "amount": 18.0,
+    "unit": "g"
+   },
+   {
+    "name": "Brokkoli",
+    "amount": 240.0,
+    "unit": "g"
+   },
+   {
+    "name": "Sesamöl",
+    "amount": 10.0,
+    "unit": "ml"
+   }
+  ],
+  "steps": [
+   "Tofu pressen und in Würfel teilen, mit glutenfreier Stärke bestäuben.",
+   "Im sauberen Airfryer bei 190 °C 13–17 Minuten knusprig garen.",
+   "Reis und Brokkoli garen.",
+   "Mit geprüfter Tamari, Sesamöl, Honig und Sesam mischen."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 220.0,
+   "unit": "g",
+   "instruction": "Fleisch getrennt vollständig garen und statt oder neben dem Tofu servieren."
+  },
+  "swaps": [
+   "Nur explizit glutenfreies Tamari, gewöhnliche Sojasoße ist häufig nicht glutenfrei."
+  ],
+  "symbol": "🍱",
+  "technique": "Airfryer",
+  "nutrition": {
+   "base": {
+    "kcal": 728.5,
+    "protein": 35.2,
+    "carbs": 97.2,
+    "fat": 24.2,
+    "sugar": 9.9,
+    "fiber": 7.1,
+    "sat": 3.7
+   },
+   "meat": {
+    "kcal": 159.5,
+    "protein": 24.2,
+    "carbs": 0.0,
+    "fat": 6.6,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 1.9
+   }
+  }
+ },
+ {
+  "id": "gefullte-paprika-mit-feta-und-quinoa",
+  "name": "Gefüllte Paprika mit Feta & Quinoa",
+  "cuisine": "Airfryer & Fastfood",
+  "group": "Airfryer",
+  "minutes": 33,
+  "description": "Herzhaftes Gemüse aus der Heißluft",
+  "ingredients": [
+   {
+    "name": "Paprika",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Quinoa glutenfrei",
+    "amount": 150.0,
+    "unit": "g"
+   },
+   {
+    "name": "Feta",
+    "amount": 130.0,
+    "unit": "g"
+   },
+   {
+    "name": "Passierte Tomaten",
+    "amount": 180.0,
+    "unit": "g"
+   },
+   {
+    "name": "Petersilie",
+    "amount": 12.0,
+    "unit": "g"
+   },
+   {
+    "name": "Olivenöl",
+    "amount": 10.0,
+    "unit": "ml"
+   }
+  ],
+  "steps": [
+   "Quinoa in separatem sauberen Topf garen.",
+   "Mit Feta, passierten Tomaten und Petersilie vermengen.",
+   "Paprikahälften damit füllen, mit Öl bestreichen und im sauberen Airfryer 180 °C 14–18 Minuten garen.",
+   "Vor dem Servieren Gargrad prüfen."
+  ],
+  "meat": {
+   "name": "Rinderhack",
+   "amount": 180.0,
+   "unit": "g",
+   "instruction": "Hackfleisch vorher vollständig durchgaren und in die Füllung geben."
+  },
+  "swaps": [
+   "Quinoa und Feta produktbezogen prüfen."
+  ],
+  "symbol": "🫑",
+  "technique": "Airfryer",
+  "nutrition": {
+   "base": {
+    "kcal": 552.9,
+    "protein": 22.2,
+    "carbs": 64.2,
+    "fat": 22.9,
+    "sugar": 12.9,
+    "fiber": 9.8,
+    "sat": 10.9
+   },
+   "meat": {
+    "kcal": 189.0,
+    "protein": 19.8,
+    "carbs": 0.0,
+    "fat": 11.7,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 4.5
+   }
+  }
+ },
+ {
+  "id": "knusprige-lachs-bites-mit-reis",
+  "name": "Knusprige Lachs-Bites mit Reis",
+  "cuisine": "Airfryer & Fastfood",
+  "group": "Airfryer",
+  "minutes": 26,
+  "description": "Herzhafte Lachswürfel mit Limette",
+  "ingredients": [
+   {
+    "name": "Lachsfilet",
+    "amount": 300.0,
+    "unit": "g"
+   },
+   {
+    "name": "Basmatireis",
+    "amount": 170.0,
+    "unit": "g"
+   },
+   {
+    "name": "Tamari glutenfrei",
+    "amount": 20.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Sesamöl",
+    "amount": 10.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Limette",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Salatgurke",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Sesam",
+    "amount": 12.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Reis garen, Gurke in feine Scheiben schneiden.",
+   "Lachs in gleichmäßige Würfel teilen und mit Tamari und Sesamöl benetzen.",
+   "Im gereinigten Airfryer etwa 9–13 Minuten bei 185 °C garen, durchgaren und prüfen.",
+   "Mit Gurke, Limette und Sesam anrichten."
+  ],
+  "meat": null,
+  "swaps": [
+   "Fisch und Sauce getrennt behandeln; Tamari als glutenfrei geprüft."
+  ],
+  "symbol": "🐟",
+  "technique": "Airfryer",
+  "nutrition": {
+   "base": {
+    "kcal": 718.7,
+    "protein": 39.2,
+    "carbs": 75.7,
+    "fat": 27.9,
+    "sugar": 3.5,
+    "fiber": 3.2,
+    "sat": 5.7
+   },
+   "meat": {
+    "kcal": 0.0,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 0.0,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 0.0
+   }
+  }
+ },
+ {
+  "id": "blumenkohl-wings-mit-joghurt-dip",
+  "name": "Blumenkohl-Wings mit Joghurt-Dip",
+  "cuisine": "Airfryer & Fastfood",
+  "group": "Airfryer",
+  "minutes": 32,
+  "description": "Snackiger Blumenkohl mit würzigem Mantel",
+  "ingredients": [
+   {
+    "name": "Blumenkohl",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Kichererbsenmehl glutenfrei",
+    "amount": 100.0,
+    "unit": "g"
+   },
+   {
+    "name": "Wasser",
+    "amount": 160.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Paprikapulver glutenfrei",
+    "amount": 8.0,
+    "unit": "g"
+   },
+   {
+    "name": "Naturjoghurt",
+    "amount": 170.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zitrone",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Olivenöl",
+    "amount": 10.0,
+    "unit": "ml"
+   }
+  ],
+  "steps": [
+   "Aus Kichererbsenmehl, Wasser und geprüftem Paprika einen dickflüssigen Teig rühren.",
+   "Blumenkohlröschen wenden, etwas Öl darübergeben.",
+   "Im sauberen Airfryer bei 190 °C 16–22 Minuten in einer Lage garen.",
+   "Zitronenjoghurt dazu servieren."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 240.0,
+   "unit": "g",
+   "instruction": "Separat vollständig garen und als Ergänzung servieren."
+  },
+  "swaps": [
+   "Kichererbsenmehl nur glutenfrei gekennzeichnet; keine kontaminierten Panierreste im Airfryer."
+  ],
+  "symbol": "🥦",
+  "technique": "Airfryer",
+  "nutrition": {
+   "base": {
+    "kcal": 372.7,
+    "protein": 18.7,
+    "carbs": 54.9,
+    "fat": 11.2,
+    "sugar": 13.2,
+    "fiber": 12.9,
+    "sat": 3.2
+   },
+   "meat": {
+    "kcal": 174.0,
+    "protein": 26.4,
+    "carbs": 0.0,
+    "fat": 7.2,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.0
+   }
+  }
+ },
+ {
+  "id": "halloumi-gemuse-spiesse-mit-kartoffeln",
+  "name": "Halloumi-Gemüse-Spieße mit Kartoffeln",
+  "cuisine": "Airfryer & Fastfood",
+  "group": "Airfryer",
+  "minutes": 35,
+  "description": "Schnelle Gemüsespieße mit Grillnoten",
+  "ingredients": [
+   {
+    "name": "Halloumi",
+    "amount": 240.0,
+    "unit": "g"
+   },
+   {
+    "name": "Paprika",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Zucchini",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Kartoffeln",
+    "amount": 450.0,
+    "unit": "g"
+   },
+   {
+    "name": "Olivenöl",
+    "amount": 20.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Zitrone",
+    "amount": 1.0,
+    "unit": "Stück"
+   }
+  ],
+  "steps": [
+   "Kartoffeln in kleinen Würfeln bei 195 °C im gereinigten Airfryer etwa 18–22 Minuten garen.",
+   "Halloumi und Gemüse auf zum Airfryer passende Spieße stecken oder lose in den Korb geben.",
+   "Bei 185 °C 9–12 Minuten goldbraun garen, dabei wenden.",
+   "Mit Zitrone abschmecken."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 240.0,
+   "unit": "g",
+   "instruction": "Rohes Hähnchen auf eigenen Spießen hygienisch getrennt vollständig garen."
+  },
+  "swaps": [
+   "Halloumi und Gewürze auf Eignung prüfen."
+  ],
+  "symbol": "🧀",
+  "technique": "Airfryer",
+  "nutrition": {
+   "base": {
+    "kcal": 706.7,
+    "protein": 34.8,
+    "carbs": 54.7,
+    "fat": 40.2,
+    "sugar": 13.2,
+    "fiber": 10.1,
+    "sat": 20.7
+   },
+   "meat": {
+    "kcal": 174.0,
+    "protein": 26.4,
+    "carbs": 0.0,
+    "fat": 7.2,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.0
+   }
+  }
+ },
+ {
+  "id": "smash-burger-mit-glutenfreiem-bun",
+  "name": "Smash-Burger mit glutenfreiem Bun",
+  "cuisine": "Airfryer & Fastfood",
+  "group": "Fastfood",
+  "minutes": 30,
+  "description": "Burger-Feeling zuhause, ganz ohne Weizenbrötchen",
+  "ingredients": [
+   {
+    "name": "Burger-Buns glutenfrei",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Rinderhack",
+    "amount": 260.0,
+    "unit": "g"
+   },
+   {
+    "name": "Emmentaler",
+    "amount": 70.0,
+    "unit": "g"
+   },
+   {
+    "name": "Tomaten",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Salatgurke",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Senf glutenfrei",
+    "amount": 15.0,
+    "unit": "g"
+   },
+   {
+    "name": "Kartoffeln",
+    "amount": 350.0,
+    "unit": "g"
+   },
+   {
+    "name": "Olivenöl",
+    "amount": 10.0,
+    "unit": "ml"
+   }
+  ],
+  "steps": [
+   "Kartoffeln als Wedges rösten.",
+   "Hack in zwei Portionen flach pressen und gut durchbraten.",
+   "Glutenfreie Buns in sauberer Pfanne bzw. ausschließlich glutenfreiem Toaster erwärmen.",
+   "Mit Käse, Gemüse und geprüftem Senf aufbauen."
+  ],
+  "meat": null,
+  "swaps": [
+   "Buns explizit glutenfrei kaufen; kein herkömmlicher Toaster mit Glutenkrümeln."
+  ],
+  "symbol": "🍔",
+  "technique": "Fastfood",
+  "nutrition": {
+   "base": {
+    "kcal": 865.7,
+    "protein": 48.2,
+    "carbs": 82.5,
+    "fat": 38.4,
+    "sugar": 10.5,
+    "fiber": 9.1,
+    "sat": 14.7
+   },
+   "meat": {
+    "kcal": 0.0,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 0.0,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 0.0
+   }
+  }
+ },
+ {
+  "id": "knuspriger-veggie-burger",
+  "name": "Knuspriger Veggie-Burger",
+  "cuisine": "Airfryer & Fastfood",
+  "group": "Fastfood",
+  "minutes": 32,
+  "description": "Mit Bohnen-Patty und Zitronenjoghurt",
+  "ingredients": [
+   {
+    "name": "Burger-Buns glutenfrei",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Kidneybohnen",
+    "amount": 260.0,
+    "unit": "g"
+   },
+   {
+    "name": "Eier",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Kichererbsenmehl glutenfrei",
+    "amount": 35.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zwiebeln",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Naturjoghurt",
+    "amount": 130.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zitrone",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Blattsalat",
+    "amount": 50.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Bohnen mit Ei, glutenfreiem Mehl und gehackter Zwiebel zu formbaren Patties kneten.",
+   "In sauberer Pfanne oder Airfryer vollständig garen, bis die Masse fest ist.",
+   "Buns separat glutenfrei erwärmen.",
+   "Mit Salat und Zitronenjoghurt belegen."
+  ],
+  "meat": {
+   "name": "Rinderhack",
+   "amount": 240.0,
+   "unit": "g",
+   "instruction": "Bohnenpatty durch separat vollständig gegartes Rindfleisch-Patty ersetzen."
+  },
+  "swaps": [
+   "Glutenfreies Bun und Kichererbsenmehl kontrollieren; keine gemeinsamen Krümelflächen."
+  ],
+  "symbol": "🍔",
+  "technique": "Fastfood",
+  "nutrition": {
+   "base": {
+    "kcal": 566.7,
+    "protein": 23.7,
+    "carbs": 88.4,
+    "fat": 14.0,
+    "sugar": 13.2,
+    "fiber": 15.6,
+    "sat": 3.5
+   },
+   "meat": {
+    "kcal": 252.0,
+    "protein": 26.4,
+    "carbs": 0.0,
+    "fat": 15.6,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 6.0
+   }
+  }
+ },
+ {
+  "id": "taco-bowls-mit-limettenreis",
+  "name": "Taco-Bowls mit Limettenreis",
+  "cuisine": "Airfryer & Fastfood",
+  "group": "Fastfood",
+  "minutes": 25,
+  "description": "Alles, was an Tacos schmeckt, als Bowl",
+  "ingredients": [
+   {
+    "name": "Basmatireis",
+    "amount": 170.0,
+    "unit": "g"
+   },
+   {
+    "name": "Kidneybohnen",
+    "amount": 230.0,
+    "unit": "g"
+   },
+   {
+    "name": "Mais",
+    "amount": 160.0,
+    "unit": "g"
+   },
+   {
+    "name": "Avocado",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Tomaten",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Naturjoghurt",
+    "amount": 100.0,
+    "unit": "g"
+   },
+   {
+    "name": "Limette",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Paprika",
+    "amount": 1.0,
+    "unit": "Stück"
+   }
+  ],
+  "steps": [
+   "Reis garen und mit Limettensaft mischen.",
+   "Bohnen und Mais abspülen und mit Paprikawürfeln kurz erhitzen.",
+   "Tomaten und Avocado würfeln.",
+   "Alles in zwei Bowls mit Limettenjoghurt anrichten."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 240.0,
+   "unit": "g",
+   "instruction": "Hähnchen separat vollständig durchgaren und als Topping ergänzen."
+  },
+  "swaps": [
+   "Tortillas werden nicht benötigt; bei Gewürzmischungen auf glutenfreie Produkte achten."
+  ],
+  "symbol": "🌮",
+  "technique": "Fastfood",
+  "nutrition": {
+   "base": {
+    "kcal": 719.4,
+    "protein": 22.4,
+    "carbs": 122.4,
+    "fat": 17.5,
+    "sugar": 15.8,
+    "fiber": 19.4,
+    "sat": 3.2
+   },
+   "meat": {
+    "kcal": 174.0,
+    "protein": 26.4,
+    "carbs": 0.0,
+    "fat": 7.2,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.0
+   }
+  }
+ },
+ {
+  "id": "loaded-nachos-aus-glutenfreiem-mais",
+  "name": "Loaded Nachos aus glutenfreiem Mais",
+  "cuisine": "Airfryer & Fastfood",
+  "group": "Fastfood",
+  "minutes": 22,
+  "description": "Abend zum Teilen, mit Salsa und Käse",
+  "ingredients": [
+   {
+    "name": "Tortilla-Chips glutenfrei",
+    "amount": 180.0,
+    "unit": "g"
+   },
+   {
+    "name": "Kidneybohnen",
+    "amount": 180.0,
+    "unit": "g"
+   },
+   {
+    "name": "Emmentaler",
+    "amount": 130.0,
+    "unit": "g"
+   },
+   {
+    "name": "Mais",
+    "amount": 130.0,
+    "unit": "g"
+   },
+   {
+    "name": "Tomaten",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Avocado",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Naturjoghurt",
+    "amount": 110.0,
+    "unit": "g"
+   },
+   {
+    "name": "Limette",
+    "amount": 1.0,
+    "unit": "Stück"
+   }
+  ],
+  "steps": [
+   "Glutenfrei gekennzeichnete Maischips auf ein sauberes Blech verteilen.",
+   "Bohnen, Mais und Käse darübergeben und im Ofen 8–12 Minuten überbacken.",
+   "Tomatensalsa und Limettenjoghurt anrühren.",
+   "Frische Avocado nach dem Backen ergänzen."
+  ],
+  "meat": {
+   "name": "Rinderhack",
+   "amount": 200.0,
+   "unit": "g",
+   "instruction": "Hack vorher gründlich durchgaren und als Topping verwenden."
+  },
+  "swaps": [
+   "Maischips müssen ausdrücklich glutenfrei geeignet sein; kein Gemeinschaftsofenblech mit Brotkrümeln."
+  ],
+  "symbol": "🧀",
+  "technique": "Fastfood",
+  "nutrition": {
+   "base": {
+    "kcal": 1049.2,
+    "protein": 37.0,
+    "carbs": 101.4,
+    "fat": 56.2,
+    "sugar": 12.9,
+    "fiber": 19.1,
+    "sat": 18.1
+   },
+   "meat": {
+    "kcal": 210.0,
+    "protein": 22.0,
+    "carbs": 0.0,
+    "fat": 13.0,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 5.0
+   }
+  }
+ },
+ {
+  "id": "glutenfreie-pizza-margherita",
+  "name": "Glutenfreie Pizza Margherita",
+  "cuisine": "Airfryer & Fastfood",
+  "group": "Fastfood",
+  "minutes": 45,
+  "description": "Frischer Ofenabend mit Mozzarella",
+  "ingredients": [
+   {
+    "name": "Pizzaboden glutenfrei",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Passierte Tomaten",
+    "amount": 220.0,
+    "unit": "g"
+   },
+   {
+    "name": "Mozzarella",
+    "amount": 200.0,
+    "unit": "g"
+   },
+   {
+    "name": "Basilikum",
+    "amount": 15.0,
+    "unit": "g"
+   },
+   {
+    "name": "Olivenöl",
+    "amount": 12.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Tomaten",
+    "amount": 1.0,
+    "unit": "Stück"
+   }
+  ],
+  "steps": [
+   "Glutenfreien Pizzaboden nach Packungsangabe auf separater sauberer Unterlage vorbereiten.",
+   "Mit Tomaten und Mozzarella belegen.",
+   "Nach Herstelleranleitung bei hoher Temperatur backen.",
+   "Basilikum und etwas Öl nach dem Backen ergänzen."
+  ],
+  "meat": {
+   "name": "Schinken glutenfrei",
+   "amount": 100.0,
+   "unit": "g",
+   "instruction": "Geprüften Schinken optional vor dem Backen auflegen."
+  },
+  "swaps": [
+   "Pizzaboden gesondert glutenfrei gekennzeichnet; keine gemeinsame Pizzaschaufel mit Weizenmehl."
+  ],
+  "symbol": "🍕",
+  "technique": "Fastfood",
+  "nutrition": {
+   "base": {
+    "kcal": 873.3,
+    "protein": 29.4,
+    "carbs": 109.3,
+    "fat": 37.2,
+    "sugar": 15.7,
+    "fiber": 10.0,
+    "sat": 14.7
+   },
+   "meat": {
+    "kcal": 122.5,
+    "protein": 11.0,
+    "carbs": 0.5,
+    "fat": 8.5,
+    "sugar": 0.5,
+    "fiber": 0.0,
+    "sat": 3.0
+   }
+  }
+ },
+ {
+  "id": "asia-style-reisnudel-box",
+  "name": "Asia-Style Reisnudel-Box",
+  "cuisine": "Airfryer & Fastfood",
+  "group": "Fastfood",
+  "minutes": 20,
+  "description": "Streetfood-Feeling in zwanzig Minuten",
+  "ingredients": [
+   {
+    "name": "Reisnudeln glutenfrei",
+    "amount": 190.0,
+    "unit": "g"
+   },
+   {
+    "name": "Naturtofu",
+    "amount": 260.0,
+    "unit": "g"
+   },
+   {
+    "name": "Karotten",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Paprika",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Tamari glutenfrei",
+    "amount": 35.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Sesamöl",
+    "amount": 12.0,
+    "unit": "ml"
+   },
+   {
+    "name": "Limette",
+    "amount": 1.0,
+    "unit": "Stück"
+   }
+  ],
+  "steps": [
+   "Glutenfreie Reisnudeln nach Packungsangabe zubereiten.",
+   "Tofu und Gemüse auf hoher Hitze in separater sauberen Pfanne rösten.",
+   "Mit glutenfreier Tamari und Limette würzen.",
+   "Nudeln unterheben und sofort servieren."
+  ],
+  "meat": {
+   "name": "Hähnchenbrust",
+   "amount": 240.0,
+   "unit": "g",
+   "instruction": "Hähnchen getrennt gründlich durchgaren, anstelle von Tofu verwenden oder zusätzlich servieren."
+  },
+  "swaps": [
+   "Tamari und Reisnudeln explizit glutenfrei kaufen, niemals ungeprüfte Sojasoße einsetzen."
+  ],
+  "symbol": "🍜",
+  "technique": "Fastfood",
+  "nutrition": {
+   "base": {
+    "kcal": 614.7,
+    "protein": 26.4,
+    "carbs": 90.4,
+    "fat": 17.9,
+    "sugar": 10.3,
+    "fiber": 8.1,
+    "sat": 2.6
+   },
+   "meat": {
+    "kcal": 174.0,
+    "protein": 26.4,
+    "carbs": 0.0,
+    "fat": 7.2,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 2.0
+   }
+  }
+ },
+ {
+  "id": "crispy-chicken-mit-cornflake-kruste",
+  "name": "Crispy Chicken mit Cornflake-Kruste",
+  "cuisine": "Airfryer & Fastfood",
+  "group": "Fastfood",
+  "minutes": 35,
+  "description": "Hausgemachte Knusperstücke, kein Fertigprodukt",
+  "ingredients": [
+   {
+    "name": "Hähnchenbrust",
+    "amount": 360.0,
+    "unit": "g"
+   },
+   {
+    "name": "Cornflakes glutenfrei",
+    "amount": 100.0,
+    "unit": "g"
+   },
+   {
+    "name": "Eier",
+    "amount": 1.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Naturjoghurt",
+    "amount": 150.0,
+    "unit": "g"
+   },
+   {
+    "name": "Kartoffeln",
+    "amount": 400.0,
+    "unit": "g"
+   },
+   {
+    "name": "Olivenöl",
+    "amount": 18.0,
+    "unit": "ml"
+   }
+  ],
+  "steps": [
+   "Kartoffeln in Spalten schneiden und mit Öl bei 200 °C im gereinigten Airfryer garen.",
+   "Hähnchen in Ei wenden und mit zerkleinerten ausdrücklich glutenfreien Cornflakes panieren.",
+   "Hähnchen im sauberen Airfryer getrennt garen, bis es vollständig durchgegart ist.",
+   "Mit Joghurtdip servieren."
+  ],
+  "meat": null,
+  "swaps": [
+   "Gewöhnliche Cornflakes können Gerstenmalz enthalten: ausschließlich glutenfrei gekennzeichnete verwenden.",
+   "Airfryer nicht mit glutenhaltiger Panade teilen."
+  ],
+  "symbol": "🍗",
+  "technique": "Fastfood",
+  "nutrition": {
+   "base": {
+    "kcal": 758.2,
+    "protein": 53.4,
+    "carbs": 79.8,
+    "fat": 24.9,
+    "sugar": 8.6,
+    "fiber": 5.9,
+    "sat": 6.9
+   },
+   "meat": {
+    "kcal": 0.0,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 0.0,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 0.0
+   }
+  }
+ },
+ {
+  "id": "hausgemachter-flammkuchen-glutenfrei",
+  "name": "Hausgemachter Flammkuchen glutenfrei",
+  "cuisine": "Airfryer & Fastfood",
+  "group": "Fastfood",
+  "minutes": 35,
+  "description": "Knusprig, cremig und herzhaft",
+  "ingredients": [
+   {
+    "name": "Flammkuchenboden glutenfrei",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Schmand",
+    "amount": 160.0,
+    "unit": "g"
+   },
+   {
+    "name": "Zwiebeln",
+    "amount": 2.0,
+    "unit": "Stück"
+   },
+   {
+    "name": "Speck glutenfrei",
+    "amount": 130.0,
+    "unit": "g"
+   },
+   {
+    "name": "Schnittlauch",
+    "amount": 12.0,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Glutenfreien Flammkuchenboden auf gereinigtem Blech ausrollen.",
+   "Schmand, Zwiebelringe und geprüft glutenfreien Speck darauf verteilen.",
+   "Nach Packungsangabe goldbraun backen.",
+   "Mit Schnittlauch bestreuen."
+  ],
+  "meat": null,
+  "swaps": [
+   "Glutenfreien Boden und Speck ausdrücklich prüfen; Teig nicht auf Weizenmehlfläche ausrollen."
+  ],
+  "symbol": "🍕",
+  "technique": "Fastfood",
+  "nutrition": {
+   "base": {
+    "kcal": 845.4,
+    "protein": 25.7,
+    "carbs": 97.2,
+    "fat": 40.8,
+    "sugar": 16.1,
+    "fiber": 8.4,
+    "sat": 17.5
+   },
+   "meat": {
+    "kcal": 0.0,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 0.0,
+    "sugar": 0.0,
+    "fiber": 0.0,
+    "sat": 0.0
+   }
+  }
+ }
+]
