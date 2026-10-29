@@ -36,8 +36,9 @@ const WMO: Record<number, [string, Kind]> = {
   80: ['Regenschauer', 'rain'], 81: ['Regenschauer', 'rain'], 82: ['Heftige Schauer', 'rain'], 85: ['Schneeschauer', 'snow'], 86: ['Schneeschauer', 'snow'],
   95: ['Gewitter', 'storm'], 96: ['Gewitter mit Hagel', 'storm'], 99: ['Gewitter mit Hagel', 'storm'],
 };
+/** Piktogramme (siehe ui/Icon) für Tag und Nacht. */
 const ICON: Record<Kind, [string, string]> = {
-  clear: ['☀️', '🌙'], partly: ['⛅', '☁️'], cloudy: ['☁️', '☁️'], fog: ['🌫️', '🌫️'], drizzle: ['🌦️', '🌧️'], rain: ['🌧️', '🌧️'], snow: ['🌨️', '🌨️'], storm: ['⛈️', '⛈️'],
+  clear: ['sun', 'moon'], partly: ['sun-cloud', 'moon-cloud'], cloudy: ['cloud', 'cloud'], fog: ['fog', 'fog'], drizzle: ['drizzle', 'drizzle'], rain: ['rain', 'rain'], snow: ['snow', 'snow'], storm: ['storm', 'storm'],
 };
 
 export const weatherKind = (code: number): Kind => WMO[code]?.[1] ?? 'cloudy';

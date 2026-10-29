@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './app/App';
+import { IconSheet } from './features/design/IconSheet';
 import './app/install';
 import { startClock } from './lib/useClock';
 import './styles/base.css';
@@ -13,6 +14,6 @@ if (import.meta.env.PROD && 'serviceWorker' in navigator) {
 }
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    {location.hash === '#piktogramme' ? <IconSheet /> : <App />}
   </StrictMode>,
 );

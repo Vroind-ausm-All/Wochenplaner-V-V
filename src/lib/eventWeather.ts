@@ -55,12 +55,12 @@ export function eventRisk(e: { on: ISODate; time: Time; duration: number }, f: F
   const start = at(e.on, e.time), end = start + Math.max(60, e.duration) * 60000;
   const alert = alerts.find((a) => a.severity !== 'minor' && alertCovers(a, start, end));
   const w = weatherFor(f, e.on, e.time, e.duration);
-  if (alert) return { level: 'bad', reason: `Wetterwarnung: ${alert.event.charAt(0)}${alert.event.slice(1).toLowerCase()}`, icon: '⚠️', weather: w, alert };
+  if (alert) return { level: 'bad', reason: `Wetterwarnung: ${alert.event.charAt(0)}${alert.event.slice(1).toLowerCase()}`, icon: 'alert', weather: w, alert };
   if (!w) return { level: 'ok', reason: '', icon: '', weather: null };
   const kind = w.code != null ? weatherKind(w.code) : 'cloudy';
-  if (w.rain >= 60 || (w.wet && w.rain >= 45)) return { level: 'bad', reason: kind === 'storm' ? `Gewitter möglich (${w.rain} %)` : kind === 'snow' ? `Schnee (${w.rain} %)` : `${w.rain} % Regen`, icon: kind === 'storm' ? '⛈️' : kind === 'snow' ? '🌨️' : '☔', weather: w };
-  if (w.rain >= 35) return { level: 'watch', reason: `${w.rain} % Regen – Schirm mitnehmen`, icon: '🌂', weather: w };
-  if (w.temp != null && w.temp <= 2) return { level: 'watch', reason: `nur ${w.temp}° – warm anziehen`, icon: '🧣', weather: w };
+  if (w.rain >= 60 || (w.wet && w.rain >= 45)) return { level: 'bad', reason: kind === 'storm' ? `Gewitter möglich (${w.rain} %)` : kind === 'snow' ? `Schnee (${w.rain} %)` : `${w.rain} % Regen`, icon: kind === 'storm' ? 'storm' : kind === 'snow' ? 'snow' : 'umbrella', weather: w };
+  if (w.rain >= 35) return { level: 'watch', reason: `${w.rain} % Regen – Schirm mitnehmen`, icon: 'umbrella', weather: w };
+  if (w.temp != null && w.temp <= 2) return { level: 'watch', reason: `nur ${w.temp}° – warm anziehen`, icon: 'thermometer', weather: w };
   return { level: 'ok', reason: '', icon: '', weather: w };
 }
 

@@ -31,7 +31,7 @@ export function reminderMessage(r, settings = {}) {
   const when = r.minutesBefore === 1440 ? 'Morgen' : r.minutesBefore === 60 ? 'In 1 Std.' : `In ${r.minutesBefore} Min.`;
   const time = e.allDay ? 'ganztags' : `${e.time} Uhr`;
   return {
-    title: `⏰ ${when}: ${e.title}`,
+    title: `${when}: ${e.title}`,
     body: [time, who].filter(Boolean).join(' · '),
     tag: r.key,
     url: './',

@@ -30,7 +30,7 @@ export function applyDrop(p: Payload, t: Target, owner: Owner = 'Beide'): boolea
       const time = t.type === 'slot' ? t.time : p.template.defaultTime;
       s.addEvent(
         { title: p.template.title, date, time, duration: p.template.minutes, category: p.template.category, owner: p.template.category === 'Wir' ? 'Beide' : owner, allDay: false, repeat: 'none', reminder: 'none' },
-        `${p.template.emoji} ${p.template.title} eingeplant`,
+        `${p.template.title} eingeplant`,
       );
       return true;
     }
@@ -44,7 +44,7 @@ export function applyDrop(p: Payload, t: Target, owner: Owner = 'Beide'): boolea
       const time = t.type === 'slot' ? t.time : g.time;
       s.addEvent(
         { title: g.title, date, time, duration: g.duration, category: g.category, owner: g.owner, allDay: false, repeat: 'none', reminder: 'none', notes: g.reason, origin: 'companion' },
-        `${g.emoji} ${g.title} eingeplant`,
+        `${g.title} eingeplant`,
       );
       if (g.recipe && g.kind === 'date') s.placeMeal(date, 'Abend', g.recipe, { together: true });
       return true;

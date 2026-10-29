@@ -6,6 +6,7 @@ import { useStore } from '../../store/store';
 import { WeatherBadge } from '../weather/WeatherBadge';
 import { EventChip } from './EventChip';
 import { useOccurrences } from './hooks';
+import { Icon } from '../../ui/Icon';
 
 export function MonthView() {
   const cursor = useStore((s) => s.cursor);
@@ -38,7 +39,7 @@ export function MonthView() {
             <div className="row month__top">
               <span className="month__num">{Number(d.slice(8))}</span>
               <span className="grow" />
-              {r && <span title={r.name}>{r.symbol}</span>}
+              {r && <Icon name="plate" size={14} label={`Abendessen: ${r.name}`} />}
               <WeatherBadge date={d} compact />
             </div>
             <div className="month__events">

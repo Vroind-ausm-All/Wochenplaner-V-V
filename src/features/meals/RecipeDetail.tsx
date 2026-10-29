@@ -5,6 +5,7 @@ import { hiddenGlutenHint } from '../../data/substitutes';
 import { pick } from '../../dnd/state';
 import { band, recipeNutrition } from '../../lib/nutrition';
 import { useStore } from '../../store/store';
+import { Icon } from '../../ui/Icon';
 import { Chips } from '../../ui/Segmented';
 import { Sheet } from '../../ui/Sheet';
 import { DishArt } from './DishArt';
@@ -49,15 +50,15 @@ export function RecipeDetail() {
             <button
               className="btn primary"
               onClick={() => {
-                pick({ type: 'recipe', recipeId: r.id, label: `${r.symbol} ${r.name}` });
+                pick({ type: 'recipe', recipeId: r.id, label: r.name });
                 close();
               }}
             >
-              🍽 Einplanen – Tag antippen
+              <Icon name="calendar" size={18} /> Einplanen – Tag antippen
             </button>
           )}
           <button className="btn" onClick={() => mutate((d) => void (d.favoriteRecipes = fav ? d.favoriteRecipes.filter((x) => x !== r.id) : [...d.favoriteRecipes, r.id]))}>
-            {fav ? '♥ Favorit' : '♡ Merken'}
+            <Icon name="heart" size={18} /> {fav ? 'Favorit' : 'Merken'}
           </button>
           <span className="grow" />
           <button className="btn" onClick={close}>
@@ -68,11 +69,15 @@ export function RecipeDetail() {
     >
       <div className="recipe">
         <div className="recipe__art">
-          <DishArt recipe={r} size="lg" />
+          <DishArt recipe={r} />
           <div className="row wrap">
-            <span className="badge">✓ glutenfrei</span>
-            <span className="badge">⏱ {r.minutes} Min.</span>
-            {cuisine && <span className="badge">{cuisine.flag} {cuisine.name}</span>}
+            <span className="badge">
+              <Icon name="check" size={14} /> glutenfrei
+            </span>
+            <span className="badge">
+              <Icon name="timer" size={14} /> {r.minutes} Min.
+            </span>
+            {cuisine && <span className="badge">{cuisine.code} · {cuisine.name}</span>}
             {r.technique && <span className="badge">{r.technique}</span>}
             {r.yields && <span className="badge">Ergibt {r.yields}</span>}
           </div>
@@ -86,7 +91,7 @@ export function RecipeDetail() {
               {r.meat && (
                 <div className="chips">
                   <button className="chip" aria-pressed={meat} onClick={() => setMeat(!meat)}>
-                    🍗 Mit {r.meat.name}
+                    <Icon name="meat" size={18} /> Mit {r.meat.name}
                   </button>
                 </div>
               )}
@@ -122,10 +127,10 @@ export function RecipeDetail() {
                     {x.name}
                     {hint && (
                       <span className="gf-hint">
-                        ⚠ {hint.hint}
+                        <Icon name="alert" size={14} /> {hint.hint}
                         {hint.diy && recipeById(hint.diy) && hint.diy !== r.id && (
                           <button className="linklike" onClick={() => setUi({ recipeOpen: hint.diy! })}>
-                            Selbst machen →
+                            Selbst machen
                           </button>
                         )}
                       </span>
@@ -160,7 +165,7 @@ export function RecipeDetail() {
                   const b = recipeById(h);
                   return b ? (
                     <button key={h} className="btn sm" onClick={() => setUi({ recipeOpen: h })}>
-                      {b.symbol} {b.name}
+                      <Icon name="book" size={16} /> {b.name}
                     </button>
                   ) : null;
                 })}

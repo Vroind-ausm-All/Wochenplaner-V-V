@@ -7,13 +7,14 @@ import { CATEGORIES, OWNERS, type CalendarEvent, type Repeat } from '../../store
 import { Chips } from '../../ui/Segmented';
 import { Sheet } from '../../ui/Sheet';
 import { useOwnerName } from './hooks';
+import { OwnerMark } from '../../ui/Icon';
 
 const DURATIONS = [15, 30, 45, 60, 90, 120, 180];
-const REMINDERS: { value: CalendarEvent['reminder']; label: string }[] = [
+const REMINDERS: { value: CalendarEvent['reminder']; label: string; icon?: string }[] = [
   { value: 'none', label: 'Keine' },
-  { value: '15', label: '🔔 15 Min. vorher' },
-  { value: '60', label: '🔔 1 Std. vorher' },
-  { value: '1440', label: '🔔 1 Tag vorher' },
+  { value: '15', label: '15 Min. vorher', icon: 'bell' },
+  { value: '60', label: '1 Std. vorher', icon: 'bell' },
+  { value: '1440', label: '1 Tag vorher', icon: 'bell' },
 ];
 
 const REPEATS: { value: Repeat; label: string }[] = [
@@ -85,11 +86,11 @@ export function EventSheet() {
       </label>
       <div className="field">
         <span>Kategorie</span>
-        <Chips value={f.category} onChange={(c) => set('category', c)} options={CATEGORIES.map((c) => ({ value: c, label: `${CATEGORY_STYLE[c].emoji} ${c}` }))} />
+        <Chips value={f.category} onChange={(c) => set('category', c)} options={CATEGORIES.map((c) => ({ value: c, label: c, icon: CATEGORY_STYLE[c].icon }))} />
       </div>
       <div className="field">
         <span>Wer</span>
-        <Chips value={f.owner} onChange={(o) => set('owner', o)} options={OWNERS.map((o) => ({ value: o, label: name(o) }))} />
+        <Chips value={f.owner} onChange={(o) => set('owner', o)} options={OWNERS.map((o) => ({ value: o, label: name(o), icon: <OwnerMark owner={o} size={12} /> }))} />
       </div>
       <div className="row wrap" style={{ gap: 16 }}>
         <label className="field grow">

@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, type ReactNode } from 'react';
 import './sheet.css';
+import { Icon } from './Icon';
 
 interface Props {
   open: boolean;
@@ -39,7 +40,7 @@ export function Sheet({ open, onClose, title, children, footer, wide }: Props) {
             <header className="sheet-head">
               <h2>{title}</h2>
               <button className="btn icon ghost" onClick={onClose} aria-label="Schließen">
-                ✕
+                <Icon name="close" />
               </button>
             </header>
             <div className="sheet-body">{children}</div>

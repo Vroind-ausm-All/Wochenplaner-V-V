@@ -4,6 +4,7 @@ import { useStore } from '../../store/store';
 import { useSync } from '../../store/sync';
 import { Chips } from '../../ui/Segmented';
 import { disablePush, enablePush, setReminderFor, testPush, usePush } from './push';
+import { Icon } from '../../ui/Icon';
 
 /** Erinnerungen: auf diesem Bildschirm und als Push aufs Handy. */
 export function ReminderSettings() {
@@ -33,10 +34,10 @@ export function ReminderSettings() {
       </div>
       <div className="chips">
         <button className="chip" aria-pressed={device.remindersOnScreen} onClick={() => updateDevice({ remindersOnScreen: !device.remindersOnScreen })}>
-          🖼 Auf diesem Bildschirm einblenden
+          Auf diesem Bildschirm einblenden
         </button>
         <button className="chip" aria-pressed={device.reminderSound} onClick={() => updateDevice({ reminderSound: !device.reminderSound })}>
-          🔉 Mit sanftem Ton
+          Mit sanftem Ton
         </button>
       </div>
 
@@ -53,7 +54,7 @@ export function ReminderSettings() {
         </p>
       ) : push.subscribed ? (
         <div className="row wrap">
-          <span>✓ Dieses Gerät bekommt Mitteilungen – auch wenn die App geschlossen ist.</span>
+          <span><Icon name="check" size={16} /> Dieses Gerät bekommt Mitteilungen – auch wenn die App geschlossen ist.</span>
           <button className="btn sm" onClick={() => testPush().then(() => notify('Test-Mitteilung verschickt'), (e) => notify((e as Error).message))}>
             Test senden
           </button>
@@ -64,7 +65,7 @@ export function ReminderSettings() {
       ) : (
         <div className="row wrap">
           <button className="btn primary" disabled={push.busy} onClick={() => void enablePush()}>
-            {push.busy ? 'Wird eingerichtet …' : '🔔 Mitteilungen einschalten'}
+            {push.busy ? 'Wird eingerichtet …' : <><Icon name="bell" size={18} /> Mitteilungen einschalten</>}
           </button>
           <span className="small muted">Der Browser fragt einmal um Erlaubnis.</span>
         </div>
@@ -95,7 +96,7 @@ export function FeedCard() {
       <code className="feed-url">{https}</code>
       <div className="row wrap">
         <a className="btn primary" href={webcal}>
-          📅 In Kalender-App öffnen
+          <Icon name="calendar" size={16} /> In Kalender-App öffnen
         </a>
         <button className="btn" onClick={() => copy(https)}>
           Adresse kopieren

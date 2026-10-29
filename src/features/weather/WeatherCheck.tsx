@@ -7,6 +7,7 @@ import { useToday } from '../../lib/useClock';
 import { useStore } from '../../store/store';
 import { useActiveAlerts } from './useAlerts';
 import { useWeatherStore } from './useWeather';
+import { Icon } from '../../ui/Icon';
 
 /** Prüft Unternehmungen draußen gegen Vorhersage und Warnungen und bietet einen trockeneren Zeitpunkt an. */
 export function WeatherCheck() {
@@ -28,11 +29,11 @@ export function WeatherCheck() {
 
   return (
     <section className="card stack wx-check" aria-label="Wetter-Check für Termine draußen">
-      <div className="eyebrow">Wetter-Check für eure Pläne draußen</div>
+      <span className="eyebrow">Wetter-Check für eure Pläne draußen</span>
       <AnimatePresence initial={false}>
         {items.map(({ event: e, risk, alt }) => (
           <motion.div key={e.id + e.on} layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, height: 0 }} className={`wx-check__item is-${risk.level}`}>
-            <span className="wx-check__icon">{risk.icon}</span>
+            <Icon name={risk.icon} size={24} className="wx-check__icon" />
             <div className="grow">
               <b>
                 {fmt.relative(e.on, today)} {e.time} · {e.title}
@@ -69,7 +70,7 @@ export function EventWeatherBadge({ e }: { e: Occurrence }) {
   if (r.level === 'ok') return null;
   return (
     <span className={`wx-pin is-${r.level}`} title={r.reason} aria-label={r.reason}>
-      {r.icon}
+      <Icon name={r.icon} size={12} />
     </span>
   );
 }

@@ -12,6 +12,7 @@ import { useActiveAlerts } from '../weather/useAlerts';
 import { useWeatherStore } from '../weather/useWeather';
 import { loadPhotos, usePhotos, type Photo } from './photoStore';
 import './screensaver.css';
+import { Icon, WirMark } from '../../ui/Icon';
 
 const hash = (s: string) => [...s].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7);
 
@@ -64,12 +65,12 @@ function Info() {
       <div className="ss__side">
         {forecast && (
           <div className="ss__wx" title={weatherLabel(forecast.current.code)}>
-            {weatherIcon(forecast.current.code, forecast.current.isDay)} {Math.round(forecast.current.temp)}°
+            <Icon name={weatherIcon(forecast.current.code, forecast.current.isDay)} size={36} strokeWidth={1.25} /> {Math.round(forecast.current.temp)}°
           </div>
         )}
         {alerts[0] && (
           <div className="ss__alert">
-            {alertIcon(alerts[0].event)} {alerts[0].event.charAt(0)}
+            <Icon name={alertIcon(alerts[0].event)} size={18} /> {alerts[0].event.charAt(0)}
             {alerts[0].event.slice(1).toLowerCase()}
           </div>
         )}
@@ -129,15 +130,7 @@ export function Screensaver({ night, onClose }: { night: boolean; onClose: () =>
             <Slide key={current.id} photo={current} seconds={device.slideSeconds} landscape={landscape} />
           ) : (
             <motion.div key="calm" className="ss__calm" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-              {Array.from({ length: 7 }, (_, k) => (
-                <motion.span
-                  key={k}
-                  className="ss__orb"
-                  style={{ left: `${(k * 37) % 90}%`, top: `${(k * 53) % 80}%`, width: 120 + ((k * 41) % 160), height: 120 + ((k * 41) % 160) }}
-                  animate={{ x: [0, 40, -30, 0], y: [0, -30, 20, 0] }}
-                  transition={{ duration: 18 + k * 3, repeat: Infinity, ease: 'easeInOut' }}
-                />
-              ))}
+              <WirMark size={72} closeness={0.6} />
               <p className="ss__quote">„{quote}“</p>
             </motion.div>
           )}

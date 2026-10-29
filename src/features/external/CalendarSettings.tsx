@@ -8,6 +8,7 @@ import { OWNERS, type ExternalCalendar, type Owner } from '../../store/types';
 import { Chips } from '../../ui/Segmented';
 import { useOwnerName } from '../calendar/hooks';
 import { normalizeUrl, refreshCalendar, useExternalStore } from './useExternal';
+import { Icon } from '../../ui/Icon';
 
 const HUES = [210, 150, 30, 280, 340, 190];
 
@@ -54,7 +55,7 @@ export function CalendarSettings() {
       </label>
       <div className="chips">
         <button className="chip" aria-pressed={s.specialDays} onClick={() => updateSettings({ specialDays: !s.specialDays })}>
-          ✨ Valentinstag, Muttertag, Heiligabend & Silvester zeigen
+          Valentinstag, Muttertag, Heiligabend & Silvester zeigen
         </button>
       </div>
       <p className="small muted">Feiertage werden auf dem Gerät berechnet – ohne Internet. Der Begleiter plant sie wie Wochenenden.</p>
@@ -69,15 +70,15 @@ export function CalendarSettings() {
               <span className="ext-dot" />
               <b className="grow ellipsis">{c.name}</b>
               <button className="btn sm" onClick={() => void refreshCalendar(c, true)} disabled={loading[c.id]} aria-label="Jetzt aktualisieren">
-                {loading[c.id] ? '…' : '↻'}
+                <Icon name="refresh" size={16} className={loading[c.id] ? 'is-spinning' : ''} />
               </button>
               <button className="btn sm ghost" onClick={() => confirm(`„${c.name}“ entfernen?`) && mutate((d) => void (d.calendars = d.calendars.filter((x) => x.id !== c.id)), 'Abo entfernt')} aria-label="Entfernen">
-                ✕
+                <Icon name="close" size={16} />
               </button>
             </div>
             <div className="small muted ellipsis">{c.url.replace(/^https?:\/\//, '')}</div>
             <div className="small">
-              {entry?.error ? <span style={{ color: 'var(--danger)' }}>⚠ {entry.error}</span> : entry ? `${entry.items.length} Termine · aktualisiert ${ago(entry.fetchedAt)}` : loading[c.id] ? 'wird geladen …' : 'noch nicht geladen'}
+              {entry?.error ? <span style={{ color: 'var(--danger)' }}><Icon name="alert" size={14} /> {entry.error}</span> : entry ? `${entry.items.length} Termine · aktualisiert ${ago(entry.fetchedAt)}` : loading[c.id] ? 'wird geladen …' : 'noch nicht geladen'}
             </div>
             <div className="chips">
               <button className="chip" aria-pressed={c.visible} onClick={() => update(c.id, { visible: !c.visible })}>

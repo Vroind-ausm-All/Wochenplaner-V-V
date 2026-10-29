@@ -1,17 +1,17 @@
 import { motion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import { findRecipe } from '../../data/recipes';
-import { CATEGORY_STYLE } from '../../data/templates';
 import { DropZone, Pickable } from '../../dnd/Dnd';
 import { fmt, fromMinutes, toMinutes } from '../../lib/date';
 import { layoutLanes, type Occurrence } from '../../lib/recurrence';
 import { useNow, useToday } from '../../lib/useClock';
 import { useStore } from '../../store/store';
+import { Icon } from '../../ui/Icon';
 import type { ISODate } from '../../store/types';
 import { WeatherBadge } from '../weather/WeatherBadge';
 import { ExternalBlock } from '../external/ExternalUi';
 import { EventWeatherBadge } from '../weather/WeatherCheck';
-import { EventChip, hueStyle, OwnerDot, timeRange } from './EventChip';
+import { EventChip, CategoryIcon, hueStyle, OwnerDot, timeRange } from './EventChip';
 import { useOccurrences } from './hooks';
 
 const START = 6;
@@ -64,8 +64,8 @@ export function TimeGrid({ days }: { days: ISODate[] }) {
                 <WeatherBadge date={d} compact />
               </div>
               {r && (
-                <div className="tg-dinner ellipsis" title={`Abendessen: ${r.name}`}>
-                  {r.symbol} {r.name}
+                <div className="tg-dinner" title={`Abendessen: ${r.name}`}>
+                  <Icon name="plate" size={14} /> <span className="ellipsis">{r.name}</span>
                 </div>
               )}
               {allDay.map((e) => (
@@ -139,17 +139,17 @@ function EventBlock({ e, lane, lanes, slotH }: { e: Occurrence; lane: number; la
   };
   return (
     <Pickable
-      payload={{ type: 'event', id: e.id, on: e.on, label: `${CATEGORY_STYLE[e.category]?.emoji ?? ''} ${e.title}` }}
+      payload={{ type: 'event', id: e.id, on: e.on, label: e.title }}
       className={`ev-block ${height < 50 ? 'is-short' : ''}`}
       style={{ ...hueStyle(e.category), top: topFor(e.time, slotH) + 1, height, left: `calc(${(lane / lanes) * 100}% + 2px)`, width: `calc(${100 / lanes}% - 4px)` }}
       title={`${e.title} · ${timeRange(e)}`}
     >
       <div className="ev-block__title ellipsis">
-        {CATEGORY_STYLE[e.category]?.emoji} {e.title}
+        <CategoryIcon category={e.category} size={14} /> {e.title}
       </div>
       <div className="ev-block__meta row">
         <span>{preview ? `${e.time}–${fromMinutes(toMinutes(e.time) + duration)}` : timeRange(e)}</span>
-        {e.repeat !== 'none' && <span>↻</span>}
+        {e.repeat !== 'none' && <Icon name="repeat" size={12} label="Serie" />}
         <span className="grow" />
         <EventWeatherBadge e={e} />
         <OwnerDot owner={e.owner} />

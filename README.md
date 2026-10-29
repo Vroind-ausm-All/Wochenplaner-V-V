@@ -13,7 +13,12 @@ npm run build      # Produktions-Build nach dist/ – jeder statische Webspace g
 
 **Inhalt:** [Erster Test auf dem Laptop](#erster-test-auf-dem-laptop) · [Alle Geräte verbinden](#alle-geräte-verbinden) ·
 [Was drin ist](#was-drin-ist) · [Küchenwelten](#küchenwelten) · [Projektaufbau](#projektaufbau) ·
-[Hardware für den Bilderrahmen](docs/HARDWARE.md) · [Heimserver](docs/HEIMSERVER.md)
+[Gestaltung](docs/DESIGN.md) · [Hardware für den Bilderrahmen](docs/HARDWARE.md) · [Heimserver](docs/HEIMSERVER.md)
+
+![Startseite im Hochformat: Uhr, Gedanke des Tages, „Heute · wer macht was“](docs/design/start-hochformat.png)
+
+Ruhig und übersichtlich im Schweizer Stil: eine Schrift, Schwarz-Weiß mit einer Signalfarbe für gemeinsame Zeit,
+Piktogramme statt Emojis und Personen-Marken (● ○) – Details in [docs/DESIGN.md](docs/DESIGN.md).
 
 ## Erster Test auf dem Laptop
 
@@ -45,17 +50,17 @@ Gut zu wissen beim Test:
 
 | ✓ | Was ausprobieren | Erwartung |
 |---|---|---|
-| ☐ | *Einstellungen*: eure Namen und den Wetter-Ort eintragen | Namen erscheinen in Affirmationen und beim Begleiter, Wetter für euren Ort |
+| ☐ | *Einstellungen*: eure Namen und den Wetter-Ort eintragen | Namen erscheinen in „Heute · wer macht was“, im Gedanken des Tages und beim Begleiter |
 | ☐ | *Kalender → Woche*: Baustein „Date Night“ auf einen Abend **ziehen** | Termin erscheint, oben „Rückgängig“ |
 | ☐ | Baustein **antippen**, dann eine Uhrzeit **antippen** (Click & Drop) | Termin an dieser Stelle |
 | ☐ | Termin auf einen anderen Tag ziehen; unteren Rand eines Termins ziehen | Termin verschoben bzw. länger/kürzer |
-| ☐ | Termin antippen → in der Leiste unten „✎ Bearbeiten“ | Formular mit Chips statt kleiner Auswahlfelder |
+| ☐ | Termin antippen → in der Leiste unten „Bearbeiten“ | Formular mit Chips statt kleiner Auswahlfelder |
 | ☐ | Monat / Tag / Termine durchschalten | Wettersymbole an den Tagen, Abendessen im Wochenkopf |
 | ☐ | *Essen*: Rezept auf „Abend“ ziehen, oder erst leeren Platz und dann Rezept antippen | Gericht geplant, *Einkauf* zählt hoch |
-| ☐ | 📖 an einem Rezept → „Selbst machen →“ an einer Zutat | Grundrezept (z. B. Pastateig) öffnet sich |
-| ☐ | *Wir-Zeit*: Energie für beide setzen, einen Vorschlag „✓ Einplanen“ | Begleiter ändert Stimmung, Termin im Kalender |
-| ☐ | Affirmation nach links/rechts wischen, ♡ antippen | Nächster Gedanke, kleine Herz-Animation |
-| ☐ | ☾ oben rechts, ◼ „Bildschirm dunkel“ | Nachtfarben bzw. schwarzer Schirm, Tippen weckt auf |
+| ☐ | Buch-Symbol an einem Rezept → „Selbst machen“ an einer Zutat | Grundrezept (z. B. Pastateig) öffnet sich |
+| ☐ | *Wir-Zeit*: Energie für beide setzen, einen Vorschlag „Einplanen“ | Die zwei Kreise des WIR-Zeichens rücken zusammen oder auseinander, Termin im Kalender |
+| ☐ | Gedanken des Tages nach links/rechts wischen, Herz antippen | Nächster Gedanke blendet Wort für Wort ein, Herz wird rot |
+| ☐ | Mond oben rechts, Ein/Aus-Symbol „Bildschirm dunkel“ | Nachtfarben bzw. schwarzer Schirm, Tippen weckt auf |
 | ☐ | Bisheriges Board: dessen JSON-Export unter *Einstellungen → importieren* | Alte Termine, Einkauf, Aufgaben sind da |
 
 ## Alle Geräte verbinden
@@ -79,8 +84,9 @@ offline Geändertes wird später eintragsweise zusammengeführt. Dauerbetrieb, Z
 | **Kalender** | `features/calendar/*` | Monat, Woche, Tag, Terminliste · Zeitraster füllt hohe Hochkant-Displays · Überlappungen in Spuren · Dauer per Griff ziehen · Jetzt-Linie · Serien („nur diesen / ganze Serie“) |
 | **Drag & Drop + Click & Drop** | `dnd/*` | Ein Modell, drei Wege: Maus ziehen, **Touch: kurz halten & ziehen** (Scrollen bleibt frei), **antippen → Ziel antippen**. Umgekehrt geht auch: erst leeren Essensplatz, dann Rezept antippen. Papierkorb-Zone, Rückgängig nach jeder Aktion |
 | **Wetter** | `features/weather/*` | Open-Meteo (ohne Konto/Key), aktuelle Lage, 7 Tage, stündlich in der Tagesansicht, Symbole in Monat/Woche/Terminliste, Ort-Suche & Standort |
-| **Affirmationen** | `features/affirmations/*` | Motion: Wort-für-Wort-Einblendung, schwebende Lichter, Wischen zum Wechseln, Fortschrittsbalken, Herz mit Funken; personalisiert mit euren Namen; respektiert „Bewegung reduzieren“ |
-| **WIR-Begleiter** | `features/companion/*` | „Wiri“ (animierter Avatar mit Stimmungen) plant Wir-Zeit mit: Wochenziel, eigene Zeit beider Personen, Abstand zur letzten Date Night, Check-in, volle Tage, Tagesenergie, Wetter → konkrete Vorschläge in **freien Zeitfenstern** (einplanen, verschieben oder ziehen). Frage des Tages, Wochenkompass, Ideen-Bibliothek |
+| **Startseite** | `features/home/*` | Große Uhr, Gedanke des Tages, **„Heute · wer macht was“** in drei Spalten (Person A · Gemeinsam · Person B) mit Terminen und abhakbaren Aufgaben, Wir-Zeit, Wetter, nächste Tage, Essen |
+| **Affirmationen** | `features/affirmations/*` | Motion: ruhige Wort-für-Wort-Einblendung, Wischen zum Wechseln, Fortschrittslinie, Lieblingsgedanken; personalisiert mit euren Namen; respektiert „Bewegung reduzieren“ |
+| **WIR-Begleiter** | `features/companion/*` | Das WIR-Zeichen (zwei Kreise, deren Abstand die Stimmung zeigt) plant Wir-Zeit mit: Wochenziel, eigene Zeit beider Personen, Abstand zur letzten Date Night, Check-in, volle Tage, Tagesenergie, Wetter → konkrete Vorschläge in **freien Zeitfenstern** (einplanen, verschieben oder ziehen). Frage des Tages, Wochenkompass, Ideen-Bibliothek |
 | **Essensplan** | `features/meals/*` | 11 Küchenwelten, 103 glutenfreie Gerichte, 13 Grundrezepte zum Selbermachen, Ersatz-Guide, Küchen-Kompass, Portionen, Fleischoption, „zusammen kochen“ zählt als Wir-Zeit, Nährwert-Schätzbereiche, Hinweise auf versteckte Glutenquellen je Zutat |
 | **Einkauf & Vorräte** | `features/shopping/*` | Liste entsteht automatisch aus dem Wochenplan; Vorräte zählen nur, wenn „GF geprüft“ |
 | Aufgaben, Familie, Einstellungen | `features/tasks`, `family`, `settings` | Wiederkehrende Aufgaben, Fristen, Baby & Familie, Namen, Ort, Kiosk pro Gerät (Abdunkeln, Nachtmodus), Sicherung |
@@ -130,11 +136,15 @@ src/
     calendar/     MonthView, TimeGrid (Woche/Tag), AgendaView, EventSheet, TemplateTray
     weather/      WeatherPanel, HourlyStrip, WeatherBadge, useWeather
     affirmations/ AffirmationCard (Motion)
-    companion/    engine.ts (reine Logik, getestet), CompanionAvatar, Vorschläge, EnergyCheckin
-    meals/        MealPlanner, MealSlotBox, RecipeDetail, DishArt
-    shopping/ tasks/ family/ settings/ home/
+    companion/    engine.ts (reine Logik, getestet), CompanionMark, Ring, Vorschläge, EnergyCheckin
+    meals/        MealPlanner, MealSlotBox, RecipeDetail, DishArt (typografisch)
+    home/         HomePage mit „Heute · wer macht was“
+    design/       Piktogramm-Übersicht (…/#piktogramme)
+    shopping/ tasks/ family/ settings/
   data/           Rezepte je Küche, Grundrezepte, Küchenwelten, Ersatz-Tabelle, Nährwerte, Bausteine
   lib/            Datum, Wiederholungen, Einkaufsliste, Nährwerte, Wetter
+  ui/             Icon (Piktogramme, WIR-Zeichen, Personen-Marken), Sheet, Segmented, Toast
+  styles/         base.css: Design-Tokens, Schrift, Grundelemente
   store/          Zustand-Store mit Rückgängig, Migration, Abgleich (sync.ts, merge.ts), Geräte-Einstellungen
 server/           Heimserver (Node.js, ohne Abhängigkeiten), systemd-Dienst, Tests
 public/sw.js      Service Worker für Offline-Start

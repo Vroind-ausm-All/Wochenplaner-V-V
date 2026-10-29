@@ -43,7 +43,7 @@ describe('Wetter an Terminen', () => {
 
   it('meldet Warnungen auch ohne Regen', () => {
     const alerts = normalizeAlerts({ alerts: [{ id: 1, severity: 'moderate', event_de: 'STURMBÖEN', onset: '2026-11-01T08:00:00+01:00', expires: '2026-11-01T14:00:00+01:00' }] });
-    expect(eventRisk({ on: '2026-11-01', time: '10:00', duration: 45 }, forecast, alerts)).toMatchObject({ level: 'bad', icon: '⚠️', reason: 'Wetterwarnung: Sturmböen' });
+    expect(eventRisk({ on: '2026-11-01', time: '10:00', duration: 45 }, forecast, alerts)).toMatchObject({ level: 'bad', icon: 'alert', reason: 'Wetterwarnung: Sturmböen' });
   });
 
   it('schlägt einen trockeneren, freien Zeitpunkt vor', () => {

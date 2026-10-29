@@ -83,7 +83,7 @@ describe('Erinnerungen', () => {
     const keys = dueReminders(state, at('2026-11-03', '07:00'), at('2026-11-04', '09:00'), tz).map((r) => r.key);
     expect(keys).toEqual(['f|2026-11-04|1440', 'g|2026-11-05|1440']);
     const msg = reminderMessage(dueReminders(state, at('2026-11-03', '18:59'), at('2026-11-03', '19:00'), tz)[0], { personA: 'Vera' });
-    expect(msg).toMatchObject({ title: '⏰ Morgen: Elternabend', body: '19:00 Uhr · Vera' });
+    expect(msg).toMatchObject({ title: 'Morgen: Elternabend', body: '19:00 Uhr · Vera' });
   });
 });
 
@@ -192,7 +192,7 @@ describe('Heimserver: Abos, Feed und Push', () => {
     const p = pushed.find((x) => x.url.endsWith('vera'));
     expect(p.headers['Content-Encoding']).toBe('aes128gcm');
     expect(p.headers.Authorization).toMatch(/^vapid t=.+, k=/);
-    expect(JSON.parse(decrypt(p.body, ua, auth))).toMatchObject({ title: '⏰ In 15 Min.: Zahnarzt', body: '14:30 Uhr · Vera' });
+    expect(JSON.parse(decrypt(p.body, ua, auth))).toMatchObject({ title: 'In 15 Min.: Zahnarzt', body: '14:30 Uhr · Vera' });
 
     pushed.length = 0;
     await server.wir.runReminders(due + 30_000);

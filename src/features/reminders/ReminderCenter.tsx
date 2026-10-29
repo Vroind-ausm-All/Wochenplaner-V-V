@@ -5,6 +5,7 @@ import { dueReminders, forWhom, type DueReminder } from '../../lib/reminders';
 import { useDevice } from '../../store/device';
 import { useStore } from '../../store/store';
 import './reminders.css';
+import { Icon } from '../../ui/Icon';
 
 const SHOWN_KEY = 'wir-reminders-shown';
 const SNOOZE_KEY = 'wir-reminders-snoozed';
@@ -94,7 +95,7 @@ export function ReminderCenter() {
       if (device.reminderSound) chime();
       // Liegt die App im Hintergrund, zusätzlich als Systemmitteilung (sofern erlaubt).
       if (document.hidden && 'Notification' in window && Notification.permission === 'granted')
-        navigator.serviceWorker?.ready.then((reg) => all.forEach((r) => reg.showNotification(`⏰ ${whenLabel(r)}: ${r.event.title}`, { tag: r.key, body: r.event.allDay ? 'ganztags' : `${r.event.time} Uhr` }))).catch(() => undefined);
+        navigator.serviceWorker?.ready.then((reg) => all.forEach((r) => reg.showNotification(`${whenLabel(r)}: ${r.event.title}`, { tag: r.key, body: r.event.allDay ? 'ganztags' : `${r.event.time} Uhr` }))).catch(() => undefined);
     };
     tick();
     const t = setInterval(tick, TICK_MS);
@@ -118,10 +119,8 @@ export function ReminderCenter() {
     <div className="reminders" aria-live="assertive">
       <AnimatePresence>
         {open.map((r) => (
-          <motion.div key={r.key} className="reminder" role="alert" layout initial={{ opacity: 0, y: 30, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, x: 60 }}>
-            <motion.span className="reminder__bell" animate={{ rotate: [0, -18, 16, -10, 6, 0] }} transition={{ duration: 1.2, repeat: 2, repeatDelay: 1.5 }}>
-              🔔
-            </motion.span>
+          <motion.div key={r.key} className="reminder" role="alert" layout initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+            <Icon name="bell" size={28} className="reminder__bell" />
             <div className="grow">
               <div className="reminder__when">{whenLabel(r)}</div>
               <b className="reminder__title">{r.event.title}</b>

@@ -318,7 +318,7 @@ export function createPlannerServer({
       }
       if (path === '/api/push/test') {
         if (!subs.some((x) => x.endpoint === body.endpoint)) return send(res, 404, { error: 'Dieses Gerät ist nicht angemeldet' });
-        const [result] = await deliver({ title: '🔔 Erinnerungen sind eingerichtet', body: 'So sehen Erinnerungen aus dem WIR. Wochenplaner aus.', tag: 'test', url: './' }, 'Beide', body.endpoint);
+        const [result] = await deliver({ title: 'Erinnerungen sind eingerichtet', body: 'So sehen Erinnerungen aus dem WIR. Wochenplaner aus.', tag: 'test', url: './' }, 'Beide', body.endpoint);
         return send(res, result === 'ok' ? 200 : 502, { result });
       }
     }

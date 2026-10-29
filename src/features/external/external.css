@@ -1,17 +1,19 @@
-/* Abo-Termine: Farbe des Kalenders, gestrichelter Rand – sichtbar „nur lesend“. */
-.ext-chip, .ext-block { --bg: hsl(var(--h) 45% 95%); --edge: hsl(var(--h) 40% 55%); --fg: hsl(var(--h) 30% 28%); border: 0; font: inherit; text-align: left; cursor: pointer; }
-:root[data-theme='night'] .ext-chip, :root[data-theme='night'] .ext-block { --bg: hsl(var(--h) 20% 18%); --edge: hsl(var(--h) 40% 62%); --fg: hsl(var(--h) 25% 86%); }
-.ev-chip.ext-chip { border-left: 4px dashed var(--edge); }
-.ev-chip.ext-chip.is-holiday { background: transparent; border-left-style: solid; color: hsl(var(--h) 55% 42%); font-weight: 700; }
-:root[data-theme='night'] .ev-chip.ext-chip.is-holiday { color: hsl(var(--h) 60% 72%); }
-.ev-block.ext-block { border-left: 5px dashed var(--edge); box-shadow: none; opacity: .92; z-index: 2; }
-.agenda__item.ext-chip { border-left: 6px dashed var(--edge); width: 100%; }
-.ext-dot { width: 14px; height: 14px; border-radius: 50%; background: hsl(var(--h) 45% 55%); flex: none; }
-.cal-sub { display: grid; gap: 6px; padding: 12px; border-radius: 14px; background: var(--paper-2); border-left: 5px solid hsl(var(--h) 45% 55%); }
-.cal-sub .ext-dot, .hue-chip .ext-dot { background: hsl(var(--h) 45% 55%); }
+/* Abo-Termine: gestrichelte Kante in der Farbe des Abos – sichtbar „nur lesend“. */
+.ext-chip, .ext-block { --edge: hsl(var(--h) 35% 45%); --bg: transparent; --fg: var(--ink); border: 0; font: inherit; text-align: left; cursor: pointer; }
+:root[data-theme='night'] .ext-chip, :root[data-theme='night'] .ext-block { --edge: hsl(var(--h) 40% 65%); }
+.ev-chip.ext-chip { border-left: 2px dashed var(--edge); }
+.ev-chip.ext-chip.is-holiday { border-left: 0; padding-left: 0; color: var(--ink-2); font-weight: 600; }
+.ev-chip.ext-chip.is-holiday .icon { color: var(--accent); }
+.ev-block.ext-block { border: 1px dashed var(--line-strong); border-left: 3px dashed var(--edge); background: var(--paper); z-index: 2; }
+.agenda__item.ext-chip { border-left: 2px dashed var(--edge); width: 100%; border-top: 1px solid var(--line); }
+.ext-dot { width: 10px; height: 10px; border-radius: 50%; background: hsl(var(--h) 35% 50%); flex: none; }
+.cal-sub { display: grid; gap: 6px; padding: 12px 0 12px 14px; border-top: 1px solid var(--line); border-left: 2px solid hsl(var(--h) 35% 50%); }
+.cal-sub .ext-dot, .hue-chip .ext-dot { background: hsl(var(--h) 35% 50%); }
 .hue-chip { min-width: 44px; justify-content: center; padding: 0; }
-.hue-chip[aria-pressed='true'] { background: hsl(var(--h) 45% 88%); border-color: hsl(var(--h) 45% 55%); }
-.cal-add { padding-top: 6px; border-top: 1px dashed var(--line-strong); }
+.hue-chip[aria-pressed='true'] { background: transparent; border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.cal-add { padding-top: 10px; border-top: 1px dashed var(--line-strong); }
 .help-list { display: grid; gap: 6px; padding-left: 18px; margin: 8px 0 0; }
-details summary { cursor: pointer; font-weight: 650; min-height: 32px; }
-.feed-url { display: block; padding: 10px 12px; border-radius: 10px; background: var(--paper-2); font-size: 13px; word-break: break-all; }
+details summary { cursor: pointer; font-weight: 600; min-height: 32px; }
+.feed-url { display: block; padding: 10px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 13px; word-break: break-all; font-variant-numeric: tabular-nums; }
+.is-spinning { animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }

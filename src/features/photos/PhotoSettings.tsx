@@ -5,6 +5,7 @@ import { useSync } from '../../store/sync';
 import { Chips } from '../../ui/Segmented';
 import { addPhotos, loadPhotos, removePhoto, usePhotos } from './photoStore';
 import './screensaver.css';
+import { Icon } from '../../ui/Icon';
 
 /** Fotos hochladen und den Bildschirmschoner dieses Geräts einstellen. */
 export function PhotoSettings() {
@@ -33,10 +34,10 @@ export function PhotoSettings() {
       </p>
       <div className="row wrap">
         <button className="btn primary" onClick={() => input.current?.click()} disabled={uploading > 0}>
-          {uploading ? `Lade hoch … (${uploading})` : '📷 Fotos hinzufügen'}
+          {uploading ? `Lade hoch … (${uploading})` : <><Icon name="camera" size={18} /> Fotos hinzufügen</>}
         </button>
         <button className="btn" onClick={() => window.dispatchEvent(new Event('wir:screensaver'))}>
-          ▶ Vorschau
+          <Icon name="play" size={16} /> Vorschau
         </button>
         <span className="small muted">{loading ? 'lädt …' : `${photos.length} Fotos`}</span>
       </div>
@@ -48,7 +49,7 @@ export function PhotoSettings() {
             <div key={p.id} className="photo-thumb">
               <img src={p.url} alt="" loading="lazy" />
               <button className="photo-thumb__del" aria-label="Foto löschen" onClick={() => confirm('Dieses Foto löschen?') && void removePhoto(p)}>
-                ✕
+                <Icon name="close" size={16} />
               </button>
             </div>
           ))}
@@ -66,10 +67,10 @@ export function PhotoSettings() {
       </div>
       <div className="chips">
         <button className="chip" aria-pressed={device.screensaverInfo} onClick={() => updateDevice({ screensaverInfo: !device.screensaverInfo })}>
-          🕒 Uhr, Wetter & nächste Termine
+          Uhr, Wetter & nächste Termine
         </button>
         <button className="chip" aria-pressed={device.screensaverNightBlack} onClick={() => updateDevice({ screensaverNightBlack: !device.screensaverNightBlack })}>
-          🌙 Nachts schwarz statt Fotos
+          Nachts schwarz statt Fotos
         </button>
       </div>
       <p className="small muted">Erinnerungen beenden den Bildschirmschoner automatisch. Ohne Fotos erscheint ein ruhiger Bildschirm mit dem Gedanken des Tages.</p>

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { SEVERITY, type WeatherAlert } from '../../lib/alerts';
 import { Sheet } from '../../ui/Sheet';
 import { useActiveAlerts } from './useAlerts';
+import { Icon, type IconName } from '../../ui/Icon';
 
 const span = (a: WeatherAlert) => {
   const f = (t: number) => {
@@ -14,8 +15,9 @@ const span = (a: WeatherAlert) => {
   return a.expires ? `${f(a.onset)} – ${f(a.expires)}` : `ab ${f(a.onset)}`;
 };
 
-const icon = (event: string) =>
-  /gewitter/i.test(event) ? '⛈️' : /sturm|orkan|wind|böen/i.test(event) ? '🌬️' : /schnee|glätte|glatteis|frost/i.test(event) ? '🧊' : /regen|tauwetter|hochwasser/i.test(event) ? '🌧️' : /hitze|uv/i.test(event) ? '🌡️' : /nebel/i.test(event) ? '🌫️' : '⚠️';
+/** Piktogramm passend zur Warnung (Name aus ui/Icon). */
+const icon = (event: string): IconName =>
+  /gewitter/i.test(event) ? 'storm' : /sturm|orkan|wind|böen/i.test(event) ? 'wind' : /schnee|glätte|glatteis|frost/i.test(event) ? 'snow' : /regen|tauwetter|hochwasser/i.test(event) ? 'rain' : /hitze|uv/i.test(event) ? 'thermometer' : /nebel/i.test(event) ? 'fog' : 'alert';
 
 /** Amtliche Warnungen des DWD – farbig nach Stufe, antippen zeigt Details und Verhaltenshinweise. */
 export function AlertBanner({ compact }: { compact?: boolean }) {
@@ -31,17 +33,17 @@ export function AlertBanner({ compact }: { compact?: boolean }) {
             className={`alert-banner ${compact ? 'is-compact' : ''}`}
             style={{ '--sev': SEVERITY[a.severity].color } as React.CSSProperties}
             onClick={() => setOpen(a)}
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0, height: 0 }}
           >
-            <span className="alert-banner__icon">{icon(a.event)}</span>
+            <Icon name={icon(a.event)} size={28} className="alert-banner__icon" />
             <span className="grow">
               <span className="alert-banner__level">{SEVERITY[a.severity].label}</span>
               <b>{a.event ? a.event.charAt(0) + a.event.slice(1).toLowerCase() : a.headline}</b>
               <span className="small"> · {span(a)}</span>
             </span>
-            {!compact && <span className="small">Details ›</span>}
+            {!compact && <Icon name="chevron-right" />}
           </motion.button>
         ))}
       </AnimatePresence>
@@ -49,7 +51,7 @@ export function AlertBanner({ compact }: { compact?: boolean }) {
         {open && (
           <div className="stack">
             <p>
-              <span className="badge" style={{ background: SEVERITY[open.severity].color, color: '#fff' }}>
+              <span className="badge" style={{ borderColor: SEVERITY[open.severity].color, color: SEVERITY[open.severity].color }}>
                 {SEVERITY[open.severity].label}
               </span>{' '}
               {span(open)}

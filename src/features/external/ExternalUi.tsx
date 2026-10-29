@@ -5,6 +5,7 @@ import { useStore } from '../../store/store';
 import { Sheet } from '../../ui/Sheet';
 import { timeRange } from '../calendar/EventChip';
 import './external.css';
+import { Icon } from '../../ui/Icon';
 
 /** Abo-Termine und Feiertage sind nur lesbar: antippen zeigt Details statt sie auszuwählen. */
 export const useExternalDetail = create<{ open: Occurrence | null }>(() => ({ open: null }));
@@ -14,13 +15,13 @@ const show = (e: Occurrence) => (ev: React.MouseEvent) => {
 };
 
 const style = (e: Occurrence) => ({ '--h': e.external?.hue ?? 210 }) as React.CSSProperties;
-const icon = (e: Occurrence) => (e.external?.kind === 'holiday' ? (e.external.official ? '🎉' : '✨') : '📅');
+const icon = (e: Occurrence) => (e.external?.kind === 'holiday' ? (e.external.official ? 'star' : 'sparkle') : 'link');
 const spanLabel = (e: Occurrence) => (e.external?.span ? ` (${e.external.span.day}/${e.external.span.of})` : '');
 
 export function ExternalChip({ e, showTime = true }: { e: Occurrence; showTime?: boolean }) {
   return (
     <button type="button" className={`ev-chip ext-chip ${e.external?.kind === 'holiday' ? 'is-holiday' : ''}`} style={style(e)} onClick={show(e)} title={`${e.title} · ${e.external?.calendarName}`}>
-      <span className="ev-chip__emoji">{icon(e)}</span>
+      <Icon name={icon(e)} size={14} className="ev-chip__icon" />
       {showTime && !e.allDay && <span className="ev-chip__time">{e.time}</span>}
       <span className="ellipsis">{e.title}</span>
     </button>
@@ -30,7 +31,7 @@ export function ExternalChip({ e, showTime = true }: { e: Occurrence; showTime?:
 export function ExternalBlock({ e, style: pos }: { e: Occurrence; style: React.CSSProperties }) {
   return (
     <button type="button" className="ev-block ext-block" style={{ ...style(e), ...pos }} onClick={show(e)} title={`${e.title} · ${timeRange(e)} · ${e.external?.calendarName}`}>
-      <div className="ev-block__title ellipsis">📅 {e.title}</div>
+      <div className="ev-block__title ellipsis"><Icon name="link" size={14} /> {e.title}</div>
       <div className="ev-block__meta row">
         <span>{timeRange(e)}</span>
         <span className="grow" />
@@ -44,14 +45,14 @@ export function ExternalAgendaItem({ e }: { e: Occurrence }) {
   return (
     <button type="button" className="agenda__item ext-chip" style={style(e)} onClick={show(e)}>
       <span className="agenda__time">{e.allDay ? 'ganztags' : timeRange(e)}</span>
-      <span className="agenda__emoji">{icon(e)}</span>
+      <Icon name={icon(e)} size={18} className="agenda__icon" />
       <span className="grow">
         <b>
           {e.title}
           {spanLabel(e)}
         </b>
         <span className="small muted"> · {e.external?.calendarName}</span>
-        {e.external?.location && <div className="small muted ellipsis">📍 {e.external.location}</div>}
+        {e.external?.location && <div className="small muted ellipsis"><Icon name="pin" size={12} /> {e.external.location}</div>}
       </span>
     </button>
   );
@@ -102,7 +103,7 @@ export function ExternalSheet() {
             <span className="ext-dot" style={style(e)} /> {e.external?.calendarName}
             {e.external?.kind === 'holiday' && (e.external.official ? ' – gesetzlicher Feiertag' : ' – kein Feiertag, aber ein besonderer Tag')}
           </p>
-          {e.external?.location && <p>📍 {e.external.location}</p>}
+          {e.external?.location && <p className="row"><Icon name="pin" size={16} /> {e.external.location}</p>}
           {e.external?.description && <p className="small muted" style={{ whiteSpace: 'pre-wrap' }}>{e.external.description}</p>}
           {e.external?.kind === 'ics' && <p className="small muted">Abo-Termine werden im Ursprungskalender geändert und hier automatisch aktualisiert.</p>}
         </div>

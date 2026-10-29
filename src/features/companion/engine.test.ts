@@ -71,7 +71,7 @@ describe('WIR-Begleiter mit Abo-Kalendern und Feiertagen', () => {
     d.events = [];
     const holiday = { ...ext('2026-10-29', '00:00', 1440, false), title: 'Reformationstag', allDay: true, external: { kind: 'holiday' as const, calendarId: 'feiertage', calendarName: 'Feiertag', hue: 0, busy: false, official: true } };
     const r = analyze({ data: d, today: '2026-10-27', now: '08:00', external: [holiday] });
-    expect(r.messages.join(' ')).toContain('Reformationstag');
+    expect(r.messages.map((m) => m.text).join(' ')).toContain('Reformationstag');
     expect(r.suggestions.find((s) => s.date === '2026-10-29' && s.time < '18:00')).toBeTruthy();
   });
 });
@@ -86,7 +86,7 @@ describe('WIR-Begleiter bei Wetterwarnungen', () => {
     const r = analyze({ data: d, today: '2026-10-27', now: '08:00', weather, alerts });
     const wir = r.suggestions.find((s) => s.kind === 'wir');
     expect(wir?.idea?.place).not.toBe('draußen');
-    expect(r.messages.join(' ')).toContain('Sturmböen');
+    expect(r.messages.map((m) => m.text).join(' ')).toContain('Sturmböen');
     expect(r.mood).toBe('concerned');
     const calm = analyze({ data: d, today: '2026-10-27', now: '08:00', weather });
     expect(calm.suggestions.find((s) => s.kind === 'wir')?.idea?.place).not.toBe('drinnen');

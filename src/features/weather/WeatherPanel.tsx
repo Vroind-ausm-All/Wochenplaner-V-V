@@ -2,10 +2,11 @@ import { motion } from 'motion/react';
 import { fmt } from '../../lib/date';
 import { rainSoon } from '../../lib/eventWeather';
 import { useNow, useToday } from '../../lib/useClock';
-import { isOutdoorFriendly, weatherIcon, weatherKind, weatherLabel } from '../../lib/weather';
+import { isOutdoorFriendly, weatherIcon, weatherLabel } from '../../lib/weather';
 import { useStore } from '../../store/store';
 import { useWeatherStore } from './useWeather';
 import './weather.css';
+import { Icon } from '../../ui/Icon';
 
 /** Wetterausblick: aktuelle Lage + 7 Tage. Tippen auf einen Tag öffnet die Tagesansicht. */
 export function WeatherPanel({ days = 7 }: { days?: number }) {
@@ -17,20 +18,17 @@ export function WeatherPanel({ days = 7 }: { days?: number }) {
   if (!forecast)
     return (
       <section className="card wx">
-        <div className="eyebrow">Wetter</div>
+        <span className="eyebrow">Wetter</span>
         <p className="muted">{loading ? 'Wetter wird geladen …' : error ?? 'Ort in den Einstellungen wählen.'}</p>
       </section>
     );
 
   const c = forecast.current;
   const list = forecast.daily.filter((d) => d.date >= today).slice(0, days);
-  const kind = weatherKind(c.code);
-  return (
-    <section className={`card wx wx--${kind} ${c.isDay ? '' : 'wx--night'}`} aria-label="Wetterausblick">
+    return (
+    <section className="card wx" aria-label="Wetterausblick">
       <div className="wx__now">
-        <motion.span className="wx__big" animate={kind === 'clear' ? { rotate: [0, 8, 0] } : { y: [0, -3, 0] }} transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}>
-          {weatherIcon(c.code, c.isDay)}
-        </motion.span>
+        <Icon name={weatherIcon(c.code, c.isDay)} size={56} strokeWidth={1.25} className="wx__big" />
         <div>
           <div className="wx__temp">{Math.round(c.temp)}°</div>
           <div className="small">
@@ -43,7 +41,7 @@ export function WeatherPanel({ days = 7 }: { days?: number }) {
         const soon = rainSoon(forecast);
         return soon ? (
           <div className="wx__soon">
-            ☔ <span>Regen ab {soon.hour} Uhr wahrscheinlich ({soon.rain} %) – Schirm einpacken.</span>
+            <Icon name="umbrella" size={18} /> <span>Regen ab {soon.hour} Uhr wahrscheinlich ({soon.rain} %) – Schirm einpacken.</span>
           </div>
         ) : null;
       })()}
@@ -53,17 +51,17 @@ export function WeatherPanel({ days = 7 }: { days?: number }) {
             key={d.date}
             className={`wx__day ${isOutdoorFriendly(d) ? 'is-nice' : ''}`}
             onClick={() => setUi({ view: 'calendar', calendarMode: 'day', cursor: d.date })}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.04 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2, delay: i * 0.02 }}
             title={`${weatherLabel(d.code)} · Regen ${d.rain} %`}
           >
             <span className="small">{i === 0 ? 'Heute' : fmt.weekday(d.date)}</span>
-            <span className="wx__icon">{weatherIcon(d.code)}</span>
+            <Icon name={weatherIcon(d.code)} size={24} className="wx__icon" />
             <b>{Math.round(d.max)}°</b>
             <span className="small muted">{Math.round(d.min)}°</span>
             <span className="wx__rain" style={{ opacity: d.rain > 20 ? 1 : 0.35 }}>
-              💧{d.rain}%
+              {d.rain} %
             </span>
           </motion.button>
         ))}
@@ -81,11 +79,11 @@ export function HourlyStrip({ date }: { date: string }) {
   return (
     <section className="card wx wx--strip">
       <div className="row">
-        <span className="wx__icon">{weatherIcon(day.code)}</span>
+        <Icon name={weatherIcon(day.code)} size={32} className="wx__icon" />
         <div className="grow">
           <b>{weatherLabel(day.code)}</b>
           <div className="small muted">
-            {Math.round(day.min)}° bis {Math.round(day.max)}° · ☀ {day.sunrise}–{day.sunset}
+            {Math.round(day.min)}° bis {Math.round(day.max)}° · Sonne {day.sunrise}–{day.sunset}
           </div>
         </div>
         {isOutdoorFriendly(day) && <span className="badge">gut für draußen</span>}
@@ -95,9 +93,9 @@ export function HourlyStrip({ date }: { date: string }) {
           {hours.map((h) => (
             <div key={h.time} className="wx__hour">
               <span className="small muted">{h.time.slice(11, 13)}</span>
-              <span>{weatherIcon(h.code, Number(h.time.slice(11, 13)) > 6 && Number(h.time.slice(11, 13)) < 20)}</span>
+              <Icon name={weatherIcon(h.code, Number(h.time.slice(11, 13)) > 6 && Number(h.time.slice(11, 13)) < 20)} size={20} />
               <b className="small">{Math.round(h.temp)}°</b>
-              {h.rain >= 30 && <span className="small">💧</span>}
+              {h.rain >= 30 && <Icon name="drop" size={12} label={`Regen ${h.rain} %`} />}
             </div>
           ))}
         </div>
@@ -112,7 +110,7 @@ export function WeatherNow() {
   if (!f) return null;
   return (
     <span className="wx-now" title={`${weatherLabel(f.current.code)} in ${f.location.name}`}>
-      {weatherIcon(f.current.code, f.current.isDay)} <b>{Math.round(f.current.temp)}°</b>
+      <Icon name={weatherIcon(f.current.code, f.current.isDay)} size={22} /> <b>{Math.round(f.current.temp)}°</b>
     </span>
   );
 }

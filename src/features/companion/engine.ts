@@ -4,6 +4,7 @@ import { addDays, daysBetween, fmt, fromMinutes, isWeekend, monday, range, toMin
 import { occurrences, type Occurrence } from '../../lib/recurrence';
 import { isOutdoorFriendly, type DailyWeather } from '../../lib/weather';
 import type { CalendarEvent, Energy, ISODate, PlannerData, Time } from '../../store/types';
+import type { IconName } from '../../ui/Icon';
 import { DATE_IDEAS, QUESTIONS, type DateIdea } from './ideas';
 
 /**
@@ -21,7 +22,7 @@ export interface Suggestion {
   id: string;
   kind: 'wir' | 'date' | 'checkin' | 'ich-a' | 'ich-b' | 'rest' | 'meal';
   title: string;
-  emoji: string;
+  icon: IconName;
   reason: string;
   date: ISODate;
   time: Time;
@@ -32,10 +33,16 @@ export interface Suggestion {
   idea?: DateIdea;
 }
 
+/** Hinweis des Begleiters: Piktogramm + kurzer Satz. */
+export interface Message {
+  icon: IconName;
+  text: string;
+}
+
 export interface CompanionReport {
   mood: Mood;
   headline: string;
-  messages: string[];
+  messages: Message[];
   question: string;
   week: ISODate;
   wir: { minutes: number; goal: number; planned: number };
@@ -163,7 +170,7 @@ export function analyze({ data, today, now, weather = [], external = [], alerts 
     if (slot) {
       const quick = pickRecipe(today, (r) => r.minutes <= 30, s.favoriteCuisines);
       suggestions.push({
-        id: id('rest-' + today), kind: 'rest', emoji: '🛋️', title: 'Ruhiger Abend ohne Programm',
+        id: id('rest-' + today), kind: 'rest', icon: 'armchair', title: 'Ruhiger Abend ohne Programm',
         reason: `Ihr seid beide erschöpft. Heute nichts mehr leisten – ${quick ? `${quick.name} geht in ${quick.minutes} Minuten` : 'etwas Einfaches essen'} und früh ins Bett.`,
         date: today, time: fromMinutes(slot[0]), duration: 60, category: 'Wir', owner: 'Beide', recipe: quick,
       });
@@ -174,7 +181,7 @@ export function analyze({ data, today, now, weather = [], external = [], alerts 
     const slot = findSlot(15, (d) => (weekdayIndex(d) === 6 ? 10 : weekdayIndex(d) === 5 ? 5 : 0), '17:00');
     if (slot)
       suggestions.push({
-        id: id('checkin'), kind: 'checkin', emoji: '🧭', title: 'WIR-Check-in', duration: 15, category: 'Wir', owner: 'Beide', ...slot,
+        id: id('checkin'), kind: 'checkin', icon: 'compass', title: 'WIR-Check-in', duration: 15, category: 'Wir', owner: 'Beide', ...slot,
         reason: '15 Minuten Wochenkompass: Termine, Verantwortung, Erholung – und wer nächste Woche Hilfe braucht.',
       });
   }
@@ -187,7 +194,7 @@ export function analyze({ data, today, now, weather = [], external = [], alerts 
       const idea = rainy(slot.date) ? DATE_IDEAS.find((x) => x.id === 'cook')! : DATE_IDEAS.find((x) => x.id === 'restaurant')!;
       const recipe = idea.id === 'cook' ? pickRecipe(slot.date, (r) => r.group === 'Besonders', s.favoriteCuisines) : undefined;
       suggestions.push({
-        id: id('date'), kind: 'date', emoji: idea.emoji, title: idea.id === 'cook' ? `Date Night: ${recipe ? recipe.name : 'Kochabend'}` : 'Date Night',
+        id: id('date'), kind: 'date', icon: idea.icon, title: idea.id === 'cook' ? `Date Night: ${recipe ? recipe.name : 'Kochabend'}` : 'Date Night',
         reason: (daysSinceDate === null ? 'Ich finde noch keine Date Night im Kalender.' : `Eure letzte Date Night ist ${daysSinceDate} Tage her.`) + ' ' + idea.text,
         duration: 120, category: 'Wir', owner: 'Beide', idea, recipe, ...slot,
       });
@@ -203,7 +210,7 @@ export function analyze({ data, today, now, weather = [], external = [], alerts 
       const pool = DATE_IDEAS.filter((x) => x.minutes <= 90 && (outdoor ? x.place !== 'drinnen' : x.place !== 'draußen') && x.energy <= (lowA || lowB ? 1 : 2));
       const idea = pool[hash(slot.date + week) % pool.length] ?? DATE_IDEAS[0];
       suggestions.push({
-        id: id('wir'), kind: 'wir', emoji: idea.emoji, title: idea.title, duration: idea.minutes, category: 'Wir', owner: 'Beide', idea, ...slot,
+        id: id('wir'), kind: 'wir', icon: idea.icon, title: idea.title, duration: idea.minutes, category: 'Wir', owner: 'Beide', idea, ...slot,
         reason: `Noch ${fmt.duration(missing)} bis zu eurem Wir-Ziel.${w ? ` ${fmt.weekdayLong(slot.date)}: ${Math.round(w.max)}° – ${outdoor ? 'gut für draußen' : 'eher etwas für drinnen'}.` : ''} ${idea.text}`,
       });
     }
@@ -215,7 +222,7 @@ export function analyze({ data, today, now, weather = [], external = [], alerts 
     const slot = findSlot(60, dayScore);
     if (slot)
       suggestions.push({
-        id: id(kind), kind, emoji: '🌿', title: `Eigene Zeit für ${name}`, duration: 60, category: 'Ich', owner: who, ...slot,
+        id: id(kind), kind, icon: 'leaf', title: `Eigene Zeit für ${name}`, duration: 60, category: 'Ich', owner: who, ...slot,
         reason: `${name} hat diese Woche erst ${fmt.duration(mins)} nur für sich. Erholung ist keine Belohnung, sondern ein Bedürfnis.`,
       });
   }
@@ -225,7 +232,7 @@ export function analyze({ data, today, now, weather = [], external = [], alerts 
     const r = pickRecipe(d, (x) => x.minutes <= 30 || x.technique === 'Airfryer', s.favoriteCuisines);
     if (r)
       suggestions.push({
-        id: id('meal-' + d), kind: 'meal', emoji: r.symbol, title: `${fmt.weekday(d)}: ${r.name}`, recipe: r,
+        id: id('meal-' + d), kind: 'meal', icon: 'pot', title: `${fmt.weekday(d)}: ${r.name}`, recipe: r,
         reason: `${fmt.weekdayLong(d)} ist voll. Plant schon jetzt etwas Schnelles (${r.minutes} Min.) – ein Gedanke weniger.`,
         date: d, time: '18:30', duration: r.minutes, category: 'Haushalt', owner: 'Beide',
       });
@@ -243,16 +250,17 @@ export function analyze({ data, today, now, weather = [], external = [], alerts 
   else if (busyDays.filter((d) => d >= today).length >= 3 || overdue) mood = 'concerned';
   else if (ratio >= 0.6) mood = 'happy';
 
-  const messages: string[] = [];
+  const messages: Message[] = [];
+  const say = (icon: IconName, text: string) => messages.push({ icon, text });
   const warnToday = strong.find(() => warned(today)) ?? strong[0];
-  if (warnToday) messages.push(`⚠️ Wetterwarnung: ${warnToday.event.charAt(0)}${warnToday.event.slice(1).toLowerCase()} – Pläne draußen lieber verschieben, Ideen für drinnen gibt es genug.`);
-  if (specialDays[0]) messages.push(`🎉 ${specialDays[0].title} – ${fmt.relative(specialDays[0].on, today)}.`);
+  if (warnToday) say('alert', `Wetterwarnung: ${warnToday.event.charAt(0)}${warnToday.event.slice(1).toLowerCase()} – Pläne draußen lieber verschieben, Ideen für drinnen gibt es genug.`);
+  if (specialDays[0]) say('star', `${specialDays[0].title} – ${fmt.relative(specialDays[0].on, today)}.`);
   const nextHoliday = holidays.find((h) => h.on >= today && !isWeekend(h.on));
-  if (nextHoliday) messages.push(`🌿 ${fmt.weekdayLong(nextHoliday.on)} ist ${nextHoliday.title} – ein freier Tag für euch.`);
-  if (nextDate) messages.push(`💞 Nächste Date Night: ${fmt.relative(nextDate.on, today)}${nextDate.allDay ? '' : `, ${nextDate.time} Uhr`}.`);
-  if (busyDays.length) messages.push(`📆 Volle Tage: ${busyDays.map(fmt.weekday).join(', ')} – dort lieber nichts zusätzlich einplanen.`);
-  if (lowA !== lowB) messages.push(`🔋 ${lowA ? A : B} hat heute wenig Energie. Vielleicht übernimmt ${lowA ? B : A} heute den Abend?`);
-  if (Math.abs(ichA - ichB) >= 120) messages.push(`⚖️ Eigene Zeit ist ungleich verteilt (${A}: ${fmt.duration(ichA)}, ${B}: ${fmt.duration(ichB)}).`);
+  if (nextHoliday) say('leaf', `${fmt.weekdayLong(nextHoliday.on)} ist ${nextHoliday.title} – ein freier Tag für euch.`);
+  if (nextDate) say('wir', `Nächste Date Night: ${fmt.relative(nextDate.on, today)}${nextDate.allDay ? '' : `, ${nextDate.time} Uhr`}.`);
+  if (busyDays.length) say('calendar', `Volle Tage: ${busyDays.map(fmt.weekday).join(', ')} – dort lieber nichts zusätzlich einplanen.`);
+  if (lowA !== lowB) say('battery-low', `${lowA ? A : B} hat heute wenig Energie. Vielleicht übernimmt ${lowA ? B : A} heute den Abend?`);
+  if (Math.abs(ichA - ichB) >= 120) say('users', `Eigene Zeit ist ungleich verteilt (${A}: ${fmt.duration(ichA)}, ${B}: ${fmt.duration(ichB)}).`);
 
   const headline =
     mood === 'sleepy' ? 'Schlaft gut. Morgen ist auch noch ein Tag.'
