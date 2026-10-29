@@ -90,6 +90,7 @@ export function ReminderCenter() {
       for (const r of fresh) shown[r.key] = now;
       writeMap(SHOWN_KEY, shown);
       setOpen((o) => [...o.filter((x) => !all.some((a) => a.key === x.key)), ...all]);
+      window.dispatchEvent(new Event('wir:wake')); // Bildschirmschoner beenden, damit man es sieht
       if (device.reminderSound) chime();
       // Liegt die App im Hintergrund, zusätzlich als Systemmitteilung (sofern erlaubt).
       if (document.hidden && 'Notification' in window && Notification.permission === 'granted')

@@ -12,8 +12,10 @@ import { SettingsPage } from '../features/settings/SettingsPage';
 import { ShoppingPage } from '../features/shopping/ShoppingPage';
 import { TasksPage } from '../features/tasks/TasksPage';
 import { ExternalSheet } from '../features/external/ExternalUi';
+import { Screensaver } from '../features/photos/Screensaver';
 import { ReminderCenter } from '../features/reminders/ReminderCenter';
 import { useExternalUpdater } from '../features/external/useExternal';
+import { useAlertUpdater } from '../features/weather/useAlerts';
 import { useWeatherUpdater } from '../features/weather/useWeather';
 import { WeatherNow } from '../features/weather/WeatherPanel';
 import { useNow } from '../lib/useClock';
@@ -55,6 +57,7 @@ export function App() {
   const kiosk = useKiosk();
   useWeatherUpdater();
   useExternalUpdater();
+  useAlertUpdater();
   useEffect(() => void discoverServer(), []);
   const Page = PAGES[view];
 
@@ -111,6 +114,7 @@ export function App() {
         <Toast />
         <ServerLoginSheet />
         <ReminderCenter />
+        <AnimatePresence>{kiosk.screensaver && !kiosk.sleeping && <Screensaver night={kiosk.night} onClose={kiosk.closeScreensaver} />}</AnimatePresence>
         <AnimatePresence>
           {(kiosk.sleeping || kiosk.dimmed) && (
             <motion.div

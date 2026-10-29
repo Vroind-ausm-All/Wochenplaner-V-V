@@ -7,6 +7,7 @@ import { useStore } from '../../store/store';
 import type { Location } from '../../store/types';
 import { Chips } from '../../ui/Segmented';
 import { CalendarSettings } from '../external/CalendarSettings';
+import { PhotoSettings } from '../photos/PhotoSettings';
 import { FeedCard, ReminderSettings } from '../reminders/ReminderSettings';
 import { InstallCard, SyncPanel } from '../sync/SyncUi';
 
@@ -87,6 +88,7 @@ export function SettingsPage() {
 
       <CalendarSettings />
       <ReminderSettings />
+      <PhotoSettings />
 
       <section className="card stack">
         <h3>Essen</h3>

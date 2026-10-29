@@ -13,6 +13,8 @@
 //   GET  /api/feed     → { path } Adresse des eigenen Kalender-Feeds;  POST /api/feed/rotate → neue Adresse
 //   GET  /api/feed/<token>.ics → euer Plan als iCal (ohne Anmeldung, nur mit geheimem Token)
 //   GET  /api/push/key, POST /api/push/subscribe | unsubscribe | test → Erinnerungen als Push-Nachricht
+//   GET  /api/photos, POST /api/photos (Bild als Rohdaten), GET|DELETE /api/photos/<id> → Fotos für den Bildschirmschoner
+//   GET  /api/alerts?lat=&lon= → amtliche Wetterwarnungen (DWD über Bright Sky), falls der Browser sie nicht direkt abrufen kann
 
 import { createHash, createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync, writeFileSync, copyFileSync, createReadStream } from 'node:fs';
@@ -21,6 +23,7 @@ import { extname, join, normalize, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildFeed } from './feed.mjs';
 import { createIcsFetcher } from './ics.mjs';
+import { createPhotoStore, MAX_PHOTO_BYTES } from './photos.mjs';
 import { loadVapid, sendPush } from './push.mjs';
 import { dueReminders, forSubscriber, reminderMessage } from './reminders.mjs';
 import { serverZone } from './time.mjs';
@@ -47,7 +50,7 @@ const REMINDER_TICK_MS = 30_000;
  *   scheduler?: boolean, icsAllowLoopback?: boolean, pushFetch?: typeof fetch, tz?: string, pushContact?: string }} opts
  */
 export function createPlannerServer({
-  dataDir, password, distDir, log = () => {}, scheduler = true, icsAllowLoopback = false, pushFetch = fetch,
+  dataDir, password, distDir, log = () => {}, scheduler = true, icsAllowLoopback = false, pushFetch = fetch, alertFetch = fetch,
   tz = serverZone(), pushContact = process.env.WIR_PUSH_CONTACT || 'mailto:wir-wochenplaner@example.org',
 }) {
   if (!password) throw new Error('Kein Haushalts-Passwort gesetzt (WIR_PASSWORD).');
@@ -66,6 +69,8 @@ export function createPlannerServer({
   const clients = new Set();
   const failures = new Map();
   const fetchIcs = createIcsFetcher({ allowLoopback: icsAllowLoopback });
+  const alertCache = new Map();
+  const photos = createPhotoStore(dataDir);
 
   // ---- Kalender-Feed: geheimes Token in der Adresse, weil Kalender-Apps keine Anmeldung können ----
   const tokenFile = join(dataDir, 'feed-token');
@@ -151,10 +156,11 @@ export function createPlannerServer({
     renameSync(tmp, stateFile);
   }
 
-  function broadcast() {
-    const msg = `event: update\ndata: ${JSON.stringify({ revision: store.revision })}\n\n`;
+  function broadcastEvent(name, data) {
+    const msg = `event: ${name}\ndata: ${JSON.stringify(data)}\n\n`;
     for (const res of clients) res.write(msg);
   }
+  const broadcast = () => broadcastEvent('update', { revision: store.revision });
 
   // ---- Hilfsfunktionen ----
   const send = (res, status, body, headers = {}) => {
@@ -167,18 +173,30 @@ export function createPlannerServer({
       const chunks = [];
       req.on('data', (c) => {
         size += c.length;
-        if (size > MAX_BODY) {
-          fail(Object.assign(new Error('zu groß'), { status: 413 }));
-          req.destroy();
-        } else chunks.push(c);
+        if (size <= MAX_BODY) chunks.push(c);
       });
       req.on('end', () => {
+        if (size > MAX_BODY) return fail(Object.assign(new Error('Datenstand zu groß'), { status: 413 }));
         try {
           ok(JSON.parse(Buffer.concat(chunks).toString('utf8') || '{}'));
         } catch {
           fail(Object.assign(new Error('ungültiges JSON'), { status: 400 }));
         }
       });
+      req.on('error', fail);
+    });
+  /** Rohdaten lesen. Zu große Uploads werden zu Ende gelesen (verworfen), damit das Gerät „zu groß“ statt eines Verbindungsfehlers sieht. */
+  const readRaw = (req, limit, message = 'Zu groß') =>
+    new Promise((ok, fail) => {
+      let size = 0;
+      let tooBig = Number(req.headers['content-length'] || 0) > limit;
+      const chunks = [];
+      req.on('data', (c) => {
+        size += c.length;
+        if (size > limit) tooBig = true;
+        if (!tooBig) chunks.push(c);
+      });
+      req.on('end', () => (tooBig ? fail(Object.assign(new Error(message), { status: 413 })) : ok(Buffer.concat(chunks))));
       req.on('error', fail);
     });
   const isJson = (req) => (req.headers['content-type'] || '').includes('application/json');
@@ -232,6 +250,46 @@ export function createPlannerServer({
       const text = await fetchIcs(url);
       res.writeHead(200, { 'Content-Type': 'text/calendar; charset=utf-8', 'Cache-Control': 'no-store' });
       return res.end(text);
+    }
+
+    if (path === '/api/photos' && req.method === 'GET') return send(res, 200, { photos: photos.list() });
+    if (path === '/api/photos' && req.method === 'POST') {
+      if (!/^image\/(jpeg|png|webp)$/.test(req.headers['content-type'] || '')) return send(res, 415, { error: 'Nur JPEG, PNG oder WebP' });
+      const q = new URL(req.url, 'http://x').searchParams;
+      const p = photos.add(await readRaw(req, MAX_PHOTO_BYTES, 'Foto zu groß (max. 8 MB)'), { w: Number(q.get('w')), h: Number(q.get('h')), caption: q.get('caption') || '' });
+      broadcastEvent('photos', { count: photos.list().length });
+      return send(res, 200, p);
+    }
+    const photo = path.match(/^\/api\/photos\/([A-Za-z0-9_-]+)$/);
+    if (photo && req.method === 'GET') {
+      const p = photos.get(photo[1]);
+      if (!p) return send(res, 404, { error: 'Unbekannt' });
+      res.writeHead(200, { 'Content-Type': p.type, 'Content-Length': p.size, 'Cache-Control': 'private, max-age=31536000, immutable' });
+      return createReadStream(p.file).pipe(res);
+    }
+    if (photo && req.method === 'DELETE') {
+      if (!photos.remove(photo[1])) return send(res, 404, { error: 'Unbekannt' });
+      broadcastEvent('photos', { count: photos.list().length });
+      return send(res, 200, { ok: true });
+    }
+
+    if (path === '/api/alerts' && req.method === 'GET') {
+      // Warnungen des DWD über Bright Sky – feste Gegenstelle, nur Koordinaten werden durchgereicht.
+      const q = new URL(req.url, 'http://x').searchParams;
+      const lat = Number(q.get('lat')), lon = Number(q.get('lon'));
+      if (!Number.isFinite(lat) || !Number.isFinite(lon) || Math.abs(lat) > 90 || Math.abs(lon) > 180) return send(res, 400, { error: 'Koordinaten fehlen' });
+      const key = `${lat.toFixed(2)},${lon.toFixed(2)}`;
+      const hit = alertCache.get(key);
+      if (hit && Date.now() - hit.at < 10 * 60_000) return send(res, 200, hit.json);
+      try {
+        const r = await alertFetch(`https://api.brightsky.dev/alerts?lat=${lat}&lon=${lon}`, { signal: AbortSignal.timeout(15_000) });
+        if (!r.ok) return send(res, 502, { error: `Warndienst antwortet mit ${r.status}` });
+        const json = await r.json();
+        alertCache.set(key, { at: Date.now(), json });
+        return send(res, 200, json);
+      } catch {
+        return send(res, 502, { error: 'Warndienst nicht erreichbar' });
+      }
     }
 
     if (path === '/api/feed' && req.method === 'GET') return send(res, 200, { path: `/api/feed/${feedToken}.ics` });

@@ -3,6 +3,7 @@ import { Pickable } from '../../dnd/Dnd';
 import { fromMinutes, toMinutes } from '../../lib/date';
 import type { Occurrence } from '../../lib/recurrence';
 import { ExternalChip } from '../external/ExternalUi';
+import { EventWeatherBadge } from '../weather/WeatherCheck';
 import { initials, useOwnerName } from './hooks';
 
 export const hueStyle = (category: Occurrence['category']) => ({ '--h': CATEGORY_STYLE[category]?.hue ?? 150 }) as React.CSSProperties;
@@ -26,6 +27,7 @@ export function EventChip({ e, showTime = true }: { e: Occurrence; showTime?: bo
       {showTime && !e.allDay && <span className="ev-chip__time">{e.time}</span>}
       <span className="ellipsis">{e.title}</span>
       {e.repeat !== 'none' && <span aria-label="Serie">↻</span>}
+      <EventWeatherBadge e={e} />
     </Pickable>
   );
 }

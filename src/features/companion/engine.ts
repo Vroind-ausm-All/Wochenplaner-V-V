@@ -85,9 +85,11 @@ interface Input {
   weather?: DailyWeather[];
   /** Abo-Termine und Feiertage der Woche (siehe externalBetween) */
   external?: Occurrence[];
+  /** Amtliche Wetterwarnungen (ab Stufe „markant“ relevant für Pläne draußen) */
+  alerts?: { event: string; severity: string; onset: number; expires: number | null }[];
 }
 
-export function analyze({ data, today, now, weather = [], external = [] }: Input): CompanionReport {
+export function analyze({ data, today, now, weather = [], external = [], alerts = [] }: Input): CompanionReport {
   const s = data.settings;
   const week = monday(today);
   const days = range(week, 7);
@@ -97,6 +99,11 @@ export function analyze({ data, today, now, weather = [], external = [] }: Input
   const holidays = external.filter((e) => e.external?.kind === 'holiday' && e.external.official && e.on >= week && e.on <= addDays(week, 6));
   const holidaySet = new Set(holidays.map((e) => e.on));
   const freeDay = (d: ISODate) => isWeekend(d) || holidaySet.has(d);
+  // Markante Warnungen (Sturm, Gewitter, Glätte …) machen einen Tag ungeeignet für draußen.
+  const strong = alerts.filter((a) => a.severity !== 'minor');
+  const dayStart = (d: ISODate) => new Date(`${d}T00:00:00`).getTime();
+  const warned = (d: ISODate) => strong.some((a) => a.onset < dayStart(d) + 864e5 && (a.expires === null || a.expires > dayStart(d)));
+  const niceOutside = (d: ISODate) => !warned(d) && !!wx.get(d) && isOutdoorFriendly(wx.get(d)!);
   const wx = new Map(weather.map((w) => [w.date, w]));
   const A = s.personA, B = s.personB;
 
@@ -174,7 +181,7 @@ export function analyze({ data, today, now, weather = [], external = [] }: Input
 
   const dateDue = !nextDate && (daysSinceDate === null || daysSinceDate >= s.dateNightEveryDays - 3);
   if (dateDue && notDismissed(id('date'))) {
-    const rainy = (d: ISODate) => (wx.get(d) ? !isOutdoorFriendly(wx.get(d)!) : false);
+    const rainy = (d: ISODate) => warned(d) || (wx.get(d) ? !isOutdoorFriendly(wx.get(d)!) : false);
     const slot = findSlot(120, (d) => [4, 5].includes(weekdayIndex(d)) ? 10 + dayScore(d) : dayScore(d), '19:00');
     if (slot) {
       const idea = rainy(slot.date) ? DATE_IDEAS.find((x) => x.id === 'cook')! : DATE_IDEAS.find((x) => x.id === 'restaurant')!;
@@ -189,10 +196,10 @@ export function analyze({ data, today, now, weather = [], external = [] }: Input
 
   if (wirMinutes < s.wirGoalMinutes && notDismissed(id('wir'))) {
     const missing = s.wirGoalMinutes - wirMinutes;
-    const slot = findSlot(45, (d) => dayScore(d) + (wx.get(d) && isOutdoorFriendly(wx.get(d)!) ? 3 : 0));
+    const slot = findSlot(45, (d) => dayScore(d) + (niceOutside(d) ? 3 : 0));
     if (slot) {
       const w = wx.get(slot.date);
-      const outdoor = w ? isOutdoorFriendly(w) : false;
+      const outdoor = niceOutside(slot.date);
       const pool = DATE_IDEAS.filter((x) => x.minutes <= 90 && (outdoor ? x.place !== 'drinnen' : x.place !== 'draußen') && x.energy <= (lowA || lowB ? 1 : 2));
       const idea = pool[hash(slot.date + week) % pool.length] ?? DATE_IDEAS[0];
       suggestions.push({
@@ -231,11 +238,14 @@ export function analyze({ data, today, now, weather = [], external = [] }: Input
   let mood: Mood = 'calm';
   if (hour >= 22.5 || hour < 6) mood = 'sleepy';
   else if (lowA && lowB) mood = 'concerned';
+  else if (strong.some((a) => ['severe', 'extreme'].includes(a.severity) && warned(today))) mood = 'concerned';
   else if (ratio >= 1) mood = 'celebrate';
   else if (busyDays.filter((d) => d >= today).length >= 3 || overdue) mood = 'concerned';
   else if (ratio >= 0.6) mood = 'happy';
 
   const messages: string[] = [];
+  const warnToday = strong.find(() => warned(today)) ?? strong[0];
+  if (warnToday) messages.push(`⚠️ Wetterwarnung: ${warnToday.event.charAt(0)}${warnToday.event.slice(1).toLowerCase()} – Pläne draußen lieber verschieben, Ideen für drinnen gibt es genug.`);
   if (specialDays[0]) messages.push(`🎉 ${specialDays[0].title} – ${fmt.relative(specialDays[0].on, today)}.`);
   const nextHoliday = holidays.find((h) => h.on >= today && !isWeekend(h.on));
   if (nextHoliday) messages.push(`🌿 ${fmt.weekdayLong(nextHoliday.on)} ist ${nextHoliday.title} – ein freier Tag für euch.`);

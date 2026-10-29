@@ -87,6 +87,8 @@ offline Geändertes wird später eintragsweise zusammengeführt. Dauerbetrieb, Z
 | **Abgleich & Heimserver** | `store/sync.ts`, `store/merge.ts`, `server/` | Live-Aktualisierung aller Geräte, Offline-Änderungen mit Drei-Wege-Abgleich, Anmeldung, tägliche Sicherungen, installierbare Web-App mit Offline-Start |
 | **Feiertage & Kalender-Abos** | `lib/holidays.ts`, `lib/ical.ts`, `features/external/` | Gesetzliche Feiertage je Bundesland (offline berechnet) plus Valentinstag & Co.; Abos von Google, iCloud, Outlook, Schulferien, Müllabfuhr, Kita (iCal) – nur lesend, farbig, im Begleiter als „belegt“ berücksichtigt |
 | **Erinnerungen** | `features/reminders/`, `server/push.mjs`, `server/reminders.mjs` | Pro Termin 15 Min./1 Std./1 Tag vorher: Hinweis mit sanftem Ton auf dem Bilderrahmen, Push-Mitteilung aufs Handy (auch bei geschlossener App), „In 10 Min.“ |
+| **Wetterwarnungen & Wetter-Check** | `lib/alerts.ts`, `lib/eventWeather.ts`, `features/weather/` | Amtliche DWD-Warnungen (über Bright Sky) als Banner mit Verhaltenshinweisen; Termine draußen werden gegen Regen/Gewitter/Warnungen geprüft – mit Vorschlag zum Verschieben auf einen trockeneren, freien Zeitpunkt; „Regen ab 15 Uhr“-Hinweis |
+| **Foto-Bildschirmschoner** | `features/photos/`, `server/photos.mjs` | Nach Inaktivität Diashow mit sanftem Schwenk/Zoom, Uhr, Wetter, Warnung und nächsten Terminen; Fotos vom Handy hochladen (im Browser verkleinert), ohne Server lokal gespeichert; nachts schwarz; Erinnerungen wecken auf |
 | **Kalender-Feed** | `server/feed.mjs` | Euer Plan als iCal-Abo für die Kalender-App des Handys (iPhone direkt, Android über ICSx⁵), inkl. Alarme |
 
 ## Kalender & Erinnerungen
@@ -98,6 +100,15 @@ in der Farbe des Kalenders und lassen sich per Antippen ansehen oder in den eige
 Erinnerungen stellt ihr im Terminformular ein. Jedes geöffnete Gerät blendet sie ein; Handys bekommen sie zusätzlich
 als Push-Mitteilung (*Einstellungen → Erinnerungen → Mitteilungen einschalten*, braucht Heimserver + HTTPS,
 auf dem iPhone die installierte App). Details: [docs/HEIMSERVER.md](docs/HEIMSERVER.md#erinnerungen-kalender-abos-und-feed).
+
+## Bilderrahmen-Modus
+
+*Einstellungen → Fotos & Bildschirmschoner*: Fotos hinzufügen (am Handy direkt aus der Galerie oder Kamera) und
+festlegen, nach wie vielen Minuten ohne Berührung der Rahmen zur Diashow wird. Mit Heimserver sehen alle Geräte
+dieselben Fotos – vom Handy hochladen, der Rahmen zeigt sie. Antippen führt zurück zum Planer.
+
+Wetterwarnungen des Deutschen Wetterdienstes erscheinen auf der Startseite und im Bildschirmschoner; der Begleiter
+schlägt dann keine Ideen für draußen vor. Geplante Unternehmungen draußen prüft der *Wetter-Check* auf der Startseite.
 
 ## Küchenwelten
 

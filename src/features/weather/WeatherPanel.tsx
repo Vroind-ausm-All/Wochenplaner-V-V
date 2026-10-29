@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { fmt } from '../../lib/date';
-import { useToday } from '../../lib/useClock';
+import { rainSoon } from '../../lib/eventWeather';
+import { useNow, useToday } from '../../lib/useClock';
 import { isOutdoorFriendly, weatherIcon, weatherKind, weatherLabel } from '../../lib/weather';
 import { useStore } from '../../store/store';
 import { useWeatherStore } from './useWeather';
@@ -11,6 +12,7 @@ export function WeatherPanel({ days = 7 }: { days?: number }) {
   const { forecast, loading, error } = useWeatherStore();
   const setUi = useStore((s) => s.setUi);
   const today = useToday();
+  useNow(); // minütlich neu bewerten
 
   if (!forecast)
     return (
@@ -37,6 +39,14 @@ export function WeatherPanel({ days = 7 }: { days?: number }) {
           <div className="small muted">{forecast.location.name}</div>
         </div>
       </div>
+      {(() => {
+        const soon = rainSoon(forecast);
+        return soon ? (
+          <div className="wx__soon">
+            ☔ <span>Regen ab {soon.hour} Uhr wahrscheinlich ({soon.rain} %) – Schirm einpacken.</span>
+          </div>
+        ) : null;
+      })()}
       <div className="wx__days">
         {list.map((d, i) => (
           <motion.button

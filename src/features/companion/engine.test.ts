@@ -75,3 +75,20 @@ describe('WIR-Begleiter mit Abo-Kalendern und Feiertagen', () => {
     expect(r.suggestions.find((s) => s.date === '2026-10-29' && s.time < '18:00')).toBeTruthy();
   });
 });
+
+describe('WIR-Begleiter bei Wetterwarnungen', () => {
+  it('schlägt bei Warnung keine Ideen für draußen vor und sagt warum', () => {
+    const d = seed();
+    d.events = [];
+    const weather = ['2026-10-26', '2026-10-27', '2026-10-28', '2026-10-29', '2026-10-30', '2026-10-31', '2026-11-01'].map((date) => ({ date, code: 0, max: 18, min: 8, rain: 0, sunrise: '07:00', sunset: '17:00' }));
+    const start = new Date('2026-10-26T00:00:00').getTime();
+    const alerts = [{ event: 'STURMBÖEN', severity: 'severe', onset: start, expires: start + 7 * 864e5 }];
+    const r = analyze({ data: d, today: '2026-10-27', now: '08:00', weather, alerts });
+    const wir = r.suggestions.find((s) => s.kind === 'wir');
+    expect(wir?.idea?.place).not.toBe('draußen');
+    expect(r.messages.join(' ')).toContain('Sturmböen');
+    expect(r.mood).toBe('concerned');
+    const calm = analyze({ data: d, today: '2026-10-27', now: '08:00', weather });
+    expect(calm.suggestions.find((s) => s.kind === 'wir')?.idea?.place).not.toBe('drinnen');
+  });
+});

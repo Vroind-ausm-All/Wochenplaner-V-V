@@ -9,6 +9,8 @@ import { CompanionCard } from '../companion/Companion';
 import { EnergyCheckin } from '../companion/EnergyCheckin';
 import { MealSlotBox } from '../meals/MealSlotBox';
 import { DayTasks } from '../tasks/TasksPage';
+import { AlertBanner } from '../weather/AlertBanner';
+import { WeatherCheck } from '../weather/WeatherCheck';
 import { WeatherPanel } from '../weather/WeatherPanel';
 import { useOwnerName } from '../calendar/hooks';
 import './home.css';
@@ -74,9 +76,11 @@ export function HomePage() {
         <Clock />
         <AffirmationCard large />
       </div>
+      <AlertBanner />
       <div className="home__grid">
         <div className="stack">
           <WeatherPanel />
+          <WeatherCheck />
           <Agenda />
         </div>
         <div className="stack">

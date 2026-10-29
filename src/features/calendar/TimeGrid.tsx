@@ -10,6 +10,7 @@ import { useStore } from '../../store/store';
 import type { ISODate } from '../../store/types';
 import { WeatherBadge } from '../weather/WeatherBadge';
 import { ExternalBlock } from '../external/ExternalUi';
+import { EventWeatherBadge } from '../weather/WeatherCheck';
 import { EventChip, hueStyle, OwnerDot, timeRange } from './EventChip';
 import { useOccurrences } from './hooks';
 
@@ -150,6 +151,7 @@ function EventBlock({ e, lane, lanes, slotH }: { e: Occurrence; lane: number; la
         <span>{preview ? `${e.time}–${fromMinutes(toMinutes(e.time) + duration)}` : timeRange(e)}</span>
         {e.repeat !== 'none' && <span>↻</span>}
         <span className="grow" />
+        <EventWeatherBadge e={e} />
         <OwnerDot owner={e.owner} />
       </div>
       <span

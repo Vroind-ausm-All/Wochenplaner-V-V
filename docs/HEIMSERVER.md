@@ -105,13 +105,23 @@ Ohne Push blenden alle geöffneten Geräte (z. B. der Bilderrahmen) Erinnerungen
 die Adresse eintragen. Die Kalender-App erinnert dann selbst – auch ohne Push. „Neue Adresse“ macht alte Links ungültig.
 Google Kalender im Web kann Adressen aus dem Heimnetz nicht abrufen.
 
+## Fotos und Wetterwarnungen
+
+**Fotos** für den Bildschirmschoner liegen im Datenordner unter `photos/` (verkleinert auf max. 2048 px, je ca.
+0,3–0,8 MB, höchstens 2000 Fotos). Alle angemeldeten Geräte sehen dieselben Fotos; neue erscheinen sofort.
+Gesichert werden sie mit dem Datenordner – am einfachsten den ganzen Ordner regelmäßig kopieren.
+
+**Wetterwarnungen** holt die App direkt bei Bright Sky (frei zugängliche Daten des Deutschen Wetterdienstes).
+Ist das im Netz blockiert, fragt sie über den Heimserver (`/api/alerts`). Maßgeblich bleiben die amtlichen
+Warnungen auf dwd.de bzw. in der WarnWetter-App.
+
 ## Sicherheit & Sicherungen
 
 - Ein Haushalts-Passwort für alle; wer es kennt, sieht alle Einträge. Keine medizinischen Details eintragen.
 - Anmeldung bleibt bis zu 400 Tage gültig (Cookie, nicht per Skript auslesbar). *Einstellungen → Dieses Gerät abmelden*.
 - Nach 10 Fehlversuchen ist die Anmeldung für 15 Minuten gesperrt.
 - Datenordner (`WIR_DATA`): `state.json` = aktueller Stand, `backups/` = eine Sicherung pro Tag, 30 Tage lang,
-  `push.json` = angemeldete Geräte, `vapid.json` / `feed-token` / `secret` = Schlüssel (nicht weitergeben).
+  `push.json` = angemeldete Geräte, `photos/` = Fotos, `vapid.json` / `feed-token` / `secret` = Schlüssel (nicht weitergeben).
   *Einstellungen → Serverstand sichern* lädt den aktuellen Stand als Datei herunter.
 - Wiederherstellen: Sicherungsdatei unter *Einstellungen → JSON importieren* laden – sie wird an alle Geräte verteilt.
 

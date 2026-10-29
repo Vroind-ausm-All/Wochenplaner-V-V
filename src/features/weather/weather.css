@@ -18,3 +18,18 @@
 :root[data-theme='night'] .wx__hour { background: #ffffff10; }
 .wx-badge { display: inline-flex; align-items: center; gap: 3px; font-size: 12px; white-space: nowrap; }
 .wx-now { display: inline-flex; align-items: center; gap: 6px; font-size: 20px; }
+.alert-banner {
+  display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; min-height: 60px; padding: 10px 16px;
+  border: 0; border-left: 8px solid var(--sev); border-radius: 16px; background: color-mix(in srgb, var(--sev) 16%, var(--card)); color: var(--ink);
+}
+.alert-banner.is-compact { min-height: 48px; padding: 6px 12px; }
+.alert-banner__icon { font-size: 28px; }
+.alert-banner__level { display: block; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 800; color: color-mix(in srgb, var(--sev) 70%, var(--ink)); }
+.wx__soon { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 12px; background: #ffffff8c; font-size: 14px; }
+:root[data-theme='night'] .wx__soon { background: #ffffff10; }
+.wx-check { border-left: 6px solid #6a8fb8; }
+.wx-check__item { display: flex; gap: 12px; align-items: flex-start; padding: 8px 4px; border-radius: 12px; }
+.wx-check__item.is-bad { background: color-mix(in srgb, #6a8fb8 10%, transparent); }
+.wx-check__icon { font-size: 28px; line-height: 1; }
+.wx-pin { display: inline-grid; place-items: center; min-width: 22px; height: 22px; border-radius: 11px; font-size: 13px; background: #fff; box-shadow: 0 1px 4px #0002; }
+.wx-pin.is-bad { background: #dce9f7; }

@@ -5,6 +5,7 @@ import { useToday } from '../../lib/useClock';
 import { useStore } from '../../store/store';
 import { WeatherBadge } from '../weather/WeatherBadge';
 import { ExternalAgendaItem } from '../external/ExternalUi';
+import { EventWeatherBadge } from '../weather/WeatherCheck';
 import { hueStyle, OwnerDot, timeRange } from './EventChip';
 import { useOccurrences } from './hooks';
 
@@ -43,6 +44,7 @@ export function AgendaView() {
                   </span>
                   {e.notes && <div className="small muted ellipsis">{e.notes}</div>}
                 </span>
+                <EventWeatherBadge e={e} />
                 <OwnerDot owner={e.owner} />
               </Pickable>
             ))}
