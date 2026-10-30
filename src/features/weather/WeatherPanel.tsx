@@ -114,3 +114,49 @@ export function WeatherNow() {
     </span>
   );
 }
+
+/** Wetter für heute – Ebene 2 der Startseite: Piktogramm, Höchst-/Tiefstwert, Regenhinweis. */
+export function WeatherToday() {
+  const { forecast, loading, error } = useWeatherStore();
+  const today = useToday();
+  useNow();
+  const day = forecast?.daily.find((d) => d.date === today);
+  if (!forecast || !day) return <p className="small muted">{loading ? 'Wetter wird geladen …' : error ?? 'Ort in den Einstellungen wählen.'}</p>;
+  const c = forecast.current;
+  const soon = rainSoon(forecast);
+  return (
+    <div className="wx-today" title={`${weatherLabel(c.code)} in ${forecast.location.name}`}>
+      <Icon name={weatherIcon(c.code, c.isDay)} size={40} strokeWidth={1.25} />
+      <div>
+        <div className="wx-today__temp num">
+          {Math.round(c.temp)}° <span className="muted">{Math.round(day.max)}° / {Math.round(day.min)}°</span>
+        </div>
+        <div className="small muted">{soon ? `Regen ab ${soon.hour} Uhr (${soon.rain} %)` : weatherLabel(c.code)}</div>
+      </div>
+    </div>
+  );
+}
+
+/** Kurzer Ausblick über die nächsten Tage – Ebene 3, ohne heute. */
+export function WeatherOutlook({ days = 3 }: { days?: number }) {
+  const f = useWeatherStore((s) => s.forecast);
+  const setUi = useStore((s) => s.setUi);
+  const today = useToday();
+  const list = f?.daily.filter((d) => d.date > today).slice(0, days) ?? [];
+  if (!list.length) return null;
+  return (
+    <ul className="wx-outlook">
+      {list.map((d) => (
+        <li key={d.date}>
+          <button type="button" onClick={() => setUi({ view: 'calendar', calendarMode: 'day', cursor: d.date })} title={`${weatherLabel(d.code)} · Regen ${d.rain} %`}>
+            <span className="wx-outlook__day">{fmt.weekday(d.date)}</span>
+            <Icon name={weatherIcon(d.code)} size={20} />
+            <span className="num">
+              {Math.round(d.max)}° <span className="muted">{Math.round(d.min)}°</span>
+            </span>
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+}

@@ -18,8 +18,34 @@ Jeder Grundsatz hat ein Piktogramm aus dem eigenen Satz (Übersicht unten).
 | **04** · Piktogramm statt Emoji | Eine Bildsprache | 88 Piktogramme im 24-px-Raster, 1,5 px Linie, runde Enden, ohne Füllung (`src/ui/Icon.tsx`). Emojis sehen auf jedem Gerät anders aus und sind laut – Piktogramme bleiben ruhig und einheitlich. |
 | **05** · Gemeinsam zuerst | Wer macht was – auf einen Blick | Personen haben **Formen statt Farben**: ● Person A (gefüllt), ○ Person B (Ring), zwei Kreise = gemeinsam. Die Startseite ordnet den Tag in drei Spalten: Person A · **Gemeinsam** (Mitte, Signalfarbe) · Person B. |
 | **06** · Ruhe in der Bewegung | Bewegung erklärt, statt zu unterhalten | Kurze Überblendungen (0,15–0,2 s), Ring und Balken füllen sich einmal. Kein Hüpfen, Pulsieren oder Schweben. „Bewegung reduzieren“ des Systems wird beachtet. |
-| **07** · Linien statt Kästen | Struktur ohne Ballast | Abschnitte beginnen mit einer schwarzen Linie, Listen trennen sich durch helle Haarlinien. Ecken sind gerade (2 px), Schatten gibt es nicht. |
+| **07** · Ebenen statt Gleichrang | Das Auge weiß, wohin | Jede Seite hat **drei Ebenen** (siehe unten): eine dunkle Hauptfläche, Papier mit Haarlinien, eine getönte ruhige Fläche. Dazwischen großer Abstand, innerhalb kleiner. Ecken sind gerade (2 px), Schatten gibt es nicht. |
 | **08** · Eine Aufgabe pro Bereich | Klare Wege | Jeder Bereich hat eine Rubrik, eine Hauptaktion (gefüllter Knopf) und höchstens zwei Nebenaktionen (Rahmen, ohne Rahmen). Navigation links mit Piktogramm **und** Wort, aktiv = schwarzer Balken. |
+
+## Drei Ebenen: wohin das Auge wandert
+
+Vorher sah jedes Widget gleich aus (gleiche Linie, gleiche Rubrik, gleicher Abstand, drei gleich breite Spalten) –
+alles wirkte gleich wichtig. Jetzt hat jede Seite eine feste Rangfolge:
+
+| Ebene | Fläche | Auf der Startseite | Woanders |
+|---|---|---|---|
+| **1 · Hauptsache** | dunkle Fläche (`.zone--hero`), größte Schrift, genau **eine** pro Seite | **Wer macht heute was**: „Als Nächstes“ und drei Spalten Person A · Gemeinsam · Person B mit Terminen und Aufgaben | Wir-Zeit: Stand der Woche mit Ring |
+| **2 · Heute** | Papier, schwarze Linie oben, Haarlinien (`.zone`) | Abendessen (nur zum Lesen), Wetter heute, Wetter-Check nur bei Risiko, morgens der Energie-Check-in | Vorschläge, Rezepte, Kalender |
+| **3 · Hintergrund** | getönte Fläche (`.zone--quiet`), kleinere Titel | **Diese Woche**: Wir-Zeit in einem Satz mit **einem** Vorschlag, die nächsten drei Tage, Wetter-Ausblick | Bausteinleiste im Kalender, Wochen-Essensplan, Frage des Tages, Ideen |
+| Rand | ohne Fläche | Gedanke des Tages (eine Zeile), Einkaufszähler | – |
+
+**Abstände in zwei Größen:** innerhalb einer Gruppe `--s2`/`--s3` (8/16 px), zwischen den Ebenen `--s6` (64 px).
+**Schriftstufen:** Seite 40 · Ebene 28 (Hauptfläche 40) · Eintrag 18–21 · Meta 13 px.
+**Anzeige vor Bearbeitung:** Auf der Startseite steht nur, was man im Vorbeigehen lesen will. Portionen,
+mehrere Vorschläge oder 7-Tage-Wetter liegen eine Berührung tiefer auf den jeweiligen Seiten.
+
+**Nach Tageszeit:** Ab 20:30 Uhr zeigt die Startseite schon den nächsten Tag („Wer macht morgen was“, Essen von
+morgen). Der Energie-Check-in erscheint nur vormittags, solange er noch nicht ausgefüllt ist.
+
+![Startseite am Abend: „Wer macht morgen was“](design/start-abend.png)
+
+Im Querformat steht die Hauptfläche links, „Diese Woche“ rechts daneben:
+
+![Startseite im Querformat](design/start-querformat.png)
 
 ## Das WIR-Zeichen
 

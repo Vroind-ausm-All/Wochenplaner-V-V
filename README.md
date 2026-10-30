@@ -15,10 +15,10 @@ npm run build      # Produktions-Build nach dist/ – jeder statische Webspace g
 [Was drin ist](#was-drin-ist) · [Küchenwelten](#küchenwelten) · [Projektaufbau](#projektaufbau) ·
 [Gestaltung](docs/DESIGN.md) · [Hardware für den Bilderrahmen](docs/HARDWARE.md) · [Heimserver](docs/HEIMSERVER.md)
 
-![Startseite im Hochformat: Uhr, Gedanke des Tages, „Heute · wer macht was“](docs/design/start-hochformat.png)
+![Startseite im Hochformat: „Wer macht heute was“, darunter Heute und Diese Woche](docs/design/start-hochformat.png)
 
 Ruhig und übersichtlich im Schweizer Stil: eine Schrift, Schwarz-Weiß mit einer Signalfarbe für gemeinsame Zeit,
-Piktogramme statt Emojis und Personen-Marken (● ○) – Details in [docs/DESIGN.md](docs/DESIGN.md).
+Piktogramme statt Emojis, Personen-Marken (● ○) und drei klar getrennte Ebenen je Seite – Details in [docs/DESIGN.md](docs/DESIGN.md).
 
 ## Erster Test auf dem Laptop
 
@@ -50,7 +50,7 @@ Gut zu wissen beim Test:
 
 | ✓ | Was ausprobieren | Erwartung |
 |---|---|---|
-| ☐ | *Einstellungen*: eure Namen und den Wetter-Ort eintragen | Namen erscheinen in „Heute · wer macht was“, im Gedanken des Tages und beim Begleiter |
+| ☐ | *Einstellungen*: eure Namen und den Wetter-Ort eintragen | Namen erscheinen in „Wer macht heute was“, im Gedanken des Tages und beim Begleiter |
 | ☐ | *Kalender → Woche*: Baustein „Date Night“ auf einen Abend **ziehen** | Termin erscheint, oben „Rückgängig“ |
 | ☐ | Baustein **antippen**, dann eine Uhrzeit **antippen** (Click & Drop) | Termin an dieser Stelle |
 | ☐ | Termin auf einen anderen Tag ziehen; unteren Rand eines Termins ziehen | Termin verschoben bzw. länger/kürzer |
@@ -59,7 +59,7 @@ Gut zu wissen beim Test:
 | ☐ | *Essen*: Rezept auf „Abend“ ziehen, oder erst leeren Platz und dann Rezept antippen | Gericht geplant, *Einkauf* zählt hoch |
 | ☐ | Buch-Symbol an einem Rezept → „Selbst machen“ an einer Zutat | Grundrezept (z. B. Pastateig) öffnet sich |
 | ☐ | *Wir-Zeit*: Energie für beide setzen, einen Vorschlag „Einplanen“ | Die zwei Kreise des WIR-Zeichens rücken zusammen oder auseinander, Termin im Kalender |
-| ☐ | Gedanken des Tages nach links/rechts wischen, Herz antippen | Nächster Gedanke blendet Wort für Wort ein, Herz wird rot |
+| ☐ | *Heute*: eine Aufgabe in „Wer macht heute was“ abhaken, den Gedanken des Tages unten antippen | Aufgabe durchgestrichen, nächster Gedanke |
 | ☐ | Mond oben rechts, Ein/Aus-Symbol „Bildschirm dunkel“ | Nachtfarben bzw. schwarzer Schirm, Tippen weckt auf |
 | ☐ | Bisheriges Board: dessen JSON-Export unter *Einstellungen → importieren* | Alte Termine, Einkauf, Aufgaben sind da |
 
@@ -84,7 +84,7 @@ offline Geändertes wird später eintragsweise zusammengeführt. Dauerbetrieb, Z
 | **Kalender** | `features/calendar/*` | Monat, Woche, Tag, Terminliste · Zeitraster füllt hohe Hochkant-Displays · Überlappungen in Spuren · Dauer per Griff ziehen · Jetzt-Linie · Serien („nur diesen / ganze Serie“) |
 | **Drag & Drop + Click & Drop** | `dnd/*` | Ein Modell, drei Wege: Maus ziehen, **Touch: kurz halten & ziehen** (Scrollen bleibt frei), **antippen → Ziel antippen**. Umgekehrt geht auch: erst leeren Essensplatz, dann Rezept antippen. Papierkorb-Zone, Rückgängig nach jeder Aktion |
 | **Wetter** | `features/weather/*` | Open-Meteo (ohne Konto/Key), aktuelle Lage, 7 Tage, stündlich in der Tagesansicht, Symbole in Monat/Woche/Terminliste, Ort-Suche & Standort |
-| **Startseite** | `features/home/*` | Große Uhr, Gedanke des Tages, **„Heute · wer macht was“** in drei Spalten (Person A · Gemeinsam · Person B) mit Terminen und abhakbaren Aufgaben, Wir-Zeit, Wetter, nächste Tage, Essen |
+| **Startseite** | `features/home/*` | Drei Ebenen statt gleichrangiger Kacheln: oben dunkel **„Wer macht heute was“** (Als Nächstes · Person A · Gemeinsam · Person B, Aufgaben abhaken), darunter *Heute* (Essen, Wetter), ruhig getönt *Diese Woche* (Wir-Zeit, nächste Tage, Ausblick). Ab 20:30 Uhr zeigt sie schon morgen |
 | **Affirmationen** | `features/affirmations/*` | Motion: ruhige Wort-für-Wort-Einblendung, Wischen zum Wechseln, Fortschrittslinie, Lieblingsgedanken; personalisiert mit euren Namen; respektiert „Bewegung reduzieren“ |
 | **WIR-Begleiter** | `features/companion/*` | Das WIR-Zeichen (zwei Kreise, deren Abstand die Stimmung zeigt) plant Wir-Zeit mit: Wochenziel, eigene Zeit beider Personen, Abstand zur letzten Date Night, Check-in, volle Tage, Tagesenergie, Wetter → konkrete Vorschläge in **freien Zeitfenstern** (einplanen, verschieben oder ziehen). Frage des Tages, Wochenkompass, Ideen-Bibliothek |
 | **Essensplan** | `features/meals/*` | 11 Küchenwelten, 103 glutenfreie Gerichte, 13 Grundrezepte zum Selbermachen, Ersatz-Guide, Küchen-Kompass, Portionen, Fleischoption, „zusammen kochen“ zählt als Wir-Zeit, Nährwert-Schätzbereiche, Hinweise auf versteckte Glutenquellen je Zutat |

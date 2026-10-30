@@ -87,14 +87,8 @@ export function App() {
           <div className="main">
             <header className="topbar">
               <div className="topbar__title">
-                {view === 'home' ? (
-                  <span className="eyebrow">Unser Zuhause</span>
-                ) : (
-                  <>
-                    <span className="topbar__time num">{now}</span>
-                    <span className="topbar__date">{fmt.long(today)}</span>
-                  </>
-                )}
+                <span className="topbar__time num">{now}</span>
+                <span className="topbar__date">{fmt.long(today)}</span>
               </div>
               <span className="grow" />
               <WeatherNow />

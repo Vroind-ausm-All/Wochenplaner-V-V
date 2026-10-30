@@ -30,6 +30,23 @@
   --radius: 2px;
   --tap: 48px;
   --gap: 24px;
+  /* Abstände: klein innerhalb einer Gruppe, groß zwischen den Ebenen */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 16px;
+  --s4: 24px;
+  --s5: 40px;
+  --s6: 64px;
+  /* Schriftstufen: Seite · Ebene · Eintrag · Meta */
+  --t-page: 40px;
+  --t-zone: 28px;
+  --t-item: 18px;
+  --t-meta: 13px;
+  /* Ebene 1 („Hauptsache“) als dunkle Fläche */
+  --hero-bg: #141414;
+  --hero-fg: #f6f5f1;
+  --hero-muted: #a19f98;
+  --hero-line: #ffffff2b;
   --slot-h: 32px;
   --font: 'Inter Variable', 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
   /* Kompatibilität mit älteren Klassen */
@@ -63,6 +80,11 @@
   --drop-hint: #ffffff0a;
   --drop-over: #ffffff14;
   --drop-line: #ffffff55;
+  /* nachts nur leicht angehoben, damit der Rahmen keine Lampe wird */
+  --hero-bg: #1e1d1b;
+  --hero-fg: #ecebe6;
+  --hero-muted: #8f8d86;
+  --hero-line: #ffffff1f;
   color-scheme: dark;
 }
 
@@ -148,10 +170,29 @@ select.input { appearance: none; background-image: linear-gradient(45deg, transp
   *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
 }
 
-/* Kopfzeilen: Rubrik links, Aktion rechts */
+/* Seitenkopf: Rubrik über großem Titel */
 .page-head { display: grid; gap: 6px; }
-.page-head h2 { font-size: 40px; letter-spacing: -0.03em; }
-.section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 4px; }
-.section-head .linklike { display: inline-flex; align-items: center; gap: 4px; text-decoration: none; font-size: 13px; }
+.page-head h2 { font-size: var(--t-page); letter-spacing: -0.03em; }
 /* Eingabezeilen: Textfeld bekommt Platz, Auswahl rutscht in die nächste Zeile */
 form.row .input.grow, .shop__add .input.grow { min-width: 240px; flex-basis: 240px; }
+
+/*
+ * Ebenen – die Rangfolge einer Seite:
+ *   .zone--hero   Ebene 1: genau eine pro Seite, dunkle Fläche, größte Schrift
+ *   .zone         Ebene 2: Papier, gegliedert durch Haarlinien
+ *   .zone--quiet  Ebene 3: getönte Fläche für Hintergrundwissen
+ * Zwischen den Ebenen steht großer Abstand (--s6), innerhalb kleiner (--s2/--s3).
+ */
+.zone { display: grid; gap: var(--s3); min-width: 0; }
+.zone__head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s3); flex-wrap: wrap; }
+.zone__title { font-size: var(--t-zone); font-weight: 600; letter-spacing: -0.025em; line-height: 1.1; }
+.zone__title small { font-size: var(--t-item); font-weight: 400; color: var(--muted); letter-spacing: -0.01em; margin-left: var(--s2); }
+.zone__head .linklike { display: inline-flex; align-items: center; gap: 4px; text-decoration: none; font-size: var(--t-meta); }
+.zone--hero {
+  --ink: var(--hero-fg); --ink-2: var(--hero-fg); --muted: var(--hero-muted); --line: var(--hero-line); --line-strong: var(--hero-line);
+  --paper: var(--hero-bg); --card: var(--hero-bg); --drop-hint: #ffffff10; --drop-over: #ffffff1c;
+  background: var(--hero-bg); color: var(--hero-fg); padding: var(--s4) var(--s4) var(--s4);
+}
+.zone--quiet { background: var(--paper-2); padding: var(--s4); }
+.zone--quiet .card { border-top-color: var(--line-strong); }
+.zone-sep { height: var(--s5); }
