@@ -26,7 +26,7 @@ export function useWeatherUpdater() {
       try {
         useWeatherStore.setState({ forecast: await fetchForecast(location, ctrl.signal), error: null });
       } catch (e) {
-        if (!ctrl.signal.aborted) useWeatherStore.setState({ error: e instanceof Error ? e.message : 'Wetter nicht verfügbar' });
+        if (!ctrl.signal.aborted) useWeatherStore.setState({ error: e instanceof TypeError ? 'Wetterdienst gerade nicht erreichbar – neuer Versuch in 5 Minuten.' : e instanceof Error ? e.message : 'Wetter nicht verfügbar' });
       } finally {
         useWeatherStore.setState({ loading: false });
       }

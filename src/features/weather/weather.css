@@ -1,20 +1,32 @@
-.wx { display: grid; gap: 14px; background: linear-gradient(140deg, #e3eef4, #f2f6ee); border: 0; }
-.wx--clear { background: linear-gradient(140deg, #fff1d6, #e7f1e4); }
-.wx--rain, .wx--drizzle, .wx--storm { background: linear-gradient(140deg, #dfe6ee, #eef1f4); }
-.wx--snow { background: linear-gradient(140deg, #eef3fa, #ffffff); }
-.wx--night { background: linear-gradient(140deg, #dfe2f1, #e9ecf1); }
-:root[data-theme='night'] .wx { background: linear-gradient(140deg, #1b2530, #18201c); }
-.wx__now { display: flex; align-items: center; gap: 16px; }
-.wx__big { font-size: 56px; line-height: 1; display: inline-block; }
-.wx__temp { font-size: 44px; font-weight: 850; letter-spacing: -.04em; line-height: 1; }
-.wx__days { display: grid; grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); gap: 6px; }
-.wx__day { display: grid; justify-items: center; gap: 2px; padding: 8px 4px; border-radius: 14px; border: 0; background: #ffffff8c; min-height: 120px; }
-:root[data-theme='night'] .wx__day { background: #ffffff10; }
-.wx__day.is-nice { box-shadow: inset 0 -3px 0 #e2a66f; }
-.wx__icon { font-size: 26px; }
-.wx__rain { font-size: 11px; }
-.wx__hours { display: flex; gap: 6px; overflow-x: auto; }
-.wx__hour { display: grid; justify-items: center; gap: 2px; min-width: 46px; padding: 6px 2px; border-radius: 10px; background: #ffffff8c; }
-:root[data-theme='night'] .wx__hour { background: #ffffff10; }
-.wx-badge { display: inline-flex; align-items: center; gap: 3px; font-size: 12px; white-space: nowrap; }
-.wx-now { display: inline-flex; align-items: center; gap: 6px; font-size: 20px; }
+/* Wetter: Zahl groß, Piktogramm in Linie, keine Verläufe */
+.wx { display: grid; gap: 14px; }
+.wx__now { display: flex; align-items: center; gap: 18px; }
+.wx__big { flex: none; }
+.wx__temp { font-size: 52px; font-weight: 300; letter-spacing: -.05em; line-height: 1; font-variant-numeric: tabular-nums; }
+.wx__days { display: grid; grid-template-columns: repeat(auto-fit, minmax(44px, 1fr)); border-top: 1px solid var(--line); }
+.wx__day { display: grid; justify-items: center; gap: 4px; padding: 10px 2px; border: 0; border-left: 1px solid var(--line); background: transparent; min-height: 120px; font-variant-numeric: tabular-nums; }
+.wx__day:first-child { border-left: 0; }
+.wx__day.is-nice { box-shadow: inset 0 -2px 0 var(--ink); }
+.wx__day b { font-weight: 600; }
+.wx__rain { font-size: 11px; color: var(--ink-2); }
+.wx__hours { display: flex; overflow-x: auto; border-top: 1px solid var(--line); }
+.wx__hour { display: grid; justify-items: center; gap: 4px; min-width: 46px; padding: 8px 2px; border-left: 1px solid var(--line); }
+.wx__hour:first-child { border-left: 0; }
+.wx-badge { display: inline-flex; align-items: center; gap: 3px; font-size: 12px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.wx-now { display: inline-flex; align-items: center; gap: 6px; font-size: 18px; font-variant-numeric: tabular-nums; }
+.wx-now b { font-weight: 600; }
+.wx__soon { display: flex; align-items: center; gap: 8px; padding: 2px 0 2px 12px; border-left: 2px solid var(--ink); font-size: 14px; }
+
+/* Amtliche Warnungen: Stufe als Farbbalken links – die einzige Stelle mit Warnfarben */
+.alert-banner {
+  display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; min-height: 64px; padding: 10px 16px;
+  border: 1px solid var(--sev); border-left: 6px solid var(--sev); background: var(--paper); color: var(--ink);
+}
+.alert-banner.is-compact { min-height: 48px; padding: 6px 12px; }
+.alert-banner__icon { color: var(--sev); }
+.alert-banner__level { display: block; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--sev); }
+
+.wx-check__item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-top: 1px solid var(--line); }
+.wx-check__item.is-bad .wx-check__icon { color: var(--accent); }
+.wx-pin { display: inline-grid; place-items: center; width: 18px; height: 18px; color: var(--ink); }
+.wx-pin.is-bad { color: var(--accent); }

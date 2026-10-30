@@ -15,6 +15,7 @@ import { MonthView } from './MonthView';
 import { TemplateTray } from './TemplateTray';
 import { TimeGrid } from './TimeGrid';
 import './calendar.css';
+import { Icon } from '../../ui/Icon';
 
 const MODES: { value: CalendarMode; label: string }[] = [
   { value: 'month', label: 'Monat' },
@@ -45,13 +46,13 @@ export function CalendarPage() {
       <header className="cal__bar">
         <div className="row">
           <button className="btn icon" onClick={() => shift(-1)} aria-label="Zurück">
-            ‹
+            <Icon name="chevron-left" />
           </button>
           <button className="btn" onClick={() => setUi({ cursor: today })}>
             Heute
           </button>
           <button className="btn icon" onClick={() => shift(1)} aria-label="Weiter">
-            ›
+            <Icon name="chevron-right" />
           </button>
           <h2 className="cal__title">{title}</h2>
         </div>
@@ -60,7 +61,7 @@ export function CalendarPage() {
       <div className="cal__main">
         <div className="cal__view">
           <AnimatePresence mode="popLayout" initial={false}>
-            <motion.div key={mode + periodKey} className="cal__anim" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }}>
+            <motion.div key={mode + periodKey} className="cal__anim" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
               {mode === 'month' && <MonthView />}
               {mode === 'week' && <TimeGrid days={range(monday(cursor), 7)} />}
               {mode === 'day' && (
@@ -85,7 +86,7 @@ function DayPanel() {
     <aside className="daypanel">
       <HourlyStrip date={cursor} />
       <section className="stack">
-        <div className="eyebrow">Essen</div>
+        <span className="eyebrow">Essen</span>
         <MealSlotBox day={cursor} slot="Mittag" />
         <MealSlotBox day={cursor} slot="Abend" />
       </section>
@@ -106,10 +107,10 @@ export function PickActions() {
     actions = ev && (
       <>
         <button className="btn sm" onClick={() => { pick(null); setUi({ editing: { kind: 'event', event: ev } }); }}>
-          ✎ Bearbeiten
+          <Icon name="edit" size={16} /> Bearbeiten
         </button>
-        <button className="btn sm danger" onClick={() => { pick(null); useStore.getState().deleteEvent(ev.id); }}>
-          🗑
+        <button className="btn sm danger" onClick={() => { pick(null); useStore.getState().deleteEvent(ev.id); }} aria-label="Löschen">
+          <Icon name="trash" size={16} />
         </button>
       </>
     );

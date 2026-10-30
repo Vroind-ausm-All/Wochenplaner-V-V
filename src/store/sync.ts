@@ -193,6 +193,8 @@ function listen() {
     if (rev !== meta.revision) enqueue(pull);
   });
   events.addEventListener('error', () => useSync.setState({ online: false }));
+  // Neue Fotos von einem anderen Gerät → Bildschirmschoner lädt die Liste neu.
+  events.addEventListener('photos', () => window.dispatchEvent(new Event('wir:photos')));
 }
 
 /** Erstverbindung bzw. Wiederaufnahme nach Neustart der App. */

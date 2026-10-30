@@ -5,7 +5,7 @@ export const STORAGE_KEY = 'wir-wochenplaner-v1';
 /** Schlüssel des alten Single-File-Boards (WIR 4–9). */
 export const LEGACY_KEY = 'wir-board-4-v1';
 
-const arrays = ['events', 'shopping', 'inventory', 'tasks', 'documents', 'baby', 'favoriteAffirmations', 'favoriteRecipes'] as const;
+const arrays = ['events', 'shopping', 'inventory', 'tasks', 'documents', 'baby', 'favoriteAffirmations', 'favoriteRecipes', 'calendars'] as const;
 
 /**
  * Bringt beliebige gespeicherte Stände (altes Board, Export-Datei, Server) in die aktuelle Form.

@@ -19,6 +19,8 @@ export const DEFAULT_SETTINGS: Settings = {
   nightFrom: '22:30',
   nightTo: '06:00',
   favoriteCuisines: ['Italienisch', 'Asiatisch'],
+  holidayState: null,
+  specialDays: true,
 };
 
 export const WOCHENKOMPASS = [
@@ -48,5 +50,6 @@ export function seed(): PlannerData {
     favoriteAffirmations: [],
     favoriteRecipes: [],
     dismissed: {},
+    calendars: [],
   };
 }

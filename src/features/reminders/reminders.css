@@ -1,0 +1,7 @@
+.reminders { position: fixed; right: 20px; bottom: calc(96px + env(safe-area-inset-bottom)); z-index: 110; display: grid; gap: 10px; width: min(460px, calc(100vw - 32px)); pointer-events: none; }
+.reminder { pointer-events: auto; display: flex; gap: 16px; align-items: center; padding: 16px; background: var(--paper); border: 1px solid var(--ink); border-top: 4px solid var(--accent); }
+.reminder__bell { color: var(--accent); }
+.reminder__when { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.reminder__title { display: block; font-size: 20px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
+.reminder__actions { display: grid; gap: 6px; }
+@media (max-width: 760px) { .reminders { right: 16px; bottom: calc(84px + env(safe-area-inset-bottom)); } }

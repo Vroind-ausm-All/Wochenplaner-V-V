@@ -8,6 +8,7 @@ export function useKiosk() {
   const s = useDevice();
   const now = useNow();
   const [dimmed, setDimmed] = useState(false);
+  const [screensaver, setScreensaver] = useState(false);
   const [sleeping, setSleeping] = useState(false);
   const [manualNight, setManualNight] = useState<boolean | null>(null);
 
@@ -37,5 +38,38 @@ export function useKiosk() {
     };
   }, [s.dimAfterMinutes]);
 
-  return { night, dimmed, sleeping, setSleeping, toggleNight: () => setManualNight(!night), wake: () => { setDimmed(false); setSleeping(false); } };
+  // Bildschirmschoner nach Inaktivität. Erinnerungen wecken ihn auf („wir:wake“).
+  useEffect(() => {
+    let t: ReturnType<typeof setTimeout>;
+    const arm = () => {
+      clearTimeout(t);
+      if (s.screensaverAfter) t = setTimeout(() => setScreensaver(true), s.screensaverAfter * 60_000);
+    };
+    const wake = () => {
+      setScreensaver(false);
+      arm();
+    };
+    const show = () => setScreensaver(true);
+    arm();
+    const evs = ['pointerdown', 'keydown', 'wheel'];
+    evs.forEach((e) => window.addEventListener(e, arm, { passive: true }));
+    window.addEventListener('wir:wake', wake);
+    window.addEventListener('wir:screensaver', show);
+    return () => {
+      clearTimeout(t);
+      evs.forEach((e) => window.removeEventListener(e, arm));
+      window.removeEventListener('wir:wake', wake);
+      window.removeEventListener('wir:screensaver', show);
+    };
+  }, [s.screensaverAfter]);
+
+  return {
+    night, dimmed, sleeping, screensaver, setSleeping,
+    toggleNight: () => setManualNight(!night),
+    closeScreensaver: () => setScreensaver(false),
+    wake: () => {
+      setDimmed(false);
+      setSleeping(false);
+    },
+  };
 }

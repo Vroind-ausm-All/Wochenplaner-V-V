@@ -8,6 +8,7 @@ import { OWNERS, type ISODate, type Repeat, type Task } from '../../store/types'
 import { Chips } from '../../ui/Segmented';
 import { Sheet } from '../../ui/Sheet';
 import { useOwnerName } from '../calendar/hooks';
+import { Icon } from '../../ui/Icon';
 
 const REPEAT: { value: Repeat; label: string }[] = [
   { value: 'none', label: 'Einmalig' },
@@ -34,12 +35,12 @@ function TaskRow({ t, onEdit }: { t: ReturnType<typeof taskOccurrences>[number];
         <span className="small muted">
           {' '}
           · {name(t.owner)}
-          {t.repeat !== 'none' ? ' · ↻' : ''}
+          {t.repeat !== 'none' ? ' · Serie' : ''}
         </span>
       </span>
       {onEdit && (
-        <button type="button" className="btn sm ghost" onClick={(e) => { e.preventDefault(); onEdit(); }}>
-          ✎
+        <button type="button" className="btn sm ghost" onClick={(e) => { e.preventDefault(); onEdit(); }} aria-label="Bearbeiten">
+          <Icon name="edit" size={16} />
         </button>
       )}
     </label>

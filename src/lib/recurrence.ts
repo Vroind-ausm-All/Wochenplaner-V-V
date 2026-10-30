@@ -1,4 +1,4 @@
-import type { CalendarEvent, ISODate, Repeat, Task } from '../store/types';
+import type { CalendarEvent, ExternalMeta, ISODate, Repeat, Task } from '../store/types';
 import { addDays, parse, toMinutes } from './date';
 
 /** Gleiche Regeln wie im alten Board, damit Serien identisch erscheinen. */
@@ -25,7 +25,12 @@ export const occurs = (e: CalendarEvent, on: ISODate) => matches(e.date, on, e.r
 
 export interface Occurrence extends CalendarEvent {
   on: ISODate;
+  /** gesetzt bei Abo-Terminen und Feiertagen (nur lesend) */
+  external?: ExternalMeta;
 }
+
+/** Sortierung eines Tages: ganztägig zuerst, dann nach Uhrzeit. */
+export const byDayAndTime = (a: Occurrence, b: Occurrence) => a.on.localeCompare(b.on) || byTime(a, b);
 
 const byTime = (a: CalendarEvent, b: CalendarEvent) =>
   Number(!a.allDay) - Number(!b.allDay) || toMinutes(a.time || '00:00') - toMinutes(b.time || '00:00');

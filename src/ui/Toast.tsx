@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useEffect } from 'react';
 import { useStore } from '../store/store';
+import { Icon } from './Icon';
 
 /** Rückmeldung nach jeder Aktion – mit „Rückgängig“, damit Touch-Fehlgriffe nie wehtun. */
 export function Toast() {
@@ -15,11 +16,11 @@ export function Toast() {
     <div className="toast-host" aria-live="polite">
       <AnimatePresence>
         {toast && (
-          <motion.div key={toast.id} className="toast" initial={{ y: -30, opacity: 0, scale: 0.96 }} animate={{ y: 0, opacity: 1, scale: 1 }} exit={{ y: -20, opacity: 0 }}>
+          <motion.div key={toast.id} className="toast" initial={{ y: -8, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }}>
             <span>{toast.text}</span>
             {toast.undo && (
               <button className="btn sm" onClick={undo}>
-                ↶ Rückgängig
+                <Icon name="undo" size={16} /> Rückgängig
               </button>
             )}
           </motion.div>

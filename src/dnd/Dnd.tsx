@@ -20,6 +20,7 @@ import { accepts, applyDrop } from './rules';
 import { pick, useActivePayload, useDnd } from './state';
 import { payloadKey, targetKey, type Payload, type Target } from './types';
 import './dnd.css';
+import { Icon } from '../ui/Icon';
 
 /** Ziel ist, was unter dem Finger bzw. Mauszeiger liegt – nicht unter der (breiteren) Vorschau. */
 const collision: CollisionDetection = (args) => {
@@ -212,9 +213,9 @@ export function TrashZone() {
   return (
     <AnimatePresence>
       {show && (
-        <motion.div initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.6, opacity: 0 }} className="trash-wrap">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }} className="trash-wrap">
           <DropZone target={{ type: 'trash' }} className="trash" label="Hier ablegen zum Entfernen">
-            🗑 Entfernen
+            <Icon name="trash" /> Entfernen
           </DropZone>
         </motion.div>
       )}

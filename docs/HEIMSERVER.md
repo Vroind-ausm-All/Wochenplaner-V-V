@@ -84,12 +84,44 @@ So ist die Einkaufsliste auch im Supermarkt aktuell, der Server bleibt aber von 
 nur eure eigenen Geräte kommen hinein. Eine Portfreigabe im Router ist **nicht** nötig und auch nicht empfohlen.
 Alternative ohne Zusatzdienst: das VPN der Fritzbox (WireGuard); dann gilt aber wieder `http://` ohne Installation.
 
+## Erinnerungen, Kalender-Abos und Feed
+
+**Kalender-Abos** (Google, iCloud, Outlook, Schulferien, Müllabfuhr …) ruft der Heimserver stellvertretend ab, weil
+diese Dienste direkte Browserzugriffe sperren. Abgerufen wird höchstens alle 15 Minuten; Adressen des Servers selbst
+(`localhost`) und Link-Local-Adressen sind gesperrt, Adressen im Heimnetz (z. B. Nextcloud auf dem NAS) erlaubt.
+
+**Erinnerungen** prüft der Server alle 30 Sekunden und schickt fällige als Push-Mitteilung an angemeldete Geräte –
+verschlüsselt nach Web-Push-Standard über die Push-Dienste von Google, Apple oder Mozilla. Jedes Gerät wählt,
+wessen Erinnerungen es bekommt (Alle / eine Person). Voraussetzungen:
+- HTTPS-Adresse (Tailscale, siehe oben) – ohne HTTPS erlauben Browser kein Push.
+- iPhone/iPad: iOS 16.4 oder neuer, App über *Teilen → Zum Home-Bildschirm* installiert und von dort geöffnet.
+- Der Server braucht Internetzugang zu den Push-Diensten (ausgehend, keine Portfreigabe).
+- Optional `WIR_PUSH_CONTACT=mailto:eure@adresse.de` setzen – die Push-Dienste verlangen eine Kontaktadresse.
+
+Ohne Push blenden alle geöffneten Geräte (z. B. der Bilderrahmen) Erinnerungen trotzdem ein, mit sanftem Ton.
+
+**Kalender-Feed:** *Einstellungen → Euer Plan in der Kalender-App* zeigt eine geheime Adresse
+(`/api/feed/<schlüssel>.ics`). iPhone: „In Kalender-App öffnen“ → Abonnieren. Android: App *ICSx⁵* installieren und
+die Adresse eintragen. Die Kalender-App erinnert dann selbst – auch ohne Push. „Neue Adresse“ macht alte Links ungültig.
+Google Kalender im Web kann Adressen aus dem Heimnetz nicht abrufen.
+
+## Fotos und Wetterwarnungen
+
+**Fotos** für den Bildschirmschoner liegen im Datenordner unter `photos/` (verkleinert auf max. 2048 px, je ca.
+0,3–0,8 MB, höchstens 2000 Fotos). Alle angemeldeten Geräte sehen dieselben Fotos; neue erscheinen sofort.
+Gesichert werden sie mit dem Datenordner – am einfachsten den ganzen Ordner regelmäßig kopieren.
+
+**Wetterwarnungen** holt die App direkt bei Bright Sky (frei zugängliche Daten des Deutschen Wetterdienstes).
+Ist das im Netz blockiert, fragt sie über den Heimserver (`/api/alerts`). Maßgeblich bleiben die amtlichen
+Warnungen auf dwd.de bzw. in der WarnWetter-App.
+
 ## Sicherheit & Sicherungen
 
 - Ein Haushalts-Passwort für alle; wer es kennt, sieht alle Einträge. Keine medizinischen Details eintragen.
 - Anmeldung bleibt bis zu 400 Tage gültig (Cookie, nicht per Skript auslesbar). *Einstellungen → Dieses Gerät abmelden*.
 - Nach 10 Fehlversuchen ist die Anmeldung für 15 Minuten gesperrt.
-- Datenordner (`WIR_DATA`): `state.json` = aktueller Stand, `backups/` = eine Sicherung pro Tag, 30 Tage lang.
+- Datenordner (`WIR_DATA`): `state.json` = aktueller Stand, `backups/` = eine Sicherung pro Tag, 30 Tage lang,
+  `push.json` = angemeldete Geräte, `photos/` = Fotos, `vapid.json` / `feed-token` / `secret` = Schlüssel (nicht weitergeben).
   *Einstellungen → Serverstand sichern* lädt den aktuellen Stand als Datei herunter.
 - Wiederherstellen: Sicherungsdatei unter *Einstellungen → JSON importieren* laden – sie wird an alle Geräte verteilt.
 
@@ -108,5 +140,7 @@ npm test                           # u. a. server/server.test.mjs und src/store/
 | `HOST` | `0.0.0.0` | `127.0.0.1`, wenn nur der Rechner selbst zugreifen soll (z. B. hinter `tailscale serve`) |
 | `WIR_DATA` | `./server-daten` | Datenordner |
 | `WIR_DIST` | `./dist` | gebaute App |
+| `WIR_TZ` | Zeitzone des Systems | Zeitzone für Erinnerungen und Feed, z. B. `Europe/Berlin` |
+| `WIR_PUSH_CONTACT` | `mailto:wir-wochenplaner@example.org` | Kontaktadresse für die Push-Dienste (am besten eure eigene) |
 
 Protokoll (kompatibel zum Familienserver des alten Boards): siehe Kopf von `server/server.mjs`.

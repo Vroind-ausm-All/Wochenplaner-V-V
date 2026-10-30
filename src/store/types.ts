@@ -99,6 +99,31 @@ export interface CheckIn {
   b?: Energy;
 }
 
+/** Abonnierter Kalender (iCal/ICS) – nur lesend. Die Liste wird geteilt, die Termine holt jedes Gerät selbst. */
+export interface ExternalCalendar {
+  id: string;
+  name: string;
+  url: string;
+  hue: number;
+  owner: Owner;
+  /** Termine daraus gelten für den Begleiter als belegte Zeit */
+  busy: boolean;
+  visible: boolean;
+}
+
+/** Zusatzinfo an Terminen, die nicht aus dem eigenen Plan stammen (Abos, Feiertage). */
+export interface ExternalMeta {
+  kind: 'ics' | 'holiday';
+  calendarId: string;
+  calendarName: string;
+  hue: number;
+  busy: boolean;
+  official?: boolean;
+  location?: string;
+  description?: string;
+  span?: { day: number; of: number };
+}
+
 export interface Location {
   name: string;
   latitude: number;
@@ -126,6 +151,10 @@ export interface Settings {
   nightFrom: Time;
   nightTo: Time;
   favoriteCuisines: string[];
+  /** Bundesland für gesetzliche Feiertage (Kürzel, z. B. 'BY'); null = nur bundesweite */
+  holidayState: string | null;
+  /** Valentinstag, Muttertag, Heiligabend, Silvester anzeigen */
+  specialDays: boolean;
 }
 
 export interface PlannerData {
@@ -144,4 +173,6 @@ export interface PlannerData {
   favoriteRecipes: string[];
   /** Vom Begleiter verworfene Vorschläge (ID → Datum des Verwerfens) */
   dismissed: Record<string, ISODate>;
+  /** Abonnierte Kalender */
+  calendars: ExternalCalendar[];
 }

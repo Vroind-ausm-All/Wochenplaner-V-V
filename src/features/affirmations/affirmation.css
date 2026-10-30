@@ -1,14 +1,10 @@
-.affirm { position: relative; overflow: hidden; border-radius: 22px; background: linear-gradient(120deg, var(--green), var(--warm)); padding: 18px 22px; }
-.affirm__orbs { position: absolute; inset: 0; pointer-events: none; }
-.affirm__orb { position: absolute; border-radius: 50%; filter: blur(2px); }
-.affirm__body { position: relative; display: grid; gap: 8px; touch-action: pan-y; cursor: grab; }
-.affirm__sun { font-size: 22px; display: inline-block; color: var(--accent-2); }
-.affirm__quote { font-size: clamp(20px, 2.3vw, 28px); font-weight: 700; letter-spacing: -.01em; line-height: 1.3; min-height: 2.6em; }
-.affirm--large .affirm__quote { font-size: clamp(26px, 3.4vw, 40px); }
+.affirm { position: relative; padding: 0; }
+.affirm__body { position: relative; display: grid; gap: 10px; touch-action: pan-y; cursor: grab; }
+.affirm__quote { font-size: clamp(20px, 2.3vw, 28px); font-weight: 500; letter-spacing: -.015em; line-height: 1.25; min-height: 2.5em; }
+.affirm--large .affirm__quote { font-size: clamp(26px, 3.2vw, 40px); font-weight: 450; letter-spacing: -.025em; line-height: 1.15; }
 .affirm__word { display: inline-block; white-space: pre; }
-.affirm__foot { gap: 4px; }
-.affirm__progress { height: 3px; border-radius: 3px; background: #0000000f; overflow: hidden; }
-.affirm__progress span { display: block; height: 100%; background: var(--accent); transform-origin: left; opacity: .5; }
-.affirm__heart { position: relative; width: 44px; height: 44px; border-radius: 50%; border: 0; background: #ffffff90; font-size: 22px; color: #c0605a; }
-.affirm__heart.is-fav { background: #fff; }
-.affirm__spark { position: absolute; left: 50%; top: 50%; margin: -9px 0 0 -6px; font-size: 14px; pointer-events: none; color: #e07a73; }
+.affirm__foot { gap: 2px; }
+.affirm__progress { height: 1px; background: var(--line); overflow: hidden; }
+.affirm__progress span { display: block; height: 100%; background: var(--ink); transform-origin: left; }
+.affirm__heart.is-fav { color: var(--accent); }
+.affirm__heart.is-fav path { fill: currentColor; }

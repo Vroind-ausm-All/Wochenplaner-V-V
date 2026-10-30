@@ -1,9 +1,10 @@
-.shop { display: grid; gap: 16px; max-width: 980px; }
+.shop { display: grid; gap: 20px; max-width: 980px; }
+.shop h2 { font-size: 40px; letter-spacing: -0.03em; }
 .shop__add { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-.shop__item { display: flex; align-items: center; gap: 14px; min-height: 60px; padding: 6px 12px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); }
-.shop__item input, .task input { width: 28px; height: 28px; accent-color: var(--accent); flex: none; }
-.shop__item.is-done { opacity: .5; }
+.shop__item { display: flex; align-items: center; gap: 14px; min-height: 56px; padding: 6px 0; border-bottom: 1px solid var(--line); }
+.shop__item input, .task input { width: 24px; height: 24px; accent-color: var(--ink); flex: none; }
+.shop__item.is-done { color: var(--muted); }
 .shop__item.is-done b { text-decoration: line-through; }
 .stock { display: grid; gap: 10px; }
-.stock.is-low { border-color: #e2a66f; }
+.stock.is-low { border-left: 2px solid var(--accent); padding-left: 10px; }
 .stock__qty { min-width: 90px; text-align: center; }

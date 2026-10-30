@@ -4,6 +4,7 @@ import { uid } from '../../lib/id';
 import { useToday } from '../../lib/useClock';
 import { useStore } from '../../store/store';
 import { Chips } from '../../ui/Segmented';
+import { Icon } from '../../ui/Icon';
 
 const DOC_CATS = ['Versicherung', 'Antrag', 'Rechnung', 'Vertrag', 'Sonstiges'];
 const BABY_GROUPS = ['Vorsorge', 'Anschaffungen', 'Organisation', 'Betreuung', 'Routinen'];
@@ -47,11 +48,11 @@ export function FamilyPage() {
                 <b>{x.title}</b> <span className="small muted">· {x.category} · {fmt.short(x.due)}</span>
               </span>
               {!x.done && <span className={`badge ${left <= 7 ? 'warn' : ''}`}>{left < 0 ? `${-left} Tage überfällig` : left === 0 ? 'heute' : `in ${left} Tagen`}</span>}
-              <button type="button" className="btn sm" onClick={(e) => { e.preventDefault(); addEvent({ title: `Frist: ${x.title}`, date: x.due, time: '09:00', duration: 30, category: 'Frist', owner: x.owner ?? 'Beide', allDay: true, repeat: 'none', reminder: 'none' }, 'Frist im Kalender'); }}>
-                📅
+              <button type="button" className="btn sm" onClick={(e) => { e.preventDefault(); addEvent({ title: `Frist: ${x.title}`, date: x.due, time: '09:00', duration: 30, category: 'Frist', owner: x.owner ?? 'Beide', allDay: true, repeat: 'none', reminder: 'none' }, 'Frist im Kalender'); }} aria-label="In den Kalender">
+                <Icon name="calendar" size={16} />
               </button>
               <button type="button" className="btn sm ghost" onClick={(e) => { e.preventDefault(); mutate((d) => void (d.documents = d.documents.filter((y) => y.id !== x.id))); }} aria-label="Löschen">
-                ✕
+                <Icon name="close" size={16} />
               </button>
             </label>
           );
@@ -85,11 +86,11 @@ export function FamilyPage() {
                   <span className="grow">
                     <b>{x.title}</b> <span className="small muted">· {fmt.short(x.date)}</span>
                   </span>
-                  <button type="button" className="btn sm" onClick={(e) => { e.preventDefault(); addEvent({ title: x.title, date: x.date, time: '17:00', duration: 45, category: 'Baby', owner: x.owner, allDay: false, repeat: 'none', reminder: 'none' }, 'In den Kalender übernommen'); }}>
-                    📅
+                  <button type="button" className="btn sm" onClick={(e) => { e.preventDefault(); addEvent({ title: x.title, date: x.date, time: '17:00', duration: 45, category: 'Baby', owner: x.owner, allDay: false, repeat: 'none', reminder: 'none' }, 'In den Kalender übernommen'); }} aria-label="In den Kalender">
+                    <Icon name="calendar" size={16} />
                   </button>
                   <button type="button" className="btn sm ghost" onClick={(e) => { e.preventDefault(); mutate((d) => void (d.baby = d.baby.filter((y) => y.id !== x.id))); }} aria-label="Löschen">
-                    ✕
+                    <Icon name="close" size={16} />
                   </button>
                 </label>
               ))}

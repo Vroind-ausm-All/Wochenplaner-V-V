@@ -48,7 +48,8 @@ export interface Recipe {
 export interface Cuisine {
   id: string;
   name: string;
-  flag: string;
+  /** Kürzel in Versalien (IT, DE, MX …) – typografisch statt Flaggen-Emoji */
+  code: string;
   tagline: string;
   /** Wie leicht lässt sich die Küche glutenfrei kochen? 1 = viel Ersatz nötig, 3 = von Natur aus meist glutenfrei */
   gfEase: 1 | 2 | 3;

@@ -4,6 +4,7 @@ import { addDays, daysBetween, fmt, fromMinutes, isWeekend, monday, range, toMin
 import { occurrences, type Occurrence } from '../../lib/recurrence';
 import { isOutdoorFriendly, type DailyWeather } from '../../lib/weather';
 import type { CalendarEvent, Energy, ISODate, PlannerData, Time } from '../../store/types';
+import type { IconName } from '../../ui/Icon';
 import { DATE_IDEAS, QUESTIONS, type DateIdea } from './ideas';
 
 /**
@@ -21,7 +22,7 @@ export interface Suggestion {
   id: string;
   kind: 'wir' | 'date' | 'checkin' | 'ich-a' | 'ich-b' | 'rest' | 'meal';
   title: string;
-  emoji: string;
+  icon: IconName;
   reason: string;
   date: ISODate;
   time: Time;
@@ -32,10 +33,16 @@ export interface Suggestion {
   idea?: DateIdea;
 }
 
+/** Hinweis des Begleiters: Piktogramm + kurzer Satz. */
+export interface Message {
+  icon: IconName;
+  text: string;
+}
+
 export interface CompanionReport {
   mood: Mood;
   headline: string;
-  messages: string[];
+  messages: Message[];
   question: string;
   week: ISODate;
   wir: { minutes: number; goal: number; planned: number };
@@ -83,13 +90,27 @@ interface Input {
   today: ISODate;
   now: Time;
   weather?: DailyWeather[];
+  /** Abo-Termine und Feiertage der Woche (siehe externalBetween) */
+  external?: Occurrence[];
+  /** Amtliche Wetterwarnungen (ab Stufe „markant“ relevant für Pläne draußen) */
+  alerts?: { event: string; severity: string; onset: number; expires: number | null }[];
 }
 
-export function analyze({ data, today, now, weather = [] }: Input): CompanionReport {
+export function analyze({ data, today, now, weather = [], external = [], alerts = [] }: Input): CompanionReport {
   const s = data.settings;
   const week = monday(today);
   const days = range(week, 7);
   const occ = occurrences(data.events, week, addDays(week, 6));
+  // Für freie Zeitfenster und volle Tage zählen auch belegte Abo-Termine (z. B. Dienstkalender).
+  const busyOcc = [...occ, ...external.filter((e) => e.external?.busy && !e.allDay)];
+  const holidays = external.filter((e) => e.external?.kind === 'holiday' && e.external.official && e.on >= week && e.on <= addDays(week, 6));
+  const holidaySet = new Set(holidays.map((e) => e.on));
+  const freeDay = (d: ISODate) => isWeekend(d) || holidaySet.has(d);
+  // Markante Warnungen (Sturm, Gewitter, Glätte …) machen einen Tag ungeeignet für draußen.
+  const strong = alerts.filter((a) => a.severity !== 'minor');
+  const dayStart = (d: ISODate) => new Date(`${d}T00:00:00`).getTime();
+  const warned = (d: ISODate) => strong.some((a) => a.onset < dayStart(d) + 864e5 && (a.expires === null || a.expires > dayStart(d)));
+  const niceOutside = (d: ISODate) => !warned(d) && !!wx.get(d) && isOutdoorFriendly(wx.get(d)!);
   const wx = new Map(weather.map((w) => [w.date, w]));
   const A = s.personA, B = s.personB;
 
@@ -112,7 +133,7 @@ export function analyze({ data, today, now, weather = [] }: Input): CompanionRep
 
   const checkinPlanned = occ.some(isCheckin);
   const busyDays = days.filter((d) => {
-    const l = load(occ, d);
+    const l = load(busyOcc, d);
     return l.count >= 4 || l.minutes >= 6 * 60;
   });
   const specialDays = occurrences(data.events, today, addDays(today, 21)).filter((e) => e.repeat === 'yearly' && (e.category === 'Wir' || e.category === 'Familie'));
@@ -123,7 +144,7 @@ export function analyze({ data, today, now, weather = [] }: Input): CompanionRep
   // --- Vorschläge -----------------------------------------------------------
   const suggestions: Suggestion[] = [];
   const upcoming = days.filter((d) => d >= today);
-  const slotsFor = (d: ISODate) => freeSlots(occ, d, isWeekend(d) ? s.weekendWindow : s.weekdayWindow, d === today ? now : undefined);
+  const slotsFor = (d: ISODate) => freeSlots(busyOcc, d, freeDay(d) ? s.weekendWindow : s.weekdayWindow, d === today ? now : undefined);
   const taken = new Set<ISODate>();
   const findSlot = (minutes: number, prefer: (d: ISODate) => number, preferredStart?: Time) => {
     const candidates = upcoming
@@ -140,16 +161,16 @@ export function analyze({ data, today, now, weather = [] }: Input): CompanionRep
     taken.add(pick.d);
     return { date: pick.d, time: fromMinutes(Math.ceil(start / 15) * 15) };
   };
-  const dayScore = (d: ISODate) => -load(occ, d).minutes / 60 - (busyDays.includes(d) ? 5 : 0);
+  const dayScore = (d: ISODate) => -load(busyOcc, d).minutes / 60 - (busyDays.includes(d) ? 5 : 0) + (holidaySet.has(d) ? 3 : 0);
   const id = (k: string) => `${k}-${week}`;
   const notDismissed = (sid: string) => !data.dismissed[sid];
 
   if (lowA && lowB && notDismissed(id('rest-' + today))) {
-    const slot = freeSlots(occ, today, s.weekdayWindow, now)[0];
+    const slot = freeSlots(busyOcc, today, freeDay(today) ? s.weekendWindow : s.weekdayWindow, now)[0];
     if (slot) {
       const quick = pickRecipe(today, (r) => r.minutes <= 30, s.favoriteCuisines);
       suggestions.push({
-        id: id('rest-' + today), kind: 'rest', emoji: '🛋️', title: 'Ruhiger Abend ohne Programm',
+        id: id('rest-' + today), kind: 'rest', icon: 'armchair', title: 'Ruhiger Abend ohne Programm',
         reason: `Ihr seid beide erschöpft. Heute nichts mehr leisten – ${quick ? `${quick.name} geht in ${quick.minutes} Minuten` : 'etwas Einfaches essen'} und früh ins Bett.`,
         date: today, time: fromMinutes(slot[0]), duration: 60, category: 'Wir', owner: 'Beide', recipe: quick,
       });
@@ -160,20 +181,20 @@ export function analyze({ data, today, now, weather = [] }: Input): CompanionRep
     const slot = findSlot(15, (d) => (weekdayIndex(d) === 6 ? 10 : weekdayIndex(d) === 5 ? 5 : 0), '17:00');
     if (slot)
       suggestions.push({
-        id: id('checkin'), kind: 'checkin', emoji: '🧭', title: 'WIR-Check-in', duration: 15, category: 'Wir', owner: 'Beide', ...slot,
+        id: id('checkin'), kind: 'checkin', icon: 'compass', title: 'WIR-Check-in', duration: 15, category: 'Wir', owner: 'Beide', ...slot,
         reason: '15 Minuten Wochenkompass: Termine, Verantwortung, Erholung – und wer nächste Woche Hilfe braucht.',
       });
   }
 
   const dateDue = !nextDate && (daysSinceDate === null || daysSinceDate >= s.dateNightEveryDays - 3);
   if (dateDue && notDismissed(id('date'))) {
-    const rainy = (d: ISODate) => (wx.get(d) ? !isOutdoorFriendly(wx.get(d)!) : false);
+    const rainy = (d: ISODate) => warned(d) || (wx.get(d) ? !isOutdoorFriendly(wx.get(d)!) : false);
     const slot = findSlot(120, (d) => [4, 5].includes(weekdayIndex(d)) ? 10 + dayScore(d) : dayScore(d), '19:00');
     if (slot) {
       const idea = rainy(slot.date) ? DATE_IDEAS.find((x) => x.id === 'cook')! : DATE_IDEAS.find((x) => x.id === 'restaurant')!;
       const recipe = idea.id === 'cook' ? pickRecipe(slot.date, (r) => r.group === 'Besonders', s.favoriteCuisines) : undefined;
       suggestions.push({
-        id: id('date'), kind: 'date', emoji: idea.emoji, title: idea.id === 'cook' ? `Date Night: ${recipe ? recipe.name : 'Kochabend'}` : 'Date Night',
+        id: id('date'), kind: 'date', icon: idea.icon, title: idea.id === 'cook' ? `Date Night: ${recipe ? recipe.name : 'Kochabend'}` : 'Date Night',
         reason: (daysSinceDate === null ? 'Ich finde noch keine Date Night im Kalender.' : `Eure letzte Date Night ist ${daysSinceDate} Tage her.`) + ' ' + idea.text,
         duration: 120, category: 'Wir', owner: 'Beide', idea, recipe, ...slot,
       });
@@ -182,14 +203,14 @@ export function analyze({ data, today, now, weather = [] }: Input): CompanionRep
 
   if (wirMinutes < s.wirGoalMinutes && notDismissed(id('wir'))) {
     const missing = s.wirGoalMinutes - wirMinutes;
-    const slot = findSlot(45, (d) => dayScore(d) + (wx.get(d) && isOutdoorFriendly(wx.get(d)!) ? 3 : 0));
+    const slot = findSlot(45, (d) => dayScore(d) + (niceOutside(d) ? 3 : 0));
     if (slot) {
       const w = wx.get(slot.date);
-      const outdoor = w ? isOutdoorFriendly(w) : false;
+      const outdoor = niceOutside(slot.date);
       const pool = DATE_IDEAS.filter((x) => x.minutes <= 90 && (outdoor ? x.place !== 'drinnen' : x.place !== 'draußen') && x.energy <= (lowA || lowB ? 1 : 2));
       const idea = pool[hash(slot.date + week) % pool.length] ?? DATE_IDEAS[0];
       suggestions.push({
-        id: id('wir'), kind: 'wir', emoji: idea.emoji, title: idea.title, duration: idea.minutes, category: 'Wir', owner: 'Beide', idea, ...slot,
+        id: id('wir'), kind: 'wir', icon: idea.icon, title: idea.title, duration: idea.minutes, category: 'Wir', owner: 'Beide', idea, ...slot,
         reason: `Noch ${fmt.duration(missing)} bis zu eurem Wir-Ziel.${w ? ` ${fmt.weekdayLong(slot.date)}: ${Math.round(w.max)}° – ${outdoor ? 'gut für draußen' : 'eher etwas für drinnen'}.` : ''} ${idea.text}`,
       });
     }
@@ -201,7 +222,7 @@ export function analyze({ data, today, now, weather = [] }: Input): CompanionRep
     const slot = findSlot(60, dayScore);
     if (slot)
       suggestions.push({
-        id: id(kind), kind, emoji: '🌿', title: `Eigene Zeit für ${name}`, duration: 60, category: 'Ich', owner: who, ...slot,
+        id: id(kind), kind, icon: 'leaf', title: `Eigene Zeit für ${name}`, duration: 60, category: 'Ich', owner: who, ...slot,
         reason: `${name} hat diese Woche erst ${fmt.duration(mins)} nur für sich. Erholung ist keine Belohnung, sondern ein Bedürfnis.`,
       });
   }
@@ -211,7 +232,7 @@ export function analyze({ data, today, now, weather = [] }: Input): CompanionRep
     const r = pickRecipe(d, (x) => x.minutes <= 30 || x.technique === 'Airfryer', s.favoriteCuisines);
     if (r)
       suggestions.push({
-        id: id('meal-' + d), kind: 'meal', emoji: r.symbol, title: `${fmt.weekday(d)}: ${r.name}`, recipe: r,
+        id: id('meal-' + d), kind: 'meal', icon: 'pot', title: `${fmt.weekday(d)}: ${r.name}`, recipe: r,
         reason: `${fmt.weekdayLong(d)} ist voll. Plant schon jetzt etwas Schnelles (${r.minutes} Min.) – ein Gedanke weniger.`,
         date: d, time: '18:30', duration: r.minutes, category: 'Haushalt', owner: 'Beide',
       });
@@ -224,16 +245,22 @@ export function analyze({ data, today, now, weather = [] }: Input): CompanionRep
   let mood: Mood = 'calm';
   if (hour >= 22.5 || hour < 6) mood = 'sleepy';
   else if (lowA && lowB) mood = 'concerned';
+  else if (strong.some((a) => ['severe', 'extreme'].includes(a.severity) && warned(today))) mood = 'concerned';
   else if (ratio >= 1) mood = 'celebrate';
   else if (busyDays.filter((d) => d >= today).length >= 3 || overdue) mood = 'concerned';
   else if (ratio >= 0.6) mood = 'happy';
 
-  const messages: string[] = [];
-  if (specialDays[0]) messages.push(`🎉 ${specialDays[0].title} – ${fmt.relative(specialDays[0].on, today)}.`);
-  if (nextDate) messages.push(`💞 Nächste Date Night: ${fmt.relative(nextDate.on, today)}${nextDate.allDay ? '' : `, ${nextDate.time} Uhr`}.`);
-  if (busyDays.length) messages.push(`📆 Volle Tage: ${busyDays.map(fmt.weekday).join(', ')} – dort lieber nichts zusätzlich einplanen.`);
-  if (lowA !== lowB) messages.push(`🔋 ${lowA ? A : B} hat heute wenig Energie. Vielleicht übernimmt ${lowA ? B : A} heute den Abend?`);
-  if (Math.abs(ichA - ichB) >= 120) messages.push(`⚖️ Eigene Zeit ist ungleich verteilt (${A}: ${fmt.duration(ichA)}, ${B}: ${fmt.duration(ichB)}).`);
+  const messages: Message[] = [];
+  const say = (icon: IconName, text: string) => messages.push({ icon, text });
+  const warnToday = strong.find(() => warned(today)) ?? strong[0];
+  if (warnToday) say('alert', `Wetterwarnung: ${warnToday.event.charAt(0)}${warnToday.event.slice(1).toLowerCase()} – Pläne draußen lieber verschieben, Ideen für drinnen gibt es genug.`);
+  if (specialDays[0]) say('star', `${specialDays[0].title} – ${fmt.relative(specialDays[0].on, today)}.`);
+  const nextHoliday = holidays.find((h) => h.on >= today && !isWeekend(h.on));
+  if (nextHoliday) say('leaf', `${fmt.weekdayLong(nextHoliday.on)} ist ${nextHoliday.title} – ein freier Tag für euch.`);
+  if (nextDate) say('wir', `Nächste Date Night: ${fmt.relative(nextDate.on, today)}${nextDate.allDay ? '' : `, ${nextDate.time} Uhr`}.`);
+  if (busyDays.length) say('calendar', `Volle Tage: ${busyDays.map(fmt.weekday).join(', ')} – dort lieber nichts zusätzlich einplanen.`);
+  if (lowA !== lowB) say('battery-low', `${lowA ? A : B} hat heute wenig Energie. Vielleicht übernimmt ${lowA ? B : A} heute den Abend?`);
+  if (Math.abs(ichA - ichB) >= 120) say('users', `Eigene Zeit ist ungleich verteilt (${A}: ${fmt.duration(ichA)}, ${B}: ${fmt.duration(ichB)}).`);
 
   const headline =
     mood === 'sleepy' ? 'Schlaft gut. Morgen ist auch noch ein Tag.'

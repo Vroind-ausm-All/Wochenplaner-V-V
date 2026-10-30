@@ -4,6 +4,7 @@ import { useClockStore } from '../../lib/useClock';
 import { useStore } from '../../store/store';
 import { connect, disconnect, downloadPreSyncBackup, useSync } from '../../store/sync';
 import { Sheet } from '../../ui/Sheet';
+import { Icon } from '../../ui/Icon';
 
 function ago(ts: number | null, now: number) {
   if (!ts) return 'noch nie';
@@ -19,10 +20,10 @@ export function SyncBadge() {
   const s = useSync();
   useClockStore((c) => c.now); // minütlich neu zeichnen
   if (!s.available) return <span>Nur auf diesem Gerät</span>;
-  if (!s.connected) return <span>☁ Anmeldung nötig</span>;
-  if (!s.online) return <span title={s.error ?? ''}>⚠ Offline{s.pending ? ' · wird nachgeholt' : ''}</span>;
-  if (s.pending) return <span>⏳ Wird abgeglichen …</span>;
-  return <span title={`Zuletzt ${ago(s.lastSync, Date.now())}`}>☁ Alle Geräte aktuell</span>;
+  if (!s.connected) return <span className="sync-badge"><Icon name="lock" size={14} /> Anmeldung nötig</span>;
+  if (!s.online) return <span className="sync-badge" title={s.error ?? ''}><Icon name="cloud-off" size={14} /> Offline{s.pending ? ' · wird nachgeholt' : ''}</span>;
+  if (s.pending) return <span className="sync-badge"><Icon name="sync" size={14} /> Wird abgeglichen …</span>;
+  return <span className="sync-badge" title={`Zuletzt ${ago(s.lastSync, Date.now())}`}><Icon name="cloud" size={14} /> Alle Geräte aktuell</span>;
 }
 
 function LoginForm({ onDone }: { onDone?: () => void }) {
@@ -105,7 +106,7 @@ export function SyncPanel() {
       {s.connected && (
         <>
           <p>
-            <b>{s.online ? (s.pending ? '⏳ Wird abgeglichen …' : '✓ Verbunden – alle Geräte sind aktuell.') : '⚠ Gerade keine Verbindung – Änderungen werden gesammelt und automatisch nachgeholt.'}</b>
+            <b>{s.online ? (s.pending ? 'Wird abgeglichen …' : 'Verbunden – alle Geräte sind aktuell.') : 'Gerade keine Verbindung – Änderungen werden gesammelt und automatisch nachgeholt.'}</b>
           </p>
           <p className="small muted">
             Zuletzt abgeglichen: {ago(s.lastSync, now)} · Stand Nr. {s.revision}
@@ -115,7 +116,7 @@ export function SyncPanel() {
           </p>
           <div className="row wrap">
             <a className="btn" href="/api/backup">
-              ↓ Serverstand sichern
+              <Icon name="download" size={16} /> Serverstand sichern
             </a>
             <button className="btn ghost" onClick={() => void disconnect()}>
               Dieses Gerät abmelden
@@ -149,7 +150,7 @@ export function InstallCard() {
       {prompt ? (
         <div className="row wrap">
           <button className="btn primary" onClick={() => void install()}>
-            📲 App installieren
+            <Icon name="download" size={16} /> App installieren
           </button>
           <span className="small muted">Startet dann wie eine normale App und funktioniert auch ohne Netz.</span>
         </div>

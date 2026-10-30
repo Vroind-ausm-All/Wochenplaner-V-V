@@ -6,7 +6,11 @@ import { updateDevice, useDevice } from '../../store/device';
 import { useStore } from '../../store/store';
 import type { Location } from '../../store/types';
 import { Chips } from '../../ui/Segmented';
+import { CalendarSettings } from '../external/CalendarSettings';
+import { PhotoSettings } from '../photos/PhotoSettings';
+import { FeedCard, ReminderSettings } from '../reminders/ReminderSettings';
 import { InstallCard, SyncPanel } from '../sync/SyncUi';
+import { Icon } from '../../ui/Icon';
 
 export function SettingsPage() {
   const s = useStore((x) => x.data.settings);
@@ -71,7 +75,7 @@ export function SettingsPage() {
           <input className="input grow" placeholder="Ort suchen, z. B. Leipzig" value={q} onChange={(e) => setQ(e.target.value)} />
           <button className="btn">Suchen</button>
           <button type="button" className="btn" onClick={locate}>
-            📍 Standort verwenden
+            <Icon name="pin" size={16} /> Standort verwenden
           </button>
         </form>
         <div className="chips">
@@ -82,6 +86,10 @@ export function SettingsPage() {
           ))}
         </div>
       </section>
+
+      <CalendarSettings />
+      <ReminderSettings />
+      <PhotoSettings />
 
       <section className="card stack">
         <h3>Essen</h3>
@@ -104,7 +112,7 @@ export function SettingsPage() {
         </div>
         <div className="chips">
           <button className="chip" aria-pressed={dev.nightMode} onClick={() => updateDevice({ nightMode: !dev.nightMode })}>
-            🌙 Nachtmodus automatisch
+            Nachtmodus automatisch
           </button>
         </div>
         {dev.nightMode && (
@@ -125,13 +133,14 @@ export function SettingsPage() {
       </section>
 
       <SyncPanel />
+      <FeedCard />
       <InstallCard />
 
       <section className="card stack">
         <h3>Datensicherung</h3>
         <div className="row wrap">
-          <button className="btn" onClick={exportJson}>↓ JSON exportieren</button>
-          <button className="btn" onClick={() => file.current?.click()}>↑ JSON importieren</button>
+          <button className="btn" onClick={exportJson}><Icon name="download" size={16} /> JSON exportieren</button>
+          <button className="btn" onClick={() => file.current?.click()}><Icon name="upload" size={16} /> JSON importieren</button>
           <button className="btn danger" onClick={() => confirm('Alle Daten auf Beispieldaten zurücksetzen?') && (replaceAll(seed()), notify('Zurückgesetzt', true))}>
             Zurücksetzen
           </button>

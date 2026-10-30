@@ -70,7 +70,7 @@ export const useStore = create<Store>()((set, get) => ({
   groceryWeek: monday(today()),
   editing: null,
   recipeOpen: null,
-  toast: initial.migrated ? { id: ++toastId, text: 'Daten aus dem bisherigen WIR-Board übernommen ✓' } : null,
+  toast: initial.migrated ? { id: ++toastId, text: 'Daten aus dem bisherigen WIR-Board übernommen' } : null,
 
   mutate(fn, toast) {
     const prev = get().data;
@@ -138,7 +138,7 @@ export const useStore = create<Store>()((set, get) => ({
     get().mutate((d) => {
       d.meals[day] = { ...(d.meals[day] || {}), [slot]: { name: recipe.name, recipeId: recipe.id, portions: s.defaultPortions, meat: false, ...opts } };
       regroceries(d, week);
-    }, `${recipe.symbol} ${recipe.name} eingeplant · Einkaufsliste aktualisiert`);
+    }, `${recipe.name} eingeplant · Einkaufsliste aktualisiert`);
   },
   moveMeal(from, to) {
     get().mutate((d) => {

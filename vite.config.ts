@@ -15,5 +15,7 @@ export default defineConfig({
   test: {
     environment: 'node',
     include: ['src/**/*.test.ts', 'server/**/*.test.mjs'],
+    // Zeitzonen-Tests rechnen wie ein Gerät in Deutschland.
+    env: { TZ: 'Europe/Berlin' },
   },
 });

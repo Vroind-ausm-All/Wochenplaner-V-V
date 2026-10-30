@@ -6,6 +6,7 @@ import { regenerateGroceries, useStore } from '../../store/store';
 import type { GfStatus } from '../../store/types';
 import { Chips, Segmented } from '../../ui/Segmented';
 import './shopping.css';
+import { Icon } from '../../ui/Icon';
 
 const CATS = ['Lebensmittel', 'Drogerie', 'Haushalt', 'Baby', 'Sonstiges'];
 
@@ -15,7 +16,7 @@ export function ShoppingPage() {
     <div className="shop">
       <header className="row wrap">
         <h2 className="grow">Einkaufen & Vorräte</h2>
-        <Segmented value={tab} onChange={setTab} options={[{ value: 'list', label: '🛒 Einkaufsliste' }, { value: 'stock', label: '▤ Vorräte' }]} />
+        <Segmented value={tab} onChange={setTab} options={[{ value: 'list', label: 'Einkaufsliste', icon: 'cart' }, { value: 'stock', label: 'Vorräte', icon: 'basket' }]} />
       </header>
       {tab === 'list' ? <ShoppingList /> : <Inventory />}
     </div>
@@ -56,7 +57,7 @@ function ShoppingList() {
           {open} offen · Rezeptbedarf für Woche ab {fmt.short(week)}
         </b>
         <button className="btn sm" onClick={() => regenerateGroceries(week)}>
-          ↻ Aus Essensplan neu berechnen
+          <Icon name="refresh" size={16} /> Aus Essensplan neu berechnen
         </button>
         <button className="btn sm" onClick={() => mutate((d) => void (d.shopping = d.shopping.filter((x) => !x.done)), 'Erledigte entfernt')}>
           Erledigte entfernen
@@ -72,9 +73,9 @@ function ShoppingList() {
                 <span className="grow">
                   <b>{x.name}</b> <span className="muted">{x.qty}</span>
                 </span>
-                {x.origin === 'meal-plan' && <span className="badge" title="Aus dem Essensplan">🍽</span>}
+                {x.origin === 'meal-plan' && <span className="badge" title="Aus dem Essensplan"><Icon name="plate" size={14} /> Plan</span>}
                 <button type="button" className="btn sm ghost" aria-label="Entfernen" onClick={() => mutate((d) => void (d.shopping = d.shopping.filter((y) => y.id !== x.id)))}>
-                  ✕
+                  <Icon name="close" size={16} />
                 </button>
               </motion.label>
             ))}
@@ -86,10 +87,10 @@ function ShoppingList() {
   );
 }
 
-const GF: { value: GfStatus; label: string }[] = [
-  { value: 'verified', label: '✓ GF geprüft' },
-  { value: 'unverified', label: '? ungeprüft' },
-  { value: 'not-applicable', label: '– kein Lebensmittel' },
+const GF: { value: GfStatus; label: string; icon?: string }[] = [
+  { value: 'verified', label: 'GF geprüft', icon: 'check' },
+  { value: 'unverified', label: 'ungeprüft' },
+  { value: 'not-applicable', label: 'kein Lebensmittel' },
 ];
 
 function Inventory() {
@@ -120,11 +121,11 @@ function Inventory() {
                   className="btn sm"
                   onClick={() => mutate((d) => void d.shopping.push({ id: uid(), name: x.name, qty: `${Math.max(1, x.min * 2 - x.qty)} ${x.unit}`, category: x.category, done: false }), `${x.name} auf die Liste gesetzt`)}
                 >
-                  🛒 Auf die Liste
+                  <Icon name="cart" size={16} /> Auf die Liste
                 </button>
               )}
               <button className="btn sm ghost" onClick={() => mutate((d) => void (d.inventory = d.inventory.filter((y) => y.id !== x.id)))} aria-label="Löschen">
-                ✕
+                <Icon name="close" size={16} />
               </button>
             </div>
             <div className="row wrap">
