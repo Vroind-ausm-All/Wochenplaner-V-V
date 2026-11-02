@@ -4,6 +4,7 @@ import { DndProvider, TrashZone } from '../dnd/Dnd';
 import { CalendarPage, PickActions } from '../features/calendar/CalendarPage';
 import { EventSheet, SeriesDialog } from '../features/calendar/EventSheet';
 import { CompanionPage } from '../features/companion/Companion';
+import { WeekCompass } from '../features/companion/WeekCompass';
 import { FamilyPage } from '../features/family/FamilyPage';
 import { HomePage } from '../features/home/HomePage';
 import { MealPlanner } from '../features/meals/MealPlanner';
@@ -117,6 +118,7 @@ export function App() {
         <Toast />
         <ServerLoginSheet />
         <ReminderCenter />
+        <WeekCompass />
         <AnimatePresence>{kiosk.screensaver && !kiosk.sleeping && <Screensaver night={kiosk.night} onClose={kiosk.closeScreensaver} />}</AnimatePresence>
         <AnimatePresence>
           {(kiosk.sleeping || kiosk.dimmed) && (

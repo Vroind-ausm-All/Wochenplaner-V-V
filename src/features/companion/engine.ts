@@ -1,4 +1,5 @@
 import { RECIPES } from '../../data/recipes';
+import { heavierSide, weekBalance, type Balance } from '../../lib/balance';
 import type { Recipe } from '../../data/recipes/types';
 import { addDays, daysBetween, fmt, fromMinutes, isWeekend, monday, range, toMinutes, weekdayIndex } from '../../lib/date';
 import { occurrences, type Occurrence } from '../../lib/recurrence';
@@ -53,6 +54,8 @@ export interface CompanionReport {
   busyDays: ISODate[];
   specialDays: Occurrence[];
   suggestions: Suggestion[];
+  /** Wer trägt diese Woche was (Aufgaben, Organisations-Termine) */
+  balance: Balance;
 }
 
 const isDate = (e: CalendarEvent) => /date|essen gehen|kino|restaurant/i.test(e.title) || (e.category === 'Wir' && e.duration >= 90);
@@ -260,6 +263,13 @@ export function analyze({ data, today, now, weather = [], external = [], alerts 
   if (nextDate) say('wir', `Nächste Date Night: ${fmt.relative(nextDate.on, today)}${nextDate.allDay ? '' : `, ${nextDate.time} Uhr`}.`);
   if (busyDays.length) say('calendar', `Volle Tage: ${busyDays.map(fmt.weekday).join(', ')} – dort lieber nichts zusätzlich einplanen.`);
   if (lowA !== lowB) say('battery-low', `${lowA ? A : B} hat heute wenig Energie. Vielleicht übernimmt ${lowA ? B : A} heute den Abend?`);
+  const balance = weekBalance(data, week);
+  const heavy = heavierSide(balance);
+  if (heavy) {
+    const load = (o: 'Person A' | 'Person B') => balance[o].tasks + balance[o].events;
+    const other = heavy === 'Person A' ? 'Person B' : 'Person A';
+    say('users', `${heavy === 'Person A' ? A : B} trägt diese Woche mehr (${load(heavy)} Aufgaben und Termine, ${heavy === 'Person A' ? B : A}: ${load(other)}). Gibt es etwas zum Abgeben?`);
+  }
   if (Math.abs(ichA - ichB) >= 120) say('users', `Eigene Zeit ist ungleich verteilt (${A}: ${fmt.duration(ichA)}, ${B}: ${fmt.duration(ichB)}).`);
 
   const headline =
@@ -276,7 +286,7 @@ export function analyze({ data, today, now, weather = [], external = [], alerts 
     question: QUESTIONS[hash(today) % QUESTIONS.length],
     wir: { minutes: wirMinutes, goal: s.wirGoalMinutes, planned: wirMinutes - wirDone },
     ich: { a: ichA, b: ichB, goal: s.ichGoalMinutes },
-    daysSinceDate, nextDate, checkinPlanned, busyDays, specialDays,
+    daysSinceDate, nextDate, checkinPlanned, busyDays, specialDays, balance,
     suggestions: suggestions.slice(0, 5),
   };
 }

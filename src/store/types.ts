@@ -5,8 +5,11 @@ export type ISODate = string; // 'YYYY-MM-DD'
 export type Time = string; // 'HH:MM'
 
 export type Repeat = 'none' | 'daily' | 'weekly' | 'monthly' | 'yearly';
-export type Owner = 'Beide' | 'Person A' | 'Person B';
+/** Wer etwas übernimmt. „Kind“ erscheint erst, wenn in den Einstellungen ein Name eingetragen ist. */
+export type Owner = 'Beide' | 'Person A' | 'Person B' | 'Kind';
 export const OWNERS: Owner[] = ['Beide', 'Person A', 'Person B'];
+/** Personen für Auswahl-Chips – mit Kind, sobald es einen Namen hat. */
+export const ownersFor = (s: { childName?: string }): Owner[] => (s.childName?.trim() ? [...OWNERS, 'Kind'] : OWNERS);
 
 export type Category = 'Wir' | 'Ich' | 'Familie' | 'Baby' | 'Haushalt' | 'Frist' | 'Arbeit' | 'Termin';
 export const CATEGORIES: Category[] = ['Wir', 'Ich', 'Familie', 'Baby', 'Haushalt', 'Arbeit', 'Termin', 'Frist'];
@@ -71,6 +74,10 @@ export interface Task {
   repeat: Repeat;
   doneDates: ISODate[];
   notes: string;
+  /** Wiederkehrende Aufgabe wechselt bei jedem Vorkommen zwischen Person A und Person B (Start: owner). */
+  rotate?: boolean;
+  /** Zuständigkeit für einzelne Tage überschreiben („übernimmst du heute?“) */
+  ownerOn?: Record<ISODate, Owner>;
 }
 
 export interface DocumentItem {
@@ -155,6 +162,8 @@ export interface Settings {
   holidayState: string | null;
   /** Valentinstag, Muttertag, Heiligabend, Silvester anzeigen */
   specialDays: boolean;
+  /** Name des Kindes – leer = keine eigene Spalte */
+  childName: string;
 }
 
 export interface PlannerData {

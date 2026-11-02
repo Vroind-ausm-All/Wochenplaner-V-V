@@ -76,3 +76,21 @@
 .wir-summary__meter .bar__track { height: 3px; margin: 0; background: var(--line-strong); }
 .wir-summary__next { display: flex; align-items: center; gap: var(--s3); padding-top: var(--s3); border-top: 1px solid var(--line-strong); }
 .wir-summary__more { justify-self: start; display: inline-flex; align-items: center; gap: 4px; padding: 0; text-decoration: none; font-size: var(--t-meta); }
+
+/* Wer trägt was */
+.balance { list-style: none; margin: var(--s2) 0 0; padding: 0; display: grid; }
+.balance li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px var(--s3); padding: var(--s2) 0; border-top: 1px solid var(--line); }
+.balance li:first-child { border-top: 0; }
+.balance__who { display: inline-flex; align-items: center; gap: var(--s2); font-weight: 600; min-width: 0; }
+.balance__nums { font-size: 13px; color: var(--ink-2); }
+.balance__bar { grid-column: 1 / -1; height: 3px; background: var(--line); }
+.balance__bar i { display: block; height: 100%; background: var(--ink); }
+
+/* Wochenkompass */
+.compass-sheet { display: grid; gap: var(--s5); }
+.compass-sheet .zone__title { font-size: 22px; }
+.compass-facts { display: flex; gap: var(--s5); flex-wrap: wrap; }
+.compass-facts > div { display: grid; gap: 2px; }
+.compass-facts b { font-size: 22px; font-weight: 600; }
+.compass-ahead { list-style: none; margin: 0; padding: 0; display: grid; }
+.compass-ahead li { display: flex; align-items: center; gap: var(--s2); min-height: 44px; border-top: 1px solid var(--line); font-size: 15px; flex-wrap: wrap; }

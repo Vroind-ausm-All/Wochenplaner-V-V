@@ -4,13 +4,13 @@ import { applyDrop } from '../../dnd/rules';
 import { pick } from '../../dnd/state';
 import { fmt } from '../../lib/date';
 import { useToday } from '../../lib/useClock';
-import { WOCHENKOMPASS } from '../../store/defaults';
 import { useStore } from '../../store/store';
 import { Icon, OwnerMark } from '../../ui/Icon';
 import type { CompanionReport, Mood, Suggestion } from './engine';
 import { EnergyCheckin } from './EnergyCheckin';
 import { DATE_IDEAS } from './ideas';
 import { useCompanion } from './useCompanion';
+import { BalanceTable } from './WeekCompass';
 import './companion.css';
 
 /** Wie nah die beiden Kreise des WIR-Zeichens beieinander stehen – die Stimmung des Begleiters als Form. */
@@ -210,7 +210,7 @@ export function CompanionPage() {
   const report = useCompanion();
   const today = useToday();
   const data = useStore((s) => s.data);
-  const { mutate, updateSettings } = useStore.getState();
+  const { updateSettings, setUi } = useStore.getState();
   const s = data.settings;
 
   return (
@@ -248,17 +248,10 @@ export function CompanionPage() {
             </p>
           </div>
           <div className="card">
-            <span className="eyebrow">Wochenkompass · Sonntag 15 Minuten</span>
-            <div className="checklist">
-              {WOCHENKOMPASS.map((c, i) => (
-                <label key={c} className="check">
-                  <input type="checkbox" checked={!!data.checks[i]} onChange={(e) => mutate((d) => void (d.checks[i] = e.target.checked))} />
-                  <span>{c}</span>
-                </label>
-              ))}
-            </div>
-            <button className="btn sm" style={{ marginTop: 12 }} onClick={() => mutate((d) => void (d.checks = d.checks.map(() => false)))}>
-              <Icon name="refresh" size={16} /> Für nächste Woche zurücksetzen
+            <span className="eyebrow">Wer trägt was · diese Woche</span>
+            <BalanceTable balance={report.balance} />
+            <button className="btn sm" style={{ marginTop: 12 }} onClick={() => setUi({ compassOpen: true })}>
+              <Icon name="compass" size={16} /> Wochenkompass öffnen
             </button>
           </div>
         </section>

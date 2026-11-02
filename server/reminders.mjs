@@ -27,7 +27,7 @@ export function dueReminders(state, fromMs, toMs, tz) {
 /** Text der Benachrichtigung. */
 export function reminderMessage(r, settings = {}) {
   const e = r.event;
-  const who = e.owner === 'Person A' ? settings.personA : e.owner === 'Person B' ? settings.personB : null;
+  const who = e.owner === 'Person A' ? settings.personA : e.owner === 'Person B' ? settings.personB : e.owner === 'Kind' ? settings.childName || 'Kind' : null;
   const when = r.minutesBefore === 1440 ? 'Morgen' : r.minutesBefore === 60 ? 'In 1 Std.' : `In ${r.minutesBefore} Min.`;
   const time = e.allDay ? 'ganztags' : `${e.time} Uhr`;
   return {
@@ -40,4 +40,5 @@ export function reminderMessage(r, settings = {}) {
 }
 
 /** Gilt eine Erinnerung für ein Abo? Abo-Person „Alle“ bekommt alles. */
-export const forSubscriber = (eventOwner, subOwner) => subOwner === 'Alle' || eventOwner === 'Beide' || eventOwner === subOwner;
+/** Termine des Kindes gehen an beide Eltern. */
+export const forSubscriber = (eventOwner, subOwner) => subOwner === 'Alle' || eventOwner === 'Beide' || eventOwner === 'Kind' || eventOwner === subOwner;

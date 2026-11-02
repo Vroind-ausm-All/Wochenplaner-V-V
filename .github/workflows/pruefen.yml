@@ -1,6 +1,6 @@
 name: Prüfen und Vorschau
 
-# Bei jedem Push: Typprüfung, Tests und Build.
+# Bei jedem Push: Typprüfung, Tests und Build, dazu die Browser-Gesamttests.
 # Vorschau auf GitHub Pages nur von Hand (Actions → „Prüfen und Vorschau“ → „Run workflow“).
 # Einmalig nötig: Repository → Settings → Pages → Source auf „GitHub Actions“ stellen.
 
@@ -31,6 +31,22 @@ jobs:
         if: github.event_name == 'workflow_dispatch'
         with:
           path: dist
+
+  # Bedienung im echten Browser: Ziehen & Antippen, Startseite, zwei Geräte, Erinnerungen, Wetter, Fotos.
+  browser:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Europe/Berlin
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      - run: npm run test:e2e
 
   vorschau:
     if: github.event_name == 'workflow_dispatch'

@@ -8,12 +8,13 @@ import type { Owner } from '../../store/types';
 import { Icon, OwnerMark } from '../../ui/Icon';
 import { Chips } from '../../ui/Segmented';
 import { useCompanion } from '../companion/useCompanion';
-import { useOwnerName } from './hooks';
+import { useOwnerName, useOwners } from './hooks';
 
 /** Bausteine & Vorschläge zum Ziehen oder Antippen. */
 export function TemplateTray() {
   const owner = useDnd((s) => s.owner);
   const name = useOwnerName();
+  const owners = useOwners();
   const report = useCompanion();
   const mutate = useStore((s) => s.mutate);
   const ideas = report.suggestions.filter((s) => s.kind !== 'meal');
@@ -25,7 +26,7 @@ export function TemplateTray() {
         <p className="small muted">Ziehen oder antippen – dann Zeit wählen.</p>
         <div className="tray__owner">
           <span className="small muted">Für</span>
-          <Chips<Owner> value={owner} onChange={(o) => useDnd.setState({ owner: o })} options={(['Beide', 'Person A', 'Person B'] as Owner[]).map((o) => ({ value: o, label: name(o), icon: <OwnerMark owner={o} size={12} /> }))} />
+          <Chips<Owner> value={owner} onChange={(o) => useDnd.setState({ owner: o })} options={owners.map((o) => ({ value: o, label: name(o), icon: <OwnerMark owner={o} size={12} /> }))} />
         </div>
         <div className="tray__list">
           {TEMPLATES.map((t) => (

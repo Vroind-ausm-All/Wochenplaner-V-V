@@ -1,14 +1,15 @@
 # WIR. Wochenplaner (V & V)
 
-Familien- und Wochenplaner für ein **15,2″-Touchdisplay** (Hochformat-Bilderrahmen), Handy und Desktop.
+Familien- und Wochenplaner für ein **Tablet im Bilderrahmen** (10–11″ hochkant, auch 15″-Touchmonitore), Handy und Desktop.
 Ausgearbeitet aus dem bisherigen Single-File-Board „WIR. Familienzentrale 9“ – jetzt als modulare
 React-App mit Komponenten für Kalender, Wetter, Essensplanung und einen digitalen Wir-Begleiter.
 
 ```bash
 npm install
 npm run dev        # Entwicklung, im LAN erreichbar (--host)
-npm test           # Unit-Tests (Wiederholungen, Einkaufsliste, Rezepte, Begleiter, Migration)
+npm test           # Unit-Tests (Wiederholungen, Einkaufsliste, Rezepte, Begleiter, Migration, Server)
 npm run build      # Produktions-Build nach dist/ – jeder statische Webspace genügt
+npm run test:e2e   # Browser-Gesamttests gegen den Build (tests/e2e), laufen auch bei jedem Push
 ```
 
 **Inhalt:** [Erster Test auf dem Laptop](#erster-test-auf-dem-laptop) · [Alle Geräte verbinden](#alle-geräte-verbinden) ·
@@ -60,6 +61,11 @@ Gut zu wissen beim Test:
 | ☐ | Buch-Symbol an einem Rezept → „Selbst machen“ an einer Zutat | Grundrezept (z. B. Pastateig) öffnet sich |
 | ☐ | *Wir-Zeit*: Energie für beide setzen, einen Vorschlag „Einplanen“ | Die zwei Kreise des WIR-Zeichens rücken zusammen oder auseinander, Termin im Kalender |
 | ☐ | *Heute*: eine Aufgabe in „Wer macht heute was“ abhaken, den Gedanken des Tages unten antippen | Aufgabe durchgestrichen, nächster Gedanke |
+| ☐ | *Heute*: „+“ unter einer Person antippen, Aufgabe eintragen | Steht sofort in dieser Spalte |
+| ☐ | Aufgabe in einer Spalte antippen (oder ziehen), dann eine andere Spalte antippen | „Übernimmt jetzt: …“ – bei Routinen nur für diesen Tag |
+| ☐ | *Aufgaben*: wöchentliche Aufgabe für Person A mit „Abwechselnd“ anlegen | Nächste Woche steht sie bei Person B |
+| ☐ | *Einstellungen*: Namen des Kindes eintragen | Vierte Spalte auf der Startseite, Kind bei Terminen wählbar |
+| ☐ | *Diese Woche → Wochenkompass* | Rückblick (wer hat was getragen), Ausblick, Checkliste |
 | ☐ | Mond oben rechts, Ein/Aus-Symbol „Bildschirm dunkel“ | Nachtfarben bzw. schwarzer Schirm, Tippen weckt auf |
 | ☐ | Bisheriges Board: dessen JSON-Export unter *Einstellungen → importieren* | Alte Termine, Einkauf, Aufgaben sind da |
 
@@ -84,12 +90,13 @@ offline Geändertes wird später eintragsweise zusammengeführt. Dauerbetrieb, Z
 | **Kalender** | `features/calendar/*` | Monat, Woche, Tag, Terminliste · Zeitraster füllt hohe Hochkant-Displays · Überlappungen in Spuren · Dauer per Griff ziehen · Jetzt-Linie · Serien („nur diesen / ganze Serie“) |
 | **Drag & Drop + Click & Drop** | `dnd/*` | Ein Modell, drei Wege: Maus ziehen, **Touch: kurz halten & ziehen** (Scrollen bleibt frei), **antippen → Ziel antippen**. Umgekehrt geht auch: erst leeren Essensplatz, dann Rezept antippen. Papierkorb-Zone, Rückgängig nach jeder Aktion |
 | **Wetter** | `features/weather/*` | Open-Meteo (ohne Konto/Key), aktuelle Lage, 7 Tage, stündlich in der Tagesansicht, Symbole in Monat/Woche/Terminliste, Ort-Suche & Standort |
-| **Startseite** | `features/home/*` | Drei Ebenen statt gleichrangiger Kacheln: oben dunkel **„Wer macht heute was“** (Als Nächstes · Person A · Gemeinsam · Person B, Aufgaben abhaken), darunter *Heute* (Essen, Wetter), ruhig getönt *Diese Woche* (Wir-Zeit, nächste Tage, Ausblick). Ab 20:30 Uhr zeigt sie schon morgen |
+| **Startseite** | `features/home/*` | Drei Ebenen statt gleichrangiger Kacheln: oben dunkel **„Wer macht heute was“** (Als Nächstes – 30 Min. vorher rot · Person A · Gemeinsam · Person B · optional Kind), darunter *Heute* (Essen, Wetter; ab 17 Uhr „Heute Abend“ mit „ab … frei“), ruhig getönt *Diese Woche* (Wir-Zeit, nächste Tage, Ausblick). Ab 20:30 Uhr zeigt sie schon morgen |
+| **Mitmachen & Mental Load** | `features/home/QuickAdd.tsx`, `lib/balance.ts`, `features/companion/WeekCompass.tsx` | „+“ in jeder Spalte trägt für diese Person ein; Aufgaben und Termine per Ziehen oder Antippen an eine andere Person übergeben (bei Serien nur für den Tag); **abwechselnde Routinen** (Müll, Wäsche …); **„Wer trägt was“** je Woche, der Begleiter meldet deutliches Ungleichgewicht; **Wochenkompass** am Sonntag mit Rückblick, Ausblick und Checkliste |
 | **Affirmationen** | `features/affirmations/*` | Motion: ruhige Wort-für-Wort-Einblendung, Wischen zum Wechseln, Fortschrittslinie, Lieblingsgedanken; personalisiert mit euren Namen; respektiert „Bewegung reduzieren“ |
 | **WIR-Begleiter** | `features/companion/*` | Das WIR-Zeichen (zwei Kreise, deren Abstand die Stimmung zeigt) plant Wir-Zeit mit: Wochenziel, eigene Zeit beider Personen, Abstand zur letzten Date Night, Check-in, volle Tage, Tagesenergie, Wetter → konkrete Vorschläge in **freien Zeitfenstern** (einplanen, verschieben oder ziehen). Frage des Tages, Wochenkompass, Ideen-Bibliothek |
 | **Essensplan** | `features/meals/*` | 11 Küchenwelten, 103 glutenfreie Gerichte, 13 Grundrezepte zum Selbermachen, Ersatz-Guide, Küchen-Kompass, Portionen, Fleischoption, „zusammen kochen“ zählt als Wir-Zeit, Nährwert-Schätzbereiche, Hinweise auf versteckte Glutenquellen je Zutat |
 | **Einkauf & Vorräte** | `features/shopping/*` | Liste entsteht automatisch aus dem Wochenplan; Vorräte zählen nur, wenn „GF geprüft“ |
-| Aufgaben, Familie, Einstellungen | `features/tasks`, `family`, `settings` | Wiederkehrende Aufgaben, Fristen, Baby & Familie, Namen, Ort, Kiosk pro Gerät (Abdunkeln, Nachtmodus), Sicherung |
+| Aufgaben, Familie, Einstellungen | `features/tasks`, `family`, `settings` | Wiederkehrende und abwechselnde Aufgaben, Fristen, Baby & Familie, Namen (auch Kind), Ort, Kiosk pro Gerät (Abdunkeln, Nachtmodus, Fully Kiosk), Sicherung |
 | **Abgleich & Heimserver** | `store/sync.ts`, `store/merge.ts`, `server/` | Live-Aktualisierung aller Geräte, Offline-Änderungen mit Drei-Wege-Abgleich, Anmeldung, tägliche Sicherungen, installierbare Web-App mit Offline-Start |
 | **Feiertage & Kalender-Abos** | `lib/holidays.ts`, `lib/ical.ts`, `features/external/` | Gesetzliche Feiertage je Bundesland (offline berechnet) plus Valentinstag & Co.; Abos von Google, iCloud, Outlook, Schulferien, Müllabfuhr, Kita (iCal) – nur lesend, farbig, im Begleiter als „belegt“ berücksichtigt |
 | **Erinnerungen** | `features/reminders/`, `server/push.mjs`, `server/reminders.mjs` | Pro Termin 15 Min./1 Std./1 Tag vorher: Hinweis mit sanftem Ton auf dem Bilderrahmen, Push-Mitteilung aufs Handy (auch bei geschlossener App), „In 10 Min.“ |
@@ -112,6 +119,10 @@ auf dem iPhone die installierte App). Details: [docs/HEIMSERVER.md](docs/HEIMSER
 *Einstellungen → Fotos & Bildschirmschoner*: Fotos hinzufügen (am Handy direkt aus der Galerie oder Kamera) und
 festlegen, nach wie vielen Minuten ohne Berührung der Rahmen zur Diashow wird. Mit Heimserver sehen alle Geräte
 dieselben Fotos – vom Handy hochladen, der Rahmen zeigt sie. Antippen führt zurück zum Planer.
+
+**Tablet mit Fully Kiosk:** Ist dort die JavaScript-Schnittstelle an, schaltet „Bildschirm dunkel“ die Beleuchtung
+wirklich ab, nachts wird gedimmt, Berührung, Bewegung oder eine Erinnerung wecken den Rahmen – Einrichtung und
+Tipps zum Kauf eines gebrauchten Tablets: [docs/HARDWARE.md](docs/HARDWARE.md).
 
 Wetterwarnungen des Deutschen Wetterdienstes erscheinen auf der Startseite und im Bildschirmschoner; der Begleiter
 schlägt dann keine Ideen für draußen vor. Geplante Unternehmungen draußen prüft der *Wetter-Check* auf der Startseite.

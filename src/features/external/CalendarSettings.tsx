@@ -4,11 +4,11 @@ import { STATES } from '../../lib/holidays';
 import { uid } from '../../lib/id';
 import { useStore } from '../../store/store';
 import { useSync } from '../../store/sync';
-import { OWNERS, type ExternalCalendar, type Owner } from '../../store/types';
+import { type ExternalCalendar, type Owner } from '../../store/types';
 import { Chips } from '../../ui/Segmented';
-import { useOwnerName } from '../calendar/hooks';
+import { useOwnerName, useOwners } from '../calendar/hooks';
 import { normalizeUrl, refreshCalendar, useExternalStore } from './useExternal';
-import { Icon } from '../../ui/Icon';
+import { Icon, OwnerMark } from '../../ui/Icon';
 
 const HUES = [210, 150, 30, 280, 340, 190];
 
@@ -25,6 +25,7 @@ export function CalendarSettings() {
   const loading = useExternalStore((x) => x.loading);
   const connected = useSync((x) => x.connected);
   const name = useOwnerName();
+  const owners = useOwners();
   useClockStore((c) => c.now);
   const [draft, setDraft] = useState({ name: '', url: '', owner: 'Beide' as Owner, hue: HUES[0], busy: true });
 
@@ -87,7 +88,7 @@ export function CalendarSettings() {
               <button className="chip" aria-pressed={c.busy} onClick={() => update(c.id, { busy: !c.busy })} title="Termine daraus gelten für den Begleiter als belegt">
                 Zählt als belegt
               </button>
-              {OWNERS.map((o) => (
+              {owners.map((o) => (
                 <button key={o} className="chip" aria-pressed={c.owner === o} onClick={() => update(c.id, { owner: o })}>
                   {name(o)}
                 </button>
@@ -103,7 +104,7 @@ export function CalendarSettings() {
           <input className="input grow" style={{ minWidth: 220 }} placeholder="Kalender-Adresse (https://… oder webcal://…)" value={draft.url} onChange={(e) => setDraft({ ...draft, url: e.target.value })} />
         </div>
         <div className="row wrap">
-          <Chips value={draft.owner} onChange={(o) => setDraft({ ...draft, owner: o })} options={OWNERS.map((o) => ({ value: o, label: name(o) }))} />
+          <Chips value={draft.owner} onChange={(o) => setDraft({ ...draft, owner: o })} options={owners.map((o) => ({ value: o, label: name(o), icon: <OwnerMark owner={o} size={12} /> }))} />
           <div className="chips">
             {HUES.map((h) => (
               <button key={h} type="button" className="chip hue-chip" aria-pressed={draft.hue === h} style={{ '--h': h } as React.CSSProperties} onClick={() => setDraft({ ...draft, hue: h })} aria-label={`Farbe ${h}`}>

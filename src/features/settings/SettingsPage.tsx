@@ -11,6 +11,7 @@ import { PhotoSettings } from '../photos/PhotoSettings';
 import { FeedCard, ReminderSettings } from '../reminders/ReminderSettings';
 import { InstallCard, SyncPanel } from '../sync/SyncUi';
 import { Icon } from '../../ui/Icon';
+import { fully } from '../../app/fully';
 
 export function SettingsPage() {
   const s = useStore((x) => x.data.settings);
@@ -66,6 +67,11 @@ export function SettingsPage() {
             <input className="input" value={s.personB} onChange={(e) => updateSettings({ personB: e.target.value })} />
           </label>
         </div>
+        <label className="field">
+          <span>Name des Kindes (optional)</span>
+          <input className="input" value={s.childName ?? ''} placeholder="leer lassen = keine eigene Spalte" onChange={(e) => updateSettings({ childName: e.target.value })} />
+        </label>
+        <p className="small muted">Mit Namen bekommt das Kind auf der Startseite eine eigene Spalte und lässt sich bei Terminen und Aufgaben auswählen. Erinnerungen dazu gehen an euch beide.</p>
       </section>
 
       <section className="card stack">
@@ -127,8 +133,15 @@ export function SettingsPage() {
             </label>
           </div>
         )}
+        {fully() ? (
+          <div className="chips">
+            <button className="chip" aria-pressed={dev.tabletControl} onClick={() => updateDevice({ tabletControl: !dev.tabletControl })}>
+              Fully Kiosk erkannt: Helligkeit nachts senken, „Bildschirm dunkel“ schaltet wirklich ab
+            </button>
+          </div>
+        ) : null}
         <p className="small muted">
-          Das Abdunkeln in der Web-App schaltet nicht die Hintergrundbeleuchtung ab. Für echtes Standby: Android-Kioskmodus (z. B. Fully Kiosk) oder Monitor mit eigenem Sleep-Signal. Netzteil zugänglich und belüftet lassen – keine Netzteile in geschlossenen Wandhohlräumen.
+          Das Abdunkeln in der Web-App schaltet nicht die Hintergrundbeleuchtung ab. Auf einem Android-Tablet mit Fully Kiosk (JavaScript-Schnittstelle aktiviert) übernimmt die App Helligkeit und Standby selbst – Einrichtung in docs/HARDWARE.md. Netzteil zugänglich und belüftet lassen – keine Netzteile in geschlossenen Wandhohlräumen.
         </p>
       </section>
 

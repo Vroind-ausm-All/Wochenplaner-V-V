@@ -29,16 +29,19 @@
 .toast { pointer-events: auto; display: flex; gap: 14px; align-items: center; padding: 8px 8px 8px 18px; background: var(--ink); color: var(--paper); font-weight: 550; max-width: min(640px, 92vw); }
 .toast .btn { color: var(--paper); border-color: var(--paper); }
 
-/* Handy / schmale Fenster: Navigation unten */
-@media (max-width: 760px) {
+/* Handy und Tablet hochkant (10–11″ ≈ 750–800 px im Browser): Navigation unten, volle Breite für den Inhalt */
+@media (max-width: 760px), (orientation: portrait) and (max-width: 1000px) {
   .app { grid-template-columns: 1fr; grid-template-rows: 1fr auto; }
   .rail { order: 2; flex-direction: row; padding: 0 0 env(safe-area-inset-bottom); border-right: 0; border-top: 1px solid var(--ink); overflow-x: auto; }
   .brand, .rail__foot { display: none; }
   .rail__btn { min-width: 76px; min-height: 60px; justify-items: center; padding: 8px 4px; border: 0; }
   .rail__btn:last-of-type { border: 0; }
   .rail__active { left: 0; right: 0; top: 0; bottom: auto; width: auto; height: 3px; }
+  .rail__btn { flex: 1 0 auto; }
   .topbar { padding: 10px 16px; }
-  .topbar__date { display: none; }
   .content { padding: 16px 16px 110px; }
   .app.is-full .content { overflow-y: auto; }
+}
+@media (max-width: 600px) {
+  .topbar__date { display: none; }
 }

@@ -19,7 +19,7 @@
 import { createHash, createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync, writeFileSync, copyFileSync, createReadStream } from 'node:fs';
 import { createServer } from 'node:http';
-import { extname, join, normalize, resolve, sep } from 'node:path';
+import { basename, extname, join, normalize, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildFeed } from './feed.mjs';
 import { createIcsFetcher } from './ics.mjs';
@@ -47,11 +47,13 @@ const REMINDER_TICK_MS = 30_000;
 
 /**
  * @param {{ dataDir: string, password: string, distDir?: string, log?: (msg: string) => void,
- *   scheduler?: boolean, icsAllowLoopback?: boolean, pushFetch?: typeof fetch, tz?: string, pushContact?: string }} opts
+ *   scheduler?: boolean, icsAllowLoopback?: boolean, pushFetch?: typeof fetch, tz?: string, pushContact?: string,
+ *   backupCopyDir?: string }} opts
  */
 export function createPlannerServer({
   dataDir, password, distDir, log = () => {}, scheduler = true, icsAllowLoopback = false, pushFetch = fetch, alertFetch = fetch,
   tz = serverZone(), pushContact = process.env.WIR_PUSH_CONTACT || 'mailto:wir-wochenplaner@example.org',
+  backupCopyDir = process.env.WIR_BACKUP_COPY || '',
 }) {
   if (!password) throw new Error('Kein Haushalts-Passwort gesetzt (WIR_PASSWORD).');
   mkdirSync(join(dataDir, 'backups'), { recursive: true });
@@ -142,11 +144,28 @@ export function createPlannerServer({
   const sessionCookie = (req, value, maxAge) =>
     `wir_session=${value}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${maxAge}${secure(req) ? '; Secure' : ''}`;
 
+  // Zweitsicherung (USB-Stick, NAS-Freigabe): dieselbe Tagesdatei zusätzlich in einen zweiten Ordner.
+  // Fehler dort (Stick abgezogen, NAS aus) dürfen das Speichern nie verhindern.
+  function copyBackup(file) {
+    if (!backupCopyDir) return;
+    try {
+      mkdirSync(backupCopyDir, { recursive: true });
+      copyFileSync(file, join(backupCopyDir, basename(file)));
+      const all = readdirSync(backupCopyDir).filter((f) => f.startsWith('state-')).sort();
+      for (const old of all.slice(0, Math.max(0, all.length - KEEP_BACKUPS))) rmSync(join(backupCopyDir, old));
+    } catch (e) {
+      log(`Zweitsicherung nach ${backupCopyDir} fehlgeschlagen: ${e.message}`);
+    }
+  }
+
   // ---- Speichern: atomar + tägliche Sicherung ----
   function save(state) {
     if (existsSync(stateFile)) {
       const backup = join(dataDir, 'backups', `state-${today()}.json`);
-      if (!existsSync(backup)) copyFileSync(stateFile, backup);
+      if (!existsSync(backup)) {
+        copyFileSync(stateFile, backup);
+        copyBackup(backup);
+      }
       const all = readdirSync(join(dataDir, 'backups')).filter((f) => f.startsWith('state-')).sort();
       for (const old of all.slice(0, Math.max(0, all.length - KEEP_BACKUPS))) rmSync(join(dataDir, 'backups', old));
     }

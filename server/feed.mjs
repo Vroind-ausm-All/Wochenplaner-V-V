@@ -33,7 +33,7 @@ const RRULE = { daily: 'DAILY', weekly: 'WEEKLY', monthly: 'MONTHLY', yearly: 'Y
 
 export function buildFeed(state, { tz = serverZone(), now = Date.now() } = {}) {
   const s = state?.settings || {};
-  const who = (o) => (o === 'Person A' ? s.personA || 'Person A' : o === 'Person B' ? s.personB || 'Person B' : 'Beide');
+  const who = (o) => (o === 'Person A' ? s.personA || 'Person A' : o === 'Person B' ? s.personB || 'Person B' : o === 'Kind' ? s.childName || 'Kind' : 'Beide');
   const stamp = new Date(now).toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
   const lines = [
     'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//WIR Wochenplaner//DE', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',

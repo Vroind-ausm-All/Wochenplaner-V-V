@@ -91,3 +91,33 @@ describe('Heimserver', () => {
     expect(last.status).toBe(429);
   });
 });
+
+describe('Zweitsicherung', () => {
+  it('legt die Tagessicherung zusätzlich im zweiten Ordner ab und speichert auch ohne ihn weiter', async () => {
+    const dir = mkdtempSync(join(tmpdir(), 'wir-zweit-'));
+    const copy = join(dir, 'usb', 'wir-sicherung');
+    const srv = createPlannerServer({ dataDir: join(dir, 'daten'), password: 'geheim', scheduler: false, backupCopyDir: copy });
+    await new Promise((ok) => srv.listen(0, '127.0.0.1', ok));
+    const url = `http://127.0.0.1:${srv.address().port}`;
+    const login = await fetch(`${url}/api/login`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: 'geheim' }) });
+    const c = login.headers.get('set-cookie').split(';')[0];
+    const put = (revision, title) =>
+      fetch(`${url}/api/state`, { method: 'PUT', headers: { Cookie: c, 'Content-Type': 'application/json' }, body: JSON.stringify({ state: state(title), revision }) });
+    expect((await put(0, 'Eins')).status).toBe(200);
+    expect((await put(1, 'Zwei')).status).toBe(200);
+    expect(readdirSync(copy)).toEqual(readdirSync(join(dir, 'daten', 'backups')));
+    expect(readdirSync(copy).length).toBe(1);
+    // Ziel nicht beschreibbar (Datei statt Ordner) → Speichern klappt trotzdem.
+    const broken = createPlannerServer({ dataDir: join(dir, 'daten2'), password: 'geheim', scheduler: false, backupCopyDir: join(dir, 'datei') });
+    writeFileSync(join(dir, 'datei'), 'kein Ordner');
+    await new Promise((ok) => broken.listen(0, '127.0.0.1', ok));
+    const u2 = `http://127.0.0.1:${broken.address().port}`;
+    const l2 = await fetch(`${u2}/api/login`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: 'geheim' }) });
+    const c2 = l2.headers.get('set-cookie').split(';')[0];
+    const p2 = (revision) => fetch(`${u2}/api/state`, { method: 'PUT', headers: { Cookie: c2, 'Content-Type': 'application/json' }, body: JSON.stringify({ state: state(), revision }) });
+    expect((await p2(0)).status).toBe(200);
+    expect((await p2(1)).status).toBe(200);
+    await new Promise((ok) => srv.close(ok));
+    await new Promise((ok) => broken.close(ok));
+  });
+});

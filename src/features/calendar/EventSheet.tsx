@@ -3,10 +3,10 @@ import { CATEGORY_STYLE } from '../../data/templates';
 import { useDnd } from '../../dnd/state';
 import { fmt, fromMinutes, toMinutes } from '../../lib/date';
 import { useStore } from '../../store/store';
-import { CATEGORIES, OWNERS, type CalendarEvent, type Repeat } from '../../store/types';
+import { CATEGORIES, type CalendarEvent, type Repeat } from '../../store/types';
 import { Chips } from '../../ui/Segmented';
 import { Sheet } from '../../ui/Sheet';
-import { useOwnerName } from './hooks';
+import { useOwnerName, useOwners } from './hooks';
 import { OwnerMark } from '../../ui/Icon';
 
 const DURATIONS = [15, 30, 45, 60, 90, 120, 180];
@@ -36,6 +36,7 @@ export function EventSheet() {
   const setUi = useStore((s) => s.setUi);
   const { addEvent, updateEvent, deleteEvent } = useStore.getState();
   const name = useOwnerName();
+  const owners = useOwners();
   const [f, setF] = useState(blank());
 
   useEffect(() => {
@@ -90,7 +91,7 @@ export function EventSheet() {
       </div>
       <div className="field">
         <span>Wer</span>
-        <Chips value={f.owner} onChange={(o) => set('owner', o)} options={OWNERS.map((o) => ({ value: o, label: name(o), icon: <OwnerMark owner={o} size={12} /> }))} />
+        <Chips value={f.owner} onChange={(o) => set('owner', o)} options={owners.map((o) => ({ value: o, label: name(o), icon: <OwnerMark owner={o} size={12} /> }))} />
       </div>
       <div className="row wrap" style={{ gap: 16 }}>
         <label className="field grow">
