@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { toMinutes } from '../lib/date';
 import { useNow } from '../lib/useClock';
 import { useDevice } from '../store/device';
+import { BRIGHTNESS, bindFullyEvents, fully } from './fully';
 
 /** Nachtmodus nach Zeitplan, Abdunkeln bei Inaktivität und „Bildschirm dunkel“ mit Tippen zum Aufwecken. */
 export function useKiosk() {
@@ -18,7 +19,23 @@ export function useKiosk() {
 
   useEffect(() => {
     document.documentElement.dataset.theme = night ? 'night' : 'day';
-  }, [night]);
+    // Tablet mit Fully Kiosk: nachts auch die Hintergrundbeleuchtung dimmen.
+    if (s.tabletControl) fully()?.setScreenBrightness(night ? BRIGHTNESS.night : BRIGHTNESS.day);
+  }, [night, s.tabletControl]);
+
+  // Fully meldet „Bildschirm an“ und Bewegung → App aufwecken.
+  useEffect(() => {
+    if (!s.tabletControl) return;
+    bindFullyEvents();
+    const onWake = () => {
+      // Auch Erinnerungen lösen „wir:wake“ aus – dann soll der Bildschirm wirklich angehen.
+      fully()?.turnScreenOn();
+      setSleeping(false);
+      setDimmed(false);
+    };
+    window.addEventListener('wir:wake', onWake);
+    return () => window.removeEventListener('wir:wake', onWake);
+  }, [s.tabletControl]);
   useEffect(() => setManualNight(null), [scheduled]);
 
   useEffect(() => {
@@ -63,13 +80,23 @@ export function useKiosk() {
     };
   }, [s.screensaverAfter]);
 
+  /** „Bildschirm dunkel“: mit Fully wirklich aus (App läuft weiter), sonst schwarze Fläche. */
+  const sleep = (on: boolean) => {
+    const f = s.tabletControl ? fully() : null;
+    if (f) {
+      if (on) f.turnScreenOff(true);
+      else f.turnScreenOn();
+    }
+    setSleeping(on);
+  };
+
   return {
-    night, dimmed, sleeping, screensaver, setSleeping,
+    night, dimmed, sleeping, screensaver, setSleeping: sleep,
     toggleNight: () => setManualNight(!night),
     closeScreensaver: () => setScreensaver(false),
     wake: () => {
       setDimmed(false);
-      setSleeping(false);
+      sleep(false);
     },
   };
 }

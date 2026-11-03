@@ -16,10 +16,56 @@ Jeder Grundsatz hat ein Piktogramm aus dem eigenen Satz (Übersicht unten).
 | **02** · Typografie | Eine Schrift, klare Stufen | Nur *Inter* (variabel, im Projekt enthalten, kein Laden aus dem Netz). Große, leichte Ziffern für Uhr und Temperatur, kräftige Titel, kleine Versalien für Rubriken („HEUTE · WER MACHT WAS“). Ziffern mit fester Breite, damit Zeiten untereinander stehen. |
 | **03** · Schwarz-Weiß + ein Signal | Farbe bedeutet etwas | Papierweiß und Schwarz. Genau **eine Signalfarbe** (Zinnoberrot) markiert *gemeinsame Zeit* und *heute/jetzt*. Warnfarben gibt es nur bei amtlichen Wetterwarnungen. Nachtmodus: dieselben Regeln, invertiert. |
 | **04** · Piktogramm statt Emoji | Eine Bildsprache | 88 Piktogramme im 24-px-Raster, 1,5 px Linie, runde Enden, ohne Füllung (`src/ui/Icon.tsx`). Emojis sehen auf jedem Gerät anders aus und sind laut – Piktogramme bleiben ruhig und einheitlich. |
-| **05** · Gemeinsam zuerst | Wer macht was – auf einen Blick | Personen haben **Formen statt Farben**: ● Person A (gefüllt), ○ Person B (Ring), zwei Kreise = gemeinsam. Die Startseite ordnet den Tag in drei Spalten: Person A · **Gemeinsam** (Mitte, Signalfarbe) · Person B. |
+| **05** · Gemeinsam zuerst | Wer macht was – auf einen Blick | Personen haben **Formen statt Farben**: ● Person A (gefüllt), ○ Person B (Ring), zwei Kreise = gemeinsam, Ring mit Punkt = Kind. Die Startseite ordnet den Tag in Spalten: Person A · **Gemeinsam** (Mitte, Signalfarbe) · Person B · optional Kind. Auf dem Tablet hochkant steht „Gemeinsam“ oben über die volle Breite. |
 | **06** · Ruhe in der Bewegung | Bewegung erklärt, statt zu unterhalten | Kurze Überblendungen (0,15–0,2 s), Ring und Balken füllen sich einmal. Kein Hüpfen, Pulsieren oder Schweben. „Bewegung reduzieren“ des Systems wird beachtet. |
-| **07** · Linien statt Kästen | Struktur ohne Ballast | Abschnitte beginnen mit einer schwarzen Linie, Listen trennen sich durch helle Haarlinien. Ecken sind gerade (2 px), Schatten gibt es nicht. |
-| **08** · Eine Aufgabe pro Bereich | Klare Wege | Jeder Bereich hat eine Rubrik, eine Hauptaktion (gefüllter Knopf) und höchstens zwei Nebenaktionen (Rahmen, ohne Rahmen). Navigation links mit Piktogramm **und** Wort, aktiv = schwarzer Balken. |
+| **07** · Ebenen statt Gleichrang | Das Auge weiß, wohin | Jede Seite hat **drei Ebenen** (siehe unten): eine dunkle Hauptfläche, Papier mit Haarlinien, eine getönte ruhige Fläche. Dazwischen großer Abstand, innerhalb kleiner. Ecken sind gerade (2 px), Schatten gibt es nicht. |
+| **08** · Eine Aufgabe pro Bereich | Klare Wege | Jeder Bereich hat eine Rubrik, eine Hauptaktion (gefüllter Knopf) und höchstens zwei Nebenaktionen (Rahmen, ohne Rahmen). Navigation mit Piktogramm **und** Wort, aktiv = schwarzer Balken – links, auf Tablet hochkant und Handy unten. Alles, was man antippt, ist auf Touch-Geräten mindestens 48 px groß. |
+
+## Drei Ebenen: wohin das Auge wandert
+
+Vorher sah jedes Widget gleich aus (gleiche Linie, gleiche Rubrik, gleicher Abstand, drei gleich breite Spalten) –
+alles wirkte gleich wichtig. Jetzt hat jede Seite eine feste Rangfolge:
+
+| Ebene | Fläche | Auf der Startseite | Woanders |
+|---|---|---|---|
+| **1 · Hauptsache** | dunkle Fläche (`.zone--hero`), größte Schrift, genau **eine** pro Seite | **Wer macht heute was**: „Als Nächstes“ und drei Spalten Person A · Gemeinsam · Person B mit Terminen und Aufgaben | Wir-Zeit: Stand der Woche mit Ring |
+| **2 · Heute** | Papier, schwarze Linie oben, Haarlinien (`.zone`) | Abendessen (nur zum Lesen), Wetter heute, Wetter-Check nur bei Risiko, morgens der Energie-Check-in | Vorschläge, Rezepte, Kalender |
+| **3 · Hintergrund** | getönte Fläche (`.zone--quiet`), kleinere Titel | **Diese Woche**: Wir-Zeit in einem Satz mit **einem** Vorschlag, die nächsten drei Tage, Wetter-Ausblick | Bausteinleiste im Kalender, Wochen-Essensplan, Frage des Tages, Ideen |
+| Rand | ohne Fläche | Gedanke des Tages (eine Zeile), Einkaufszähler | – |
+
+**Abstände in zwei Größen:** innerhalb einer Gruppe `--s2`/`--s3` (8/16 px), zwischen den Ebenen `--s6` (64 px).
+**Schriftstufen:** Seite 40 · Ebene 28 (Hauptfläche 40) · Eintrag 18–21 · Meta 13 px.
+**Anzeige vor Bearbeitung:** Auf der Startseite steht nur, was man im Vorbeigehen lesen will. Portionen,
+mehrere Vorschläge oder 7-Tage-Wetter liegen eine Berührung tiefer auf den jeweiligen Seiten.
+
+**Nach Tageszeit:** Ab 17 Uhr heißt Ebene 2 „Heute Abend“ (nur Abendessen, dazu „ab … Uhr ist nichts mehr geplant – Zeit für euch“). Ab 20:30 Uhr zeigt die Startseite schon den nächsten Tag („Wer macht morgen was“, Essen von
+morgen). Der Energie-Check-in erscheint nur vormittags, solange er noch nicht ausgefüllt ist.
+
+![Startseite am frühen Abend: „Heute Abend“ mit freiem Abend und „Jetzt“ in Rot](design/start-abend.png)
+
+Im Querformat steht die Hauptfläche links, „Diese Woche“ rechts daneben:
+
+![Startseite im Querformat](design/start-querformat.png)
+
+## Mitmachen an der Wand
+
+Die Hauptfläche ist nicht nur zum Lesen da:
+
+- **„+“ unter jeder Spalte** trägt eine Aufgabe oder einen Termin direkt für diese Person ein.
+- **Übergeben:** Eine Aufgabe oder einen Termin antippen (oder ziehen) und eine andere Spalte antippen – „Übernimmt jetzt: …“.
+  Bei Serien gilt das nur für diesen Tag. Während etwas ausgewählt ist, zeigen die Spalten mit einem Rahmen, dass sie es annehmen.
+- **Abwechselnde Routinen** tragen ein kleines Wechsel-Piktogramm.
+- **Gleich geht's los:** 30 Minuten vor dem nächsten Termin wird die Zeile „Als Nächstes“ rot („In 20 Min.“), sonst bleibt sie ruhig.
+
+![Schnell-Eintrag für eine Person](design/schnell-eintrag.png)
+
+![Aufgabe ausgewählt – jetzt die neue Person antippen](design/umverteilen.png)
+
+**Wochenkompass** (Sonntag oder jederzeit über „Diese Woche“): Rückblick mit „Wer hat was getragen“ – Aufgaben,
+erledigte Aufgaben und Organisations-Termine je Person als Balken, ohne Wertung –, Ausblick auf die nächste Woche
+und die Checkliste.
+
+![Wochenkompass](design/wochenkompass.png)
 
 ## Das WIR-Zeichen
 
@@ -57,9 +103,9 @@ wie auf einer Abfahrtstafel. Rezeptkarten sind rein typografisch.
 |---|---|---|---|
 | `--paper` | `#f6f5f1` | `#0f0f0e` | Fläche |
 | `--ink` | `#141414` | `#ecebe6` | Text, Linien, gefüllte Knöpfe |
-| `--muted` | `#7d7b75` | `#8f8d86` | Nebentext |
+| `--muted` | `#66645e` | `#8f8d86` | Nebentext (5,4 : 1 auf Papier – aus 2–3 m lesbar) |
 | `--line` | `#e2dfd7` | `#2a2926` | Haarlinien |
-| `--accent` | `#d2452b` | `#ef6a4f` | Gemeinsam, heute, jetzt |
+| `--accent` | `#c23a21` | `#ef6a4f` | Gemeinsam, heute, jetzt (auf der dunklen Hauptfläche immer `#ef6a4f`) |
 | `--wir-fill` | Signal 6 % | Signal 8 % | Hintergrund gemeinsamer Termine |
 
 Alle Werte stehen in `src/styles/base.css`.

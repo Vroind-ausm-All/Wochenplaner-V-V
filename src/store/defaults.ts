@@ -21,6 +21,7 @@ export const DEFAULT_SETTINGS: Settings = {
   favoriteCuisines: ['Italienisch', 'Asiatisch'],
   holidayState: null,
   specialDays: true,
+  childName: '',
 };
 
 export const WOCHENKOMPASS = [

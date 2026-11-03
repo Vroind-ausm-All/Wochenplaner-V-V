@@ -1,6 +1,6 @@
 import type { Suggestion } from '../features/companion/engine';
 import type { Template } from '../data/templates';
-import type { ISODate, MealSlot, Time } from '../store/types';
+import type { ISODate, MealSlot, Owner, Time } from '../store/types';
 
 /** Was gezogen bzw. per Tippen ausgewählt werden kann. */
 export type Payload =
@@ -8,14 +8,17 @@ export type Payload =
   | { type: 'event'; id: string; on: ISODate; label: string }
   | { type: 'recipe'; recipeId: string; label: string }
   | { type: 'meal'; day: ISODate; slot: MealSlot; label: string }
-  | { type: 'suggestion'; suggestion: Suggestion; label: string };
+  | { type: 'suggestion'; suggestion: Suggestion; label: string }
+  | { type: 'task'; id: string; on: ISODate; label: string };
 
 /** Wohin abgelegt werden kann. */
 export type Target =
   | { type: 'slot'; date: ISODate; time: Time }
   | { type: 'day'; date: ISODate }
   | { type: 'mealSlot'; date: ISODate; slot: MealSlot }
-  | { type: 'trash' };
+  | { type: 'trash' }
+  /** Spalte einer Person auf der Startseite: Ablegen = „übernimmst du?“ */
+  | { type: 'owner'; owner: Owner; date: ISODate };
 
 export const payloadKey = (p: Payload) => {
   switch (p.type) {
@@ -24,6 +27,7 @@ export const payloadKey = (p: Payload) => {
     case 'recipe': return `rc:${p.recipeId}`;
     case 'meal': return `ml:${p.day}:${p.slot}`;
     case 'suggestion': return `sg:${p.suggestion.id}`;
+    case 'task': return `tk:${p.id}:${p.on}`;
   }
 };
 
@@ -33,5 +37,6 @@ export const targetKey = (t: Target) => {
     case 'day': return `day:${t.date}`;
     case 'mealSlot': return `meal:${t.date}:${t.slot}`;
     case 'trash': return 'trash';
+    case 'owner': return `owner:${t.owner}:${t.date}`;
   }
 };

@@ -9,10 +9,13 @@ import { useDnd } from './state';
 export function accepts(p: Payload, t: Target): boolean {
   switch (p.type) {
     case 'template':
+      return t.type === 'slot' || t.type === 'day' || t.type === 'owner';
     case 'suggestion':
       return t.type === 'slot' || t.type === 'day';
     case 'event':
-      return t.type === 'slot' || t.type === 'day' || t.type === 'trash';
+      return t.type === 'slot' || t.type === 'day' || t.type === 'trash' || t.type === 'owner';
+    case 'task':
+      return t.type === 'owner';
     case 'recipe':
       return t.type === 'mealSlot' || t.type === 'day' || t.type === 'slot';
     case 'meal':
@@ -26,6 +29,13 @@ export function applyDrop(p: Payload, t: Target, owner: Owner = 'Beide'): boolea
   const s = useStore.getState();
   switch (p.type) {
     case 'template': {
+      if (t.type === 'owner') {
+        s.addEvent(
+          { title: p.template.title, date: t.date, time: p.template.defaultTime, duration: p.template.minutes, category: p.template.category, owner: t.owner, allDay: false, repeat: 'none', reminder: 'none' },
+          `${p.template.title} eingeplant`,
+        );
+        return true;
+      }
       const date = t.type === 'slot' || t.type === 'day' ? t.date : '';
       const time = t.type === 'slot' ? t.time : p.template.defaultTime;
       s.addEvent(
@@ -49,7 +59,16 @@ export function applyDrop(p: Payload, t: Target, owner: Owner = 'Beide'): boolea
       if (g.recipe && g.kind === 'date') s.placeMeal(date, 'Abend', g.recipe, { together: true });
       return true;
     }
+    case 'task': {
+      if (t.type !== 'owner') return false;
+      s.reassign('task', p.id, p.on, t.owner);
+      return true;
+    }
     case 'event': {
+      if (t.type === 'owner') {
+        s.reassign('event', p.id, p.on, t.owner);
+        return true;
+      }
       if (t.type === 'trash') {
         s.deleteEvent(p.id);
         return true;

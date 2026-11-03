@@ -3,9 +3,10 @@ import { findRecipe } from '../data/recipes';
 import type { Recipe } from '../data/recipes/types';
 import { addDays, isWeekend, monday, today } from '../lib/date';
 import { regenerateShopping } from '../lib/grocery';
+import { taskOwnerOn } from '../lib/recurrence';
 import { uid } from '../lib/id';
 import { loadLocal, normalize, STORAGE_KEY } from './migrate';
-import type { CalendarEvent, CheckIn, Energy, ISODate, MealSlot, PlannerData, PlannedMeal, Settings, Time } from './types';
+import type { CalendarEvent, CheckIn, Energy, ISODate, MealSlot, Owner, PlannerData, PlannedMeal, Settings, Task, Time } from './types';
 
 export type View = 'home' | 'calendar' | 'meals' | 'shopping' | 'tasks' | 'companion' | 'family' | 'settings';
 export type CalendarMode = 'month' | 'week' | 'day' | 'agenda';
@@ -25,6 +26,8 @@ interface UiState {
   groceryWeek: ISODate;
   editing: { kind: 'event'; event?: CalendarEvent; draft?: Partial<CalendarEvent> } | null;
   recipeOpen: string | null;
+  /** Wochenkompass (Rückblick & Ausblick) geöffnet */
+  compassOpen: boolean;
   toast: Toast | null;
 }
 
@@ -38,6 +41,8 @@ interface Actions {
 
   addEvent: (e: Omit<CalendarEvent, 'id'>, toast?: string) => string;
   updateEvent: (id: string, patch: Partial<CalendarEvent>) => void;
+  /** Zuständigkeit für einen Tag ändern; bei Serien nur dieses eine Vorkommen. */
+  reassign: (kind: 'event' | 'task', id: string, on: ISODate, owner: Owner) => void;
   deleteEvent: (id: string) => void;
   /** Verschiebt ein (Serien-)Vorkommen. scope 'one' löst das Vorkommen aus der Serie. */
   moveEvent: (id: string, from: ISODate, to: ISODate, time: Time | null, scope: 'one' | 'all') => void;
@@ -70,6 +75,7 @@ export const useStore = create<Store>()((set, get) => ({
   groceryWeek: monday(today()),
   editing: null,
   recipeOpen: null,
+  compassOpen: false,
   toast: initial.migrated ? { id: ++toastId, text: 'Daten aus dem bisherigen WIR-Board übernommen' } : null,
 
   mutate(fn, toast) {
@@ -100,6 +106,30 @@ export const useStore = create<Store>()((set, get) => ({
       const ev = d.events.find((x) => x.id === id);
       if (ev) Object.assign(ev, patch);
     }, 'Termin gespeichert');
+  },
+  reassign(kind, id, on, owner) {
+    const { data } = get();
+    const current = kind === 'task' ? data.tasks.find((x) => x.id === id) : data.events.find((x) => x.id === id);
+    if (!current || (kind === 'task' ? taskOwnerOn(current as Task, on) : current.owner) === owner) return;
+    const names = data.settings;
+    const label = owner === 'Person A' ? names.personA : owner === 'Person B' ? names.personB : owner === 'Kind' ? names.childName || 'Kind' : 'euch beide';
+    get().mutate((d) => {
+      if (kind === 'task') {
+        const t = d.tasks.find((x) => x.id === id);
+        if (!t) return;
+        if (t.repeat === 'none') t.owner = owner;
+        else t.ownerOn = { ...(t.ownerOn || {}), [on]: owner };
+        return;
+      }
+      const ev = d.events.find((x) => x.id === id);
+      if (!ev || ev.owner === owner) return;
+      if (ev.repeat === 'none') ev.owner = owner;
+      else {
+        // Nur dieses Vorkommen umhängen, die Serie bleibt bei der bisherigen Person.
+        ev.exDates = [...(ev.exDates || []), on];
+        d.events.push({ ...ev, id: uid(), date: on, owner, repeat: 'none', exDates: [] });
+      }
+    }, `Übernimmt jetzt: ${label}`);
   },
   deleteEvent(id) {
     get().mutate((d) => void (d.events = d.events.filter((x) => x.id !== id)), 'Termin gelöscht');

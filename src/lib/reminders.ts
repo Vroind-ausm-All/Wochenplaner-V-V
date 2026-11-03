@@ -37,4 +37,4 @@ export function dueReminders(events: CalendarEvent[], fromMs: number, toMs: numb
 }
 
 export const forWhom = (eventOwner: CalendarEvent['owner'], deviceFor: 'Alle' | 'Person A' | 'Person B') =>
-  deviceFor === 'Alle' || eventOwner === 'Beide' || eventOwner === deviceFor;
+  deviceFor === 'Alle' || eventOwner === 'Beide' || eventOwner === 'Kind' || eventOwner === deviceFor;

@@ -1,10 +1,12 @@
-.meals { display: grid; gap: 28px; }
+.meals { display: grid; gap: var(--s5); }
 .meals__intro { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
 .meals__intro h2 { font-size: 40px; letter-spacing: -0.03em; margin: 6px 0; }
 .meals__intro p { max-width: 640px; }
 
 /* Wochenplan Essen: sieben Spalten im Raster, Trennlinien statt Kästen */
-.mealweek { display: grid; gap: 12px; background: var(--paper); border-top: 1px solid var(--ink); padding: 14px 0; position: sticky; top: 0; z-index: 5; }
+/* Wochenplan = Werkzeug-Fläche (getönt), darunter das Rezept-Angebot auf Papier */
+.mealweek { display: grid; gap: 12px; background: var(--paper-2); padding: var(--s3) var(--s4) var(--s4); position: sticky; top: 0; z-index: 5; }
+.mealweek__days { background: var(--paper); }
 .mealweek h3 { font-size: 17px; }
 .mealweek__days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border-left: 1px solid var(--line); }
 .mealweek__day { display: grid; gap: 4px; align-content: start; padding: 0 6px 6px; border-right: 1px solid var(--line); }

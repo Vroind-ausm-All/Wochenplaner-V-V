@@ -2,8 +2,8 @@
 
 Der Heimserver ist ein kleines Programm (`server/server.mjs`, ohne Zusatzpakete). Er läuft auf einem
 Rechner im Heimnetz, liefert die App aus und hält den gemeinsamen Datenstand.
-Idealer Ort: der Raspberry Pi oder Mini-PC hinter dem Bilderrahmen, alternativ ein NAS oder ein
-dauerhaft laufender Rechner.
+Das Tablet am Bilderrahmen ist nur Anzeige – der Server läuft auf einem Gerät, das ohnehin durchläuft:
+NAS, ein kleiner Raspberry Pi (ohne Bildschirm, in der Schublade) oder ein dauerhaft laufender Rechner.
 
 ```
 Handy ──┐                       ┌─ liefert die App aus
@@ -15,7 +15,7 @@ Rahmen ─┘                       └─ meldet Änderungen sofort an alle Ger
 
 - Jedes Gerät speichert den Plan zusätzlich lokal. Die App funktioniert also auch, wenn der Server
   oder das WLAN kurz weg ist. Die Statuszeile unten in der Navigation zeigt:
-  „☁ Alle Geräte aktuell“, „⏳ Wird abgeglichen …“ oder „⚠ Offline · wird nachgeholt“.
+  „Alle Geräte aktuell“, „Wird abgeglichen …“ oder „Offline · wird nachgeholt“.
 - Änderungen gehen nach ~0,3 Sekunden an den Server. Der benachrichtigt alle anderen Geräte, die
   sich sofort aktualisieren.
 - Haben zwei Geräte gleichzeitig (oder offline) geändert, werden beide Stände **eintragsweise
@@ -123,6 +123,9 @@ Warnungen auf dwd.de bzw. in der WarnWetter-App.
 - Datenordner (`WIR_DATA`): `state.json` = aktueller Stand, `backups/` = eine Sicherung pro Tag, 30 Tage lang,
   `push.json` = angemeldete Geräte, `photos/` = Fotos, `vapid.json` / `feed-token` / `secret` = Schlüssel (nicht weitergeben).
   *Einstellungen → Serverstand sichern* lädt den aktuellen Stand als Datei herunter.
+- **Zweitsicherung:** Mit `WIR_BACKUP_COPY=/media/usb/wir-sicherung` (USB-Stick oder eingehängte NAS-Freigabe) legt der
+  Server jede Tagessicherung zusätzlich dort ab, ebenfalls 30 Tage. Ist der Stick abgezogen oder das NAS aus, speichert
+  er normal weiter und schreibt nur einen Hinweis ins Protokoll.
 - Wiederherstellen: Sicherungsdatei unter *Einstellungen → JSON importieren* laden – sie wird an alle Geräte verteilt.
 
 ## Für Entwicklung
@@ -131,6 +134,7 @@ Warnungen auf dwd.de bzw. in der WarnWetter-App.
 WIR_PASSWORD=test npm run server   # Terminal 1 – Server auf :8787
 npm run dev                        # Terminal 2 – Vite leitet /api an den Server weiter
 npm test                           # u. a. server/server.test.mjs und src/store/merge.test.ts
+npm run build && npm run test:e2e  # Browser-Gesamttests (tests/e2e), laufen auch bei jedem Push
 ```
 
 | Variable | Standard | Bedeutung |
@@ -139,6 +143,7 @@ npm test                           # u. a. server/server.test.mjs und src/store/
 | `PORT` | `8787` | Port |
 | `HOST` | `0.0.0.0` | `127.0.0.1`, wenn nur der Rechner selbst zugreifen soll (z. B. hinter `tailscale serve`) |
 | `WIR_DATA` | `./server-daten` | Datenordner |
+| `WIR_BACKUP_COPY` | – | optional: zweiter Ordner für die Tagessicherungen (USB-Stick, NAS) |
 | `WIR_DIST` | `./dist` | gebaute App |
 | `WIR_TZ` | Zeitzone des Systems | Zeitzone für Erinnerungen und Feed, z. B. `Europe/Berlin` |
 | `WIR_PUSH_CONTACT` | `mailto:wir-wochenplaner@example.org` | Kontaktadresse für die Push-Dienste (am besten eure eigene) |

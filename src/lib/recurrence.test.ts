@@ -53,6 +53,7 @@ describe('Erinnerungen (Client)', async () => {
   it('filtert nach Person', () => {
     expect(forWhom('Person A', 'Person B')).toBe(false);
     expect(forWhom('Beide', 'Person B')).toBe(true);
+    expect(forWhom('Kind', 'Person A')).toBe(true); // Termine des Kindes gehen an beide
     expect(forWhom('Person A', 'Alle')).toBe(true);
   });
 });

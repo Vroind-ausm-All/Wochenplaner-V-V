@@ -4,11 +4,11 @@ import { uid } from '../../lib/id';
 import { taskOccurrences } from '../../lib/recurrence';
 import { useToday } from '../../lib/useClock';
 import { useStore } from '../../store/store';
-import { OWNERS, type ISODate, type Repeat, type Task } from '../../store/types';
+import { type ISODate, type Repeat, type Task } from '../../store/types';
 import { Chips } from '../../ui/Segmented';
 import { Sheet } from '../../ui/Sheet';
-import { useOwnerName } from '../calendar/hooks';
-import { Icon } from '../../ui/Icon';
+import { useOwnerName, useOwners } from '../calendar/hooks';
+import { Icon, OwnerMark } from '../../ui/Icon';
 
 const REPEAT: { value: Repeat; label: string }[] = [
   { value: 'none', label: 'Einmalig' },
@@ -35,7 +35,7 @@ function TaskRow({ t, onEdit }: { t: ReturnType<typeof taskOccurrences>[number];
         <span className="small muted">
           {' '}
           · {name(t.owner)}
-          {t.repeat !== 'none' ? ' · Serie' : ''}
+          {t.rotate ? ' · abwechselnd' : t.repeat !== 'none' ? ' · Serie' : ''}
         </span>
       </span>
       {onEdit && (
@@ -93,6 +93,7 @@ export function TasksPage() {
 
 function TaskSheet({ task, onClose }: { task: Partial<Task> | null; onClose: () => void }) {
   const name = useOwnerName();
+  const owners = useOwners();
   const mutate = useStore((s) => s.mutate);
   const today = useToday();
   const [f, setF] = useState<Partial<Task>>({});
@@ -136,12 +137,23 @@ function TaskSheet({ task, onClose }: { task: Partial<Task> | null; onClose: () 
       </label>
       <div className="field">
         <span>Verantwortung</span>
-        <Chips value={f.owner ?? 'Beide'} onChange={(o) => setF({ ...f, owner: o })} options={OWNERS.map((o) => ({ value: o, label: name(o) }))} />
+        <Chips value={f.owner ?? 'Beide'} onChange={(o) => setF({ ...f, owner: o })} options={owners.map((o) => ({ value: o, label: name(o), icon: <OwnerMark owner={o} size={12} /> }))} />
       </div>
       <div className="field">
         <span>Wiederholung</span>
         <Chips value={f.repeat ?? 'none'} onChange={(r) => setF({ ...f, repeat: r })} options={REPEAT} />
       </div>
+      {f.repeat && f.repeat !== 'none' && (f.owner === 'Person A' || f.owner === 'Person B') && (
+        <div className="field">
+          <span>Zuständigkeit</span>
+          <div className="chips">
+            <button type="button" className="chip" aria-pressed={!!f.rotate} onClick={() => setF({ ...f, rotate: !f.rotate })}>
+              <Icon name="repeat" size={16} /> Abwechselnd {name('Person A')} und {name('Person B')}
+            </button>
+          </div>
+          <p className="small muted">Beginnt mit {name(f.owner)} und wechselt bei jedem Mal – z. B. Müll, Wäsche, Kita-Abholung.</p>
+        </div>
+      )}
     </Sheet>
   );
 }

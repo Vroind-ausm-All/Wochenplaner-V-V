@@ -30,3 +30,11 @@
 .wx-check__item.is-bad .wx-check__icon { color: var(--accent); }
 .wx-pin { display: inline-grid; place-items: center; width: 18px; height: 18px; color: var(--ink); }
 .wx-pin.is-bad { color: var(--accent); }
+
+.wx-today { display: flex; align-items: center; gap: var(--s3); }
+.wx-today__temp { font-size: var(--t-zone); font-weight: 300; letter-spacing: -0.03em; line-height: 1; }
+.wx-today__temp .muted { font-size: var(--t-item); font-weight: 400; letter-spacing: 0; }
+.wx-outlook { list-style: none; margin: 0; padding: 0; display: grid; }
+.wx-outlook button { display: grid; grid-template-columns: 3em 24px 1fr; align-items: center; gap: var(--s2); width: 100%; min-height: 44px; padding: 0; border: 0; border-top: 1px solid var(--line); background: none; text-align: left; font-size: 15px; }
+.wx-outlook li:first-child button { border-top: 0; }
+.wx-outlook__day { font-weight: 600; }

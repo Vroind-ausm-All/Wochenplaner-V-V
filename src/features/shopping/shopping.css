@@ -1,4 +1,7 @@
 .shop { display: grid; gap: 20px; max-width: 980px; }
+/* Abschnitte (Einstellungen, Familie, Aufgaben) deutlich voneinander absetzen */
+.shop > .card { margin-top: var(--s4); }
+.shop > .card h3 { font-size: 22px; letter-spacing: -0.02em; margin-bottom: var(--s2); }
 .shop h2 { font-size: 40px; letter-spacing: -0.03em; }
 .shop__add { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .shop__item { display: flex; align-items: center; gap: 14px; min-height: 56px; padding: 6px 0; border-bottom: 1px solid var(--line); }

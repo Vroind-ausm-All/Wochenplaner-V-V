@@ -330,8 +330,15 @@ export function WirMark({ size = 32, closeness = 0.5, filled = false }: { size?:
   );
 }
 
-/** Personen-Marke: ● Person A (gefüllt), ○ Person B (Ring), Beide = WIR-Zeichen. */
+/** Personen-Marke: ● Person A (gefüllt), ○ Person B (Ring), Beide = zwei Kreise, Kind = Ring mit Punkt. */
 export function OwnerMark({ owner, size = 14 }: { owner: Owner | 'Alle'; size?: number }) {
+  if (owner === 'Kind')
+    return (
+      <svg className="icon owner-mark" width={size} height={size} viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden>
+        <circle cx="7" cy="7" r="5.5" />
+        <circle cx="7" cy="7" r="2" fill="currentColor" stroke="none" />
+      </svg>
+    );
   if (owner === 'Beide' || owner === 'Alle')
     return (
       <svg className="icon owner-mark" width={size * 1.5} height={size} viewBox="0 0 21 14" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden>

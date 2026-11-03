@@ -7,7 +7,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { expandIcs } from '../src/lib/ical.ts';
 import { buildFeed } from './feed.mjs';
 import { b64url, encrypt, fromB64url, loadVapid, vapidHeader } from './push.mjs';
-import { dueReminders, reminderMessage } from './reminders.mjs';
+import { dueReminders, forSubscriber, reminderMessage } from './reminders.mjs';
 import { createPlannerServer } from './server.mjs';
 import { wallToUtc } from './time.mjs';
 
@@ -206,5 +206,17 @@ describe('Heimserver: Abos, Feed und Push', () => {
     const r = await api('/api/push/test', { method: 'POST', body: JSON.stringify({ endpoint: 'https://push.example/valentin' }) });
     expect(r.status).toBe(200);
     expect(pushed.map((x) => x.url)).toEqual(['https://push.example/valentin']);
+  });
+});
+
+describe('Kind als eigene Person', () => {
+  it('Erinnerungen an Termine des Kindes gehen an beide Eltern und nennen den Namen', () => {
+    expect(forSubscriber('Kind', 'Person A')).toBe(true);
+    expect(forSubscriber('Kind', 'Person B')).toBe(true);
+    expect(forSubscriber('Person A', 'Person B')).toBe(false);
+    const state = { events: [{ id: 'k', title: 'Kinderturnen', date: '2026-11-03', time: '16:00', duration: 60, owner: 'Kind', allDay: false, repeat: 'none', reminder: '15' }] };
+    const at = (d, t) => new Date(`${d}T${t}:00+01:00`).getTime();
+    const msg = reminderMessage(dueReminders(state, at('2026-11-03', '15:44'), at('2026-11-03', '15:45'), 'Europe/Berlin')[0], { childName: 'Mia' });
+    expect(msg.body).toBe('16:00 Uhr · Mia');
   });
 });

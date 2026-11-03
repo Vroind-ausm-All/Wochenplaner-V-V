@@ -83,7 +83,7 @@
 .agenda__icon { color: var(--edge); }
 
 /* ---------- Bausteinleiste ---------- */
-.tray { display: flex; flex-direction: column; gap: 24px; overflow-y: auto; min-height: 0; padding-bottom: 80px; }
+.tray { display: flex; flex-direction: column; gap: 24px; overflow-y: auto; min-height: 0; padding: var(--s3) var(--s3) 80px; background: var(--paper-2); }
 .tray__section { display: grid; gap: 8px; }
 .tray__owner { display: grid; gap: 6px; }
 .tray__owner .chip { min-height: 38px; padding: 0 10px; font-size: 13px; }
@@ -91,14 +91,14 @@
 .tpl { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 6px 4px; border-bottom: 1px solid var(--line); }
 .tpl b { display: block; font-size: 14px; font-weight: 600; }
 .tpl__icon { flex: none; }
-.tpl.sugg .tpl__icon { color: var(--accent); }
+.tpl.sugg .tpl__icon { color: var(--ink-2); }
 .sugg-wrap { display: flex; align-items: center; gap: 4px; border-bottom: 1px solid var(--line); }
 .sugg-wrap .tpl { flex: 1; min-width: 0; border-bottom: 0; }
 
 /* Hochkant (15,2"-Rahmen): Leiste unten als horizontale Reihe */
 @media (orientation: portrait), (max-width: 1100px) {
   .cal__main { grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; gap: 16px; }
-  .tray { overflow: visible; padding-bottom: 4px; gap: 10px; }
+  .tray { overflow: visible; padding: var(--s3); gap: 10px; }
   .tray__section { grid-template-columns: auto minmax(0, 1fr); align-items: center; column-gap: 12px; row-gap: 6px; }
   .tray__section > p { display: none; }
   .tray__owner { display: flex; align-items: center; gap: 8px; }

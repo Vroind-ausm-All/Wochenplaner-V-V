@@ -1,5 +1,5 @@
-import type { CalendarEvent, ExternalMeta, ISODate, Repeat, Task } from '../store/types';
-import { addDays, parse, toMinutes } from './date';
+import type { CalendarEvent, ExternalMeta, ISODate, Owner, Repeat, Task } from '../store/types';
+import { addDays, daysBetween, parse, toMinutes } from './date';
 
 /** Gleiche Regeln wie im alten Board, damit Serien identisch erscheinen. */
 export function matches(start: ISODate, target: ISODate, repeat: Repeat): boolean {
@@ -51,11 +51,32 @@ export interface TaskOccurrence extends Task {
   isDone: boolean;
 }
 
+/** Wie viele Wiederholungen liegen zwischen Start und Ziel? (0 = erstes Vorkommen) */
+export function occurrenceIndex(start: ISODate, target: ISODate, repeat: Repeat): number {
+  const a = parse(start), b = parse(target);
+  switch (repeat) {
+    case 'daily': return daysBetween(start, target);
+    case 'weekly': return Math.round(daysBetween(start, target) / 7);
+    case 'monthly': return (b.getFullYear() - a.getFullYear()) * 12 + b.getMonth() - a.getMonth();
+    case 'yearly': return b.getFullYear() - a.getFullYear();
+    default: return 0;
+  }
+}
+
+/** Zuständigkeit an einem Tag: Einzel-Übernahme vor Wechsel-Regel vor fester Person. */
+export function taskOwnerOn(t: Task, on: ISODate): Owner {
+  const fixed = t.ownerOn?.[on];
+  if (fixed) return fixed;
+  if (t.rotate && t.repeat !== 'none' && (t.owner === 'Person A' || t.owner === 'Person B') && occurrenceIndex(t.due, on, t.repeat) % 2 === 1)
+    return t.owner === 'Person A' ? 'Person B' : 'Person A';
+  return t.owner;
+}
+
 export function taskOccurrences(tasks: Task[], from: ISODate, to: ISODate): TaskOccurrence[] {
   const out: TaskOccurrence[] = [];
   for (let d = from; d <= to; d = addDays(d, 1))
     for (const t of tasks)
-      if (matches(t.due, d, t.repeat)) out.push({ ...t, on: d, isDone: (t.doneDates || []).includes(d) });
+      if (matches(t.due, d, t.repeat)) out.push({ ...t, owner: taskOwnerOn(t, d), on: d, isDone: (t.doneDates || []).includes(d) });
   return out;
 }
 

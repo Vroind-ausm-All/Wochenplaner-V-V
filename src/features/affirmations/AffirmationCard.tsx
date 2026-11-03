@@ -8,7 +8,7 @@ import './affirmation.css';
 const ROTATE_MS = 45_000;
 
 /** „Gedanke des Tages“ – ruhig animiert mit Motion: Wörter blenden nacheinander ein, Wischen wechselt. */
-export function AffirmationCard({ large }: { large?: boolean }) {
+export function AffirmationCard({ large, quiet }: { large?: boolean; quiet?: boolean }) {
   const { personA, personB, quoteOffset } = useStore((s) => s.data.settings);
   const favorites = useStore((s) => s.data.favoriteAffirmations);
   const mutate = useStore((s) => s.mutate);
@@ -33,6 +33,24 @@ export function AffirmationCard({ large }: { large?: boolean }) {
     mutate((d) => {
       d.favoriteAffirmations = fav ? d.favoriteAffirmations.filter((x) => x !== a.id) : [...d.favoriteAffirmations, a.id];
     });
+
+  // Leise Variante für den Seitenrand: eine Zeile, Antippen zeigt den nächsten Gedanken.
+  if (quiet)
+    return (
+      <section className="affirm affirm--quiet" aria-label="Gedanke des Tages">
+        <button type="button" className="affirm__line" onClick={() => go(1)} title="Nächster Gedanke">
+          <Icon name="quote" size={18} />
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.span key={a.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
+              {words.join(' ')}
+            </motion.span>
+          </AnimatePresence>
+        </button>
+        <button className={`btn sm ghost icon affirm__heart ${fav ? 'is-fav' : ''}`} onClick={toggleFav} aria-pressed={fav} aria-label="Als Lieblingsgedanke merken">
+          <Icon name="heart" />
+        </button>
+      </section>
+    );
 
   return (
     <section className={`affirm ${large ? 'affirm--large' : ''}`} aria-label="Gedanke des Tages">

@@ -1,7 +1,7 @@
 # Hardware für den Bilderrahmen
 
 Ziel: ein günstiges Touchdisplay, das in einem Bilderrahmen an der Wand unauffällig mitläuft.
-Stand der Recherche: **Oktober 2026**. Alle Preise sind Richtwerte aus Momentaufnahmen und
+Stand der Recherche: **Oktober 2026**, Abschnitt zum gebrauchten Tablet: **November 2026**. Alle Preise sind Richtwerte aus Momentaufnahmen und
 schwanken stark – vor dem Kauf aktuell vergleichen.
 
 ## Was das Display können sollte
@@ -38,11 +38,28 @@ Für eine Web-App reicht ein Pi 4 mit 2 GB; ein gebrauchter Mini-PC oder Thin-Cl
 
 1. **Jetzt kostenlos:** Test auf dem Laptop (siehe README) und mit der `Network:`-Adresse auf einem vorhandenen
    Tablet oder Handy im WLAN. So merkt ihr, ob ihr den Planer täglich nutzt und welche Größe ihr braucht.
-2. **Für den Rahmen:**
-   - *Am besten passend:* **Weg B** – 15,6″-Touchmonitor hochkant. Die Oberfläche ist genau auf diese Größe
-     zugeschnitten. Monitor mit USB-C **und** Mini-HDMI wählen, dann passt er an jeden Rechner.
-   - *Am einfachsten:* **Weg A** – ein 11″-Android-Tablet mit Kiosk-Browser. Alles in einem Gerät, sehr flach.
-     Die Woche wird enger, bleibt aber bedienbar.
+2. **Für den Rahmen: Weg A – ein gebrauchtes 10–11″-Android-Tablet mit Fully Kiosk.** Alles in einem Gerät,
+   sehr flach, ein Kabel. Die App ist dafür angepasst: Hochkant (im Browser ≈ 750–800 Punkte breit) wandert die
+   Navigation nach unten, „Gemeinsam“ steht oben über die volle Breite, die Personen darunter nebeneinander.
+   Mit Fully schaltet die App die Hintergrundbeleuchtung selbst ab und dimmt nachts (siehe unten).
+3. Der **Heimserver** für den Abgleich mit den Handys läuft nicht auf dem Tablet, sondern auf einem Gerät, das
+   ohnehin durchläuft: NAS, ein kleiner Raspberry Pi ohne Bildschirm oder ein Rechner ([HEIMSERVER.md](HEIMSERVER.md)).
+
+## Gebrauchtes Tablet: worauf achten
+
+| Prüfen | Warum | Gut |
+|---|---|---|
+| **Android-Version** | Aktuelle Chrome-/WebView-Versionen kommen nur noch für neuere Android-Versionen; alte Browser zeigen die App eventuell fehlerhaft | mindestens Android 10, besser 12 oder neuer, Sicherheits-Updates noch nicht lange vorbei |
+| **Google-Konto entfernt** | Mit aktivem Zurücksetzungsschutz (FRP) lässt sich das Gerät nach dem Zurücksetzen nicht einrichten | Verkäufer meldet das Konto ab und setzt vor euren Augen zurück |
+| **Akku** | Gebrauchte Akkus im Dauerbetrieb können sich aufblähen | Rückseite plan, Display hebt sich nicht ab; Ladebegrenzung im Menü (z. B. Samsung „Akku schützen“) |
+| **Display** | Ein Bildschirm, der jahrelang das gleiche Bild zeigt | LCD statt OLED (OLED kann einbrennen); keine Pixelfehler, gleichmäßige Helligkeit |
+| **Touch** | Muss überall reagieren, auch am Rand | In einer Mal-App Linien über die ganze Fläche ziehen |
+| **Auflösung** | Schärfe aus der Nähe | mindestens 1920 × 1200 |
+| **Ladebuchse** | Hängt dauerhaft am Kabel | Stecker sitzt fest; gewinkeltes USB-C-Kabel spart Platz im Rahmen |
+
+**iPad statt Android?** Geht auch: als App auf den Home-Bildschirm legen (Teilen → „Zum Home-Bildschirm“),
+automatische Sperre auf „Nie“, „Geführter Zugriff“ hält die App im Vordergrund. Push-Mitteilungen brauchen
+iPadOS 16.4 oder neuer. Die Bildschirm-Steuerung über Fully gibt es auf dem iPad nicht.
 
 ## Einbau in den Bilderrahmen
 
@@ -58,9 +75,16 @@ Für eine Web-App reicht ein Pi 4 mit 2 GB; ein gebrauchter Mini-PC oder Thin-Cl
 
 ## Kiosk-Software
 
-**Android (Weg A):** Kiosk-Browser wie *Fully Kiosk Browser*: Start-URL eintragen, Vollbild, Bildschirm-Zeitplan.
-Bewegungserkennung über die Kamera und Bildschirmschoner sind laut Community-Berichten Teil der kostenpflichtigen
-Version und funktionieren nicht immer zuverlässig (z. B. bei wenig Licht) – vor dem Kauf testen.
+**Android-Tablet (Weg A) mit Fully Kiosk Browser:**
+1. Fully installieren, Start-URL = Adresse des Heimservers (z. B. `http://192.168.178.23:8787`), Vollbild, Hochformat sperren.
+2. *Advanced Web Settings → „Enable JavaScript Interface“* einschalten. Dann übernimmt die App selbst:
+   - **„Bildschirm dunkel“** (Ein/Aus-Symbol oben) schaltet die Hintergrundbeleuchtung wirklich aus, die App läuft weiter.
+   - **Nachtmodus** senkt zusätzlich die Helligkeit des Tablets, tagsüber wieder hell.
+   - **Aufwachen:** Berührung, Bewegung vor der Kamera (falls in Fully aktiviert) oder eine fällige Erinnerung schalten den Bildschirm ein.
+   - In der App unter *Einstellungen → Display & Kiosk* erscheint „Fully Kiosk erkannt“ – dort lässt sich das abschalten.
+3. Optional in Fully: *Motion Detection* (Kamera als Bewegungsmelder) und ein Zeitplan für Bildschirm aus/an.
+   Einige dieser Funktionen gehören zur kostenpflichtigen PLUS-Version und klappen laut Community-Berichten bei
+   wenig Licht nicht immer zuverlässig – in der Testversion ausprobieren, bevor ihr kauft.
 
 **Raspberry Pi / Mini-PC (Weg B):**
 1. Betriebssystem mit Desktop installieren (Raspberry Pi OS bzw. ein schlankes Linux), WLAN einrichten.
@@ -75,7 +99,7 @@ Version und funktionieren nicht immer zuverlässig (z. B. bei wenig Licht) – v
 ## Daten auf mehreren Geräten
 
 Ohne Server speichert jedes Gerät seine Daten im eigenen Browser. Damit Rahmen, Laptop und Handys dasselbe
-sehen, läuft der **Heimserver** am besten auf dem Rechner hinter dem Rahmen (Weg B) oder einem NAS –
+sehen, läuft der **Heimserver** auf einem NAS, einem kleinen Raspberry Pi oder dem Rechner hinter dem Rahmen (Weg B) –
 Einrichtung, Abgleich und Zugriff von unterwegs: [HEIMSERVER.md](HEIMSERVER.md).
 
 ## Quellen

@@ -24,11 +24,13 @@ export interface DeviceSettings {
   screensaverInfo: boolean;
   /** Im Nachtmodus schwarz statt Fotos */
   screensaverNightBlack: boolean;
+  /** Tablet mit Fully Kiosk: Helligkeit nachts senken, „Bildschirm dunkel“ schaltet wirklich ab */
+  tabletControl: boolean;
 }
 
 const DEVICE_DEFAULTS = {
   remindersOnScreen: true, reminderSound: true, reminderFor: 'Alle' as const,
-  screensaverAfter: 0, slideSeconds: 15, screensaverInfo: true, screensaverNightBlack: true,
+  screensaverAfter: 0, slideSeconds: 15, screensaverInfo: true, screensaverNightBlack: true, tabletControl: true,
 };
 
 const KEY = 'wir-device-v1';

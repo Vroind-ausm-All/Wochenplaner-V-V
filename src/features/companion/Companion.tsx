@@ -4,13 +4,13 @@ import { applyDrop } from '../../dnd/rules';
 import { pick } from '../../dnd/state';
 import { fmt } from '../../lib/date';
 import { useToday } from '../../lib/useClock';
-import { WOCHENKOMPASS } from '../../store/defaults';
 import { useStore } from '../../store/store';
 import { Icon, OwnerMark } from '../../ui/Icon';
 import type { CompanionReport, Mood, Suggestion } from './engine';
 import { EnergyCheckin } from './EnergyCheckin';
 import { DATE_IDEAS } from './ideas';
 import { useCompanion } from './useCompanion';
+import { BalanceTable } from './WeekCompass';
 import './companion.css';
 
 /** Wie nah die beiden Kreise des WIR-Zeichens beieinander stehen – die Stimmung des Begleiters als Form. */
@@ -88,34 +88,6 @@ function SuggestionRow({ s }: { s: Suggestion }) {
   );
 }
 
-/** Kompakte Karte für die Startseite. */
-export function CompanionCard() {
-  const report = useCompanion();
-  const setUi = useStore((s) => s.setUi);
-  return (
-    <section className="card companion">
-      <header className="section-head">
-        <span className="eyebrow">Wir-Zeit</span>
-        <button className="linklike" onClick={() => setUi({ view: 'companion' })}>
-          Alles ansehen <Icon name="arrow-right" size={14} />
-        </button>
-      </header>
-      <div className="companion__head">
-        <button className="companion__mark" onClick={() => setUi({ view: 'companion' })} aria-label="Wir-Zeit öffnen">
-          <CompanionMark mood={report.mood} size={56} />
-        </button>
-        <Notes report={report} limit={2} />
-      </div>
-      <WirMeter report={report} compact />
-      <AnimatePresence initial={false}>
-        {report.suggestions.slice(0, 2).map((s) => (
-          <SuggestionRow key={s.id} s={s} />
-        ))}
-      </AnimatePresence>
-    </section>
-  );
-}
-
 /**
  * Fortschrittsring. Das SVG selbst ist um −90° gedreht (Start oben), animiert wird nur die Strichlänge –
  * so liegt die Füllung immer exakt auf der Spur.
@@ -188,12 +160,57 @@ function WirMeter({ report, compact }: { report: CompanionReport; compact?: bool
   );
 }
 
+/**
+ * Wir-Zeit in einer Zeile – für die ruhige Ebene der Startseite: ein Satz, ein Balken, ein Vorschlag, ein Knopf.
+ * Alles Weitere liegt auf der Seite „Wir-Zeit“.
+ */
+export function CompanionSummary() {
+  const report = useCompanion();
+  const setUi = useStore((s) => s.setUi);
+  const pct = report.wir.minutes / Math.max(1, report.wir.goal);
+  const next = report.suggestions.find((s) => s.kind !== 'meal');
+  return (
+    <div className="wir-summary">
+      <div className="wir-summary__status">
+        <CompanionMark mood={report.mood} size={40} />
+        <div className="grow">
+          <p className="wir-summary__line">{report.headline}</p>
+          <div className="wir-summary__meter">
+            <Bar value={pct} />
+            <span className="small num">
+              {fmt.duration(report.wir.minutes)} von {fmt.duration(report.wir.goal)} gemeinsam
+            </span>
+          </div>
+        </div>
+      </div>
+      {next && (
+        <div className="wir-summary__next">
+          <Icon name={next.icon} size={22} />
+          <span className="grow">
+            <b>{next.title}</b>
+            <span className="small muted">
+              {' '}
+              · {fmt.relative(next.date)}, {next.time}
+            </span>
+          </span>
+          <button className="btn sm" onClick={() => applyDrop({ type: 'suggestion', suggestion: next, label: next.title }, { type: 'slot', date: next.date, time: next.time })}>
+            <Icon name="check" size={16} /> Einplanen
+          </button>
+        </div>
+      )}
+      <button className="linklike wir-summary__more" onClick={() => setUi({ view: 'companion' })}>
+        {report.suggestions.length > 1 ? `Alle ${report.suggestions.length} Vorschläge` : 'Zur Wir-Zeit'} <Icon name="arrow-right" size={14} />
+      </button>
+    </div>
+  );
+}
+
 /** Ganze Seite „Wir-Zeit“. */
 export function CompanionPage() {
   const report = useCompanion();
   const today = useToday();
   const data = useStore((s) => s.data);
-  const { mutate, updateSettings } = useStore.getState();
+  const { updateSettings, setUi } = useStore.getState();
   const s = data.settings;
 
   return (
@@ -202,16 +219,16 @@ export function CompanionPage() {
         <span className="eyebrow">Woche ab {fmt.short(report.week)}</span>
         <h2>Wir-Zeit</h2>
       </header>
-      <section className="companion companion--hero">
+      <section className="zone zone--hero companion companion--hero" aria-label="Stand der Woche">
         <CompanionMark mood={report.mood} size={96} />
         <Notes report={report} />
         <WirMeter report={report} />
       </section>
 
       <div className="companion-grid">
-        <section className="card stack">
-          <header className="section-head">
-            <span className="eyebrow">Vorschläge für diese Woche</span>
+        <section className="zone">
+          <header className="zone__head">
+            <h2 className="zone__title">Vorschläge für diese Woche</h2>
           </header>
           <p className="small muted">„Einplanen“ übernimmt den Vorschlag. Oder ziehen bzw. „Anderer Zeitpunkt“ wählen und im Kalender ablegen.</p>
           <AnimatePresence>
@@ -222,7 +239,7 @@ export function CompanionPage() {
           {!report.suggestions.length && <div className="empty">Alles gut geplant. Genießt eure Woche.</div>}
         </section>
 
-        <section className="stack companion-side">
+        <section className="zone zone--quiet companion-side" aria-label="Für euch beide">
           <EnergyCheckin day={today} />
           <div className="card">
             <span className="eyebrow">Frage des Tages · 5 Minuten zuhören</span>
@@ -231,24 +248,19 @@ export function CompanionPage() {
             </p>
           </div>
           <div className="card">
-            <span className="eyebrow">Wochenkompass · Sonntag 15 Minuten</span>
-            <div className="checklist">
-              {WOCHENKOMPASS.map((c, i) => (
-                <label key={c} className="check">
-                  <input type="checkbox" checked={!!data.checks[i]} onChange={(e) => mutate((d) => void (d.checks[i] = e.target.checked))} />
-                  <span>{c}</span>
-                </label>
-              ))}
-            </div>
-            <button className="btn sm" style={{ marginTop: 12 }} onClick={() => mutate((d) => void (d.checks = d.checks.map(() => false)))}>
-              <Icon name="refresh" size={16} /> Für nächste Woche zurücksetzen
+            <span className="eyebrow">Wer trägt was · diese Woche</span>
+            <BalanceTable balance={report.balance} />
+            <button className="btn sm" style={{ marginTop: 12 }} onClick={() => setUi({ compassOpen: true })}>
+              <Icon name="compass" size={16} /> Wochenkompass öffnen
             </button>
           </div>
         </section>
       </div>
 
-      <section className="card stack">
-        <span className="eyebrow">Ideen für euch</span>
+      <section className="zone zone--quiet">
+        <header className="zone__head">
+          <h2 className="zone__title">Ideen für euch</h2>
+        </header>
         <p className="small muted">Antippen wählt die Idee aus – dann im Kalender eine Zeit antippen. Am Kalender direkt ziehen.</p>
         <div className="ideas">
           {DATE_IDEAS.map((idea) => (
@@ -268,8 +280,10 @@ export function CompanionPage() {
         </div>
       </section>
 
-      <section className="card stack">
-        <span className="eyebrow">Eure Ziele</span>
+      <section className="zone">
+        <header className="zone__head">
+          <h2 className="zone__title">Eure Ziele</h2>
+        </header>
         <p className="small muted">Keine Leistungstests – nur Orientierung, damit Wir-Zeit nicht im Alltag verschwindet.</p>
         <Slider label="Wir-Zeit pro Woche" value={s.wirGoalMinutes} min={60} max={900} step={30} fmt={fmt.duration} onChange={(v) => updateSettings({ wirGoalMinutes: v })} />
         <Slider label="Eigene Zeit pro Person" value={s.ichGoalMinutes} min={0} max={600} step={30} fmt={fmt.duration} onChange={(v) => updateSettings({ ichGoalMinutes: v })} />
